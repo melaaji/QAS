@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Douane et les Accises pour les Nuls - Édition Intégrale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
+    <!-- Nouvelles typographies Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --nuls-yellow: #FFD600;
+            --nuls-black: #1A1A1A;
+            --nuls-gray: #F8F9FA;
+            --nuls-border: 3px solid #1A1A1A;
+            --nuls-shadow: 6px 6px 0px #FFD600;
+            --nuls-shadow-dark: 6px 6px 0px #1A1A1A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E5E7EB;
+            color: var(--nuls-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, .font-nuls {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Thème Nuls Sublime */
+        .bg-nuls-yellow { background-color: var(--nuls-yellow); }
+        .text-nuls-yellow { color: var(--nuls-yellow); }
+        .text-nuls-black { color: var(--nuls-black); }
+        .bg-nuls-black { background-color: var(--nuls-black); }
+
+        /* Boîtes Cas Pratique (Style Néo-brutaliste) */
+        .nuls-box {
+            position: relative;
+            border: var(--nuls-border);
+            border-radius: 1.25rem;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin: 3.5rem 0 2.5rem 0;
+            background-color: #fff;
+            box-shadow: var(--nuls-shadow);
+            transition: transform 0.2s ease;
+        }
+        .nuls-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .nuls-box-icon {
+            position: absolute;
+            top: -28px;
+            left: 24px;
+            background: var(--nuls-yellow);
+            border: var(--nuls-border);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--nuls-black);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Sommaire */
+        .toc-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0;
+            border-bottom: 2px dotted #CBD5E1;
+            text-decoration: none;
+            color: var(--nuls-black);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .toc-link:hover { color: #000; border-bottom-color: var(--nuls-yellow); padding-left: 0.5rem; }
+
+        /* Protection Impression */
+        .unbreakable {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            display: inline-block !important;
+            width: 100% !important;
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .chapter-illustration {
+            display: block;
+            max-width: 85%;
+            height: auto;
+            margin: 2rem auto;
+            border: 4px solid var(--nuls-black);
+            border-radius: 1rem;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+        }
+
+        /* ========= RÈGLES D'IMPRESSION (A4) ========= */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 1.5cm 1.5cm 2cm 1.5cm;
+                @bottom-right { content: "Page " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; }
+            }
+            body {
+                background-color: #fff !important;
+                font-size: 9.5pt !important;
+                line-height: 1.4 !important;
+            }
+            .print-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                border: none !important;
+            }
+            
+            .page-break { page-break-before: always !important; }
+            h1, h2, h3, h4, h5 { page-break-after: avoid !important; break-after: avoid !important; }
+            
+            /* Ajustement des polices pour A4 */
+            .text-lg { font-size: 10pt !important; line-height: 1.4 !important; }
+            .text-xl { font-size: 11pt !important; }
+            .text-2xl { font-size: 13pt !important; margin-bottom: 0.5rem !important; }
+            .text-3xl { font-size: 15pt !important; margin-bottom: 0.5rem !important; }
+            .text-4xl { font-size: 18pt !important; margin-bottom: 0.5rem !important; }
+            .text-7xl { font-size: 26pt !important; line-height: 1.1 !important; }
+            .text-8xl { font-size: 30pt !important; line-height: 1 !important; }
+            
+            .p-12 { padding: 0 !important; }
+            .p-8 { padding: 0 !important; }
+            .mb-12, .mb-8, .mt-12, .mt-8 { margin-bottom: 1rem !important; margin-top: 1rem !important; }
+            .mb-6, .mb-4, .mt-6, .mt-4 { margin-bottom: 0.5rem !important; margin-top: 0.5rem !important; }
+            
+            .chapter-illustration {
+                max-width: 65% !important; /* Plus compact pour l'impression A4 */
+                box-shadow: none !important;
+                border-width: 2px !important;
+            }
+
+            /* Boîtes en impression */
+            .nuls-box {
+                margin: 2rem 0 1rem 0 !important; 
+                padding: 1.5rem 1rem 1rem 1rem !important;
+                border-width: 2px !important;
+                box-shadow: 4px 4px 0px #FFD600 !important;
+            }
+            .nuls-box-icon {
+                top: -20px !important; left: 16px !important; width: 40px !important; height: 40px !important; font-size: 1rem !important;
+                border-width: 2px !important;
+            }
+
+            table { page-break-inside: avoid !important; border-width: 2px !important; }
+            table th, table td { padding: 0.4rem !important; font-size: 8.5pt !important; }
+
+            .no-print { display: none !important; }
+            
+            .cover-page { height: 100vh !important; padding-top: 1cm !important; }
+            .print-border-none { border: none !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-container max-w-5xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden my-8 print:my-0 border-4 border-[#1A1A1A] print-border-none">
+        
+        <!-- PAGE DE COUVERTURE -->
+        <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-b-8 border-gray-900 p-16 text-center relative z-10 overflow-hidden">
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
+
+            <div class="absolute top-8 left-8 right-8 flex justify-between items-start z-20">
+                <div class="text-left bg-white border-4 border-nuls-black px-4 py-2 rounded-xl shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <h3 class="font-bold text-gray-900 text-xl font-nuls tracking-wider uppercase">SPF Finances</h3>
+                    <p class="text-xs font-bold text-gray-700 mt-1">AGDA - Administration Générale des Douanes et Accises</p>
+                </div>
+                <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Édition 2.0</span>
+                    <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Juillet 2026</p>
+                </div>
+            </div>
+
+            <div class="relative z-20 mt-20 print:mt-12">
+                <h2 class="text-2xl font-bold mb-6 uppercase tracking-[0.3em] border-t-4 border-b-4 border-gray-900 py-3 inline-block">Le Guide Complet</h2>
+                <h1 class="text-7xl md:text-8xl font-nuls font-black mb-8 text-gray-900 leading-[1.1] tracking-tight">
+                    La Douane<br>et les Accises<br>
+                    <span class="text-white relative inline-block mt-2 px-4 py-2 bg-nuls-black rounded-2xl transform -rotate-2 shadow-[8px_8px_0px_#fff] print:shadow-none print:rotate-0 print:border-4 print:border-black print:text-black print:bg-transparent">
+                        pour les Nuls
+                    </span>
+                </h1>
+                
+                <img src="10.png" alt="Couverture Douane pour les Nuls" class="mx-auto w-72 md:w-96 rounded-2xl border-4 border-nuls-black shadow-[8px_8px_0px_rgba(0,0,0,0.2)] print:border-2 print:shadow-none my-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                
+                <p class="text-2xl font-semibold mt-8 max-w-2xl mx-auto text-gray-800 print:text-lg">
+                    L'intégrale : de l'EORI à la Douane Verte, l'Art. 5, le CCE, le Transit et l'Analyse de Risque.
+                </p>
+            </div>
+            
+            <div class="unbreakable relative z-20 mt-16 bg-white px-8 py-6 rounded-2xl border-[3px] border-gray-900 shadow-[8px_8px_0px_#1A1A1A] text-left inline-block print:shadow-none print:mt-8">
+                <p class="text-gray-500 text-xs uppercase tracking-widest mb-2 font-bold">Un ouvrage rédigé par</p>
+                <p class="text-2xl font-black text-gray-900 mb-3">Mohamed Amine EL AAJI</p>
+                <div class="flex items-center text-gray-800 mb-2">
+                    <div class="bg-green-100 p-1.5 rounded-lg mr-3"><i class="fas fa-check-circle text-green-600"></i></div>
+                    <p class="font-bold text-sm">Quality Assurance Services (QAS)</p>
+                </div>
+                <div class="flex items-center text-gray-700">
+                    <div class="bg-blue-100 p-1.5 rounded-lg mr-3"><i class="fas fa-network-wired text-blue-600"></i></div>
+                    <p class="text-xs font-semibold">Dépt. SSDD (Service Stratégique de Déploiement et Data)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PRÉFACE -->
+        <div class="p-12 print:p-8">
+            <div class="unbreakable">
+                <div class="flex items-center mb-8">
+                    <i class="fas fa-quote-left text-4xl text-nuls-yellow mr-4 drop-shadow-md"></i>
+                    <h2 class="text-4xl font-black font-nuls m-0 uppercase tracking-wide">Préface</h2>
+                </div>
+                
+                <div class="bg-[#F8F9FA] p-8 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md print:p-4 print:border-l-4">
+                    <p class="mb-5 font-serif text-xl italic text-gray-800">Pourquoi ce guide ?</p>
+                    <div class="space-y-4 text-gray-700 font-medium">
+                        <p>Le monde de la douane et des accises est souvent perçu comme une forteresse administrative, bâtie sur des textes de lois complexes, des acronymes obscurs et des procédures informatiques extrêmement strictes. Pourtant, derrière cette apparente austérité, se cachent des mécanismes fascinants et indispensables à la vie économique de notre pays et de l'Union européenne.</p>
+                        <p>Ce document est né d'une volonté simple : <strong class="text-nuls-black font-bold">la vulgarisation</strong>. Il s'agit d'une tentative de rendre des concepts techniques, douaniers et fiscaux, accessibles à tous. Que vous soyez un nouvel agent intégrant l'administration, un professionnel de la logistique cherchant à clarifier certains processus, ou simplement un curieux désireux de comprendre comment les marchandises franchissent nos frontières, ce guide est fait pour vous.</p>
+                        <p>J'ai fait le choix d'adopter un ton volontairement direct, conversationnel et pédagogique, en m'appuyant sur des analogies, des schémas simplifiés et de nombreux cas pratiques. L'objectif n'est pas de remplacer les textes légaux (qui restent la seule référence juridique), mais de vous fournir la boussole et la carte nécessaires pour naviguer sereinement dans cet écosystème.</p>
+                        <p class="pt-4 font-bold text-lg text-nuls-black">Bonne lecture, et bienvenue à la frontière !</p>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-end items-center border-t-2 border-gray-200 pt-4">
+                        <p class="font-serif italic font-bold text-gray-900 text-lg">— Mohamed Amine EL AAJI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SOMMAIRE HARMONISÉ -->
+        <div class="p-12 print:p-8 bg-gray-50 border-y-4 border-gray-200">
+            <div class="unbreakable max-w-4xl mx-auto">
+                <h2 class="text-4xl font-black mb-10 font-nuls text-center tracking-wide uppercase">Sommaire (15 Chapitres)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                    <nav class="space-y-1 text-lg print:text-base bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <a href="#intro" class="toc-link"><span class="font-bold">Intro :</span> <span>Bienvenue à la Frontière !</span></a>
+                        <a href="#chap1" class="toc-link"><span class="text-gray-500 font-bold w-6">1.</span> <span>La Carte d'Identité Douanière</span></a>
+                        <a href="#chap2" class="toc-link"><span class="text-gray-500 font-bold w-6">2.</span> <span>Le Voyage des Marchandises</span></a>
+                        <a href="#chap3" class="toc-link"><span class="text-gray-500 font-bold w-6">3.</span> <span>Le Monde Fiscal des Accises</span></a>
+                        <a href="#chap4" class="toc-link"><span class="text-gray-500 font-bold w-6">4.</span> <span>Statuts Spéciaux et Autorisations</span></a>
+                        <a href="#chap5" class="toc-link"><span class="text-gray-500 font-bold w-6">5.</span> <span>Le Langage des Jeux de Données</span></a>
+                        <!-- Correction ici : Retrait des couleurs / gras inutiles -->
+                        <a href="#chap6" class="toc-link"><span class="text-gray-500 font-bold w-6">6.</span> <span>Dédouanement Centralisé (CCE)</span></a>
+                        <a href="#chap7" class="toc-link"><span class="text-gray-500 font-bold w-6">7.</span> <span>Le Droit de Retour</span></a>
+                    </nav>
+                    <nav class="space-y-1 text-lg print:text-base bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mt-4 md:mt-0">
+                        <a href="#chap8" class="toc-link"><span class="text-gray-500 font-bold w-6">8.</span> <span>Le Transit (NCTS) et son Coffre (GMS)</span></a>
+                        <a href="#chap9" class="toc-link"><span class="text-gray-500 font-bold w-6">9.</span> <span>Le Triptyque d'Or (Espèce, Origine, Valeur)</span></a>
+                        <a href="#chap10" class="toc-link"><span class="text-gray-500 font-bold w-6">10.</span> <span>Qui paie quoi ? Les Incoterms</span></a>
+                        <a href="#chap11" class="toc-link"><span class="text-gray-500 font-bold w-6">11.</span> <span>Le Bouclier Sécuritaire (ICS2)</span></a>
+                        <!-- Correction ici : Retrait des couleurs inutiles -->
+                        <a href="#chap12" class="toc-link"><span class="text-gray-500 font-bold w-6">12.</span> <span>Sanctions & Double Usage</span></a>
+                        <a href="#chap13" class="toc-link"><span class="text-gray-500 font-bold w-6">13.</span> <span>La Douane "Verte" (CBAM et EUDR)</span></a>
+                        <a href="#chap14" class="toc-link"><span class="text-gray-500 font-bold w-6">14.</span> <span>Le Guichet Unique (Single Window)</span></a>
+                        <a href="#chap15" class="toc-link"><span class="text-gray-500 font-bold w-6">15.</span> <span>Le Radar Douanier (Risque et Contrôles)</span></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="p-12 text-lg leading-relaxed print:p-8 print:text-base font-medium text-gray-800">
+
+            <!-- Introduction -->
+            <div id="intro" class="mb-14 unbreakable">
+                <h2 class="text-4xl font-black mb-8 text-center uppercase tracking-wide">Introduction : Bienvenue à la Frontière ! 🛂</h2>
+                <div class="text-justify space-y-4">
+                    <p>Je vais t'accompagner pas à pas à travers les mécanismes de la réglementation douanière et te guider avec des explications et des questions tout au long de notre parcours. Bienvenue dans notre guide « La Douane et les Accises pour les Nuls ».</p>
+                    <p>Pour bien débuter, la douane n'est pas simplement une barrière physique aux frontières. C'est à la fois le gardien de sécurité et le comptable d'un immense espace partagé : l'Union européenne 🇪🇺. Depuis la création de l'Union douanière, les États membres partagent une seule et même frontière extérieure et un tarif douanier commun. Cela signifie qu'une marchandise venue d'Asie, une fois dédouanée en Belgique, peut circuler librement jusqu'en France ou en Allemagne sans subir de nouveaux contrôles douaniers.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mt-4 mb-4">
+                        <strong class="text-blue-900 block mb-1">Qu'est-ce qu'un dédouanement ?</strong>
+                        <span class="text-sm">C'est l'ensemble des formalités informatiques et physiques à accomplir pour faire entrer ou sortir légalement une marchandise du territoire. En résumé : on déclare ce qu'on transporte, sa valeur, son origine, et on paie les taxes correspondantes pour obtenir le feu vert (appelé la "mainlevée") de la douane.</span>
+                    </div>
+
+                    <p>Le travail de l'administration s'articule autour de trois grandes missions :</p>
+                    
+                    <ul class="list-none space-y-3 mt-4 mb-6">
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-euro-sign text-xl text-nuls-yellow bg-nuls-black p-2 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">La fiscalité :</strong> Percevoir les droits de douane (qui vont au budget européen pour protéger notre économie de la concurrence extérieure) et les taxes nationales comme la TVA.</div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-shield-alt text-xl text-nuls-yellow bg-nuls-black p-2 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">La protection :</strong> Contrôler que les produits importés (jouets, aliments, médicaments) respectent les normes de sécurité et de santé européennes.</div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-wine-bottle text-xl text-nuls-yellow bg-nuls-black p-2 px-3 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">Les accises :</strong> Des taxes nationales indirectes spécifiques qui frappent certains produits bien précis (alcools, tabacs, produits énergétiques) afin de réguler leur consommation (santé publique/écologie) et d'alimenter les caisses de l'État.</div>
+                        </li>
+                    </ul>
+                    <p>Aujourd'hui, tout cet écosystème est entièrement numérisé. Chaque étape fait intervenir des applications informatiques belges interconnectées avec les bases de la Commission européenne.</p>
+                </div>
+            </div>
+
+            <!-- Chapitre 1 -->
+            <div id="chap1" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">1</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">La Carte d'Identité Douanière 📜</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Pour comprendre la douane, il faut d'abord visualiser son terrain de jeu et savoir qui y participe.</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. Le Territoire Douanier de l'Union (TDU) 🌍</h3>
+                <p class="mb-4 text-justify">L'Union européenne forme un seul et unique bloc face au reste du monde : le Territoire Douanier de l'Union (TDU). À l'intérieur de ce territoire, les marchandises européennes circulent librement d'un pays à l'autre sans aucun contrôle douanier. Aux frontières extérieures (comme au port d'Anvers ou à l'aéroport de Bruxelles-National), la douane applique les mêmes règles pour toutes les marchandises entrant ou sortant de l'UE.</p>
+
+                <div class="unbreakable bg-white p-5 rounded-2xl border border-gray-200 shadow-sm mb-6">
+                    <h4 class="font-bold text-gray-800 mb-4"><i class="fas fa-flag-eu text-nuls-blue mr-2"></i> Les 27 États Membres (et leurs codes pays)</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-3 text-sm font-medium text-gray-700">
+                        <div class="flex items-center"><span class="fi fi-de mr-2 text-lg rounded-sm shadow-sm"></span> DE - Allemagne</div>
+                        <div class="flex items-center"><span class="fi fi-at mr-2 text-lg rounded-sm shadow-sm"></span> AT - Autriche</div>
+                        <div class="flex items-center"><span class="fi fi-be mr-2 text-lg rounded-sm shadow-sm"></span> BE - Belgique</div>
+                        <div class="flex items-center"><span class="fi fi-bg mr-2 text-lg rounded-sm shadow-sm"></span> BG - Bulgarie</div>
+                        <div class="flex items-center"><span class="fi fi-cy mr-2 text-lg rounded-sm shadow-sm"></span> CY - Chypre</div>
+                        <div class="flex items-center"><span class="fi fi-hr mr-2 text-lg rounded-sm shadow-sm"></span> HR - Croatie</div>
+                        <div class="flex items-center"><span class="fi fi-dk mr-2 text-lg rounded-sm shadow-sm"></span> DK - Danemark</div>
+                        <div class="flex items-center"><span class="fi fi-es mr-2 text-lg rounded-sm shadow-sm"></span> ES - Espagne</div>
+                        <div class="flex items-center"><span class="fi fi-ee mr-2 text-lg rounded-sm shadow-sm"></span> EE - Estonie</div>
+                        <div class="flex items-center"><span class="fi fi-fi mr-2 text-lg rounded-sm shadow-sm"></span> FI - Finlande</div>
+                        <div class="flex items-center"><span class="fi fi-fr mr-2 text-lg rounded-sm shadow-sm"></span> FR - France</div>
+                        <div class="flex items-center"><span class="fi fi-gr mr-2 text-lg rounded-sm shadow-sm"></span> GR - Grèce</div>
+                        <div class="flex items-center"><span class="fi fi-hu mr-2 text-lg rounded-sm shadow-sm"></span> HU - Hongrie</div>
+                        <div class="flex items-center"><span class="fi fi-ie mr-2 text-lg rounded-sm shadow-sm"></span> IE - Irlande</div>
+                        <div class="flex items-center"><span class="fi fi-it mr-2 text-lg rounded-sm shadow-sm"></span> IT - Italie</div>
+                        <div class="flex items-center"><span class="fi fi-lv mr-2 text-lg rounded-sm shadow-sm"></span> LV - Lettonie</div>
+                        <div class="flex items-center"><span class="fi fi-lt mr-2 text-lg rounded-sm shadow-sm"></span> LT - Lituanie</div>
+                        <div class="flex items-center"><span class="fi fi-lu mr-2 text-lg rounded-sm shadow-sm"></span> LU - Luxembourg</div>
+                        <div class="flex items-center"><span class="fi fi-mt mr-2 text-lg rounded-sm shadow-sm"></span> MT - Malte</div>
+                        <div class="flex items-center"><span class="fi fi-nl mr-2 text-lg rounded-sm shadow-sm"></span> NL - Pays-Bas</div>
+                        <div class="flex items-center"><span class="fi fi-pl mr-2 text-lg rounded-sm shadow-sm"></span> PL - Pologne</div>
+                        <div class="flex items-center"><span class="fi fi-pt mr-2 text-lg rounded-sm shadow-sm"></span> PT - Portugal</div>
+                        <div class="flex items-center"><span class="fi fi-cz mr-2 text-lg rounded-sm shadow-sm"></span> CZ - Rép. Tchèque</div>
+                        <div class="flex items-center"><span class="fi fi-ro mr-2 text-lg rounded-sm shadow-sm"></span> RO - Roumanie</div>
+                        <div class="flex items-center"><span class="fi fi-sk mr-2 text-lg rounded-sm shadow-sm"></span> SK - Slovaquie</div>
+                        <div class="flex items-center"><span class="fi fi-si mr-2 text-lg rounded-sm shadow-sm"></span> SI - Slovénie</div>
+                        <div class="flex items-center"><span class="fi fi-se mr-2 text-lg rounded-sm shadow-sm"></span> SE - Suède</div>
+                    </div>
+                </div>
+
+                <p class="mb-4 text-justify">Cependant, attention aux pièges ! Le TDU n'est pas une copie conforme de la carte politique ou géographique de l'Europe. Certains territoires politiques de l'UE sont exclus de la douane, et inversement, des territoires hors de l'UE y sont inclus.</p>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Les anomalies géographiques</h4>
+                    <div class="space-y-4 text-sm text-justify">
+                        <p><strong class="text-red-600 block mb-1">Ceuta et Melilla :</strong> Ces deux villes sont des enclaves situées sur le continent africain. Bien qu'elles soient politiquement espagnoles (et donc dans l'UE), elles sont <strong>strictement exclues</strong> du Territoire Douanier de l'Union. Expédier une marchandise de Madrid à Ceuta nécessite donc obligatoirement une déclaration d'exportation ! <em class="text-gray-600 block mt-1">(Note : Même si des accords spécifiques permettent d'appliquer 0 % de droits de douane à l'arrivée grâce à l'origine préférentielle, la frontière douanière existe et la déclaration informatique est obligatoire).</em></p>
+                        <p><strong class="text-green-600 block mb-1">Monaco et Saint-Marin : deux exceptions différentes.</strong> La Principauté de Monaco est un État souverain hors de l'UE, mais grâce à un accord avec la France, elle est <strong>totalement incluse</strong> dans le TDU. Envoyer un colis de Bruxelles à Monaco ne nécessite aucune déclaration douanière.<br>
+                        <em class="block mt-1 text-gray-700">À l'inverse, Saint-Marin est lié à l'UE par une Union Douanière (0 % de taxes) mais <strong>ne fait pas partie</strong> du TDU. Conséquence : des formalités douanières (comme la présentation d'un document T2 ou T2L) restent obligatoires à la frontière !</em></p>
+                        <p><strong class="text-blue-600 block mb-1">Büsingen (DE) et Livigno (IT) :</strong> La ville de Büsingen est allemande, mais elle forme une enclave entièrement entourée par la Suisse. Résultat ? Elle est exclue du TDU européen et rattachée au territoire douanier... suisse ! <em class="block mt-1 text-gray-700 font-bold">Conséquence : envoyer une marchandise depuis la Belgique vers Büsingen revient à l'exporter vers la Suisse. Une déclaration douanière d'exportation (AES) y est donc formellement obligatoire.</em></p>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Le Numéro EORI : La carte d'identité 🆔</h3>
+                    <p class="mb-4 text-justify">Dès qu'une entreprise veut franchir cette frontière extérieure pour faire du commerce, elle ne peut pas rester anonyme. La douane exige une identification unique : le <strong class="bg-yellow-100 px-1 rounded">numéro EORI</strong> (Economic Operators Registration and Identification). Il sert à identifier l'entreprise dans toutes les applications informatiques de l'UE.</p>
+                    <p class="mb-4">En Belgique, il commence par le code pays <code class="bg-gray-100 px-2 py-1 rounded-md font-mono font-bold text-nuls-blue">BE</code> suivi du numéro d'entreprise à 10 chiffres. Un seul numéro suffit pour toute l'Union !</p>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200 mt-2 mb-6">
+                        <strong class="text-yellow-800 block mb-1"><i class="fas fa-mouse-pointer mr-2"></i> Comment obtenir un EORI en Belgique ?</strong>
+                        <span class="text-sm"><strong>Attention, à l'heure actuelle, la procédure n'est pas encore informatisée.</strong> La demande s'effectue toujours obligatoirement en téléchargeant et en remplissant un formulaire PDF spécifique (disponible sur le site du SPF Finances). Une nouvelle interface 100 % électronique est en cours de développement pour l'avenir, mais pour l'instant, le PDF est l'unique moyen !</span>
+                    </div>
+                </div>
+                
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-plane-arrival"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le premier contact (ICS2)</h4>
+                    <p class="text-justify">Une entreprise de Namur achète des ordinateurs à Tokyo 🇯🇵. Ces appareils sont transportés par avion jusqu'à Liège. À quel moment le numéro EORI devient-il indispensable ? Bien avant l'atterrissage ! Grâce au système de sécurité européen <strong>ICS2</strong>, des données de sûreté (l'ENS) doivent être envoyées à la douane avant même le chargement de l'avion à Tokyo. L'EORI y est déjà indispensable pour identifier le destinataire.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-user-secret"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le particulier et l'EORI</h4>
+                    <p class="text-justify">Un particulier de Namur commande un smartphone aux États-Unis pour son usage personnel. Doit-il demander un EORI ? <strong>Non.</strong> L'EORI s'adresse uniquement aux opérateurs économiques (entreprises). L'administration a prévu un code générique pour les achats personnels : <strong class="text-nuls-blue">BEPRIVATEPERSON</strong>.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-globe-europe"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : L'entreprise étrangère à Anvers</h4>
+                    <p class="text-justify">Une entreprise de Paris 🇫🇷 possède un EORI français. Elle fait importer ses marchandises par le port d'Anvers. Doit-elle demander un EORI belge ? <strong>Non.</strong> Le numéro FR est enregistré dans la base centrale européenne (EOS). La douane belge l'interroge et valide instantanément l'identité.</p>
+                </div>
+
+                <div class="unbreakable mt-8 bg-white p-5 rounded-xl border-2 border-nuls-black shadow-sm text-justify">
+                    <h4 class="font-bold text-lg mb-2"><i class="fas fa-handshake text-nuls-yellow mr-2"></i> La délégation (Les Mandats) : Europe vs Belgique</h4>
+                    <p class="text-sm mb-3">Souvent, l'entreprise ne fait pas ses déclarations elle-même et délègue cette tâche informatique à un courtier (représentant en douane). Mais attention, la gestion des accès est divisée en deux mondes :</p>
+                    <ul class="list-none space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-europ-sign text-blue-600 mr-2 mt-1 w-4 text-center">🇪🇺</i> 
+                            <div><strong class="text-blue-700">Pour les applications européennes (ex: CDMS, CBAM) :</strong> La délégation se fait via le portail <strong>UUM&DS</strong>. C'est un accord bilatéral : l'entreprise accorde l'accès, et <em class="font-bold border-b-2 border-nuls-yellow">le courtier doit l'accepter électroniquement</em> de son côté pour que la liaison fonctionne.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-flag text-black mr-2 mt-1 w-4 text-center">🇧🇪</i>
+                            <div><strong class="text-black">Pour les applications nationales belges (ex: IDMS, AES, AC4) :</strong> L'accès ne passe pas par l'Europe. L'entreprise doit enregistrer un mandat officiel en faveur de son courtier via le système d'authentification belge <strong>CSAM</strong> (le module de gestion des mandats lié à MyMinfin).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chapitre 2 -->
+            <div id="chap2" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">2</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Voyage des Marchandises 🚢</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-xl border border-green-200 mb-6 text-justify">
+                        <strong class="text-green-800 block mb-1">Avant d'aller plus loin : qu'est-ce qu'une importation classique ?</strong>
+                        <span class="text-sm">En règle générale, quand une marchandise hors-UE arrive, elle est déclarée dans le système d'importation. L'entreprise paie immédiatement les droits de douane et la TVA. Dès le paiement validé, la marchandise est dite <em>"mise en libre pratique"</em> : elle devient européenne, elle peut circuler et être vendue partout en Europe librement. Mais il existe des exceptions logistiques pour éviter de payer tout de suite...</span>
+                    </div>
+
+                    <p class="mb-6">Quand une marchandise franchit la frontière, elle doit être déclarée. En Belgique, l'administration utilise des systèmes informatiques modernes :</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-6 print:gap-2 mb-10 text-center unbreakable">
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#0056b3] print:shadow-none">
+                        <div class="bg-blue-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-download text-xl text-nuls-blue"></i>
+                        </div>
+                        <h4 class="font-black text-lg">IDMS</h4>
+                        <p class="text-sm font-medium mt-1">Pour l'Importation 📥</p>
+                    </div>
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#16a34a] print:shadow-none">
+                        <div class="bg-green-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-upload text-xl text-green-600"></i>
+                        </div>
+                        <h4 class="font-black text-lg">AES</h4>
+                        <p class="text-sm font-medium mt-1">Pour l'Exportation 📤</p>
+                    </div>
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#9333ea] print:shadow-none">
+                        <div class="bg-purple-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-truck text-xl text-purple-600"></i>
+                        </div>
+                        <h4 class="font-black text-lg">NCTS</h4>
+                        <p class="text-sm font-medium mt-1">Pour le Transit 🔄</p>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-warehouse"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : L'Entrepôt Douanier (IDMS)</h4>
+                    <p class="text-justify">Notre entreprise namuroise reçoit ses ordinateurs de Tokyo à Liège. Au lieu de payer la douane et la TVA immédiatement, elle va les stocker pendant 3 mois. La solution ? <strong>L'entrepôt douanier.</strong> Ce régime permet une suspension totale des taxes. Le paiement ne se déclenchera qu'à la sortie (mise en libre pratique) via le système IDMS.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-plane-departure"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : L'Exportation (AES)</h4>
+                    <p class="text-justify">L'entreprise namuroise vend finalement la moitié de ces ordinateurs stockés à un client en Suisse 🇨🇭 (hors UE). Devra-t-elle payer des droits de douane ? <strong>Non.</strong> L'UE n'applique pas de droits à l'exportation. Comme ils étaient en suspension de taxes, ils repartent sans jamais avoir été taxés en Europe. L'entreprise utilise le système <strong>AES</strong> pour déclarer la réexportation.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-truck-moving"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le Transit (NCTS) et les Scellés</h4>
+                    <p class="text-justify">Le camion belge traverse la France 🇫🇷 pour aller en Suisse, rempli de ces ordinateurs non-taxés. Pour sécuriser ce voyage, on utilise le <strong>NCTS</strong> sous le régime du transit externe (T1) avec un numéro de suivi (MRN) et une garantie financière.</p>
+                    <p class="mt-3 bg-gray-50 p-3 rounded-xl border border-gray-200 text-justify">À la frontière suisse, la douane enregistre l'arrivée et vérifie les scellés. Si tout est bon (Conforme), la garantie belge est libérée (Apurement). <strong class="text-red-600">Mais si les scellés sont brisés ?</strong> La douane suisse signale des <em>divergences</em> (Incident de transport) dans le NCTS ! Le système bloque la garantie financière et déclenche une enquête.</p>
+                </div>
+
+                <div class="unbreakable bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm mt-8 mb-12">
+                    <h4 class="font-bold text-center mb-6 text-gray-800">Schéma récapitulatif du voyage</h4>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium">
+                        <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
+                            🇯🇵 Tokyo<br><span class="text-xs text-gray-500">(Hors UE)</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+                        
+                        <div class="bg-blue-50 p-3 rounded-lg text-center border-b-4 border-blue-300 w-full md:w-auto">
+                            📥 <strong>IDMS</strong><br><span class="text-xs text-gray-500">Mise en Entrepôt</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-green-50 p-3 rounded-lg text-center border-b-4 border-green-300 w-full md:w-auto">
+                            📤 <strong>AES</strong><br><span class="text-xs text-gray-500">Réexportation</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-purple-50 p-3 rounded-lg text-center border-b-4 border-purple-300 w-full md:w-auto">
+                            🔄 <strong>NCTS</strong><br><span class="text-xs text-gray-500">Camion (T1)</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
+                            🇨🇭 Suisse<br><span class="text-xs text-gray-500">(Dest. finale)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="2.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 1 et 2">
+                </div>
+
+            </div>
+
+            <!-- Chapitre 3 -->
+            <div id="chap3" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">3</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Monde Fiscal des Accises 🍷</h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 mb-8 text-justify">
+                        <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-question-circle mr-2"></i> Pourquoi des droits de douane ET des accises ?</h4>
+                        <p class="text-sm mb-3">Les <strong>droits de douane</strong> ont un but économique : ils renchérissent les produits fabriqués hors-UE pour protéger nos entreprises locales de la concurrence étrangère. Les <strong>accises</strong>, elles, ont un but de santé publique et écologique (et remplissent les caisses de l'État). Elles taxent l'alcool, le tabac et les carburants pour limiter leur consommation, qu'ils soient fabriqués en Belgique ou importés.</p>
+                        <div class="bg-white p-3 rounded border border-blue-100">
+                            <strong class="text-blue-800 text-sm"><i class="fas fa-shopping-bag mr-1"></i> Et le Duty Free ?</strong>
+                            <p class="text-xs mt-1">Aux aéroports, les boutiques "Duty Free" sont en zone internationale. Les produits (alcool, parfum) y sont vendus hors droits de douane, TVA et accises, car ils sont destinés à quitter immédiatement le territoire européen avec le passager. Mais attention aux limites de quantités autorisées au retour !</p>
+                        </div>
+                    </div>
+
+                    <p class="mb-6 text-justify">L'Europe utilise le système très strict <strong>EMCS (Excise Movement and Control System)</strong> pour suivre ces produits en suspension de droits, accompagnés d'un document électronique (le e-AD).</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'Entrepôt Fiscal</h3>
+                    <p class="mb-4 text-justify bg-gray-50 p-4 rounded-xl border border-gray-200"><i class="fas fa-exclamation-triangle text-nuls-yellow mr-2"></i> <strong>Ne confondez pas !</strong> L'<em>entrepôt douanier</em> gère les marchandises hors-UE (droits de douane/TVA). L'<em>entrepôt fiscal</em> permet de stocker des marchandises (UE ou non) en suspension des droits d'accise.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le Vin et la Bouteille Cassée</h4>
+                    <p class="text-justify">Un grossiste de Namur reçoit un camion de vin de Bordeaux 🇫🇷 sous couvert d'un e-AD (via EMCS). Il le gare dans son entrepôt fiscal. Quand paie-t-il l'accise belge ? <strong>Au moment de la mise à la consommation</strong> (la sortie de l'entrepôt vers les restaurants). Pour cela, il utilise une application web spécifique appelée <strong class="text-nuls-blue">AC4</strong>.</p>
+                    <div class="mt-4 bg-red-50 p-3 rounded-lg border border-red-100 text-justify">
+                        <p class="text-red-700 font-bold mb-1">Et si une palette tombe et que les bouteilles se cassent dans l'entrepôt ?</p>
+                        <p class="text-sm">Puisqu'il n'y a pas eu de mise à la consommation, la douane n'exige <strong>pas</strong> le paiement des accises (à condition d'avoir des preuves irréfutables de la destruction pour la comptabilité).</p>
+                    </div>
+                </div>
+
+                <div class="unbreakable mb-8">
+                    <h3 class="text-2xl font-bold mb-6 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Le Jargon des Acteurs des Accises</h3>
+                    <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
+                        <table class="min-w-full bg-white text-sm">
+                            <thead class="bg-gray-100 border-b-2 border-nuls-black">
+                                <tr>
+                                    <th class="py-4 px-5 text-left font-black text-gray-800 uppercase tracking-wider">Statut Accises</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Stocker ?</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Expédier ?</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Recevoir ?</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 font-medium">
+                                <tr>
+                                    <td class="py-4 px-5"><strong>Entrepositaire agréé</strong></td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Oui</td>
+                                    <td class="py-4 px-3 text-center text-green-600"><i class="fas fa-check font-bold"></i> Oui</td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Oui</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5">
+                                        <strong>Destinataire enregistré</strong><br>
+                                        <span class="text-xs text-gray-500 font-normal">(Paie l'accise à l'arrivée)</span>
+                                    </td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> Non</td>
+                                    <td class="py-4 px-3 text-center text-red-500"><i class="fas fa-times"></i> Non</td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Oui</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5">
+                                        <strong>Expéditeur enregistré</strong><br>
+                                        <span class="text-xs text-gray-500 font-normal">(Expédie suite à import)</span>
+                                    </td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> Non</td>
+                                    <td class="py-4 px-3 text-center text-green-600"><i class="fas fa-check font-bold"></i> Oui</td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> Non</td>
+                                </tr>
+                                <tr class="bg-gray-50 print:bg-white border-t-2 border-nuls-black">
+                                    <td class="py-4 px-5"><strong>Destinataire / Expéditeur certifié</strong></td>
+                                    <td colspan="3" class="py-4 px-5 text-center text-gray-600 text-xs">Mouvements avec droits d'accises <strong>déjà acquittés</strong> dans un autre État membre.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-box-open"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le Destinataire Enregistré</h4>
+                    <p class="text-justify">Notre grossiste namurois n'a plus de place dans son grand bâtiment. Il veut commander une palette de Champagne 🇫🇷 et la revendre directement en payant la taxe tout de suite à l'arrivée (sans la stocker en suspension). Le statut parfait pour lui est <strong>Destinataire enregistré</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Chapitre 4 -->
+            <div id="chap4" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">4</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Statuts Spéciaux et Autorisations 🛠️</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">L'administration douanière n'est pas qu'un censeur, c'est aussi un partenaire économique qui propose un panel d'autorisations pour faciliter le commerce international. Pour que tout soit harmonisé, l'Europe a centralisé ces demandes.</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. Les 22 Autorisations Européennes (CDMS)</h3>
+                    <p class="mb-4 text-justify">Oubliez les formulaires papier locaux. Aujourd'hui, il existe <strong>22 autorisations douanières européennes</strong> qui sont toutes gérées de manière centralisée via un grand portail européen destiné aux opérateurs : le <strong>CDMS</strong> (Customs Decisions Management System). Parmi ces 22 autorisations, on retrouve les plus stratégiques :</p>
+                    <ul class="list-none space-y-3 mb-6 bg-white p-5 rounded-xl border border-gray-200">
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CW (Customs Warehousing) :</strong> L'autorisation d'exploiter un Entrepôt Douanier.</div></li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">IP / OP (Inward / Outward Processing) :</strong> Les autorisations de Perfectionnement Actif et Passif.</div></li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CGU (Comprehensive Guarantee) :</strong> L'autorisation de Garantie Globale pour couvrir vos opérations.</div></li>
+                    </ul>
+                </div>
+
+                <div class="unbreakable mt-8">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Le Cas du Perfectionnement (IP / OP)</h3>
+                    <p class="mb-4 text-justify">Ces régimes "sur mesure", dont l'autorisation (IP/OP) est gérée dans le CDMS, permettent de transformer des marchandises à l'international sans payer les pleines taxes.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
+                            <h4 class="font-bold text-lg mb-2 text-nuls-blue">A. Perfectionnement Actif (IP)</h4>
+                            <p class="text-sm text-justify">Importer des moteurs de Chine, les assembler sur des voitures en Belgique, puis exporter les voitures finies vers le Maroc. L'usine utilise le code H4 dans IDMS pour obtenir une <em>suspension totale des taxes à l'entrée</em>.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
+                            <h4 class="font-bold text-lg mb-2 text-green-600">B. Perfectionnement Passif (OP)</h4>
+                            <p class="text-sm text-justify">Un atelier de Tournai exporte du tissu belge en Tunisie pour le coudre, puis réimporte les costumes finis. Au retour, il ne paiera des <em>taxes que sur la valeur ajoutée étrangère (la main d'œuvre)</em>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-ban"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : L'autorisation manquante</h4>
+                    <p class="text-justify">L'usine automobile tente d'importer ses moteurs chinois. Le transitaire envoie la déclaration (code H4 pour le Perfectionnement Actif) dans IDMS. Mais attention : si l'usine n'a pas fait sa demande dans le système européen et que l'autorisation (IP) n'est pas validée et active dans le <strong>CDMS</strong>, le système informatique belge <strong>IDMS rejette immédiatement la déclaration</strong>. L'entreprise devra dédouaner normalement (H1) en payant le plein tarif.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. Le Labyrinthe des Garanties (GUM, FINDA, GMS)</h3>
+                    <p class="mb-5 text-justify">Pour bénéficier du perfectionnement actif, l'État exige une caution financière pour couvrir le montant des taxes suspendues. Ne vous emmêlez plus les pinceaux entre les différents systèmes :</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex bg-blue-50 border border-blue-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-blue-300 w-16 text-center">🇪🇺</div>
+                            <div><strong class="text-nuls-blue">GUM (Guarantee Management) :</strong> Le système centralisé européen. Lié au CDMS, il gère l'autorisation globale (CGU) et surveille son utilisation à travers plusieurs États membres.</div>
+                        </div>
+                        <div class="flex bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-yellow-500 w-16 text-center">🇧🇪</div>
+                            <div><strong class="text-yellow-700">FINDA :</strong> Le logiciel comptable <em>purement belge</em>. C'est lui qui applique concrètement le blocage de vos fonds lors d'une déclaration nationale d'import/export (IDMS/AES).</div>
+                        </div>
+                        <div class="flex bg-purple-50 border border-purple-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-purple-300 w-16 text-center">🔄</div>
+                            <div><strong class="text-purple-700">GMS (Guarantee Management System) :</strong> Un module strictement réservé aux garanties liées au transit (connecté au NCTS, cf. Chapitre 8).</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le compte tournant dans FINDA</h4>
+                    <p class="text-justify mb-3">L'usine de Charleroi a une garantie de 100 000 €. Elle a déjà 90 000 € de moteurs dans l'usine. Un nouveau conteneur arrive avec 20 000 € de taxes potentielles. Que fait FINDA ? <strong>Il bloque tout le conteneur !</strong> IDMS ne coupe pas la poire en deux.</p>
+                    <div class="bg-green-50 p-3 rounded-lg border border-green-200 text-sm text-justify">
+                        <strong class="text-green-700 block mb-1">La solution logistique :</strong>
+                        Si l'usine exporte enfin les voitures finies hors de l'UE, le système AES enregistre la sortie. <strong>FINDA</strong> clôture le dossier et <strong>recrédite automatiquement les 90 000 €</strong> sur votre balance ! L'usine peut alors débloquer le conteneur en attente. C'est le compte tournant.
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 4. Le label de confiance : AEO</h3>
+                    <p class="mb-4 text-justify">C'est la certification suprême en douane (Opérateur Économique Agréé). Elle se décline en différents types selon vos besoins. <strong class="text-red-600">Attention :</strong> Ce statut est délivré par l'Europe et n'est valable <strong>qu'au sein de l'Union européenne</strong> (sauf en cas de MRA, voir Chapitre 15).</p>
+                    <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2 mb-6">
+                        <table class="min-w-full bg-white text-sm">
+                            <thead class="bg-gray-100 border-b-2 border-nuls-black">
+                                <tr>
+                                    <th class="py-3 px-4 text-left font-black uppercase tracking-wider">Type AEO</th>
+                                    <th class="py-3 px-4 text-left font-black uppercase tracking-wider">Avantages Principaux</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 font-medium">
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-nuls-blue whitespace-nowrap">AEOC <span class="text-xs text-gray-500 block font-normal">(Simplifications)</span></td>
+                                    <td class="py-3 px-4 text-justify">Accès facilité aux régimes douaniers, réduction de la garantie globale, contrôles documentaires et physiques allégés.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-purple-700 whitespace-nowrap">AEOS <span class="text-xs text-gray-500 block font-normal">(Sécurité)</span></td>
+                                    <td class="py-3 px-4 text-justify">Allègement des contrôles de sécurité (ex: déclarations ENS), reconnaissance mutuelle avec les pays tiers.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-green-700 bg-green-50 whitespace-nowrap">AEOF <span class="text-xs text-gray-500 block font-normal">(Full)</span></td>
+                                    <td class="py-3 px-4 text-justify bg-green-50">Cumul de tous les avantages (AEOC + AEOS). Idéal pour une usine qui veut que ses camions passent la frontière en priorité absolue.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 5. Le report de paiement de la TVA : ET14000</h3>
+                    <p class="mb-4 text-justify">L'autorisation <strong>ET14000</strong> est un dispositif purement fiscal lié à la TVA belge, essentiel pour les entreprises importatrices.</p>
+                    <ul class="list-none space-y-4 print:space-y-2 mb-6">
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-nuls-black block mb-1">Le mécanisme :</strong>
+                            <span class="text-sm text-justify block">Il permet d'éviter de payer la TVA au bureau de douane lors de l'importation. La taxe est directement reportée (autoliquidée) sur votre déclaration de TVA périodique. Elle y est collectée et déduite simultanément, annulant l'impact financier immédiat.</span>
+                        </li>
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-nuls-black block mb-1">La demande :</strong>
+                            <span class="text-sm text-justify block">Pour en bénéficier, la demande s'effectue en ligne via <strong>MyMinfin</strong> (le portail officiel du SPF Finances permettant aux citoyens et entreprises de gérer leurs dossiers fiscaux). Lors de l'importation, le numéro ET14000 doit simplement être inscrit dans la déclaration douanière.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="3.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 3 et 4">
+                </div>
+
+            </div>
+
+            <!-- Chapitre 5 -->
+            <div id="chap5" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">5</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Langage des Jeux de Données 💻</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Oubliez l'ancien document unique format papier (le DAU). Aujourd'hui, avec le Code des Douanes de l'Union (CDU), l'Europe a harmonisé la structure des informations via des <strong>Jeux de données</strong> (ou <em>Datasets</em>).</p>
+                    <p class="mb-6 text-justify">Imaginez ces jeux de données comme des boîtes de LEGO. L'administration ne vous demande pas la même boîte selon ce que vous voulez construire. L'Europe a classé ces codes par "familles" représentées par une lettre.</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-5 mt-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. La famille « H » : Importation (IDMS) 📥</h3>
+                    <div class="bg-white border-2 border-nuls-black rounded-2xl p-6 shadow-sm mb-6">
+                        <ul class="space-y-3 font-medium">
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H1</span> <span><strong>Importation Standard :</strong> Le jeu complet pour la "mise en libre pratique".</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H2</span> <span><strong>Entrepôt douanier :</strong> Placer en entrepôt sans payer les taxes.</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H3</span> <span><strong>Admission temporaire :</strong> Ex: Faire entrer une œuvre d'art pour une expo.</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H4</span> <span><strong>Perfectionnement actif :</strong> Importer des pièces en suspension (IP).</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Le code H7 pour le E-commerce 🛍️</h3>
+                    <p class="mb-4 text-justify">Le code <strong>H7</strong> est une révolution. Avant lui, chaque colis importé exigeait un H1 complet, ingérable pour les plateformes traitant des milliers d'envois.</p>
+                    <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-center mb-5">
+                        <p class="font-black text-xl text-yellow-800">Le H7 est conçu spécifiquement pour les envois dont la valeur ne dépasse pas 150 €.</p>
+                    </div>
+                    
+                    <ul class="list-none space-y-3 mb-6">
+                        <li class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><strong class="text-nuls-black">Simplification :</strong> Jeu de données allégé pour un traitement massif et rapide.</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><strong class="text-nuls-black">Lien IOSS (Import One-Stop Shop) :</strong> Permet de déclarer la TVA déjà collectée lors de la vente sur le site internet asiatique, évitant de la réclamer au particulier à l'arrivée.</li>
+                    </ul>
+                </div>
+
+                <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-red-500 text-white border-red-500"><i class="fas fa-exclamation-circle"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-600 print:text-black">Cas Pratique : Le risque de fraude du H7</h4>
+                    <p class="text-justify">Quel est le risque si une entreprise déclare systématiquement ses colis comme "H7" alors que leur valeur dépasse 150 € ? Le risque est une <strong>perte sèche colossale de droits de douane et de TVA</strong>. En déclarant faussement un smartphone à 800 € sous le code H7 (valeur falsifiée à 140 €), l'entreprise échappe aux contrôles stricts du H1 et aux droits normaux. C'est une sous-évaluation frauduleuse que les douanes traquent massivement via leurs algorithmes de risques.</p>
+                </div>
+
+                <!-- Ajout de la MAJ H7 de Juillet 2026 demandée par l'utilisateur -->
+                <div class="unbreakable mt-12 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-red-600 flex items-center"><span class="w-2 h-6 bg-red-600 mr-3 rounded-sm"></span> ALERTE MISE À JOUR : La révolution des petits colis (Juillet 2026) 🚨</h3>
+
+                    <p class="mb-4 text-justify">Jusqu'à récemment, le e-commerce profitait d'un avantage en or : tout colis d'une valeur inférieure à 150 € (le fameux H7) entrait en Europe <strong>sans payer un seul centime de droits de douane</strong> (seule la TVA était due). Face à l'avalanche de milliards de mini-colis asiatiques, l'Europe a sifflé la fin de la récréation !</p>
+
+                    <p class="mb-4 text-justify"><strong>Depuis le 1er juillet 2026, la franchise douanière est supprimée.</strong> Désormais, un droit de douane forfaitaire et temporaire de <strong>3 € par article</strong> (par ligne de déclaration) s'applique à toutes les ventes à distance de moins de 150 € (B2C).</p>
+
+                    <div class="bg-red-50 p-4 border-l-[6px] border-red-500 rounded-r-xl mb-8 shadow-sm print:border-l-4">
+                        <h4 class="font-black text-red-800 mb-2"><i class="fas fa-bolt mr-2"></i> Le Coup de Tonnerre du H7</h4>
+                        <p class="text-sm text-red-900 text-justify">Ce droit forfaitaire (code taxe A00) s'applique peu importe que l'on utilise le système IOSS ou non. L'objectif ? Protéger nos commerces locaux de la concurrence déloyale et freiner l'impact écologique des expéditions massives de produits à bas coût.</p>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-shopping-cart"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le shopping en ligne, version 2026</h4>
+                    
+                    <p class="text-justify mb-3">Tu commandes sur une célèbre plateforme asiatique : 1 coque de téléphone (5 €) et 1 câble USB (3 €). Ton panier vaut 8 €. Le colis fait moins de 150 €, il sera donc déclaré sous le format H7.</p>
+                    
+                    <ul class="list-none space-y-2 mb-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar-times text-gray-500 mr-2 mt-1"></i>
+                            <div><strong>Avant le 1er juillet 2026 :</strong> Tu payais 8 € + environ 1,68 € de TVA. Zéro douane. L'affaire du siècle.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar-check text-red-600 mr-2 mt-1"></i>
+                            <div><strong>Aujourd'hui :</strong> La douane va appliquer le droit forfaitaire de 3 € <em>par ligne d'article</em>. Comme la coque et le câble sont des produits différents (codes douaniers différents), il y a deux lignes. Tu vas donc payer <strong>6 € de droits de douane</strong> (3 € x 2 articles), auxquels s'ajoute la TVA calculée sur ce nouveau total ! Ton câble à 3 € vient soudainement de te coûter beaucoup plus cher.</div>
+                        </li>
+                    </ul>
+                    
+                    <p class="bg-gray-100 p-2 rounded text-sm text-justify border border-gray-300">
+                        <strong>L'Exception des "Nuls" (Le C2C) :</strong> Attention, si c'est ta tante vivant au Canada qui t'envoie un pull tricoté main d'une valeur de 40 € (Cadeau de Particulier à Particulier - C2C), <strong>cette taxe de 3 € ne s'applique pas !</strong> Elle ne vise que les flux commerciaux B2C.
+                    </p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-5 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Les familles « B » et « G » 📤📦</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <h4 class="font-bold text-lg mb-2">Famille B (AES)</h4>
+                            <p class="text-sm"><strong>B1</strong> pour l'exportation définitive. <strong>B2</strong> pour le perfectionnement passif (OP).</p>
+                        </div>
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <h4 class="font-bold text-lg mb-2">Famille G (Logistique)</h4>
+                            <p class="text-sm"><strong>G4</strong> pour le dépôt temporaire (TSD sur les quais en attendant la décision via l'IRP).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapitre 6 -->
+            <div id="chap6" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-blue-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#BFDBFE] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">6</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-blue-800 print:text-black">Dédouanement Centralisé Européen (CCE) 🌍</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Nous avons vu les jeux de données (H1, etc.). Mais où doit-on envoyer ces données ? Historiquement, la marchandise devait être dédouanée là où elle arrivait physiquement. L'Europe a franchi un cap majeur en séparant le flux physique du flux administratif avec le <strong>CCE (Centralised Clearance at Import/Export)</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">Grâce au CCE, une entreprise peut déposer sa déclaration d'importation dans le système de son propre pays (là où elle est établie), même si la marchandise arrive physiquement dans un autre État membre. Les deux douanes communiquent entre elles en coulisses de manière automatisée.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-blue-500 shadow-[6px_6px_0px_#3B82F6] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-blue-500 text-white border-blue-500"><i class="fas fa-network-wired"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-blue-700 print:text-black">Cas Pratique : Le conteneur à Rotterdam</h4>
+                    <p class="text-justify text-blue-900 print:text-black">Une entreprise namuroise importe des jouets de Chine. Le navire arrive physiquement au port de Rotterdam (Pays-Bas). Au lieu de devoir mandater un courtier néerlandais et payer les taxes aux Pays-Bas, l'entreprise utilise le CCE. Elle dépose son dataset H1 dans <strong>IDMS (le système belge)</strong> depuis son canapé à Namur, et paie ses taxes en Belgique. L'ordinateur belge contacte l'ordinateur néerlandais pour donner l'ordre de relâcher le conteneur à Rotterdam. Le tour est joué !</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="4.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 5 et 6">
+                </div>
+            </div>
+
+            <!-- Chapitre 7 -->
+            <div id="chap7" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-orange-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-orange-500 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FED7AA] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">7</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-orange-700 print:text-black">Le Droit de Retour (Franchises) 🔄</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Nous avons vu comment importer et exporter. Mais que se passe-t-il si la marchandise exportée fait marche arrière et revient chez vous ? C'est un cas logistique très fréquent, en particulier dans le e-commerce : le régime des <strong>Marchandises en Retour (Returned Goods Relief)</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">Le principe de base de la douane est de taxer l'importation. Mais si vous réimportez votre *propre* produit (qui avait été fabriqué ou déjà dédouané dans l'UE) dans un délai de 3 ans et dans le même état, vous n'allez pas repayer des droits de douane. La douane accorde une "franchise" totale, à condition de pouvoir prouver que l'objet est bien le même.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-orange-400 shadow-[6px_6px_0px_#F97316] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-orange-500 text-white border-orange-500"><i class="fas fa-undo-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-orange-700 print:text-black">Cas Pratique : La montre rayée</h4>
+                    <p class="text-justify text-orange-900 print:text-black">Un horloger belge exporte une montre à un client en Suisse (hors-UE) via une déclaration AES (B1). Le client suisse reçoit la montre, constate qu'elle est rayée, et la renvoie immédiatement en Belgique. Lors du retour du colis, le déclarant belge utilise le système IDMS. En insérant le bon code de franchise (F03) et en fournissant le MRN de la déclaration d'exportation initiale pour prouver l'identité de la montre, il la réimporte en payant 0 € de droits et 0 € de TVA !</p>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- Chapitre 8 -->
+            <div id="chap8" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">8</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Transit (NCTS) et son Coffre-Fort (GMS) 🔄</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Nous avons vu que lorsqu'une marchandise voyage à travers l'Europe sans payer les taxes, elle le fait sous le régime du transit via le système <strong>NCTS</strong>. L'État prenant un risque, une garantie financière est exigée via le <strong>GMS</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'Arrivée et le Contrôle (NCTS Phases 5 & 6)</h3>
+                    <p class="mb-5 text-justify">Que se passe-t-il quand le camion arrive à destination ? Le NCTS moderne est devenu extrêmement strict.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white border-l-4 border-nuls-black p-4 shadow-sm">
+                            <strong class="text-nuls-black text-lg block mb-1">1. Le Timer d'attente</strong>
+                            <p class="text-sm">Dès l'arrivée acceptée, un compte à rebours démarre (ex: 15 min). Cela laisse le temps à la douane de décider d'un contrôle physique.</p>
+                        </div>
+                        <div class="bg-white border-l-4 border-green-500 p-4 shadow-sm">
+                            <strong class="text-green-700 text-lg block mb-1">2. Unloading Remarks (Conforme)</strong>
+                            <p class="text-sm">Si tout est parfait, la déclaration est notifiée "Conforme" (<em>Satisfactory</em>). La garantie dans le GMS est libérée.</p>
+                        </div>
+                        <div class="bg-white border-l-4 border-red-500 p-4 shadow-sm">
+                            <strong class="text-red-600 text-lg block mb-1">3. Les Divergences (Discrepancies)</strong>
+                            <p class="text-sm">Si le scellé est brisé ou un colis manque, on signale "Non conforme". Le NCTS exige alors de savoir la réaction du titulaire : <span class="font-bold">No opposition</span> (accepte), <span class="font-bold">Opposition</span> (conteste), ou <span class="font-bold">Undecided</span> (en attente).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-lock-open"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le scellé brisé et la garantie bloquée</h4>
+                    <p class="text-justify">Un camion arrive à Anvers. L'agent constate que le numéro du scellé n'est pas celui déclaré au départ. Il encode <strong class="bg-red-50 text-red-700 px-1 rounded">"State of seals : Not OK"</strong> dans les *Unloading remarks*. Que fait le NCTS ? Il bloque immédiatement la libération de la garantie dans le GMS ! L'administration va réclamer les droits potentiels, car une manipulation non autorisée a pu avoir lieu en route.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="5.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 7 et 8">
+                </div>
+            </div>
+
+            <!-- Chapitre 9 -->
+            <div id="chap9" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">9</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Triptyque d'Or 📐</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify text-xl font-serif text-gray-700">L'équation à trois inconnues : Espèce, Origine, Valeur.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <div class="flex flex-col md:flex-row print:flex-row gap-6 print:gap-2 mb-10 text-center">
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#3B82F6] print:shadow-none">
+                            <i class="fas fa-barcode text-4xl print:text-2xl text-blue-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">1. Espèce</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">L'ADN (SH/TARIC)</p>
+                        </div>
+                        <div class="hidden md:flex print:flex items-center text-gray-300 text-3xl print:text-lg"><i class="fas fa-plus"></i></div>
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#10B981] print:shadow-none">
+                            <i class="fas fa-passport text-4xl print:text-2xl text-green-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">2. Origine</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">Le Passeport</p>
+                        </div>
+                        <div class="hidden md:flex print:flex items-center text-gray-300 text-3xl print:text-lg"><i class="fas fa-equals"></i></div>
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#F59E0B] print:shadow-none">
+                            <i class="fas fa-file-invoice-dollar text-4xl print:text-2xl text-amber-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">3. Valeur</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">L'Assiette (€)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'Espèce Tarifaire et TARBEL</h3>
+                    <p class="mb-4 text-justify">La douane ne lit pas les descriptions, elle lit des chiffres : les 6 premiers chiffres sont le <strong>Système Harmonisé (SH)</strong> (mondial), complétés par la Nomenclature Combinée et le TARIC (Europe, 10 chiffres).</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl mb-5 text-justify">
+                        <strong class="text-blue-800">L'outil indispensable : TARBEL.</strong><br>
+                        <span class="text-sm">Pour trouver ce code, les déclarants utilisent l'application <strong>TARBEL</strong> (le Tarif Belge). Elle combine la base TARIC (droits, antidumping) avec les mesures belges (TVA, Accises). C'est la bible du classificateur.</span>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : L'erreur d'ADN</h4>
+                    <p class="text-justify">Une entreprise importe des tablettes tactiles haut de gamme (soumises à taxes), mais le déclarant se trompe dans TARBEL et utilise le code SH des "cadres photo numériques" (taxés à 0 %). Lors d'un contrôle, le douanier allume l'écran : redressement fiscal et amende pour fausse déclaration !</p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'Origine et la Valeur</h3>
+                    <p class="mb-4 text-justify"><strong>Origine :</strong> Ne pas confondre <em>provenance</em> et <em>origine</em>. L'origine préférentielle (accords de libre-échange, certificats EUR.1) permet de réduire les droits à 0 %.</p>
+                    <p class="mb-4 text-justify"><strong>Valeur :</strong> La douane taxe la "valeur transactionnelle" <strong>jusqu'à la frontière européenne</strong> (incluant le coût du produit + transport maritime + assurance).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="nuls-box unbreakable my-0 border-green-500 shadow-[4px_4px_0px_#10B981] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-green-500 text-white border-green-500"><i class="fas fa-bicycle"></i></div>
+                        <h4 class="font-black text-lg mb-3 ml-8 print:ml-4 tracking-tight text-green-700 print:text-black">Le faux passeport suisse</h4>
+                        <p class="text-sm text-justify">Tu achètes des vélos à Genève (provenance suisse). Mais le moteur et le cadre sont fabriqués à Taïwan. L'entreprise suisse n'a fait que coller une étiquette. L'<strong>origine</strong> réelle est taïwanaise : tu paieras les pleins droits.</p>
+                    </div>
+                    <div class="nuls-box unbreakable my-0 border-amber-500 shadow-[4px_4px_0px_#F59E0B] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-amber-500 text-white border-amber-500"><i class="fas fa-ship"></i></div>
+                        <h4 class="font-black text-lg mb-3 ml-8 print:ml-4 tracking-tight text-amber-700 print:text-black">L'oubli qui coûte cher</h4>
+                        <p class="text-sm text-justify">Une entreprise déclare un conteneur mais "oublie" d'inclure les 3 000 € de transport maritime dans la Valeur déclarée (H1). Lors d'un contrôle, elle devra rembourser la différence de TVA et de douane sur ces 3 000 €.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapitre 10 -->
+            <div id="chap10" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">10</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Qui paie quoi ? Les Incoterms 🤝</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">La douane veut savoir : qui est légalement responsable de la déclaration ? Qui paie les taxes ? La Chambre de Commerce Internationale a créé un langage universel de 3 lettres : les <strong>Incoterms</strong>.</p>
+                </div>
+
+                <!-- Ligne du temps Incoterms Sublime -->
+                <div class="unbreakable bg-white border-[3px] border-nuls-black rounded-3xl p-8 print:p-4 mb-10 shadow-[8px_8px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <h3 class="text-center font-black text-xl mb-12 print:mb-6 uppercase tracking-wider text-gray-800">Répartition des frais et risques</h3>
+                    
+                    <div class="relative flex justify-between items-start w-full">
+                        <!-- Ligne de fond -->
+                        <div class="absolute top-5 print:top-3 left-8 right-8 h-3 print:h-2 bg-gray-200 rounded-full z-0"></div>
+                        
+                        <!-- Point EXW -->
+                        <div class="relative z-10 flex flex-col items-start w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">EXW</div>
+                            <div class="text-left">
+                                <span class="bg-red-50 text-red-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">À l'usine</span><br>
+                                <span class="text-sm font-medium">L'acheteur fait tout</span>
+                            </div>
+                        </div>
+
+                        <!-- Point FOB -->
+                        <div class="relative z-10 flex flex-col items-center w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">FOB</div>
+                            <div class="text-center">
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">Franco à bord</span><br>
+                                <span class="text-sm font-medium">Moitié / Moitié</span>
+                            </div>
+                        </div>
+
+                        <!-- Point DDP -->
+                        <div class="relative z-10 flex flex-col items-end w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">DDP</div>
+                            <div class="text-right">
+                                <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">Destination</span><br>
+                                <span class="text-sm font-medium">Le vendeur fait tout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-12">
+                    <div class="nuls-box-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Cas Pratique : Le piège du "faux pas cher" (EXW)</h4>
+                    <p class="text-justify">Un fournisseur chinois te propose des T-shirts en "EXW Pékin" (moins cher) ou "FOB Shanghai". Tu choisis EXW. Pire idée ! Tu devras engager un transporteur en Chine pour aller chercher les cartons à l'usine, et surtout, <strong>tu seras responsable de la déclaration d'exportation chinoise</strong> (un cauchemar sans licence en Chine). Le FOB était le vrai bon choix.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="6.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 9 et 10">
+                </div>
+            </div>
+
+            <!-- Chapitre 11 -->
+            <div id="chap11" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Bouclier Sécuritaire (ICS2) 🛡️</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Aujourd'hui, avec <strong>ICS2</strong> (Import Control System 2), la règle est simple : <strong>pas de données, pas de chargement.</strong> Le transporteur doit envoyer une mini-déclaration de sécurité (l'ENS) à l'Europe avant même que la marchandise ne soit dans l'avion au bout du monde.</p>
+                </div>
+
+                <div class="nuls-box unbreakable bg-[#FEF2F2] border-red-800 shadow-[6px_6px_0px_#991B1B] print:shadow-none print:bg-white print:border-2">
+                    <div class="nuls-box-icon bg-red-600 text-white border-red-800"><i class="fas fa-bomb"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-900 print:text-black">Cas Pratique : La "bombe" dans la boîte</h4>
+                    <p class="text-justify text-red-900 print:text-black">Un individu tente d'expédier un colis suspect avec des explosifs depuis le Moyen-Orient vers Bruxelles par avion cargo. Grâce au module PLACI d'ICS2, la douane belge reçoit les données <em>avant</em> le chargement. L'algorithme détecte un risque critique (Assessment "Do Not Load"). Le colis ne montera jamais dans l'avion à l'autre bout du monde.</p>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- Chapitre 12 -->
+            <div id="chap12" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-red-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-red-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FCA5A5] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">12</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-red-800 print:text-black">Sanctions & Double Usage 🚫</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">La douane n'est pas qu'un percepteur de taxes, c'est aussi le bras armé géopolitique de l'Union européenne. En période de conflit ou de crise internationale, le commerce libre s'arrête là où commencent les restrictions. Importer ou exporter n'est plus un droit absolu.</p>
+                </div>
+
+                <div class="unbreakable mt-8">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. Les Sanctions et Embargos</h3>
+                    <p class="mb-4 text-justify">Les sanctions économiques visent à faire pression sur un pays, un gouvernement, ou même des individus spécifiques (oligarques, chefs de guerre). Elles prennent deux formes principales dans le logiciel de la douane :</p>
+                    
+                    <ul class="list-none space-y-4 mb-6">
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-red-700 block mb-1"><i class="fas fa-globe mr-2"></i> L'Embargo commercial (Les marchandises)</strong>
+                            <span class="text-sm text-justify block">Interdiction stricte d'exporter certains produits vers un pays ciblé (ex: interdiction d'y vendre des produits de luxe européens ou des technologies de pointe) ou d'en importer (ex: interdiction d'acheter du pétrole ou des diamants russes pour couper leur financement).</span>
+                        </li>
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-red-700 block mb-1"><i class="fas fa-user-slash mr-2"></i> Les Listes Noires (Le gel des avoirs)</strong>
+                            <span class="text-sm text-justify block">Même si la marchandise elle-même n'est pas dangereuse, il est formellement interdit de faire des affaires avec des personnes ou des entreprises placées sur une "Blacklist" européenne. La douane gèle leurs marchandises au port.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] print:shadow-none print:border-2 mt-8">
+                    <div class="nuls-box-icon bg-red-500 text-white border-red-500"><i class="fas fa-gem"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-700 print:text-black">Cas Pratique : Les montres de luxe bloquées</h4>
+                    <p class="text-justify text-red-900 print:text-black">Un bijoutier anversois tente d'exporter pour 200 000 € de montres de luxe vers un pays sous sanctions européennes. Le système AES de la douane analyse l'ADN du produit (le code SH de la montre) et le pays de destination. Une alerte rouge retentit : les produits dits "de luxe" font l'objet d'un embargo strict vers cette destination. La déclaration est refusée, l'exportation est annulée, la marchandise est saisie et le bijoutier s'expose à des poursuites pénales.</p>
+                </div>
+
+                <div class="unbreakable mt-12">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Les Biens à Double Usage (Dual-Use)</h3>
+                    <p class="mb-4 text-justify">Une attention particulière est portée aux <strong>Biens à Double Usage (Dual-Use)</strong>. Ce sont des marchandises créées pour un usage strictement civil, mais dont la technologie, les matériaux ou le logiciel pourraient être détournés pour fabriquer des armes ou du matériel militaire (chimique, nucléaire, etc.). Exporter ces biens ne fait pas l'objet d'un embargo total, mais requiert des <strong>licences d'exportation très strictes</strong>.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-gray-800 shadow-[6px_6px_0px_#1F2937] print:shadow-none print:border-2 mt-8">
+                    <div class="nuls-box-icon bg-gray-800 text-white border-gray-800"><i class="fas fa-microchip"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-gray-800 print:text-black">Cas Pratique : La machine à laver militarisée</h4>
+                    <p class="text-justify text-gray-800 print:text-black">Une entreprise belge fabrique des puces électroniques de haute qualité pour des machines à laver industrielles (un bien 100% civil). Elle reçoit une grosse commande d'un pays actuellement sous tension géopolitique. Lors de la déclaration d'exportation (AES), l'algorithme douanier (SEDA) bloque l'opération. Pourquoi ? Parce que les services de renseignement ont découvert que l'armée de ce pays récupère ces puces civiles pour en équiper les systèmes de guidage de ses drones de combat. La licence "Dual-Use" sera catégoriquement refusée.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="7.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 11 et 12">
+                </div>
+            </div>
+            <!-- Chapitre 13 -->
+            <div id="chap13" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-green-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-[#16A34A] text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#14532D] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">13</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-[#16A34A] print:text-black">La Douane "Verte" 🌿</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">En 2026, le douanier est le premier rempart de l'écologie européenne. L'UE veut être climatiquement neutre et utilise la douane pour s'assurer que le reste du monde respecte nos efforts.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div class="unbreakable">
+                        <h3 class="text-xl font-bold mb-3 text-[#16A34A] print:text-black flex items-center"><i class="fas fa-smog mr-2"></i> CBAM (Taxe carbone)</h3>
+                        <p class="text-sm mb-4 text-justify">Importer de l'acier d'un pays qui ne taxe pas le CO2 obligera l'entreprise à acheter des "certificats carbone" à la douane (pour compenser la pollution de l'usine étrangère et rééquilibrer les prix).</p>
+                    </div>
+                    <div class="unbreakable">
+                        <h3 class="text-xl font-bold mb-3 text-[#16A34A] print:text-black flex items-center"><i class="fas fa-tree mr-2"></i> EUDR (Déforestation)</h3>
+                        <p class="text-sm mb-4 text-justify">Pour importer du cacao ou du bois, le déclarant doit prouver (via des <strong>coordonnées GPS strictes</strong>) que la parcelle où a poussé le produit n'a pas été déboisée récemment. Sinon ? Blocage immédiat à Anvers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapitre 14 -->
+            <div id="chap14" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-teal-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-teal-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#99F6E4] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">14</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-teal-800 print:text-black">Le Guichet Unique (Single Window) 🤝</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">La douane protège la santé, l'environnement et les consommateurs, mais elle ne travaille pas seule ! Sur le terrain, d'autres agences gouvernementales (comme l'AFSCA en Belgique pour la sécurité alimentaire) sont chargées des contrôles sanitaires ou vétérinaires.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">Pour éviter qu'un opérateur doive présenter ses certificats papier à trois agences différentes, l'Europe a mis en place le <strong>Guichet Unique (EU CSW-CERTEX / Single Window)</strong>. C'est une gigantesque autoroute informatique où l'application de la douane (IDMS) discute automatiquement avec les applications des autres agences (comme TRACES pour l'AFSCA).</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-teal-500 shadow-[6px_6px_0px_#14B8A6] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-teal-500 text-white border-teal-500"><i class="fas fa-building"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-teal-700 print:text-black">Cas Pratique : Le conteneur d'ananas</h4>
+                    <p class="text-justify text-teal-900 print:text-black">Un importateur belge fait venir un conteneur d'ananas frais du Costa Rica. Son déclarant introduit la déclaration H1 dans IDMS. Avant de donner son accord, IDMS interroge automatiquement le système du Guichet Unique pour savoir si l'AFSCA a validé le certificat phytosanitaire. Si l'inspecteur de l'AFSCA n'a pas coché la case "OK" dans son propre logiciel (TRACES), la douane bloque la déclaration H1 à la seconde. Les deux administrations travaillent en parfaite synchronisation sans se passer un seul coup de fil.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="8.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 13 et 14">
+                </div>
+            </div>
+
+            <!-- Chapitre 15 -->
+            <div id="chap15" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">15</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Le Radar Douanier (SEDA 3.0) 🎯</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Comment la douane choisit-elle le conteneur à ouvrir parmi les millions qui transitent chaque année ? L'administration ne choisit pas au hasard, elle s'appuie sur une analyse de données extrêmement pointue : c'est le rôle du moteur de règles <strong>SEDA</strong>.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. La communication européenne : RIF et CRMS</h3>
+                    <p class="mb-6 text-justify">Le risque ne s'arrête pas aux frontières. Si la douane française découvre une nouvelle méthode de dissimulation de cocaïne, elle rédige une fiche <strong>RIF (Risk Information Form)</strong>. C'est une alerte de sécurité qui est envoyée à tous les États membres via le système <strong>CRMS</strong> (Customs Risk Management System). L'algorithme belge (SEDA) intègre alors immédiatement cette menace dans ses calculs.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. L'Intelligence Artificielle : SEDA 3.0</h3>
+                    <p class="mb-4 text-justify">Avant, le système était rigide : soit la déclaration passait au vert, soit elle bloquait au rouge. Aujourd'hui, le moteur <strong>SEDA 3.0</strong> calcule un <strong>Score de Risque continu (entre 0 et 1)</strong> pour chaque déclaration. Plus on s'approche de 1, plus c'est critique.</p>
+                    
+                    <p class="font-bold mb-3">Ce score est calculé selon 4 grands piliers mathématiques :</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-history text-2xl text-nuls-blue mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">1. Le Risque (Probabilité) :</strong> Basé sur l'historique de l'opérateur et les trajets suspects.</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-weight-hanging text-2xl text-red-500 mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">2. L'Impact :</strong> Est-ce un gros enjeu ? On calcule l'argent potentiellement perdu (taxes) ou le poids physique.</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-list-ol text-2xl text-purple-600 mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">3. L'Importance (Belang) :</strong> Un multiplicateur. Si l'opérateur est sur Liste Noire (Blacklist), le score explose !</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-dice text-2xl text-nuls-yellow mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">4. L'Aléatoire (Random) :</strong> L'effet de surprise. Le système sélectionne parfois des déclarations parfaites pour brouiller les pistes.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable border-green-500 shadow-[6px_6px_0px_#10B981] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-green-500 text-white border-green-500"><i class="fas fa-award"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-green-700 print:text-black">Cas Pratique : Le Bonus AEO annulé</h4>
+                    <p class="text-justify text-gray-800 print:text-black">Rappelez-vous du statut AEO (Chapitre 4). Dans SEDA, être AEO applique une "Facilitation" : l'algorithme réduit mathématiquement votre probabilité d'être contrôlé (par exemple -50 % de score). <strong>Mais attention :</strong> Si le SEDA détecte une alerte d'Embargo absolu (sanctions internationales) ou si le nom d'un des acteurs apparaît sur une Liste Noire (fraude avérée), l'algorithme "coupe" littéralement cet avantage. Le bonus AEO est annulé et le score remonte à 1 (Contrôle prioritaire obligatoire).</p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. Le Filtre (Cutoff) et l'Interface MRA</h3>
+                    <p class="mb-4 text-justify">Des milliers de déclarations obtiennent un score. Mais la douane n'a pas les effectifs pour contrôler 100 % des conteneurs. SEDA utilise donc un <strong>Seuil de Cutoff</strong>. Si le seuil est réglé à 0.70, toutes les déclarations en dessous sont ignorées informatiquement.</p>
+                    <p class="mb-5 text-justify">Celles qui dépassent le seuil atterrissent sur l'écran des douaniers (l'équipe de terrain CRC). Cet écran de décision s'appelle l'outil <strong>MRA (Manual Risk Analysis)</strong>.</p>
+
+                    <div class="bg-red-50 p-4 border-l-4 border-red-600 rounded-r-xl mb-8">
+                        <h4 class="font-black text-red-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> ATTENTION AU JARGON : Le Piège des deux "MRA" !</h4>
+                        <p class="text-sm text-red-900 text-justify">Le monde douanier adore les acronymes, au point d'utiliser le même pour deux choses totalement différentes !</p>
+                        <ul class="list-disc pl-5 mt-2 text-sm text-red-900 font-medium">
+                            <li>Au Chapitre 4 (Statuts Spéciaux), MRA signifie <strong>Mutual Recognition Agreement</strong> (l'accord international qui reconnaît le statut AEO à l'étranger).</li>
+                            <li>Ici (Analyse de risque), MRA signifie <strong>Manual Risk Analysis</strong> (le logiciel où le douanier décide de contrôler ou non une déclaration suspecte). Ne les confondez pas !</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 4. L'Action : Les Trois Niveaux de Contrôle</h3>
+                    <p class="mb-5 text-justify">Une fois la déclaration ciblée sur l'écran MRA, le douanier passe à l'action. Il dispose de trois niveaux d'intervention :</p>
+                    <div class="space-y-4">
+                        <div class="bg-white p-5 border-l-[6px] border-blue-400 shadow-[4px_4px_0px_#93C5FD] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-blue-900"><i class="fas fa-file-alt mr-2 text-blue-500"></i> Niveau 1 : Le Contrôle Documentaire</h4>
+                            <p class="text-sm mt-1">Le douanier vérifie à distance la cohérence du Triptyque en demandant les papiers (factures, certificats EUR.1) via le système.</p>
+                        </div>
+                        <div class="bg-white p-5 border-l-[6px] border-orange-400 shadow-[4px_4px_0px_#FDBA74] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-orange-900"><i class="fas fa-x-ray mr-2 text-orange-500"></i> Niveau 2 : Le Contrôle par Scanner</h4>
+                            <p class="text-sm mt-1">Le conteneur passe dans un portique à rayons X sur le terminal. Le douanier analyse l'image radiographique pour repérer des densités suspectes sans ouvrir les portes.</p>
+                        </div>
+                        <div class="bg-white p-5 border-l-[6px] border-red-500 shadow-[4px_4px_0px_#FCA5A5] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-red-900"><i class="fas fa-box-open mr-2 text-red-500"></i> Niveau 3 : Le Contrôle Physique (La fouille)</h4>
+                            <p class="text-sm mt-1">Le niveau ultime. Le conteneur est ouvert et inspecté physiquement (parfois avec des chiens renifleurs ou des équipes spécialisées) pour s'assurer que la réalité correspond à la déclaration.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapitre 15">
+                </div>
+
+            </div>
+
+        </div> <!-- Fin des chapitres -->
+        
+        <!-- CONCLUSION SUBLIME (Style Manus) -->
+        <footer id="conclusion" class="bg-[#1A1A1A] text-white p-12 print:p-8 mt-16 print:mt-8 print:border-t-4 print:border-black print:bg-white print:text-black unbreakable">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="font-nuls text-5xl md:text-6xl font-black mb-8 text-[#FFD600] print:text-black tracking-tight">Mot de la fin.</h2>
+                
+                <div class="space-y-6 text-lg font-light text-gray-300 print:text-gray-800 text-justify">
+                    <p>Nous voici arrivés au terme de ce voyage au cœur de la douane et des accises.</p>
+                    <p>Ce document a été conçu avec une seule ambition : tenter de <strong class="text-white print:text-black font-bold">vulgariser</strong> un univers souvent jugé trop complexe, et le rendre accessible à tous ceux qui souhaitent en comprendre les rouages essentiels.</p>
+                    <p>Je tiens à remercier chaleureusement tous les collègues et professionnels qui m'ont inspiré tout au long de ma carrière. Ayant travaillé pendant plus de <strong class="text-[#FFD600] print:text-black font-bold">8 ans en tant que Business Analyst dans le service IMI</strong> (l'ancien nom de notre actuel département <strong>SSDD</strong>), j'ai pu mesurer à quel point la clarté et la transmission du savoir sont primordiales dans notre administration.</p>
+                    <p>Merci pour votre lecture, et excellente continuation dans vos missions au sein du SPF Finances !</p>
+                </div>
+
+                <div class="mt-12 inline-block bg-white/10 print:bg-gray-100 p-8 print:p-4 rounded-2xl backdrop-blur-sm border border-white/10 print:border-gray-300">
+                    <p class="text-[#FFD600] print:text-black font-black text-2xl mb-1">— Mohamed Amine EL AAJI</p>
+                    <p class="text-sm uppercase tracking-widest opacity-70 font-semibold print:text-gray-600">Expert IMI / QAS • SSDD</p>
+                </div>
+
+                <div class="mt-16 pt-8 border-t border-white/10 print:border-gray-300 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest">La Douane pour les Nuls</p>
+                    <p class="text-xs opacity-50 font-medium">© 2026 SPF FINANCES - AGDA</p>
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- Fin du Container -->
+
+    <!-- CONTROLES D'IMPRESSION SUBLIMES
+    <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
+        <div class="bg-[#1A1A1A] text-white p-6 rounded-2xl shadow-2xl max-w-xs border-t-4 border-[#FFD600] fade-in">
+            <p class="font-black text-[#FFD600] mb-2 text-lg"><i class="fas fa-print mr-2"></i> Optimisation PDF</p>
+            <p class="text-[12px] opacity-90 leading-relaxed font-medium">Pour un rendu parfait au format A4, activez absolument les <strong>"Graphiques d'arrière-plan"</strong> et les <strong>"En-têtes et pieds de page"</strong> dans les options d'impression du navigateur.</p>
+        </div>
+        <button onclick="window.print()" class="bg-[#FFD600] text-[#1A1A1A] hover:bg-yellow-400 font-black py-4 px-8 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-[#1A1A1A] transition-all hover:-translate-y-1 flex items-center gap-3 text-lg">
+            Générer le PDF
+        </button>
+    </div> -->
+
+</body>
+</html>

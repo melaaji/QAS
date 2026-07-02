@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customs and Excise for Dummies - Complete Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
+    <!-- Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --nuls-yellow: #FFD600;
+            --nuls-black: #1A1A1A;
+            --nuls-gray: #F8F9FA;
+            --nuls-border: 3px solid #1A1A1A;
+            --nuls-shadow: 6px 6px 0px #FFD600;
+            --nuls-shadow-dark: 6px 6px 0px #1A1A1A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E5E7EB;
+            color: var(--nuls-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, .font-nuls {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Nuls Sublime Theme */
+        .bg-nuls-yellow { background-color: var(--nuls-yellow); }
+        .text-nuls-yellow { color: var(--nuls-yellow); }
+        .text-nuls-black { color: var(--nuls-black); }
+        .bg-nuls-black { background-color: var(--nuls-black); }
+
+        /* Practical Case Boxes (Neo-brutalist style) */
+        .nuls-box {
+            position: relative;
+            border: var(--nuls-border);
+            border-radius: 1.25rem;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin: 3.5rem 0 2.5rem 0;
+            background-color: #fff;
+            box-shadow: var(--nuls-shadow);
+            transition: transform 0.2s ease;
+        }
+        .nuls-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .nuls-box-icon {
+            position: absolute;
+            top: -28px;
+            left: 24px;
+            background: var(--nuls-yellow);
+            border: var(--nuls-border);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--nuls-black);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Table of Contents */
+        .toc-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0;
+            border-bottom: 2px dotted #CBD5E1;
+            text-decoration: none;
+            color: var(--nuls-black);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .toc-link:hover { color: #000; border-bottom-color: var(--nuls-yellow); padding-left: 0.5rem; }
+
+        /* Print Protection */
+        .unbreakable {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            display: inline-block !important;
+            width: 100% !important;
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .chapter-illustration {
+            display: block;
+            max-width: 85%;
+            height: auto;
+            margin: 2rem auto;
+            border: 4px solid var(--nuls-black);
+            border-radius: 1rem;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+        }
+
+        /* ========= PRINT RULES (A4) ========= */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 1.5cm 1.5cm 2cm 1.5cm;
+                @bottom-right { content: "Page " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; }
+            }
+            body {
+                background-color: #fff !important;
+                font-size: 9.5pt !important;
+                line-height: 1.4 !important;
+            }
+            .print-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                border: none !important;
+            }
+            
+            .page-break { page-break-before: always !important; }
+            h1, h2, h3, h4, h5 { page-break-after: avoid !important; break-after: avoid !important; }
+            
+            .text-lg { font-size: 10pt !important; line-height: 1.4 !important; }
+            .text-xl { font-size: 11pt !important; }
+            .text-2xl { font-size: 13pt !important; margin-bottom: 0.5rem !important; }
+            .text-3xl { font-size: 15pt !important; margin-bottom: 0.5rem !important; }
+            .text-4xl { font-size: 18pt !important; margin-bottom: 0.5rem !important; }
+            .text-7xl { font-size: 26pt !important; line-height: 1.1 !important; }
+            .text-8xl { font-size: 30pt !important; line-height: 1 !important; }
+            
+            .p-12 { padding: 0 !important; }
+            .p-8 { padding: 0 !important; }
+            .mb-12, .mb-8, .mt-12, .mt-8 { margin-bottom: 1rem !important; margin-top: 1rem !important; }
+            .mb-6, .mb-4, .mt-6, .mt-4 { margin-bottom: 0.5rem !important; margin-top: 0.5rem !important; }
+            
+            .chapter-illustration {
+                max-width: 65% !important;
+                box-shadow: none !important;
+                border-width: 2px !important;
+            }
+
+            .nuls-box {
+                margin: 2rem 0 1rem 0 !important; 
+                padding: 1.5rem 1rem 1rem 1rem !important;
+                border-width: 2px !important;
+                box-shadow: 4px 4px 0px #FFD600 !important;
+            }
+            .nuls-box-icon {
+                top: -20px !important; left: 16px !important; width: 40px !important; height: 40px !important; font-size: 1rem !important;
+                border-width: 2px !important;
+            }
+
+            table { page-break-inside: avoid !important; border-width: 2px !important; }
+            table th, table td { padding: 0.4rem !important; font-size: 8.5pt !important; }
+
+            .no-print { display: none !important; }
+            
+            .cover-page { height: 100vh !important; padding-top: 1cm !important; }
+            .print-border-none { border: none !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-container max-w-5xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden my-8 print:my-0 border-4 border-[#1A1A1A] print-border-none">
+        
+        <!-- COVER PAGE -->
+        <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-b-8 border-gray-900 p-16 text-center relative z-10 overflow-hidden">
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
+
+            <div class="absolute top-8 left-8 right-8 flex justify-between items-start z-20">
+                <div class="text-left bg-white border-4 border-nuls-black px-4 py-2 rounded-xl shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <h3 class="font-bold text-gray-900 text-xl font-nuls tracking-wider uppercase">FPS Finance</h3>
+                    <p class="text-xs font-bold text-gray-700 mt-1">GACE - General Administration of Customs and Excise</p>
+                </div>
+                <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Edition 2.0</span>
+                    <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">July 2026</p>
+                </div>
+            </div>
+
+            <div class="relative z-20 mt-20 print:mt-12">
+                <h2 class="text-2xl font-bold mb-6 uppercase tracking-[0.3em] border-t-4 border-b-4 border-gray-900 py-3 inline-block">The Complete Guide</h2>
+                <h1 class="text-7xl md:text-8xl font-nuls font-black mb-8 text-gray-900 leading-[1.1] tracking-tight">
+                    Customs<br>and Excise<br>
+                    <span class="text-white relative inline-block mt-2 px-4 py-2 bg-nuls-black rounded-2xl transform -rotate-2 shadow-[8px_8px_0px_#fff] print:shadow-none print:rotate-0 print:border-4 print:border-black print:text-black print:bg-transparent">
+                        for Dummies
+                    </span>
+                </h1>
+                
+                <img src="10.png" alt="Cover Customs for Dummies" class="mx-auto w-72 md:w-96 rounded-2xl border-4 border-nuls-black shadow-[8px_8px_0px_rgba(0,0,0,0.2)] print:border-2 print:shadow-none my-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                
+                <p class="text-2xl font-semibold mt-8 max-w-2xl mx-auto text-gray-800 print:text-lg">
+                    The integral guide: from EORI to Green Customs, including the CTU, NCTS and Risk Analysis.
+                </p>
+            </div>
+            
+            <div class="unbreakable relative z-20 mt-16 bg-white px-8 py-6 rounded-2xl border-[3px] border-gray-900 shadow-[8px_8px_0px_#1A1A1A] text-left inline-block print:shadow-none print:mt-8">
+                <p class="text-gray-500 text-xs uppercase tracking-widest mb-2 font-bold">A guide written by</p>
+                <p class="text-2xl font-black text-gray-900 mb-3">Mohamed Amine EL AAJI</p>
+                <div class="flex items-center text-gray-800 mb-2">
+                    <div class="bg-green-100 p-1.5 rounded-lg mr-3"><i class="fas fa-check-circle text-green-600"></i></div>
+                    <p class="font-bold text-sm">Quality Assurance Services (QAS)</p>
+                </div>
+                <div class="flex items-center text-gray-700">
+                    <div class="bg-blue-100 p-1.5 rounded-lg mr-3"><i class="fas fa-network-wired text-blue-600"></i></div>
+                    <p class="text-xs font-semibold">Dept. SSDD (Strategic Service for Deployment and Data)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PREFACE -->
+        <div class="p-12 print:p-8">
+            <div class="unbreakable">
+                <div class="flex items-center mb-8">
+                    <i class="fas fa-quote-left text-4xl text-nuls-yellow mr-4 drop-shadow-md"></i>
+                    <h2 class="text-4xl font-black font-nuls m-0 uppercase tracking-wide">Preface</h2>
+                </div>
+                
+                <div class="bg-[#F8F9FA] p-8 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md print:p-4 print:border-l-4">
+                    <p class="mb-5 font-serif text-xl italic text-gray-800">Why this guide?</p>
+                    <div class="space-y-4 text-gray-700 font-medium">
+                        <p>The world of customs and excise is often perceived as an administrative fortress, built on complex legal texts, obscure acronyms, and extremely strict IT procedures. Yet, behind this apparent austerity lie fascinating mechanisms that are essential to the economic life of our country and the European Union.</p>
+                        <p>This document was born from a simple desire: <strong class="text-nuls-black font-bold">popularization</strong>. It is an attempt to make technical, customs, and fiscal concepts accessible to everyone. Whether you are a new agent joining the administration, a logistics professional seeking to clarify certain processes, or simply a curious mind wanting to understand how goods cross our borders, this guide is made for you.</p>
+                        <p>I have chosen to adopt a deliberately direct, conversational, and pedagogical tone, relying on analogies, simplified diagrams, and numerous practical cases. The objective is not to replace legal texts (which remain the only legal reference), but to provide you with the compass and map needed to navigate this ecosystem peacefully.</p>
+                        <p class="pt-4 font-bold text-lg text-nuls-black">Enjoy the read, and welcome to the border!</p>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-end items-center border-t-2 border-gray-200 pt-4">
+                        <p class="font-serif italic font-bold text-gray-900 text-lg">— Mohamed Amine EL AAJI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="p-12 print:p-8 bg-gray-50 border-y-4 border-gray-200">
+            <div class="unbreakable max-w-4xl mx-auto">
+                <h2 class="text-4xl font-black mb-10 font-nuls text-center tracking-wide uppercase">Table of Contents (15 Chapters)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                    <nav class="space-y-1 text-lg print:text-base bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <a href="#intro" class="toc-link"><span class="font-bold">Intro :</span> <span>Welcome to the Border!</span></a>
+                        <a href="#chap1" class="toc-link"><span class="text-gray-500 font-bold w-6">1.</span> <span>The Customs Identity Card</span></a>
+                        <a href="#chap2" class="toc-link"><span class="text-gray-500 font-bold w-6">2.</span> <span>The Journey of Goods</span></a>
+                        <a href="#chap3" class="toc-link"><span class="text-gray-500 font-bold w-6">3.</span> <span>The Tax World of Excise</span></a>
+                        <a href="#chap4" class="toc-link"><span class="text-gray-500 font-bold w-6">4.</span> <span>Special Statuses and Authorizations</span></a>
+                        <a href="#chap5" class="toc-link"><span class="text-gray-500 font-bold w-6">5.</span> <span>The Language of Datasets</span></a>
+                        <a href="#chap6" class="toc-link"><span class="text-gray-500 font-bold w-6">6.</span> <span>Centralised Clearance (CCE)</span></a>
+                        <a href="#chap7" class="toc-link"><span class="text-gray-500 font-bold w-6">7.</span> <span>Returned Goods Relief</span></a>
+                    </nav>
+                    <nav class="space-y-1 text-lg print:text-base bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mt-4 md:mt-0">
+                        <a href="#chap8" class="toc-link"><span class="text-gray-500 font-bold w-6">8.</span> <span>Transit (NCTS) and its Vault (GMS)</span></a>
+                        <a href="#chap9" class="toc-link"><span class="text-gray-500 font-bold w-6">9.</span> <span>The Golden Triptych</span></a>
+                        <a href="#chap10" class="toc-link"><span class="text-gray-500 font-bold w-6">10.</span> <span>Who pays what? Incoterms</span></a>
+                        <a href="#chap11" class="toc-link"><span class="text-gray-500 font-bold w-6">11.</span> <span>The Security Shield (ICS2)</span></a>
+                        <a href="#chap12" class="toc-link"><span class="text-gray-500 font-bold w-6">12.</span> <span>Sanctions & Dual-Use</span></a>
+                        <a href="#chap13" class="toc-link"><span class="text-gray-500 font-bold w-6">13.</span> <span>Green Customs (CBAM and EUDR)</span></a>
+                        <a href="#chap14" class="toc-link"><span class="text-gray-500 font-bold w-6">14.</span> <span>The Single Window</span></a>
+                        <a href="#chap15" class="toc-link"><span class="text-gray-500 font-bold w-6">15.</span> <span>The Customs Radar (Risk and Controls)</span></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="p-12 text-lg leading-relaxed print:p-8 print:text-base font-medium text-gray-800">
+
+            <!-- Introduction -->
+            <div id="intro" class="mb-14 unbreakable">
+                <h2 class="text-4xl font-black mb-8 text-center uppercase tracking-wide">Introduction: Welcome to the Border! 🛂</h2>
+                <div class="text-justify space-y-4">
+                    <p>I will guide you step by step through the mechanisms of customs regulations and accompany you with explanations and questions throughout our journey. Welcome to our guide "Customs and Excise for Dummies".</p>
+                    <p>To start off well, customs is not simply a physical barrier at the borders. It is simultaneously the security guard and the accountant of an immense shared space: the European Union 🇪🇺. Since the creation of the Customs Union, Member States share a single external border and a common customs tariff. This means that a good from Asia, once cleared in Belgium, can circulate freely to France or Germany without undergoing new customs checks.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mt-4 mb-4">
+                        <strong class="text-blue-900 block mb-1">What is customs clearance?</strong>
+                        <span class="text-sm">It is the set of IT and physical formalities to be completed to legally bring a good into or out of the territory. In short: you declare what you transport, its value, its origin, and you pay the corresponding taxes to get the green light (called "release") from customs.</span>
+                    </div>
+
+                    <p>The administration's work is built around three main missions:</p>
+                    
+                    <ul class="list-none space-y-3 mt-4 mb-6">
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-euro-sign text-xl text-nuls-yellow bg-nuls-black p-2 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">Taxation:</strong> Collecting customs duties (which go to the European budget to protect our economy from foreign competition) and national taxes like VAT.</div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-shield-alt text-xl text-nuls-yellow bg-nuls-black p-2 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">Protection:</strong> Checking that imported products (toys, food, medicines) comply with European safety and health standards.</div>
+                        </li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <i class="fas fa-wine-bottle text-xl text-nuls-yellow bg-nuls-black p-2 px-3 rounded-md mr-4 mt-1"></i>
+                            <div><strong class="text-nuls-black">Excise:</strong> Specific indirect national taxes that hit certain specific products (alcohol, tobacco, energy products) to regulate their consumption (public health/ecology) and feed state coffers.</div>
+                        </li>
+                    </ul>
+                    <p>Today, this entire ecosystem is fully digitized. Every step involves Belgian IT applications interconnected with the European Commission's databases.</p>
+                </div>
+            </div>
+
+            <!-- Chapter 1 -->
+            <div id="chap1" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">1</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Customs Identity Card 📜</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">To understand customs, you first need to visualize its playing field and know who participates in it.</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. The Customs Territory of the Union (CTU) 🌍</h3>
+                <p class="mb-4 text-justify">The European Union forms a single block against the rest of the world: the Customs Territory of the Union (CTU). Inside this territory, European goods circulate freely from one country to another without customs checks. At the external borders (like the port of Antwerp or Brussels-National airport), customs applies the same rules for all goods entering or leaving the EU.</p>
+
+                <div class="unbreakable bg-white p-5 rounded-2xl border border-gray-200 shadow-sm mb-6">
+                   <h4 class="font-bold text-gray-800 mb-4"><i class="fas fa-flag-eu text-nuls-blue mr-2"></i> The 27 Member States (and their country codes)</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-3 text-sm font-medium text-gray-700">
+                        <div class="flex items-center"><span class="fi fi-de mr-2 text-lg rounded-sm shadow-sm"></span> DE - Germany</div>
+                        <div class="flex items-center"><span class="fi fi-at mr-2 text-lg rounded-sm shadow-sm"></span> AT - Austria</div>
+                        <div class="flex items-center"><span class="fi fi-be mr-2 text-lg rounded-sm shadow-sm"></span> BE - Belgium</div>
+                        <div class="flex items-center"><span class="fi fi-bg mr-2 text-lg rounded-sm shadow-sm"></span> BG - Bulgaria</div>
+                        <div class="flex items-center"><span class="fi fi-cy mr-2 text-lg rounded-sm shadow-sm"></span> CY - Cyprus</div>
+                        <div class="flex items-center"><span class="fi fi-hr mr-2 text-lg rounded-sm shadow-sm"></span> HR - Croatia</div>
+                        <div class="flex items-center"><span class="fi fi-dk mr-2 text-lg rounded-sm shadow-sm"></span> DK - Denmark</div>
+                        <div class="flex items-center"><span class="fi fi-es mr-2 text-lg rounded-sm shadow-sm"></span> ES - Spain</div>
+                        <div class="flex items-center"><span class="fi fi-ee mr-2 text-lg rounded-sm shadow-sm"></span> EE - Estonia</div>
+                        <div class="flex items-center"><span class="fi fi-fi mr-2 text-lg rounded-sm shadow-sm"></span> FI - Finland</div>
+                        <div class="flex items-center"><span class="fi fi-fr mr-2 text-lg rounded-sm shadow-sm"></span> FR - France</div>
+                        <div class="flex items-center"><span class="fi fi-gr mr-2 text-lg rounded-sm shadow-sm"></span> GR - Greece</div>
+                        <div class="flex items-center"><span class="fi fi-hu mr-2 text-lg rounded-sm shadow-sm"></span> HU - Hungary</div>
+                        <div class="flex items-center"><span class="fi fi-ie mr-2 text-lg rounded-sm shadow-sm"></span> IE - Ireland</div>
+                        <div class="flex items-center"><span class="fi fi-it mr-2 text-lg rounded-sm shadow-sm"></span> IT - Italy</div>
+                        <div class="flex items-center"><span class="fi fi-lv mr-2 text-lg rounded-sm shadow-sm"></span> LV - Latvia</div>
+                        <div class="flex items-center"><span class="fi fi-lt mr-2 text-lg rounded-sm shadow-sm"></span> LT - Lithuania</div>
+                        <div class="flex items-center"><span class="fi fi-lu mr-2 text-lg rounded-sm shadow-sm"></span> LU - Luxembourg</div>
+                        <div class="flex items-center"><span class="fi fi-mt mr-2 text-lg rounded-sm shadow-sm"></span> MT - Malta</div>
+                        <div class="flex items-center"><span class="fi fi-nl mr-2 text-lg rounded-sm shadow-sm"></span> NL - Netherlands</div>
+                        <div class="flex items-center"><span class="fi fi-pl mr-2 text-lg rounded-sm shadow-sm"></span> PL - Poland</div>
+                        <div class="flex items-center"><span class="fi fi-pt mr-2 text-lg rounded-sm shadow-sm"></span> PT - Portugal</div>
+                        <div class="flex items-center"><span class="fi fi-cz mr-2 text-lg rounded-sm shadow-sm"></span> CZ - Czech Rep.</div>
+                        <div class="flex items-center"><span class="fi fi-ro mr-2 text-lg rounded-sm shadow-sm"></span> RO - Romania</div>
+                        <div class="flex items-center"><span class="fi fi-sk mr-2 text-lg rounded-sm shadow-sm"></span> SK - Slovakia</div>
+                        <div class="flex items-center"><span class="fi fi-si mr-2 text-lg rounded-sm shadow-sm"></span> SI - Slovenia</div>
+                        <div class="flex items-center"><span class="fi fi-se mr-2 text-lg rounded-sm shadow-sm"></span> SE - Sweden</div>
+                    </div>
+                </div>
+
+                <p class="mb-4 text-justify">However, beware of traps! The CTU is not an exact copy of the political or geographical map of Europe. Some political territories of the EU are excluded from customs, and conversely, territories outside the EU are included in it.</p>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: Geographical anomalies</h4>
+                    <div class="space-y-4 text-sm text-justify">
+                        <p><strong class="text-red-600 block mb-1">Ceuta and Melilla:</strong> These two cities are enclaves located on the African continent. Although they are politically Spanish (and therefore in the EU), they are <strong>strictly excluded</strong> from the Customs Territory of the Union. Sending goods from Madrid to Ceuta therefore obligatorily requires an export declaration! <em class="text-gray-600 block mt-1">(Note: Even if there are specific agreements allowing 0% customs duties upon arrival, the customs border exists and the computer declaration is mandatory).</em></p>
+                        <p><strong class="text-green-600 block mb-1">Monaco and San Marino: two different exceptions.</strong> The Principality of Monaco is a sovereign state outside the EU, but through an agreement with France, it is <strong>fully included</strong> in the CTU. Sending a parcel from Brussels to Monaco requires no customs declaration.<br>
+                        <em class="block mt-1 text-gray-700">Conversely, San Marino is bound to the EU by a Customs Union (0% taxes) but <strong>is not part</strong> of the CTU. Consequence: customs formalities (like presenting a T2 or T2L document) remain mandatory at the border!</em></p>
+                        <p><strong class="text-blue-600 block mb-1">Büsingen (DE) and Livigno (IT):</strong> The city of Büsingen is German, but it forms an enclave entirely surrounded by Switzerland. Result? It is excluded from the European CTU and attached to the... Swiss customs territory! <em class="block mt-1 text-gray-700 font-bold">Consequence: sending a good from Belgium to Büsingen amounts to exporting it to Switzerland. An export customs declaration (AES) is therefore formally mandatory.</em></p>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The EORI Number: The ID Card 🆔</h3>
+                    <p class="mb-4 text-justify">As soon as a company wants to cross this external border to do business, it cannot remain anonymous. Customs requires a unique identification: the <strong class="bg-yellow-100 px-1 rounded">EORI number</strong> (Economic Operators Registration and Identification). It is used to identify the company in all EU computer applications.</p>
+                    <p class="mb-4">In Belgium, it begins with the country code <code class="bg-gray-100 px-2 py-1 rounded-md font-mono font-bold text-nuls-blue">BE</code> followed by the 10-digit company number. A single number is enough for the entire Union!</p>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200 mt-2 mb-6">
+                        <strong class="text-yellow-800 block mb-1"><i class="fas fa-mouse-pointer mr-2"></i> How to get an EORI in Belgium?</strong>
+                        <span class="text-sm"><strong>Attention, currently, the procedure is not yet computerized.</strong> The request is still mandatorily made by downloading and filling out a specific PDF form (available on the FPS Finance website). A new 100% electronic interface is in development for the future, but for now, the PDF is the only way!</span>
+                    </div>
+                </div>
+                
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-plane-arrival"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The first contact (ICS2)</h4>
+                    <p class="text-justify">A company from Namur buys computers in Tokyo 🇯🇵. These devices are transported by plane to Liege. At what point does the EORI number become indispensable? Well before landing! Thanks to the European security system <strong>ICS2</strong>, safety data (the ENS) must be sent to customs even before loading the plane in Tokyo. The EORI is already indispensable there to identify the consignee.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-user-secret"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The private individual and EORI</h4>
+                    <p class="text-justify">A private individual from Namur orders a smartphone in the US for his personal use. Must he request an EORI? <strong>No.</strong> The EORI is strictly for economic operators (companies). The administration has provided a generic code for personal purchases: <strong class="text-nuls-blue">BEPRIVATEPERSON</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-8 bg-white p-5 rounded-xl border-2 border-nuls-black shadow-sm text-justify">
+                    <h4 class="font-bold text-lg mb-2"><i class="fas fa-handshake text-nuls-yellow mr-2"></i> Delegation (Mandates): Europe vs Belgium</h4>
+                    <p class="text-sm mb-3">Often, the company does not make its declarations itself and delegates this IT task to a broker (customs representative). But beware, access management is divided into two worlds:</p>
+                    <ul class="list-none space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-europ-sign text-blue-600 mr-2 mt-1 w-4 text-center">🇪🇺</i> 
+                            <div><strong class="text-blue-700">For European applications (e.g., CDMS, CBAM):</strong> Delegation is done via the <strong>UUM&DS</strong> portal. It is a bilateral agreement: the company grants access, and <em class="font-bold border-b-2 border-nuls-yellow">the broker must electronically accept it</em> on their end for the link to work.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-flag text-black mr-2 mt-1 w-4 text-center">🇧🇪</i>
+                            <div><strong class="text-black">For Belgian national applications (e.g., IDMS, AES, AC4):</strong> Access does not go through Europe. The company must register an official mandate in favor of its broker via the Belgian authentication system <strong>CSAM</strong> (the mandate management module linked to MyMinfin).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div id="chap2" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">2</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Journey of Goods 🚢</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-xl border border-green-200 mb-6 text-justify">
+                        <strong class="text-green-800 block mb-1">Before we go further: what is a classic import?</strong>
+                        <span class="text-sm">Generally, when a non-EU good arrives, it is declared in the import system. The company pays customs duties and VAT immediately. Once payment is validated, the good is said to be <em>"released for free circulation"</em>: it becomes European, it can circulate and be sold freely anywhere in Europe. But there are logistical exceptions...</span>
+                    </div>
+
+                    <p class="mb-6">When a good crosses the border, it must be declared. In Belgium, the administration uses modern IT systems for each step:</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-6 print:gap-2 mb-10 text-center unbreakable">
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#0056b3] print:shadow-none">
+                        <div class="bg-blue-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-download text-xl text-nuls-blue"></i>
+                        </div>
+                        <h4 class="font-black text-lg">IDMS</h4>
+                        <p class="text-sm font-medium mt-1">For Import 📥</p>
+                    </div>
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#16a34a] print:shadow-none">
+                        <div class="bg-green-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-upload text-xl text-green-600"></i>
+                        </div>
+                        <h4 class="font-black text-lg">AES</h4>
+                        <p class="text-sm font-medium mt-1">For Export 📤</p>
+                    </div>
+                    <div class="bg-white border-2 border-nuls-black p-5 rounded-2xl shadow-[4px_4px_0px_#9333ea] print:shadow-none">
+                        <div class="bg-purple-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-truck text-xl text-purple-600"></i>
+                        </div>
+                        <h4 class="font-black text-lg">NCTS</h4>
+                        <p class="text-sm font-medium mt-1">For Transit 🔄</p>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-warehouse"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The Customs Warehouse (IDMS)</h4>
+                    <p class="text-justify">Our company in Namur receives its computers from Tokyo in Liege. Instead of paying customs and VAT immediately, they will store them for 3 months. The solution? <strong>The customs warehouse.</strong> This regime allows a total suspension of taxes. Payment will only be triggered upon exit (release for free circulation) via the IDMS system.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-plane-departure"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The Export (AES)</h4>
+                    <p class="text-justify">The company in Namur eventually sells half of these stored computers to a customer in Switzerland 🇨🇭 (non-EU). Will they have to pay customs duties? <strong>No.</strong> The EU does not apply duties upon export. Since they were under tax suspension, they leave without ever having been taxed in Europe. The company uses the <strong>AES</strong> system to declare the re-export.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-truck-moving"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: Transit (NCTS) and Seals</h4>
+                    <p class="text-justify">The Belgian truck crosses France 🇫🇷 to go to Switzerland, filled with these untaxed computers. To secure this journey, the <strong>NCTS</strong> is used under the external transit regime (T1) with a tracking number (MRN) and a financial guarantee.</p>
+                    <p class="mt-3 bg-gray-50 p-3 rounded-xl border border-gray-200 text-justify">At the Swiss border, customs records the arrival and checks the seals. If everything is fine (Satisfactory), the Belgian guarantee is released (Discharge). <strong class="text-red-600">But what if the seals are broken?</strong> Swiss customs reports <em>discrepancies</em> (Transport incident) in NCTS! The system blocks the financial guarantee and triggers an investigation.</p>
+                </div>
+
+                <div class="unbreakable bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm mt-8 mb-12">
+                    <h4 class="font-bold text-center mb-6 text-gray-800">Summary diagram of the journey</h4>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium">
+                        <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
+                            🇯🇵 Tokyo<br><span class="text-xs text-gray-500">(Outside EU)</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+                        
+                        <div class="bg-blue-50 p-3 rounded-lg text-center border-b-4 border-blue-300 w-full md:w-auto">
+                            📥 <strong>IDMS</strong><br><span class="text-xs text-gray-500">Placed in Warehouse</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-green-50 p-3 rounded-lg text-center border-b-4 border-green-300 w-full md:w-auto">
+                            📤 <strong>AES</strong><br><span class="text-xs text-gray-500">Re-export</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-purple-50 p-3 rounded-lg text-center border-b-4 border-purple-300 w-full md:w-auto">
+                            🔄 <strong>NCTS</strong><br><span class="text-xs text-gray-500">Truck (T1)</span>
+                        </div>
+                        <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
+
+                        <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
+                            🇨🇭 Switzerland<br><span class="text-xs text-gray-500">(Final Dest.)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="2.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 1 and 2">
+                </div>
+
+            </div>
+
+            <!-- Chapter 3 -->
+            <div id="chap3" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">3</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Tax World of Excise 🍷</h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 mb-8 text-justify">
+                        <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-question-circle mr-2"></i> Why customs duties AND excises?</h4>
+                        <p class="text-sm mb-3"><strong>Customs duties</strong> have an economic purpose: they make products manufactured outside the EU more expensive to protect our local companies from foreign competition. <strong>Excises</strong>, on the other hand, have a public health and ecological purpose (and fill state coffers). They tax alcohol, tobacco, and fuels to limit their consumption, regardless of whether they are manufactured in Belgium or imported.</p>
+                        <div class="bg-white p-3 rounded border border-blue-100">
+                            <strong class="text-blue-800 text-sm"><i class="fas fa-shopping-bag mr-1"></i> And Duty Free?</strong>
+                            <p class="text-xs mt-1">At airports, "Duty Free" shops are in the international zone. Products (alcohol, perfume) are sold there without customs duties, VAT, and excises, because they are intended to leave the European territory immediately with the passenger. But pay attention to the allowed quantities upon return!</p>
+                        </div>
+                    </div>
+
+                    <p class="mb-6 text-justify">Europe uses the very strict <strong>EMCS (Excise Movement and Control System)</strong> to track these products under duty suspension, accompanied by an electronic document (the e-AD).</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> The Tax Warehouse</h3>
+                    <p class="mb-4 text-justify bg-gray-50 p-4 rounded-xl border border-gray-200"><i class="fas fa-exclamation-triangle text-nuls-yellow mr-2"></i> <strong>Do not confuse!</strong> The <em>customs warehouse</em> manages non-EU goods (customs duties/VAT). The <em>tax warehouse</em> allows you to store goods (EU or not) under suspension of excise duties.</p>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The Broken Bottle</h4>
+                    <p class="text-justify">A wholesaler in Namur receives a truck of wine from Bordeaux 🇫🇷 covered by an e-AD (via EMCS). He parks the load in his tax warehouse. When does he pay the Belgian excise? <strong>At the time of release for consumption</strong> (leaving the warehouse for restaurants). To do this, he uses a specific web application called <strong class="text-nuls-blue">AC4</strong>.</p>
+                    <div class="mt-4 bg-red-50 p-3 rounded-lg border border-red-100 text-justify">
+                        <p class="text-red-700 font-bold mb-1">And what if a pallet falls and bottles break in the warehouse?</p>
+                        <p class="text-sm">Since there was no release for consumption, customs <strong>does not</strong> demand the payment of excises (provided there is irrefutable proof of destruction for accounting).</p>
+                    </div>
+                </div>
+
+                <div class="unbreakable mb-8">
+                    <h3 class="text-2xl font-bold mb-6 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> The Jargon of Excise Actors</h3>
+                    <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
+                        <table class="min-w-full bg-white text-sm">
+                            <thead class="bg-gray-100 border-b-2 border-nuls-black">
+                                <tr>
+                                    <th class="py-4 px-5 text-left font-black text-gray-800 uppercase tracking-wider">Excise Status</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Store?</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Send?</th>
+                                    <th class="py-4 px-3 text-center font-black text-gray-800 uppercase tracking-wider">Receive?</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 font-medium">
+                                <tr>
+                                    <td class="py-4 px-5"><strong>Authorized warehousekeeper</strong></td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Yes</td>
+                                    <td class="py-4 px-3 text-center text-green-600"><i class="fas fa-check font-bold"></i> Yes</td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Yes</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5">
+                                        <strong>Registered consignee</strong><br>
+                                        <span class="text-xs text-gray-500 font-normal">(Pays excise upon arrival)</span>
+                                    </td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> No</td>
+                                    <td class="py-4 px-3 text-center text-red-500"><i class="fas fa-times"></i> No</td>
+                                    <td class="py-4 px-3 text-center text-green-600 bg-green-50"><i class="fas fa-check font-bold"></i> Yes</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5">
+                                        <strong>Registered consignor</strong><br>
+                                        <span class="text-xs text-gray-500 font-normal">(Sends after import)</span>
+                                    </td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> No</td>
+                                    <td class="py-4 px-3 text-center text-green-600"><i class="fas fa-check font-bold"></i> Yes</td>
+                                    <td class="py-4 px-3 text-center text-red-500 bg-red-50"><i class="fas fa-times"></i> No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-box-open"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The Registered Consignee</h4>
+                    <p class="text-justify">Our Namur wholesaler has no more room in his large building. He wants to order a pallet of Champagne 🇫🇷 and resell it directly by paying the tax immediately upon arrival (without storing it under suspension). The perfect status for him is <strong>Registered consignee</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div id="chap4" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">4</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Special Statuses and Authorizations 🛠️</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">The customs administration is not just a censor, it is also an economic partner that offers a range of authorizations to facilitate international trade. To ensure harmonization, Europe has centralized these requests.</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. The 22 European Authorizations (CDMS)</h3>
+                    <p class="mb-4 text-justify">Forget local paper forms. Today, there are <strong>22 European customs authorizations</strong> that are all centrally managed via a large European portal dedicated to operators: the <strong>CDMS</strong> (Customs Decisions Management System). Among these 22 authorizations, we find the most strategic ones:</p>
+                    <ul class="list-none space-y-3 mb-6 bg-white p-5 rounded-xl border border-gray-200">
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CW (Customs Warehousing):</strong> The authorization to operate a Customs Warehouse.</div></li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">IP / OP (Inward / Outward Processing):</strong> Authorizations for Inward and Outward Processing.</div></li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CGU (Comprehensive Guarantee):</strong> The Comprehensive Guarantee authorization to cover your operations.</div></li>
+                    </ul>
+                </div>
+
+                <div class="unbreakable mt-8">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The Case of Processing (IP / OP)</h3>
+                    <p class="mb-4 text-justify">These "tailor-made" regimes, whose authorization (IP/OP) is managed in the CDMS, allow goods to be processed internationally without paying the full taxes.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
+                            <h4 class="font-bold text-lg mb-2 text-nuls-blue">A. Inward Processing (IP)</h4>
+                            <p class="text-sm text-justify">Importing engines from China, assembling them into cars in Belgium, then exporting the finished cars to Morocco. The factory uses code H4 in IDMS to obtain a <em>total suspension of taxes upon import</em>.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
+                            <h4 class="font-bold text-lg mb-2 text-green-600">B. Outward Processing (OP)</h4>
+                            <p class="text-sm text-justify">A workshop in Tournai exports Belgian fabric to Tunisia to sew it, then re-imports the finished suits. Upon return, it will only pay <em>taxes on the foreign added value (the labor)</em>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-ban"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The missing authorization</h4>
+                    <p class="text-justify">The car factory tries to import its Chinese engines. The forwarder sends the declaration (code H4 for Inward Processing) in IDMS. But beware: if the factory has not made its request in the European system and the authorization (IP) is not validated and active in the <strong>CDMS</strong>, the Belgian IT system <strong>IDMS immediately rejects the declaration</strong>. The company will have to clear normally (H1) by paying the full rate.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. The Labyrinth of Guarantees (GUM, FINDA, GMS)</h3>
+                    <p class="mb-5 text-justify">To benefit from inward processing, the State requires a financial guarantee to cover the amount of suspended taxes. Do not get your wires crossed between the different systems:</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex bg-blue-50 border border-blue-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-blue-300 w-16 text-center">🇪🇺</div>
+                            <div><strong class="text-nuls-blue">GUM (Guarantee Management):</strong> The centralized European system. Linked to CDMS, it manages the global authorization (CGU) and monitors its use across several Member States.</div>
+                        </div>
+                        <div class="flex bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-yellow-500 w-16 text-center">🇧🇪</div>
+                            <div><strong class="text-yellow-700">FINDA:</strong> The <em>purely Belgian</em> accounting software. It concretely applies the blocking of your funds during a national import/export declaration (IDMS/AES).</div>
+                        </div>
+                        <div class="flex bg-purple-50 border border-purple-200 rounded-xl p-4">
+                            <div class="font-black text-2xl text-purple-300 w-16 text-center">🔄</div>
+                            <div><strong class="text-purple-700">GMS (Guarantee Management System):</strong> A module strictly reserved for guarantees related to transit (connected to NCTS, see Chapter 8).</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable">
+                    <div class="nuls-box-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The revolving account in FINDA</h4>
+                    <p class="text-justify mb-3">The Charleroi factory has a guarantee of 100,000 €. They already have 90,000 € of engines in the factory. A new container arrives with 20,000 € of potential taxes. What does FINDA do? <strong>It blocks the whole container!</strong> IDMS does not cut the pear in two.</p>
+                    <div class="bg-green-50 p-3 rounded-lg border border-green-200 text-sm text-justify">
+                        <strong class="text-green-700 block mb-1">The logistical solution:</strong>
+                        If the factory finally exports the finished cars outside the EU, the AES system records the exit. <strong>FINDA</strong> closes the file and <strong>automatically re-credits the 90,000 €</strong> to your balance! The factory can then unblock the pending container. This is the revolving account.
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 4. The trust label: AEO</h3>
+                    <p class="mb-4 text-justify">This is the highest certification in customs (Authorized Economic Operator). It comes in different types according to your needs. <strong class="text-red-600">Note:</strong> This status is issued by Europe and is valid <strong>only within the European Union</strong> (except in case of MRA, see Chapter 15).</p>
+                    <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2 mb-6">
+                        <table class="min-w-full bg-white text-sm">
+                            <thead class="bg-gray-100 border-b-2 border-nuls-black">
+                                <tr>
+                                    <th class="py-3 px-4 text-left font-black uppercase tracking-wider">AEO Type</th>
+                                    <th class="py-3 px-4 text-left font-black uppercase tracking-wider">Main Benefits</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 font-medium">
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-nuls-blue whitespace-nowrap">AEOC <span class="text-xs text-gray-500 block font-normal">(Simplifications)</span></td>
+                                    <td class="py-3 px-4 text-justify">Easier access to customs regimes, reduction of the comprehensive guarantee, lighter documentary and physical controls.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-purple-700 whitespace-nowrap">AEOS <span class="text-xs text-gray-500 block font-normal">(Security)</span></td>
+                                    <td class="py-3 px-4 text-justify">Relief from security controls (e.g., ENS declarations), mutual recognition with third countries.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-green-700 bg-green-50 whitespace-nowrap">AEOF <span class="text-xs text-gray-500 block font-normal">(Full)</span></td>
+                                    <td class="py-3 px-4 text-justify bg-green-50">Cumulation of all benefits (AEOC + AEOS). Ideal for a factory that wants its trucks to cross the border with absolute priority.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 5. Postponed accounting for VAT: ET14000</h3>
+                    <p class="mb-4 text-justify">The <strong>ET14000</strong> authorization is a purely fiscal mechanism linked to Belgian VAT, essential for importing companies.</p>
+                    <ul class="list-none space-y-4 print:space-y-2 mb-6">
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-nuls-black block mb-1">The mechanism:</strong>
+                            <span class="text-sm text-justify block">It allows avoiding paying VAT at the customs office during import. The tax is directly postponed (reverse-charged) onto your periodic VAT return. It is collected and deducted simultaneously there, canceling the immediate financial impact.</span>
+                        </li>
+                        <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <strong class="text-nuls-black block mb-1">The request:</strong>
+                            <span class="text-sm text-justify block">To benefit from it, the request is made online via <strong>MyMinfin</strong> (the official portal of the FPS Finance allowing citizens and companies to manage their tax files). During import, the ET14000 number simply needs to be entered into the customs declaration.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="3.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 3 and 4">
+                </div>
+
+            </div>
+
+            <!-- Chapter 5 -->
+            <div id="chap5" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">5</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Language of Datasets 💻</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Forget the old paper Single Administrative Document (SAD). Today, with the Union Customs Code (UCC), Europe has harmonized the structure of information via <strong>Datasets</strong>.</p>
+                    <p class="mb-6 text-justify">Imagine these datasets as boxes of LEGOs. The administration does not ask you for the same box depending on what you want to build. Europe has classified these codes by "families" represented by a letter.</p>
+                </div>
+                
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-5 mt-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. The "H" family: Import (IDMS) 📥</h3>
+                    <div class="bg-white border-2 border-nuls-black rounded-2xl p-6 shadow-sm mb-6">
+                        <ul class="space-y-3 font-medium">
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H1</span> <span><strong>Standard Import:</strong> The full set for "release for free circulation".</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H2</span> <span><strong>Customs warehouse:</strong> Placing in warehouse without paying taxes.</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H3</span> <span><strong>Temporary admission:</strong> Ex: Bringing in an artwork for an exhibition.</span></li>
+                            <li class="flex items-center"><span class="font-black text-nuls-blue w-10">H4</span> <span><strong>Inward processing:</strong> Importing parts under suspension (IP).</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> The H7 code for E-commerce 🛍️</h3>
+                    <p class="mb-4 text-justify">The <strong>H7</strong> code is a revolution. Before it, every imported parcel required a full H1, unmanageable for platforms handling thousands of shipments.</p>
+                    <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-center mb-5">
+                        <p class="font-black text-xl text-yellow-800">The H7 is designed specifically for shipments whose value does not exceed 150 €.</p>
+                    </div>
+                    
+                    <ul class="list-none space-y-3 mb-6">
+                        <li class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><strong class="text-nuls-black">Simplification:</strong> Lightened dataset for massive and fast processing.</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><strong class="text-nuls-black">IOSS Link (Import One-Stop Shop):</strong> Allows declaring the VAT already collected during the sale on the Asian website, avoiding reclaiming it from the individual upon arrival.</li>
+                    </ul>
+                </div>
+
+                <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-red-500 text-white border-red-500"><i class="fas fa-exclamation-circle"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-600 print:text-black">Practical Case: The H7 fraud risk</h4>
+                    <p class="text-justify">What is the risk if a company systematically declares its parcels as "H7" even when their value exceeds 150 €? The risk is a <strong>colossal dead loss of customs duties and VAT</strong>. By falsely declaring an 800 € smartphone under the H7 code (falsified value at 140 €), the company evades the strict controls of the H1 and normal duties. This is a fraudulent undervaluation that customs massively track down via their risk algorithms.</p>
+                </div>
+
+                <div class="unbreakable mt-12 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-red-600 flex items-center"><span class="w-2 h-6 bg-red-600 mr-3 rounded-sm"></span> UPDATE ALERT: The Small Parcels Revolution (July 2026) 🚨</h3>
+
+                    <p class="mb-4 text-justify">Until recently, e-commerce enjoyed a golden advantage: any parcel valued under €150 (the famous H7) entered Europe <strong>without paying a single cent of customs duties</strong> (only VAT was due). Faced with the avalanche of billions of Asian mini-parcels, Europe has ended recess!</p>
+
+                    <p class="mb-4 text-justify"><strong>Since July 1, 2026, the duty-free allowance is abolished.</strong> From now on, a temporary flat-rate customs duty of <strong>€3 per item</strong> (per declaration line) applies to all distance sales under €150 (B2C).</p>
+
+                    <div class="bg-red-50 p-4 border-l-[6px] border-red-500 rounded-r-xl mb-8 shadow-sm print:border-l-4">
+                        <h4 class="font-black text-red-800 mb-2"><i class="fas fa-bolt mr-2"></i> The H7 Thunderbolt</h4>
+                        <p class="text-sm text-red-900 text-justify">This flat-rate duty (tax code A00) applies whether the IOSS system is used or not. The goal? To protect our local businesses from unfair competition and to curb the ecological impact of massive low-cost product shipments.</p>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-shopping-cart"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: Online shopping, 2026 version</h4>
+                    
+                    <p class="text-justify mb-3">You order on a famous Asian platform: 1 phone case (€5) and 1 USB cable (€3). Your basket is worth €8. The parcel is under €150, so it will be declared under the H7 format.</p>
+                    
+                    <ul class="list-none space-y-2 mb-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar-times text-gray-500 mr-2 mt-1"></i>
+                            <div><strong>Before July 1, 2026:</strong> You paid €8 + about €1.68 VAT. Zero customs duties. The deal of the century.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar-check text-red-600 mr-2 mt-1"></i>
+                            <div><strong>Today:</strong> Customs will apply the flat-rate duty of €3 <em>per item line</em>. Since the case and the cable are different products (different customs codes), there are two lines. You will therefore pay <strong>€6 in customs duties</strong> (€3 x 2 items), plus the VAT calculated on this new total! Your €3 cable has suddenly become much more expensive.</div>
+                        </li>
+                    </ul>
+                    
+                    <p class="bg-gray-100 p-2 rounded text-sm text-justify border border-gray-300">
+                        <strong>The "Dummies" Exception (C2C):</strong> Note that if your aunt living in Canada sends you a hand-knitted sweater worth €40 (Consumer-to-Consumer Gift - C2C), <strong>this €3 tax does not apply!</strong> It only targets B2C commercial flows.
+                    </p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-5 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The "B" and "G" families 📤📦</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <h4 class="font-bold text-lg mb-2">Family B (AES)</h4>
+                            <p class="text-sm"><strong>B1</strong> for definitive export. <strong>B2</strong> for outward processing (OP).</p>
+                        </div>
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200">
+                            <h4 class="font-bold text-lg mb-2">Family G (Logistics)</h4>
+                            <p class="text-sm"><strong>G4</strong> for temporary storage (TSD on the docks pending a decision via the IRP).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 6 -->
+            <div id="chap6" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-blue-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#BFDBFE] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">6</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-blue-800 print:text-black">Centralised Clearance (CCE) 🌍</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">We have seen the datasets (H1, etc.). But where should this data be sent? Historically, the goods had to be cleared where they physically arrived. Europe has taken a major step by separating the physical flow from the administrative flow with <strong>CCE (Centralised Clearance at Import/Export)</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">Thanks to CCE, a company can lodge its import declaration in the system of its own country (where it is established), even if the goods physically arrive in another Member State. The two customs administrations communicate with each other behind the scenes in an automated way.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-blue-500 shadow-[6px_6px_0px_#3B82F6] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-blue-500 text-white border-blue-500"><i class="fas fa-network-wired"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-blue-700 print:text-black">Practical Case: The container in Rotterdam</h4>
+                    <p class="text-justify text-blue-900 print:text-black">A company in Namur imports toys from China. The ship physically arrives at the port of Rotterdam (Netherlands). Instead of having to mandate a Dutch broker and pay taxes in the Netherlands, the company uses CCE. It lodges its H1 dataset into <strong>IDMS (the Belgian system)</strong> from its couch in Namur, and pays its taxes in Belgium. The Belgian computer contacts the Dutch computer to give the order to release the container in Rotterdam. And voila!</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="4.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 5 and 6">
+                </div>
+
+            </div>
+
+            <!-- Chapter 7 -->
+            <div id="chap7" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-orange-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-orange-500 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FED7AA] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">7</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-orange-700 print:text-black">Returned Goods Relief 🔄</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">We have seen how to import and export. But what happens if the exported goods (e.g., e-commerce) turn around and come back to you? This is a very frequent logistical case: the regime of <strong>Returned Goods Relief</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">The basic principle of customs is to tax import. But if you re-import your *own* product (which had been manufactured or already cleared in the EU) within 3 years and in the same state, you are not going to pay customs duties again. Customs grants a total "relief", provided you can prove that the object is indeed the same.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-orange-400 shadow-[6px_6px_0px_#F97316] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-orange-500 text-white border-orange-500"><i class="fas fa-undo-alt"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-orange-700 print:text-black">Practical Case: The scratched watch</h4>
+                    <p class="text-justify text-orange-900 print:text-black">A Belgian watchmaker exports a watch to a customer in Switzerland (non-EU) via an AES declaration (B1). The Swiss customer receives the watch, notices it is scratched, and sends it back immediately. Upon return of the package, the Belgian declarant uses the IDMS system. By entering the correct relief code (F03) and providing the MRN of the initial export declaration to prove the identity of the watch, he re-imports it paying 0 € in duties and 0 € in VAT!</p>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- Chapter 8 -->
+            <div id="chap8" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">8</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Transit (NCTS) and its Vault (GMS) 🔄</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">We have seen that when goods travel across Europe without paying taxes, they do so under the transit regime via the <strong>NCTS</strong> system. Because the State is taking a risk, a financial guarantee is required via the <strong>GMS</strong>.</p>
+                </div>
+
+                <div class="unbreakable mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Arrival and Control (NCTS Phases 5 & 6)</h3>
+                    <p class="mb-5 text-justify">What happens when the truck arrives at its destination? Modern NCTS has become extremely strict.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white border-l-4 border-nuls-black p-4 shadow-sm">
+                            <strong class="text-nuls-black text-lg block mb-1">1. The Waiting Timer</strong>
+                            <p class="text-sm">As soon as the arrival is accepted, a countdown starts (e.g., 15 min). This gives customs time to decide whether to perform a physical control.</p>
+                        </div>
+                        <div class="bg-white border-l-4 border-green-500 p-4 shadow-sm">
+                            <strong class="text-green-700 text-lg block mb-1">2. Unloading Remarks (Satisfactory)</strong>
+                            <p class="text-sm">If everything is perfect, the declaration is notified as "Satisfactory". The guarantee in the GMS is released.</p>
+                        </div>
+                        <div class="bg-white border-l-4 border-red-500 p-4 shadow-sm">
+                            <strong class="text-red-600 text-lg block mb-1">3. The Discrepancies</strong>
+                            <p class="text-sm">If the seal is broken or a package is missing, "Not satisfactory" is reported. The NCTS then demands to know the holder's reaction: <span class="font-bold">No opposition</span> (accepts), <span class="font-bold">Opposition</span> (disputes), or <span class="font-bold">Undecided</span> (pending).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-lock-open"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The broken seal and the blocked guarantee</h4>
+                    <p class="text-justify">A truck arrives in Antwerp. The agent notices that the seal number is not the one declared at departure. He encodes <strong class="bg-red-50 text-red-700 px-1 rounded">"State of seals : Not OK"</strong> in the Unloading remarks. What does NCTS do? It immediately blocks the release of the guarantee in the GMS! The administration will claim the potential duties, as an unauthorized manipulation may have occurred en route.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="5.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 7 and 8">
+                </div>
+
+            </div>
+
+            <!-- Chapter 9 -->
+            <div id="chap9" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">9</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Golden Triptych 📐</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify text-xl font-serif text-gray-700">The equation with three unknowns: Tariff, Origin, Value.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <div class="flex flex-col md:flex-row print:flex-row gap-6 print:gap-2 mb-10 text-center">
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#3B82F6] print:shadow-none">
+                            <i class="fas fa-barcode text-4xl print:text-2xl text-blue-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">1. Tariff</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">The DNA (HS/TARIC)</p>
+                        </div>
+                        <div class="hidden md:flex print:flex items-center text-gray-300 text-3xl print:text-lg"><i class="fas fa-plus"></i></div>
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#10B981] print:shadow-none">
+                            <i class="fas fa-passport text-4xl print:text-2xl text-green-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">2. Origin</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">The Passport</p>
+                        </div>
+                        <div class="hidden md:flex print:flex items-center text-gray-300 text-3xl print:text-lg"><i class="fas fa-equals"></i></div>
+                        <div class="flex-1 bg-white border-2 border-nuls-black p-5 print:p-2 rounded-2xl shadow-[4px_4px_0px_#F59E0B] print:shadow-none">
+                            <i class="fas fa-file-invoice-dollar text-4xl print:text-2xl text-amber-500 mb-3 print:mb-1"></i>
+                            <h3 class="font-black text-lg print:text-sm mb-1">3. Value</h3>
+                            <p class="text-xs text-gray-600 font-medium uppercase tracking-wider">The Tax Base (€)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> The Tariff Classification and TARBEL</h3>
+                    <p class="mb-4 text-justify">Customs does not read descriptions, it reads numbers: the first 6 digits are the worldwide <strong>Harmonized System (HS)</strong>, completed by the Combined Nomenclature and the TARIC (Europe, 10 digits).</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl mb-5 text-justify">
+                        <strong class="text-blue-800">The indispensable tool: TARBEL.</strong><br>
+                        <span class="text-sm">To find this code, declarants use the <strong>TARBEL</strong> application (the Belgian Tariff). It combines the TARIC database (duties, anti-dumping) with Belgian measures (VAT, Excises). It's the classifier's bible.</span>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-10">
+                    <div class="nuls-box-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The DNA error</h4>
+                    <p class="text-justify">A company imports high-end touch tablets (subject to taxes), but the declarant makes a mistake in TARBEL and uses the HS code for "digital photo frames" (taxed at 0%). During a check, the customs officer turns on the screen: tax reassessment and fine for false declaration!</p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Origin and Value</h3>
+                    <p class="mb-4 text-justify"><strong>Origin:</strong> Do not confuse <em>provenance</em> and <em>origin</em>. Preferential origin (free trade agreements, EUR.1 certificates) can reduce duties to 0%.</p>
+                    <p class="mb-4 text-justify"><strong>Value:</strong> Customs taxes the "transaction value" <strong>up to the European border</strong> (including product cost + sea freight + insurance).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="nuls-box unbreakable my-0 border-green-500 shadow-[4px_4px_0px_#10B981] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-green-500 text-white border-green-500"><i class="fas fa-bicycle"></i></div>
+                        <h4 class="font-black text-lg mb-3 ml-8 print:ml-4 tracking-tight text-green-700 print:text-black">The fake Swiss passport</h4>
+                        <p class="text-sm text-justify">You buy bikes in Geneva (Swiss provenance). But the motor and frame are made in Taiwan. The Swiss company just stuck a label on it. The real <strong>origin</strong> is Taiwanese: you will pay full duties.</p>
+                    </div>
+                    <div class="nuls-box unbreakable my-0 border-amber-500 shadow-[4px_4px_0px_#F59E0B] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-amber-500 text-white border-amber-500"><i class="fas fa-ship"></i></div>
+                        <h4 class="font-black text-lg mb-3 ml-8 print:ml-4 tracking-tight text-amber-700 print:text-black">The forgotten sea freight</h4>
+                        <p class="text-sm text-justify">A company declares a container but "forgets" to include the 3,000 € of sea transport in the Declared Value (H1). During an audit, it will have to reimburse the difference in VAT and customs on these 3,000 €.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 10 -->
+            <div id="chap10" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">10</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">Who pays what? Incoterms 🤝</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Customs wants to know: who is legally responsible for the declaration? Who pays the taxes? The International Chamber of Commerce has created a universal 3-letter language: the <strong>Incoterms</strong>.</p>
+                </div>
+
+                <!-- Ligne du temps Incoterms Sublime -->
+                <div class="unbreakable bg-white border-[3px] border-nuls-black rounded-3xl p-8 print:p-4 mb-10 shadow-[8px_8px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <h3 class="text-center font-black text-xl mb-12 print:mb-6 uppercase tracking-wider text-gray-800">Distribution of costs and risks</h3>
+                    
+                    <div class="relative flex justify-between items-start w-full">
+                        <!-- Ligne de fond -->
+                        <div class="absolute top-5 print:top-3 left-8 right-8 h-3 print:h-2 bg-gray-200 rounded-full z-0"></div>
+                        
+                        <!-- Point EXW -->
+                        <div class="relative z-10 flex flex-col items-start w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">EXW</div>
+                            <div class="text-left">
+                                <span class="bg-red-50 text-red-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">Ex Works</span><br>
+                                <span class="text-sm font-medium">The buyer does everything</span>
+                            </div>
+                        </div>
+
+                        <!-- Point FOB -->
+                        <div class="relative z-10 flex flex-col items-center w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">FOB</div>
+                            <div class="text-center">
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">Free on Board</span><br>
+                                <span class="text-sm font-medium">Half / Half</span>
+                            </div>
+                        </div>
+
+                        <!-- Point DDP -->
+                        <div class="relative z-10 flex flex-col items-end w-1/3">
+                            <div class="w-14 h-14 print:w-8 print:h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-black print:text-xs border-4 print:border-2 border-white shadow-md mb-4 print:mb-2">DDP</div>
+                            <div class="text-right">
+                                <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded mb-1 inline-block">Destination</span><br>
+                                <span class="text-sm font-medium">The seller does everything</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable mt-12">
+                    <div class="nuls-box-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight">Practical Case: The trap of "cheap" (EXW)</h4>
+                    <p class="text-justify">A Chinese supplier offers you T-shirts in "EXW Beijing" (cheaper) or "FOB Shanghai". You choose EXW. Worst idea! You will have to hire a forwarder in China to go get the boxes at the factory, and above all, <strong>you will be responsible for the Chinese export declaration</strong> (a nightmare without a license in China). FOB was the real safe choice.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="6.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 9 and 10">
+                </div>
+
+            </div>
+
+            <!-- Chapter 11 -->
+            <div id="chap11" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Security Shield (ICS2) 🛡️</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Today, with <strong>ICS2</strong> (Import Control System 2), the rule is simple: <strong>no data, no load.</strong> The carrier must send a security mini-declaration (the ENS) to Europe even before the goods are in the plane at the other end of the world.</p>
+                </div>
+
+                <div class="nuls-box unbreakable bg-[#FEF2F2] border-red-800 shadow-[6px_6px_0px_#991B1B] print:shadow-none print:bg-white print:border-2">
+                    <div class="nuls-box-icon bg-red-600 text-white border-red-800"><i class="fas fa-bomb"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-900 print:text-black">Practical Case: The "bomb" in the box</h4>
+                    <p class="text-justify text-red-900 print:text-black">An individual tries to ship a suspicious package with explosives from the Middle East to Brussels by cargo plane. Thanks to the PLACI module of ICS2, Belgian customs receives the data <em>before</em> loading. The algorithm detects a critical risk (Assessment "Do Not Load"). The package will never board the plane at the other side of the world.</p>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- Chapter 12 -->
+            <div id="chap12" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-red-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-red-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FCA5A5] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">12</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-red-800 print:text-black">Sanctions & Dual-Use 🚫</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Customs does not just monitor money and security at import (ICS2). It also monitors what leaves the EU for geopolitical reasons. Exporting is not always an absolute right, especially in times of international tensions (Embargoes, economic sanctions).</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">Particular attention is paid to <strong>Dual-Use Goods</strong>. These are goods created for strictly civil use, but whose technology or materials could be diverted to manufacture weapons or military equipment. Exporting these goods requires very strict licenses.</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-red-500 text-white border-red-500"><i class="fas fa-microchip"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-red-700 print:text-black">Practical Case: The militarized washing machine</h4>
+                    <p class="text-justify text-red-900 print:text-black">A Belgian company manufactures high-quality electronic chips for industrial washing machines. It receives a large order from a country currently under European sanctions. At the export declaration (AES), the customs algorithm blocks the operation. Why? Because the army of this embargoed country recovers these civil chips to equip the guidance systems of its combat drones. The Dual-Use export license will be refused.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="7.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 11 and 12">
+                </div>
+
+            </div>
+
+            <!-- Chapter 13 -->
+            <div id="chap13" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-green-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-[#16A34A] text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#14532D] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">13</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-[#16A34A] print:text-black">Green Customs 🌿</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">In 2026, the customs officer is the first bulwark of European ecology. The EU wants to be climate-neutral and uses customs to ensure that the rest of the world respects our efforts.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div class="unbreakable">
+                        <h3 class="text-xl font-bold mb-3 text-[#16A34A] print:text-black flex items-center"><i class="fas fa-smog mr-2"></i> CBAM (Carbon Tax)</h3>
+                        <p class="text-sm mb-4 text-justify">Importing steel from a country that does not tax CO2 will oblige the company to buy "carbon certificates" from European customs (to compensate for the pollution of the foreign factory and rebalance prices).</p>
+                    </div>
+                    <div class="unbreakable">
+                        <h3 class="text-xl font-bold mb-3 text-[#16A34A] print:text-black flex items-center"><i class="fas fa-tree mr-2"></i> EUDR (Deforestation)</h3>
+                        <p class="text-sm mb-4 text-justify">To import cocoa or wood, the declarant must prove (via strict <strong>GPS coordinates</strong>) that the plot where the product grew has not been recently deforested. Otherwise? Immediate blockade in Antwerp.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 14 -->
+            <div id="chap14" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-teal-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-teal-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#99F6E4] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">14</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-teal-800 print:text-black">The Single Window 🤝</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify">Customs protects health, environment, and consumers, but it does not work alone! In the field, other government agencies (like the FASFC in Belgium for food safety) are responsible for sanitary or veterinary controls.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <p class="mb-4 text-justify">To prevent an operator from having to present their paper certificates to three different agencies, Europe has implemented the <strong>Single Window (EU CSW-CERTEX)</strong>. It's a gigantic IT highway where the customs application (IDMS) automatically talks with the applications of other agencies (like TRACES for the FASFC).</p>
+                </div>
+
+                <div class="nuls-box unbreakable border-teal-500 shadow-[6px_6px_0px_#14B8A6] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-teal-500 text-white border-teal-500"><i class="fas fa-building"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-teal-700 print:text-black">Practical Case: The container of pineapples</h4>
+                    <p class="text-justify text-teal-900 print:text-black">A Belgian importer brings in a container of fresh pineapples from Costa Rica. His declarant submits the H1 declaration in IDMS. Before giving its approval, IDMS automatically interrogates the Single Window system to know if the FASFC has validated the phytosanitary certificate. If the FASFC inspector has not ticked the "OK" box in his own software (TRACES), customs blocks the H1 declaration within a second. The two administrations work in perfect synchronization without making a single phone call.</p>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="8.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 13 and 14">
+                </div>
+            </div>
+
+            <div id="chap15" class="mb-14">
+                <div class="unbreakable w-full">
+                    <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">15</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight">The Customs Radar (SEDA 3.0) 🎯</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">How does customs choose which container to open out of the millions that transit each year? The administration does not choose randomly, it relies on highly advanced data analysis: this is the role of the <strong>SEDA</strong> rule engine.</p>
+                </div>
+
+                <div class="unbreakable">
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. European communication: RIF and CRMS</h3>
+                    <p class="mb-6 text-justify">The risk does not stop at the borders. If French customs discovers a new method of cocaine concealment, it writes a <strong>RIF (Risk Information Form)</strong>. This is a security alert that is sent to all Member States via the <strong>CRMS</strong> (Customs Risk Management System). The Belgian algorithm (SEDA) then immediately integrates this threat into its calculations.</p>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Artificial Intelligence: SEDA 3.0</h3>
+                    <p class="mb-4 text-justify">Before, the system was rigid: either the declaration passed on green, or it blocked on red. Today, the <strong>SEDA 3.0</strong> engine calculates a <strong>continuous Risk Score (between 0 and 1)</strong> for each declaration. The closer to 1, the more critical it is.</p>
+                    
+                    <p class="font-bold mb-3">This score is calculated according to 4 main mathematical pillars:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-history text-2xl text-nuls-blue mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">1. Risk (Probability):</strong> Based on the operator's history and suspicious routes.</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-weight-hanging text-2xl text-red-500 mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">2. Impact:</strong> Is there a big stake? We calculate the potentially lost money (taxes) or the physical weight.</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-list-ol text-2xl text-purple-600 mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">3. Importance (Belang):</strong> A multiplier. If the operator is on a Blacklist, the score explodes!</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-start">
+                            <i class="fas fa-dice text-2xl text-nuls-yellow mt-1 mr-3 w-8 text-center"></i>
+                            <div><strong class="text-nuls-black block">4. Random:</strong> The element of surprise. The system sometimes selects perfect declarations to cover its tracks and test the model.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nuls-box unbreakable border-green-500 shadow-[6px_6px_0px_#10B981] print:shadow-none print:border-2">
+                    <div class="nuls-box-icon bg-green-500 text-white border-green-500"><i class="fas fa-award"></i></div>
+                    <h4 class="font-black text-xl mb-3 ml-8 print:ml-4 tracking-tight text-green-700 print:text-black">Practical Case: The Cancelled AEO Bonus</h4>
+                    <p class="text-justify text-gray-800 print:text-black">Remember the AEO status (Chapter 4). In SEDA, being AEO applies a "Facilitation": the algorithm mathematically reduces your probability of being checked (for example -50% score). <strong>But beware:</strong> If SEDA detects an absolute Embargo alert (international sanctions) or if the name of one of the actors appears on a Blacklist (proven fraud), the algorithm literally "cuts" this advantage. The AEO bonus is cancelled and the score goes back to 1 (Mandatory priority control).</p>
+                </div>
+
+                <div class="unbreakable mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. The Filter (Cutoff) and the MRA Interface</h3>
+                    <p class="mb-4 text-justify">Thousands of declarations get a score. But customs does not have the manpower to check 100% of the containers. SEDA therefore uses a <strong>Cutoff Threshold</strong>. If the threshold is set at 0.70, all declarations below it are ignored by the computer.</p>
+                    <p class="mb-5 text-justify">Those that exceed the threshold land on the screen of the customs officers (the CRC field team). This decision screen is called the <strong>MRA (Manual Risk Analysis)</strong> tool.</p>
+
+                    <div class="bg-red-50 p-4 border-l-4 border-red-600 rounded-r-xl mb-8">
+                        <h4 class="font-black text-red-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> JARGON ALERT: The Trap of the two "MRAs"!</h4>
+                        <p class="text-sm text-red-900 text-justify">The customs world loves acronyms, to the point of using the same one for two totally different things!</p>
+                        <ul class="list-disc pl-5 mt-2 text-sm text-red-900 font-medium">
+                            <li>In Chapter 4 (Special Statuses), MRA means <strong>Mutual Recognition Agreement</strong> (the international agreement that recognizes the AEO status abroad).</li>
+                            <li>Here (Risk Analysis), MRA means <strong>Manual Risk Analysis</strong> (the software where the customs officer decides whether or not to control a suspicious declaration). Do not mix them up!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="unbreakable mt-6">
+                    <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 4. The Action: The Three Levels of Control</h3>
+                    <p class="mb-5 text-justify">Once the declaration is targeted on the MRA screen, the customs officer takes action. He has three levels of intervention:</p>
+                    <div class="space-y-4">
+                        <div class="bg-white p-5 border-l-[6px] border-blue-400 shadow-[4px_4px_0px_#93C5FD] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-blue-900"><i class="fas fa-file-alt mr-2 text-blue-500"></i> Level 1: Documentary Control</h4>
+                            <p class="text-sm mt-1">The customs officer remotely checks the consistency of the Golden Triptych by requesting papers (invoices, EUR.1 certificates) via the system.</p>
+                        </div>
+                        <div class="bg-white p-5 border-l-[6px] border-orange-400 shadow-[4px_4px_0px_#FDBA74] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-orange-900"><i class="fas fa-x-ray mr-2 text-orange-500"></i> Level 2: Scanner Control (X-ray)</h4>
+                            <p class="text-sm mt-1">The container passes through an X-ray gantry on the terminal. The customs officer analyzes the radiographic image to spot suspicious densities without opening the doors.</p>
+                        </div>
+                        <div class="bg-white p-5 border-l-[6px] border-red-500 shadow-[4px_4px_0px_#FCA5A5] print:shadow-none print:border-l-4 rounded-xl">
+                            <h4 class="font-black text-lg text-red-900"><i class="fas fa-box-open mr-2 text-red-500"></i> Level 3: Physical Control (Inspection)</h4>
+                            <p class="text-sm mt-1">The ultimate level. The container is opened and physically inspected (sometimes with sniffer dogs or specialized teams) to ensure that reality matches the declaration.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unbreakable text-center mt-10">
+                    <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapter 15">
+                </div>
+
+            </div>
+
+        </div> <!-- End of chapters -->
+        
+        <!-- CONCLUSION SUBLIME -->
+        <footer id="conclusion" class="bg-[#1A1A1A] text-white p-12 print:p-8 mt-16 print:mt-8 print:border-t-4 print:border-black print:bg-white print:text-black unbreakable">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="font-nuls text-5xl md:text-6xl font-black mb-8 text-[#FFD600] print:text-black tracking-tight">Final word.</h2>
+                
+                <div class="space-y-6 text-lg font-light text-gray-300 print:text-gray-800 text-justify">
+                    <p>Here ends our journey into the heart of customs and excise.</p>
+                    <p>This document was designed with a single ambition: to attempt to <strong class="text-white print:text-black font-bold">popularize</strong> a universe often deemed too complex, and make it accessible to anyone who wishes to understand its essential workings.</p>
+                    <p>I would like to warmly thank all the colleagues and professionals who inspired me throughout my career. Having worked for over <strong class="text-[#FFD600] print:text-black font-bold">8 years as a Business Analyst in the IMI department</strong> (the former name of our current <strong>SSDD</strong> department), I have been able to measure how crucial clarity and knowledge transmission are within our administration.</p>
+                    <p>Thank you for your reading, and best of luck in your missions within the FPS Finance!</p>
+                </div>
+
+                <div class="mt-12 inline-block bg-white/10 print:bg-gray-100 p-8 print:p-4 rounded-2xl backdrop-blur-sm border border-white/10 print:border-gray-300">
+                    <p class="text-[#FFD600] print:text-black font-black text-2xl mb-1">— Mohamed Amine EL AAJI</p>
+                    <p class="text-sm uppercase tracking-widest opacity-70 font-semibold print:text-gray-600">Expert IMI / QAS • SSDD</p>
+                </div>
+
+                <div class="mt-16 pt-8 border-t border-white/10 print:border-gray-300 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest">Customs for Dummies</p>
+                    <p class="text-xs opacity-50 font-medium">© 2026 FPS FINANCE - GACE</p>
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- End of Container -->
+
+    <!-- SUBLIME PRINT CONTROLS -->
+    <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
+        <div class="bg-[#1A1A1A] text-white p-6 rounded-2xl shadow-2xl max-w-xs border-t-4 border-[#FFD600] fade-in">
+            <p class="font-black text-[#FFD600] mb-2 text-lg"><i class="fas fa-print mr-2"></i> PDF Optimization</p>
+            <p class="text-[12px] opacity-90 leading-relaxed font-medium">For a perfect rendering in A4 format, absolutely remember to check the <strong>"Background graphics"</strong> and <strong>"Headers and footers"</strong> options in your browser's print settings.</p>
+        </div>
+        <button onclick="window.print()" class="bg-[#FFD600] text-[#1A1A1A] hover:bg-yellow-400 font-black py-4 px-8 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-[#1A1A1A] transition-all hover:-translate-y-1 flex items-center gap-3 text-lg">
+            Generate PDF
+        </button>
+    </div>
+
+</body>
+</html>
