@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
     
-    <!-- Premium Typographies -->
+    <!-- Premium Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -21,20 +21,9 @@
             --nuls-shadow-dark: 6px 6px 0px #1A1A1A;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #E5E7EB;
-            color: var(--nuls-black);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, .font-nuls {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #E5E7EB; color: var(--nuls-black); line-height: 1.6; }
+        h1, h2, h3, h4, h5, .font-nuls { font-family: 'Montserrat', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
 
         .bg-nuls-yellow { background-color: var(--nuls-yellow); }
         .text-nuls-yellow { color: var(--nuls-yellow); }
@@ -48,87 +37,24 @@
         .sys-seda { background-color: #FEE2E2; color: #7F1D1D; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.375rem; border: 1px solid #FECACA; font-size: 0.9em; white-space: nowrap; }
 
         /* Nuls Box */
-        .nuls-box {
-            position: relative;
-            border: var(--nuls-border);
-            border-radius: 1.25rem;
-            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
-            margin: 3.5rem 0 2.5rem 0;
-            background-color: #fff;
-            box-shadow: var(--nuls-shadow);
-            transition: transform 0.2s ease;
-        }
-        .nuls-box:hover {
-            transform: translateY(-2px);
-        }
-        .nuls-box h4 {
-            margin-top: 1rem;
-        }
-
-        .nuls-box-icon {
-            position: absolute;
-            top: -28px;
-            left: 24px;
-            background: var(--nuls-yellow);
-            border: var(--nuls-border);
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--nuls-black);
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-        }
+        .nuls-box { position: relative; border: var(--nuls-border); border-radius: 1.25rem; padding: 2.5rem 1.5rem 1.5rem 1.5rem; margin: 3.5rem 0 2.5rem 0; background-color: #fff; box-shadow: var(--nuls-shadow); transition: transform 0.2s ease; }
+        .nuls-box:hover { transform: translateY(-2px); }
+        .nuls-box h4 { margin-top: 1rem; }
+        .nuls-box-icon { position: absolute; top: -28px; left: 24px; background: var(--nuls-yellow); border: var(--nuls-border); border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--nuls-black); box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
 
         /* Sidebar links */
-        .toc-link {
-            display: block;
-            padding: 0.5rem 0.8rem;
-            margin-bottom: 0.25rem;
-            border-radius: 0.5rem;
-            color: #4B5563;
-            font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-        }
-        .toc-link:hover {
-            background-color: #F3F4F6;
-            color: var(--nuls-black);
-            transform: translateX(4px);
-        }
-        .toc-link.active {
-            background-color: var(--nuls-yellow);
-            color: var(--nuls-black);
-            font-weight: 800;
-            border: 2px solid var(--nuls-black);
-            box-shadow: 3px 3px 0px var(--nuls-black);
-            transform: translateX(4px);
-        }
+        .toc-link { display: block; padding: 0.5rem 0.8rem; margin-bottom: 0.25rem; border-radius: 0.5rem; color: #4B5563; font-weight: 500; font-size: 0.85rem; transition: all 0.2s ease-in-out; text-decoration: none; }
+        .toc-link:hover { background-color: #F3F4F6; color: var(--nuls-black); transform: translateX(4px); }
+        .toc-link.active { background-color: var(--nuls-yellow); color: var(--nuls-black); font-weight: 800; border: 2px solid var(--nuls-black); box-shadow: 3px 3px 0px var(--nuls-black); transform: translateX(4px); }
 
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
 
-        .unbreakable {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-            display: block !important;
-        }
-
+        .unbreakable { page-break-inside: avoid !important; break-inside: avoid !important; display: block !important; }
         .fade-in { animation: fadeIn 0.8s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .chapter-illustration {
-            display: block;
-            max-width: 85%;
-            height: auto;
-            margin: 2rem auto;
-            border: 4px solid var(--nuls-black);
-            border-radius: 1rem;
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
-        }
+        .chapter-illustration { display: block; max-width: 85%; height: auto; margin: 2rem auto; border: 4px solid var(--nuls-black); border-radius: 1rem; box-shadow: 6px 6px 0px rgba(0,0,0,0.15); }
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #E5E7EB; }
@@ -136,11 +62,7 @@
         ::-webkit-scrollbar-thumb:hover { background: #374151; }
 
         @media print {
-            @page {
-                size: A4 portrait;
-                margin: 1.5cm;
-                @bottom-right { content: "Page " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; }
-            }
+            @page { size: A4 portrait; margin: 1.5cm; @bottom-right { content: "Page " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; } }
             body { background-color: #fff !important; font-size: 9.5pt !important; line-height: 1.4 !important; }
             .print-container { box-shadow: none !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; border: none !important; }
             .page-break { page-break-before: always !important; }
@@ -165,7 +87,7 @@
             <div class="absolute top-8 left-8 right-8 flex justify-between items-start z-20">
                 <div class="text-left bg-white border-4 border-nuls-black px-4 py-2 rounded-xl shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
                     <h3 class="font-bold text-gray-900 text-xl font-nuls tracking-wider uppercase">FPS Finance</h3>
-                    <p class="text-xs font-bold text-gray-700 mt-1">GACE - General Administration of Customs and Excise</p>
+                    <p class="text-xs font-bold text-gray-700 mt-1">AGDA/AADA - General Administration of Customs and Excise</p>
                 </div>
                 <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
                     <span class="font-bold text-sm text-nuls-yellow print:text-black">Edition 4.0</span>
@@ -213,24 +135,24 @@
                         <i class="fas fa-book-open text-nuls-yellow mr-3"></i> Contents
                     </h3>
                     <nav class="space-y-0.5" id="toc">
-                        <a href="#preface" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">"</span> Preface</a>
-                        <a href="#intro" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">i</span> Introduction</a>
-                        <a href="#chap1" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">1</span> The Identity Card</a>
-                        <a href="#chap2" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">2</span> The Journey of Goods</a>
-                        <a href="#chap3" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">3</span> Excise: The Movements</a>
-                        <a href="#chap4" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">4</span> Excise: The Actors</a>
-                        <a href="#chap5" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">5</span> Special Statuses</a>
-                        <a href="#chap6" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">6</span> The Language of Datasets</a>
-                        <a href="#chap7" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">7</span> Centralised Clearance (CCE)</a>
-                        <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">8</span> Returned Goods Relief</a>
-                        <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">9</span> Transit (NCTS)</a>
-                        <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">10</span> The Golden Triptych</a>
-                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">11</span> The Incoterms</a>
-                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">12</span> The Security Shield</a>
-                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">13</span> Sanctions & Dual-Use</a>
-                        <a href="#chap14" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">14</span> Green Customs</a>
-                        <a href="#chap15" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">15</span> The Single Window</a>
-                        <a href="#chap16" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">16</span> The Customs Radar</a>
+                        <a href="#preface" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center"><i class="fas fa-quote-left"></i></span> Preface</a>
+                        <a href="#intro" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">i</span> Introduction</a>
+                        <a href="#chap1" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">1</span> The Identity Card</a>
+                        <a href="#chap2" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">2</span> Journey of Goods</a>
+                        <a href="#chap3" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">3</span> Excise: Movements</a>
+                        <a href="#chap4" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">4</span> Excise: Actors</a>
+                        <a href="#chap5" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">5</span> Special Statuses</a>
+                        <a href="#chap6" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">6</span> Language of Datasets</a>
+                        <a href="#chap7" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">7</span> Centralised Clearance</a>
+                        <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">8</span> Returned Goods</a>
+                        <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">9</span> Transit (NCTS) & GMS</a>
+                        <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">10</span> The Golden Triptych</a>
+                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">11</span> The Incoterms</a>
+                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">12</span> The Security Shield</a>
+                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">13</span> Sanctions & Dual-Use</a>
+                        <a href="#chap14" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">14</span> Green Customs (CBAM)</a>
+                        <a href="#chap15" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">15</span> The Single Window</a>
+                        <a href="#chap16" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs text-center">16</span> The Customs Radar</a>
                         <a href="#lexique" class="toc-link mt-3 border-t border-gray-200 pt-3"><i class="fas fa-list text-gray-400 mr-1 text-xs"></i> IT Lexicon (Cheat Sheet)</a>
                         <a href="#conclusion" class="toc-link"><i class="fas fa-flag-checkered text-gray-400 mr-1 text-xs"></i> Final Word</a>
                     </nav>
@@ -365,7 +287,7 @@
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-map-marked-alt"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-lg">🪤 Classic Pitfall</span> Geographical anomalies</h4>
                         <div class="space-y-4 text-sm text-justify">
-                            <p><strong class="text-red-600 block mb-1">Ceuta and Melilla:</strong> These two cities are enclaves located on the African continent. Although they are politically Spanish (and therefore in the EU), they are <strong>strictly excluded</strong> from the Customs Territory of the Union. Sending goods from Madrid to Ceuta therefore obligatorily requires an export declaration! <em class="text-gray-600 block mt-1">(Note: Even if there are specific agreements allowing 0% customs duties upon arrival, the customs border exists and the computer declaration is mandatory).</em></p>
+                            <p><strong class="text-red-600 block mb-1">Ceuta and Melilla:</strong> These two cities are enclaves located on the African continent. Although they are politically Spanish (and therefore in the EU), they are <strong>strictly excluded</strong> from the Customs Territory of the Union. Sending goods from Madrid to Ceuta therefore obligatorily requires an export declaration! <em class="text-gray-600 block mt-1">(Note: Even if there are specific agreements allowing 0% customs duties upon arrival thanks to preferential origin, the customs border exists and the computer declaration is mandatory).</em></p>
                             <p><strong class="text-purple-600 block mb-1">Northern Ireland (The post-Brexit exception):</strong> Since Brexit, Northern Ireland is politically no longer in the EU. However, to avoid the return of a physical border with Southern Ireland, it <strong>continues to apply the Union Customs Code (UCC)</strong>. It's a virtual border that is extremely complex to manage in IT systems.</p>
                             <p><strong class="text-green-600 block mb-1">Monaco and San Marino: two different exceptions.</strong> The Principality of Monaco is a sovereign state outside the EU, but through an agreement with France, it is <strong>fully included</strong> in the CTU. Sending a parcel from Brussels to Monaco requires no customs declaration.<br>
                             <em class="block mt-1 text-gray-700">Conversely, San Marino is bound to the EU by a Customs Union (0% taxes) but <strong>is not part</strong> of the CTU. Consequence: customs formalities (like presenting a T2 or T2L document) remain mandatory at the border!</em></p>
@@ -416,6 +338,12 @@
                             </li>
                         </ul>
                     </div>
+					<!-- À coller juste après la div de "Delegation (Mandates): Europe vs Belgium" -->
+					<div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] mt-8">
+						<div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-exclamation-triangle"></i></div>
+						<h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-lg">🪤 Classic Pitfall</span> 1 Mandate = 2 EORIs</h4>
+						<p class="text-justify">A customs mandate is like a handshake: it takes two! It is a common misconception that by hiring a customs representative, the importing company no longer needs to do anything. This is false! For the IT link to work (in UUM&DS or CSAM), the system requires linking <strong>two valid EORI numbers</strong>. The represented company <strong>must imperatively</strong> have obtained its own EORI, just like its declarant. Without it, the proxy is computationally impossible.</p>
+					</div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
@@ -526,7 +454,7 @@
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
                                 <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">3</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Excise: The Movements 🍷</h2>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Excise: Movements 🍷</h2>
                             </div>
                         </div>
 
@@ -558,15 +486,17 @@
                     </div>
                 </div>
 
+                <hr class="border-2 border-gray-100 my-12">
+
                 <div id="chap4" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
                                 <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">4</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Excise: The Actors 🏢</h2>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Excise: Actors 🏢</h2>
                             </div>
                         </div>
-                        <p class="mb-6 text-justify">Depending on what the company wants to do (store or sell directly), customs grants it a specific status.</p>
+                        <p class="mb-6 text-justify">Depending on what the company wants to do (store or sell immediately), customs assigns it a specific status.</p>
                     </div>
 
                     <div class="unbreakable mb-8">
@@ -708,7 +638,7 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="3.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 3 et 4">
+                        <img src="3.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 3 and 4">
                     </div>
 
                 </div>
@@ -812,10 +742,10 @@
 
                 <div id="chap7" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
-                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="mb-8 border-b-[3px] border-blue-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">7</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Centralised Clearance (CCE) 🌍</h2>
+                                <div class="bg-blue-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#BFDBFE] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">7</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-blue-800 print:text-black">Centralised Clearance (CCE) 🌍</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">We have seen the datasets (H1, etc.). But where should this data be sent? Historically, the goods had to be cleared where they physically arrived. Europe has taken a major step by separating the physical flow from the administrative flow with <strong>CCE (Centralised Clearance at Import/Export)</strong>.</p>
@@ -837,10 +767,10 @@
 
                 <div id="chap8" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
-                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="mb-8 border-b-[3px] border-orange-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">8</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Returned Goods Relief 🔄</h2>
+                                <div class="bg-orange-500 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FED7AA] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">8</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-orange-700 print:text-black">Returned Goods Relief 🔄</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">We have seen how to import and export. But what happens if the exported goods turn around and come back to you? This is a very frequent logistical case, particularly in e-commerce: the regime of <strong>Returned Goods Relief</strong>.</p>
@@ -867,7 +797,7 @@
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Transit (NCTS) and its Vault (GMS) 🔄</h2>
                             </div>
                         </div>
-                        <p class="mb-4 text-justify">We have seen that when goods travel across Europe without paying taxes, they do so under the transit regime via the <span class="sys-ncts text-lg">NCTS</span> system. Because the State is taking a risk, a financial guarantee is required via a virtual "vault": the <strong>GMS (Guarantee Management System)</strong>.</p>
+                        <p class="mb-4 text-justify">We have seen that when goods travel across Europe without paying taxes, they do so under the transit regime via the <span class="sys-ncts text-lg">NCTS</span> system (<a href="#chap2" class="text-nuls-blue underline font-bold">see Chapter 2</a>). Because the State is taking a risk, a financial guarantee is required via a virtual "vault": the <strong>GMS (Guarantee Management System)</strong>.</p>
                     </div>
 
                     <div class="unbreakable mt-8">
@@ -912,7 +842,7 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="5.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 7 and 8">
+                        <img src="5.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 8 and 9">
                     </div>
                 </div>
 
@@ -1052,17 +982,17 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="6.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 9 and 10">
+                        <img src="6.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 10 and 11">
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <div id="chap11" class="mb-16 scroll-mt-8">
+                <div id="chap12" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">11</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">12</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">The Security Shield (ICS2) 🛡️</h2>
                             </div>
                         </div>
@@ -1078,12 +1008,12 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <div id="chap12" class="mb-16 scroll-mt-8">
+                <div id="chap13" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
-                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="mb-8 border-b-[3px] border-red-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">12</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Sanctions & Dual-Use 🚫</h2>
+                                <div class="bg-red-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FCA5A5] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">13</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-red-800 print:text-black">Sanctions & Dual-Use 🚫</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">Customs is not just a tax collector, it is also the geopolitical armed branch of the European Union. In times of conflict or international crisis, free trade stops where restrictions begin. Importing or exporting is no longer an absolute right.</p>
@@ -1123,18 +1053,18 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="7.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 11 and 12">
+                        <img src="7.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 12 and 13">
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <div id="chap13" class="mb-16 scroll-mt-8">
+                <div id="chap14" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
-                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="mb-8 border-b-[3px] border-green-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">13</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Green Customs 🌿</h2>
+                                <div class="bg-[#16A34A] text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#14532D] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">14</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-[#16A34A] print:text-black">Green Customs 🌿</h2>
                             </div>
                         </div>
                         <p class="mb-6 text-justify">In 2026, the customs officer is the first line of defense of European ecology. The EU wants to be climate-neutral and uses customs to ensure that the rest of the world respects our efforts.</p>
@@ -1154,12 +1084,12 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <div id="chap14" class="mb-16 scroll-mt-8">
+                <div id="chap15" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
-                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                        <div class="mb-8 border-b-[3px] border-teal-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">14</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">The Single Window 🤝</h2>
+                                <div class="bg-teal-600 text-white rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#99F6E4] print:shadow-none print:border-2 print:border-black flex-shrink-0 print:bg-white print:text-black">15</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-teal-800 print:text-black">The Single Window 🤝</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">Customs protects health, environment, and consumers, but it does not work alone! In the field, other government agencies (like the FASFC in Belgium for food safety) are responsible for sanitary or veterinary controls.</p>
@@ -1169,24 +1099,24 @@
                         <p class="mb-4 text-justify">To avoid an operator having to present paper certificates to three different agencies, Europe has set up the <strong>Single Window (EU CSW-CERTEX)</strong>. It is a gigantic IT highway where the customs application (<span class="sys-idms">IDMS</span>) automatically communicates with the applications of other agencies (like TRACES for the FASFC).</p>
                     </div>
 
-                    <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
-                        <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-building"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Practical Case: The container of pineapples</h4>
-                        <p class="text-justify">A Belgian importer brings a container of fresh pineapples from Costa Rica. His declarant submits the H1 declaration via <span class="sys-idms">IDMS</span>. Before giving its approval, the application automatically queries the Single Window system to know if the FASFC has validated the phytosanitary certificate. If the FASFC inspector has not checked the "OK" box in his own software (TRACES), customs blocks the H1 declaration within a second. The two administrations work in perfect synchronization without making a single phone call.</p>
+                    <div class="nuls-box unbreakable border-teal-500 shadow-[6px_6px_0px_#14B8A6] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-teal-500 text-white border-teal-500"><i class="fas fa-building"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-teal-700 print:text-black">Practical Case: The container of pineapples</h4>
+                        <p class="text-justify text-teal-900 print:text-black">A Belgian importer brings a container of fresh pineapples from Costa Rica. His declarant submits the H1 declaration via <span class="sys-idms">IDMS</span>. Before giving its approval, the application automatically queries the Single Window system to know if the FASFC has validated the phytosanitary certificate. If the FASFC inspector has not checked the "OK" box in his own software (TRACES), customs blocks the H1 declaration within a second. The two administrations work in perfect synchronization without making a single phone call.</p>
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="8.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 13 and 14">
+                        <img src="8.png" class="chapter-illustration mx-auto" alt="Illustration Chapters 14 and 15">
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <div id="chap15" class="mb-16 scroll-mt-8">
+                <div id="chap16" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">15</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">16</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">The Customs Radar (SEDA 3.0) 🎯</h2>
                             </div>
                         </div>
@@ -1226,7 +1156,7 @@
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-award"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Practical Case: The Cancelled AEO Bonus</h4>
-                        <p class="text-justify text-gray-800 print:text-black">Remember the AEO status (<a href="#chap4" class="text-nuls-blue underline font-bold">Chapter 4</a>). In SEDA, the AEO applies a "Facilitation": the algorithm mathematically reduces your probability of being controlled (e.g., -50% score). <strong>But beware:</strong> If SEDA detects an absolute Embargo alert (international sanctions) or if the name of one of the actors is on a Blacklist (proven fraud), the algorithm literally "cuts" this advantage. The AEO bonus is cancelled and the score goes back up to 1 (Mandatory priority control).</p>
+                        <p class="text-justify text-gray-800 print:text-black">Remember the AEO status (<a href="#chap5" class="text-nuls-blue underline font-bold">Chapter 5</a>). In SEDA, the AEO applies a "Facilitation": the algorithm mathematically reduces your probability of being controlled (e.g., -50% score). <strong>But beware:</strong> If SEDA detects an absolute Embargo alert (international sanctions) or if the name of one of the actors is on a Blacklist (proven fraud), the algorithm literally "cuts" this advantage. The AEO bonus is cancelled and the score goes back up to 1 (Mandatory priority control).</p>
                     </div>
 
                     <div class="unbreakable mt-10">
@@ -1238,7 +1168,7 @@
                             <h4 class="font-black text-red-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> BEWARE OF THE JARGON: The Pitfall of the two "MRAs"!</h4>
                             <p class="text-sm text-red-900 text-justify">The customs world loves acronyms, so much so that they use the same acronym for two completely different things!</p>
                             <ul class="list-disc pl-5 mt-2 text-sm text-red-900 font-medium">
-                                <li>In Chapter 4 (Special Statuses), MRA means <strong>Mutual Recognition Agreement</strong> (the international agreement that recognizes the AEO status abroad).</li>
+                                <li>In Chapter 5 (Special Statuses), MRA means <strong>Mutual Recognition Agreement</strong> (the international agreement that recognizes the AEO status abroad).</li>
                                 <li>Here (Risk Analysis), MRA means <strong>Manual Risk Analysis</strong> (the software where the customs officer decides whether to control a suspicious declaration). Do not mix them up!</li>
                             </ul>
                         </div>
@@ -1264,7 +1194,7 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapter 15">
+                        <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapter 16">
                     </div>
                 </div>
 
@@ -1306,7 +1236,7 @@
                     </div>
                     <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
                         <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest text-sm">Customs for Dummies</p>
-                        <p class="text-xs opacity-50 font-medium">© 2026 FPS FINANCE - GACE</p>
+                        <p class="text-xs opacity-50 font-medium">© 2026 FPS FINANCE - AGDA/AADA</p>
                     </div>
                 </footer>
 
