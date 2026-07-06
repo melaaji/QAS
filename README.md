@@ -1,2 +1,0 @@
-# QAS
-For Quality Amine
