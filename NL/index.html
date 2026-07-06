@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
     
-    <!-- Premium typografie -->
+    <!-- Typographies Premium -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -21,30 +21,114 @@
             --nuls-shadow-dark: 6px 6px 0px #1A1A1A;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: #E5E7EB; color: var(--nuls-black); line-height: 1.6; }
-        h1, h2, h3, h4, h5, .font-nuls { font-family: 'Montserrat', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E5E7EB;
+            color: var(--nuls-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, .font-nuls {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
 
         .bg-nuls-yellow { background-color: var(--nuls-yellow); }
         .text-nuls-yellow { color: var(--nuls-yellow); }
         .text-nuls-black { color: var(--nuls-black); }
         .bg-nuls-black { background-color: var(--nuls-black); }
 
+        /* Badges IT Systemen */
+        .sys-idms { background-color: #DBEAFE; color: #1E3A8A; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.375rem; border: 1px solid #BFDBFE; font-size: 0.9em; white-space: nowrap; }
+        .sys-aes { background-color: #DCFCE7; color: #14532D; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.375rem; border: 1px solid #BBF7D0; font-size: 0.9em; white-space: nowrap; }
+        .sys-ncts { background-color: #F3E8FF; color: #581C87; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.375rem; border: 1px solid #E9D5FF; font-size: 0.9em; white-space: nowrap; }
+        .sys-seda { background-color: #FEE2E2; color: #7F1D1D; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.375rem; border: 1px solid #FECACA; font-size: 0.9em; white-space: nowrap; }
+
         /* Nuls Box */
-        .nuls-box { position: relative; border: var(--nuls-border); border-radius: 1.25rem; padding: 3rem 1.5rem 1.5rem 1.5rem; margin: 3.5rem 0 2.5rem 0; background-color: #fff; box-shadow: var(--nuls-shadow); transition: transform 0.2s ease; }
-        .nuls-box:hover { transform: translateY(-2px); }
-        .nuls-box-icon { position: absolute; top: -28px; left: 24px; background: var(--nuls-yellow); border: var(--nuls-border); border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--nuls-black); box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+        .nuls-box {
+            position: relative;
+            border: var(--nuls-border);
+            border-radius: 1.25rem;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            margin: 3.5rem 0 2.5rem 0;
+            background-color: #fff;
+            box-shadow: var(--nuls-shadow);
+            transition: transform 0.2s ease;
+        }
+        .nuls-box:hover {
+            transform: translateY(-2px);
+        }
+        .nuls-box h4 {
+            margin-top: 1rem;
+        }
+
+        .nuls-box-icon {
+            position: absolute;
+            top: -28px;
+            left: 24px;
+            background: var(--nuls-yellow);
+            border: var(--nuls-border);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--nuls-black);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
 
         /* Sidebar links */
-        .toc-link { display: block; padding: 0.6rem 1rem; margin-bottom: 0.25rem; border-radius: 0.5rem; color: #4B5563; font-weight: 500; font-size: 0.9rem; transition: all 0.2s ease-in-out; text-decoration: none; }
-        .toc-link:hover { background-color: #F3F4F6; color: var(--nuls-black); transform: translateX(4px); }
-        .toc-link.active { background-color: var(--nuls-yellow); color: var(--nuls-black); font-weight: 800; border: 2px solid var(--nuls-black); box-shadow: 3px 3px 0px var(--nuls-black); transform: translateX(4px); }
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.5rem;
+            color: #4B5563;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+        .toc-link:hover {
+            background-color: #F3F4F6;
+            color: var(--nuls-black);
+            transform: translateX(4px);
+        }
+        .toc-link.active {
+            background-color: var(--nuls-yellow);
+            color: var(--nuls-black);
+            font-weight: 800;
+            border: 2px solid var(--nuls-black);
+            box-shadow: 3px 3px 0px var(--nuls-black);
+            transform: translateX(4px);
+        }
 
-        .unbreakable { page-break-inside: avoid !important; break-inside: avoid !important; display: block !important; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        .unbreakable {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            display: block !important;
+        }
+
         .fade-in { animation: fadeIn 0.8s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .chapter-illustration { display: block; max-width: 85%; height: auto; margin: 2rem auto; border: 4px solid var(--nuls-black); border-radius: 1rem; box-shadow: 6px 6px 0px rgba(0,0,0,0.15); }
+        .chapter-illustration {
+            display: block;
+            max-width: 85%;
+            height: auto;
+            margin: 2rem auto;
+            border: 4px solid var(--nuls-black);
+            border-radius: 1rem;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+        }
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #E5E7EB; }
@@ -52,7 +136,11 @@
         ::-webkit-scrollbar-thumb:hover { background: #374151; }
 
         @media print {
-            @page { size: A4 portrait; margin: 1.5cm; @bottom-right { content: "Pagina " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; } }
+            @page {
+                size: A4 portrait;
+                margin: 1.5cm;
+                @bottom-right { content: "Pagina " counter(page); font-family: 'Inter', sans-serif; font-size: 9pt; }
+            }
             body { background-color: #fff !important; font-size: 9.5pt !important; line-height: 1.4 !important; }
             .print-container { box-shadow: none !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; border: none !important; }
             .page-break { page-break-before: always !important; }
@@ -71,7 +159,6 @@
 
     <div class="print-container max-w-7xl mx-auto my-8 print:my-0">
         
-        <!-- COVER PAGE -->
         <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-4 border-[#1A1A1A] rounded-3xl p-16 text-center relative z-10 overflow-hidden shadow-2xl print-border-none mb-12">
             <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
 
@@ -81,8 +168,8 @@
                     <p class="text-xs font-bold text-gray-700 mt-1">AAD&A - Algemene Administratie van de Douane en Accijnzen</p>
                 </div>
                 <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
-                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Editie 3.0</span>
-                    <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Interactieve Editie</p>
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Editie 4.0</span>
+                    <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Interactieve Handleiding</p>
                 </div>
             </div>
 
@@ -98,7 +185,7 @@
                 <img src="10.png" alt="Cover Douane voor Dummies" class="mx-auto w-72 md:w-96 rounded-2xl border-4 border-nuls-black shadow-[8px_8px_0px_rgba(0,0,0,0.2)] print:border-2 print:shadow-none my-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
                 
                 <p class="text-2xl font-semibold mt-8 max-w-2xl mx-auto text-gray-800 print:text-lg">
-                    De integraal: van EORI tot Groene Douane, het DGU, Douanevervoer en Risicoanalyse.
+                    De integraal (16 Hoofdstukken) : van EORI tot de Groene Douane, het CCE, het Vervoer, de Douaneradar (SEDA) en het Lexicon.
                 </p>
             </div>
             
@@ -120,39 +207,38 @@
 
         <div class="flex flex-col lg:flex-row gap-8 relative">
             
-            <!-- SIDEBAR -->
             <aside class="sidebar-nav w-full lg:w-1/4 no-print relative">
-                <div class="sticky top-8 bg-white border-[3px] border-nuls-black rounded-3xl p-6 shadow-[6px_6px_0px_#1A1A1A] max-h-[calc(100vh-4rem)] overflow-y-auto">
-                    <h3 class="font-nuls font-black text-2xl mb-4 border-b-2 border-gray-200 pb-3 flex items-center">
-                        <i class="fas fa-book-open text-nuls-yellow mr-3 drop-shadow-md"></i> Inhoud
+                <div class="sticky top-8 bg-white border-[3px] border-nuls-black rounded-3xl p-5 shadow-[6px_6px_0px_#1A1A1A] max-h-[calc(100vh-4rem)] overflow-y-auto">
+                    <h3 class="font-nuls font-black text-xl mb-4 border-b-2 border-gray-200 pb-2 flex items-center">
+                        <i class="fas fa-book-open text-nuls-yellow mr-3"></i> Inhoud
                     </h3>
-                    <nav class="space-y-1" id="toc">
-                        <a href="#preface" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center"><i class="fas fa-quote-left"></i></span> Voorwoord</a>
-                        <a href="#intro" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">i</span> Inleiding</a>
-                        <a href="#chap1" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">1</span> De Identiteitskaart</a>
-                        <a href="#chap2" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">2</span> De Reis v/d Goederen</a>
-                        <a href="#chap3" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">3</span> Fiscale Wereld Accijnzen</a>
-                        <a href="#chap4" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">4</span> Speciale Statussen</a>
-                        <a href="#chap5" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">5</span> De Taal van Datasets</a>
-                        <a href="#chap6" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">6</span> Centrale Inklaring (CCE)</a>
-                        <a href="#chap7" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">7</span> Terugkerende Goederen</a>
-                        <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">8</span> Vervoer (NCTS) & GMS</a>
-                        <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">9</span> De Gouden Driehoek</a>
-                        <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">10</span> De Incoterms</a>
-                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">11</span> Het Veiligheidsschild</a>
-                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">12</span> Sancties & Dual-Use</a>
-                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">13</span> De Groene Douane</a>
-                        <a href="#chap14" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">14</span> Het Uniek Loket</a>
-                        <a href="#chap15" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">15</span> De Douaneradar</a>
-                        <a href="#conclusion" class="toc-link mt-4 border-t border-gray-200 pt-4"><i class="fas fa-flag-checkered text-gray-400 mr-2"></i> Slotwoord</a>
+                    <nav class="space-y-0.5" id="toc">
+                        <a href="#preface" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">"</span> Voorwoord</a>
+                        <a href="#intro" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">i</span> Inleiding</a>
+                        <a href="#chap1" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">1</span> De Identiteitskaart</a>
+                        <a href="#chap2" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">2</span> De Reis v/d Goederen</a>
+                        <a href="#chap3" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">3</span> Accijnzen: De Bewegingen</a>
+                        <a href="#chap4" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">4</span> Accijnzen: De Actoren</a>
+                        <a href="#chap5" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">5</span> Speciale Statussen</a>
+                        <a href="#chap6" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">6</span> De Taal van Datasets</a>
+                        <a href="#chap7" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">7</span> Centrale Inklaring (CCE)</a>
+                        <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">8</span> Terugkerende Goederen</a>
+                        <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">9</span> Het Vervoer (NCTS)</a>
+                        <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">10</span> De Gouden Driehoek</a>
+                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">11</span> De Incoterms</a>
+                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">12</span> Het Veiligheidsschild</a>
+                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">13</span> Sancties & Dual-Use</a>
+                        <a href="#chap14" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">14</span> De Groene Douane</a>
+                        <a href="#chap15" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">15</span> Het Uniek Loket</a>
+                        <a href="#chap16" class="toc-link"><span class="font-bold text-gray-400 w-5 inline-block text-xs">16</span> De Douaneradar</a>
+                        <a href="#lexique" class="toc-link mt-3 border-t border-gray-200 pt-3"><i class="fas fa-list text-gray-400 mr-1 text-xs"></i> Het IT Lexicon (Cheat Sheet)</a>
+                        <a href="#conclusion" class="toc-link"><i class="fas fa-flag-checkered text-gray-400 mr-1 text-xs"></i> Slotwoord</a>
                     </nav>
                 </div>
             </aside>
 
-            <!-- MAIN CONTENT -->
             <main class="content-area w-full lg:w-3/4 bg-white border-4 border-nuls-black rounded-3xl shadow-2xl p-8 lg:p-12 print-border-none text-lg">
                 
-                <!-- Préface -->
                 <div id="preface" class="mb-16 unbreakable scroll-mt-8">
                     <div class="flex items-center mb-8">
                         <i class="fas fa-quote-left text-4xl text-nuls-yellow mr-4 drop-shadow-md"></i>
@@ -163,8 +249,8 @@
                         <p class="mb-5 font-serif text-xl italic text-gray-800">Waarom deze gids?</p>
                         <div class="space-y-4 text-gray-700 font-medium">
                             <p>De wereld van douane en accijnzen wordt vaak gezien als een administratieve vesting, gebouwd op complexe wetteksten, onduidelijke acroniemen en extreem strikte IT-procedures. Toch gaan achter deze schijnbare strengheid fascinerende mechanismen schuil die onmisbaar zijn voor het economische leven van ons land en de Europese Unie.</p>
-                            <p>Dit document is ontstaan uit een eenvoudige wens: <strong class="text-nuls-black font-bold">vulgarisatie</strong>. Het is een poging om technische, douane- en fiscale concepten voor iedereen toegankelijk te maken. Of u nu een nieuwe medewerker bent die bij de administratie begint, een logistieke professional die bepaalde processen wil verduidelijken, of gewoon nieuwsgierig bent naar hoe goederen onze grenzen passeren, deze gids is voor u gemaakt.</p>
-                            <p>Ik heb ervoor gekozen om een direct, gemoedelijk en pedagogisch toon te hanteren, met behulp van analogieën, vereenvoudigde schema's en veel praktijkvoorbeelden. Het doel is niet om wetteksten te vervangen (die de enige juridische referentie blijven), maar om u het kompas en de kaart te geven die nodig zijn om rustig in dit ecosysteem te navigeren.</p>
+                            <p>Dit document is ontstaan uit een eenvoudige wens: <strong class="text-nuls-black font-bold">vulgarisatie</strong>. Het is een poging om technische, douane- en fiscale concepten voor iedereen toegankelijk te maken. Of u nu een nieuwe medewerker bent (QA Tester, Business Analyst, Developer) die bij de SSDD-afdeling begint, een logistieke professional die bepaalde processen wil verduidelijken, of gewoon nieuwsgierig bent naar hoe goederen onze grenzen passeren, deze gids is voor u gemaakt.</p>
+                            <p>Ik heb ervoor gekozen om een direct, gemoedelijk en pedagogisch toon te hanteren, met behulp van analogieën, vereenvoudigde schema's en veel praktijkvoorbeelden. Het doel is niet om wetteksten te vervangen (die de enige juridische referentie blijven), maar om u het kompas en de IT-kaart te geven die nodig zijn om rustig in dit ecosysteem te navigeren.</p>
                             <p class="pt-4 font-bold text-lg text-nuls-black">Veel leesplezier, en welkom aan de grens!</p>
                         </div>
                         <div class="mt-8 flex justify-end items-center border-t-2 border-gray-200 pt-4">
@@ -175,7 +261,6 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Introduction -->
                 <div id="intro" class="mb-16 unbreakable scroll-mt-8">
                     <h2 class="text-4xl font-black mb-8 text-center uppercase tracking-wide border-b-4 border-nuls-yellow pb-4 inline-block mx-auto">Welkom aan de Grens! 🛂</h2>
                     <div class="text-justify space-y-4">
@@ -184,7 +269,7 @@
                         
                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mt-4 mb-4">
                             <strong class="text-blue-900 block mb-1">Wat is een inklaring?</strong>
-                            <span class="text-sm">Dit is het geheel van IT- en fysieke formaliteiten die vervuld moeten worden om een goed legaal het grondgebied te laten binnenkomen of verlaten. Kortom: je geeft aan wat je vervoert, de waarde, de oorsprong, en je betaalt de bijbehorende belastingen om groen licht (de zogenaamde "vrijgave") van de douane te krijgen.</span>
+                            <span class="text-sm">Dit is het geheel van IT- en fysieke formaliteiten die vervuld moeten worden om een goed legaal het grondgebied te laten binnenkomen of verlaten. Kortom: je geeft aan wat je vervoert, de waarde, de oorsprong, en je betaalt de bijbehorende belastingen om groen licht (de "vrijgave") van de douane te krijgen.</span>
                         </div>
 
                         <p>Het werk van de administratie is opgebouwd rond drie grote missies:</p>
@@ -203,12 +288,30 @@
                             </li>
                         </ul>
                         <p>Vandaag de dag is dit hele ecosysteem volledig gedigitaliseerd. Elke stap omvat Belgische IT-toepassingen die verbonden zijn met de databanken van de Europese Commissie.</p>
+
+                        <div class="bg-white border-2 border-nuls-black rounded-xl p-6 shadow-[4px_4px_0px_#1A1A1A] mt-8">
+                            <h4 class="font-black text-center mb-4">De levenscyclus van een goed "End-to-End" 📦</h4>
+                            <p class="text-sm text-center mb-6 text-gray-600">Hier is een vereenvoudigd overzicht van de reis van een Aziatische container naar België.</p>
+                            
+                            <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-center">
+                                <div class="bg-gray-100 py-2 px-3 rounded-lg border border-gray-300 w-28">1. Aankoop<br><span class="font-normal text-[10px]">Incoterms</span></div>
+                                <i class="fas fa-caret-right text-nuls-yellow text-xl"></i>
+                                <div class="bg-red-50 text-red-800 py-2 px-3 rounded-lg border border-red-200 w-28">2. Veiligheid<br><span class="font-normal text-[10px]">ENS via ICS2</span></div>
+                                <i class="fas fa-caret-right text-nuls-yellow text-xl"></i>
+                                <div class="bg-blue-50 text-blue-800 py-2 px-3 rounded-lg border border-blue-200 w-28">3. Aankomst<br><span class="font-normal text-[10px]">Haven / IRP</span></div>
+                                <i class="fas fa-caret-right text-nuls-yellow text-xl"></i>
+                                <div class="bg-purple-50 text-purple-800 py-2 px-3 rounded-lg border border-purple-200 w-28">4. Aangifte<br><span class="font-normal text-[10px]">H1 in IDMS</span></div>
+                                <i class="fas fa-caret-right text-nuls-yellow text-xl"></i>
+                                <div class="bg-orange-50 text-orange-800 py-2 px-3 rounded-lg border border-orange-200 w-28">5. Radar<br><span class="font-normal text-[10px]">SEDA-filter</span></div>
+                                <i class="fas fa-caret-right text-nuls-yellow text-xl"></i>
+                                <div class="bg-green-50 text-green-800 py-2 px-3 rounded-lg border border-green-200 w-28">6. Vrijgave<br><span class="font-normal text-[10px]">Mainlevée</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 1 -->
                 <div id="chap1" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
@@ -260,12 +363,13 @@
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-map-marked-alt"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: Geografische afwijkingen</h4>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-lg">🪤 Klassieke Valkuil</span> Geografische afwijkingen</h4>
                         <div class="space-y-4 text-sm text-justify">
                             <p><strong class="text-red-600 block mb-1">Ceuta en Melilla :</strong> Deze twee steden zijn enclaves gelegen op het Afrikaanse continent. Hoewel ze politiek Spaans zijn (en dus in de EU), zijn ze <strong>strikt uitgesloten</strong> van het Douanegebied van de Unie. Goederen verzenden van Madrid naar Ceuta vereist dus verplicht een uitvoeraangifte! <em class="text-gray-600 block mt-1">(Opmerking: Zelfs als specifieke akkoorden toelaten om 0% douanerechten toe te passen bij aankomst, de douanegrens bestaat en de elektronische aangifte is verplicht).</em></p>
+                            <p><strong class="text-purple-600 block mb-1">Noord-Ierland (De post-Brexit uitzondering) :</strong> Sinds de Brexit is Noord-Ierland politiek gezien niet meer in de EU. Om echter de terugkeer van een fysieke grens met Zuid-Ierland te vermijden, blijft het <strong>het Douanewetboek van de Unie (DWU) toepassen</strong>. Dit is een virtuele grens die extreem complex is om te beheren in de IT-systemen.</p>
                             <p><strong class="text-green-600 block mb-1">Monaco en San Marino: twee verschillende uitzonderingen.</strong> Het Vorstendom Monaco is een soevereine staat buiten de EU, maar door een akkoord met Frankrijk is het <strong>volledig opgenomen</strong> in het DGU. Een pakket van Brussel naar Monaco sturen vereist geen douaneaangifte.<br>
                             <em class="block mt-1 text-gray-700">San Marino daarentegen is verbonden met de EU door een Douane-unie (0% belastingen) maar <strong>maakt geen deel uit</strong> van het DGU. Gevolg: douaneformaliteiten (zoals de presentatie van een T2- of T2L-document) blijven verplicht aan de grens!</em></p>
-                            <p><strong class="text-blue-600 block mb-1">Büsingen (DE) en Livigno (IT) :</strong> De stad Büsingen is Duits, maar vormt een enclave die volledig omringd wordt door Zwitserland. Resultaat? Ze is uitgesloten van het Europese DGU en toegevoegd aan het... Zwitserse douanegebied! <em class="block mt-1 text-gray-700 font-bold">Gevolg: een goed vanuit België naar Büsingen sturen, komt neer op het exporteren naar Zwitserland. Een douaneaangifte ten uitvoer (AES) is dus formeel verplicht.</em></p>
+                            <p><strong class="text-blue-600 block mb-1">Büsingen (DE) en Livigno (IT) :</strong> De stad Büsingen is Duits, maar vormt een enclave die volledig omringd wordt door Zwitserland. Resultaat? Ze is uitgesloten van het Europese DGU en toegevoegd aan het... Zwitserse douanegebied! <em class="block mt-1 text-gray-700 font-bold">Gevolg: een goed vanuit België naar Büsingen sturen, komt neer op het exporteren naar Zwitserland. Een douaneaangifte ten uitvoer (<span class="sys-aes">AES</span>) is dus formeel verplicht.</em></p>
                         </div>
                     </div>
 
@@ -316,7 +420,6 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 2 -->
                 <div id="chap2" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
@@ -328,34 +431,51 @@
                         
                         <div class="bg-green-50 p-4 rounded-xl border border-green-200 mb-6 text-justify">
                             <strong class="text-green-800 block mb-1">Voor we verder gaan: wat is een klassieke invoer?</strong>
-                            <span class="text-sm">Over het algemeen, wanneer een niet-EU goed aankomt, wordt het aangegeven in het invoersysteem. Het bedrijf betaalt onmiddellijk de douanerechten en de btw. Zodra de betaling is gevalideerd, is het goed <em>"in het vrije verkeer gebracht"</em>: het wordt Europees, het kan overal in Europa vrij circuleren en worden verkocht. Maar er zijn logistieke uitzonderingen om niet meteen alles te hoeven betalen...</span>
+                            <span class="text-sm">Over het algemeen, wanneer een niet-EU goed aankomt, wordt het aangegeven in het invoersysteem <span class="sys-idms">IDMS</span>. Het bedrijf betaalt onmiddellijk de douanerechten en de btw. Zodra de betaling is gevalideerd, is het goed <em>"in het vrije verkeer gebracht"</em>: het wordt Europees, het kan overal in Europa vrij circuleren en worden verkocht. Maar er zijn logistieke uitzonderingen om niet meteen alles te hoeven betalen...</span>
                         </div>
 
                         <p class="mb-6">Wanneer een goed de grens overschrijdt, moet het worden aangegeven. In België gebruikt de administratie moderne IT-systemen:</p>
                     </div>
                     
                     <div class="unbreakable bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm mb-10">
-                        <h4 class="font-bold text-center mb-6 text-gray-800">De drie IT-pijlers 💻</h4>
+                        <h4 class="font-bold text-center mb-6 text-gray-800">De Belgische Douanestroom 💻</h4>
                         <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium">
-                            <div class="bg-blue-50 p-4 rounded-xl text-center w-full md:w-1/3 shadow-sm border-2 border-blue-200 transition hover:-translate-y-1">
-                                <div class="bg-blue-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-download text-xl text-blue-600"></i></div>
-                                <h4 class="font-black text-lg text-blue-900">IDMS</h4><p class="text-xs text-blue-700 mt-1">Voor de Invoer 📥</p>
+                            <div class="bg-gray-100 p-4 rounded-xl text-center w-full md:w-1/4 shadow-sm border border-gray-300">
+                                <div class="text-2xl mb-2">🇯🇵</div>
+                                <h4 class="font-black text-gray-800">Buitenland</h4><p class="text-[10px] text-gray-500 mt-1">Derde Land</p>
                             </div>
                             
-                            <i class="fas fa-sync-alt text-gray-400 text-2xl hidden md:block"></i>
-                            <i class="fas fa-sync-alt text-gray-400 text-2xl block md:hidden rotate-90 my-2"></i>
-                            
-                            <div class="bg-purple-50 p-4 rounded-xl text-center w-full md:w-1/3 shadow-sm border-2 border-purple-200 transition hover:-translate-y-1">
-                                <div class="bg-purple-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-truck text-xl text-purple-600"></i></div>
-                                <h4 class="font-black text-lg text-purple-900">NCTS</h4><p class="text-xs text-purple-700 mt-1">Voor het Vervoer 🔄</p>
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                                <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden my-2"></i>
+                                <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 rounded mt-1 shadow-sm border border-blue-200">Invoer</span>
                             </div>
                             
-                            <i class="fas fa-sync-alt text-gray-400 text-2xl hidden md:block"></i>
-                            <i class="fas fa-sync-alt text-gray-400 text-2xl block md:hidden rotate-90 my-2"></i>
-                            
-                            <div class="bg-green-50 p-4 rounded-xl text-center w-full md:w-1/3 shadow-sm border-2 border-green-200 transition hover:-translate-y-1">
-                                <div class="bg-green-100 w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-upload text-xl text-green-600"></i></div>
-                                <h4 class="font-black text-lg text-green-900">AES</h4><p class="text-xs text-green-700 mt-1">Voor de Uitvoer 📤</p>
+                            <div class="bg-blue-50 p-4 rounded-xl text-center w-full md:w-1/4 shadow-sm border-2 border-blue-300 transition hover:-translate-y-1">
+                                <div class="bg-blue-100 w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-download text-blue-600"></i></div>
+                                <h4 class="font-black text-lg text-blue-900">IDMS</h4><p class="text-[10px] text-blue-700 mt-1">Bv: In het Entrepot</p>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-exchange-alt text-nuls-yellow text-xl hidden md:block"></i>
+                                <i class="fas fa-exchange-alt text-nuls-yellow text-xl block md:hidden rotate-90 my-2"></i>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 rounded mt-1 shadow-sm border border-purple-200">Vervoer</span>
+                            </div>
+
+                            <div class="bg-purple-50 p-4 rounded-xl text-center w-full md:w-1/4 shadow-sm border-2 border-purple-300 transition hover:-translate-y-1">
+                                <div class="bg-purple-100 w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-truck text-purple-600"></i></div>
+                                <h4 class="font-black text-lg text-purple-900">NCTS</h4><p class="text-[10px] text-purple-700 mt-1">Bv: Vrachtwagen naar CH</p>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
+                                <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden my-2"></i>
+                                <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 rounded mt-1 shadow-sm border border-green-200">Uitvoer</span>
+                            </div>
+
+                            <div class="bg-green-50 p-4 rounded-xl text-center w-full md:w-1/4 shadow-sm border-2 border-green-300 transition hover:-translate-y-1">
+                                <div class="bg-green-100 w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-2"><i class="fas fa-upload text-green-600"></i></div>
+                                <h4 class="font-black text-lg text-green-900">AES</h4><p class="text-[10px] text-green-700 mt-1">Bv: Wederuitvoer</p>
                             </div>
                         </div>
                     </div>
@@ -363,66 +483,33 @@
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-warehouse"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: Het Douane-entrepot (IDMS)</h4>
-                        <p class="text-justify">Ons Naamse bedrijf ontvangt zijn computers van Tokio in Luik. In plaats van de douanerechten en de btw onmiddellijk te betalen, gaat het ze gedurende 3 maanden opslaan. De oplossing? <strong>Het douane-entrepot.</strong> Dit regime maakt een volledige schorsing van belastingen mogelijk. De betaling zal pas worden geactiveerd bij het verlaten (in het vrije verkeer brengen) via het IDMS-systeem.</p>
+                        <p class="text-justify">Ons Naamse bedrijf ontvangt zijn computers van Tokio in Luik. In plaats van de douanerechten en de btw onmiddellijk te betalen, gaat het ze gedurende 3 maanden opslaan. De oplossing? <strong>Het douane-entrepot.</strong> Dit regime maakt een volledige schorsing van belastingen mogelijk. De betaling zal pas worden geactiveerd bij het verlaten (in het vrije verkeer brengen) via het systeem <span class="sys-idms">IDMS</span>.</p>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-plane-departure"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De Uitvoer (AES)</h4>
-                        <p class="text-justify">Het Naamse bedrijf verkoopt uiteindelijk de helft van deze opgeslagen computers aan een klant in Zwitserland 🇨🇭 (buiten de EU). Zal het douanerechten moeten betalen? <strong>Nee.</strong> De EU past geen rechten toe bij uitvoer. Aangezien ze onder belastingschorsing stonden, vertrekken ze zonder ooit in Europa te zijn belast. Het bedrijf gebruikt het <strong>AES</strong>-systeem om de wederuitvoer aan te geven.</p>
+                        <p class="text-justify">Het Naamse bedrijf verkoopt uiteindelijk de helft van deze opgeslagen computers aan een klant in Zwitserland 🇨🇭 (buiten de EU). Zal het douanerechten moeten betalen? <strong>Nee.</strong> De EU past geen rechten toe bij uitvoer. Aangezien ze onder belastingschorsing stonden, vertrekken ze zonder ooit in Europa te zijn belast. Het bedrijf gebruikt het systeem <span class="sys-aes">AES</span> om de wederuitvoer aan te geven.</p>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-truck-moving"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: Het Vervoer (NCTS) en de Zegels</h4>
-                        <p class="text-justify">De Belgische vrachtwagen doorkruist Frankrijk 🇫🇷 om naar Zwitserland te gaan, gevuld met deze onbelaste computers. Om deze reis te beveiligen, gebruikt men het <strong>NCTS</strong> onder het regime van extern douanevervoer (T1) met een trackingnummer (MRN) en een financiële garantie.</p>
+                        <p class="text-justify">De Belgische vrachtwagen doorkruist Frankrijk 🇫🇷 om naar Zwitserland te gaan, gevuld met deze onbelaste computers. Om deze reis te beveiligen, gebruikt men het <span class="sys-ncts">NCTS</span> onder het regime van extern douanevervoer (T1) met een trackingnummer (MRN) en een financiële garantie.</p>
                         <p class="mt-3 bg-gray-50 p-3 rounded-xl border border-gray-200 text-justify">Aan de Zwitserse grens registreert de douane de aankomst en controleert de zegels. Als alles in orde is (Conform), wordt de Belgische garantie vrijgegeven (Zuivering). <strong class="text-red-600">Maar wat als de zegels verbroken zijn?</strong> De Zwitserse douane meldt <em>verschillen</em> (Transportincident) in het NCTS! Het systeem blokkeert de financiële garantie en start een onderzoek.</p>
                     </div>
 
                     <div class="unbreakable">
-                        <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Aankomst in de Haven en het IRP-platform</h3>
-                        <p class="mb-4 text-justify">In grote havens zoals Antwerpen-Brugge is het beheer van de massale aankomst van containers een logistieke uitdaging. Om deze stromen vlot te laten verlopen, gebruiken de douane en de havenautoriteiten het <strong class="bg-yellow-100 px-1 rounded">IRP (Inbound Release Platform)</strong>. Dit is een gecentraliseerd digitaal platform dat scheepsagenten, haventerminals en de douane met elkaar verbindt.</p>
+                        <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Aankomst in de Haven (IRP en RX/SeaPort)</h3>
+                        <p class="mb-4 text-justify">In grote havens zoals Antwerpen-Brugge is het beheer van de massale aankomst van containers een logistieke uitdaging. Om deze stromen vlot te laten verlopen, gebruikt de douane het <strong class="bg-yellow-100 px-1 rounded">IRP (Inbound Release Platform)</strong>. Dit is het douane "logistieke brein". Het communiceert continu met de platformen van de havengemeenschap (de PCS - Port Community Systems) zoals <strong>RX/SeaPort</strong> of NxtPort, die de fysieke terminals, de vrachtwagenchauffeurs en de douane met elkaar verbinden.</p>
                         <p class="mb-5 text-justify">Binnen dit havenecosysteem gebeurt het beheer van de tijdelijke opslag via een reeks modules:</p>
                         <div class="bg-white border-2 border-nuls-black rounded-2xl shadow-sm p-6 print:p-4">
                             <ul class="space-y-4 print:space-y-2">
-                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">PN</span> <span><strong>(Presentation Notification):</strong> Dit is het alarmsignaal. De scheepsagent meldt de fysieke aankomst van het schip.</span></li>
-                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">TSD</span> <span><strong>(Temporary Storage Declaration):</strong> De goederen worden op de kade gelost voor tijdelijke opslag (max 90 dagen).</span></li>
-                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">GA</span> <span><strong>(Goods Accounting):</strong> Het "boekhoudkundig brein". Het houdt het grootboek bij van alle aanwezige voorraden in realtime.</span></li>
-                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">REN</span> <span><strong>(Re-Export Notification):</strong> Als de container rechtstreeks weer buiten de EU vertrekt, gebruikt men REN om deze af te voeren en de voorraad te "zuiveren" in GA.</span></li>
+                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">PN</span> <span><strong>(Presentation Notification) :</strong> Dit is het alarmsignaal. De scheepsagent meldt de fysieke aankomst van het schip.</span></li>
+                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">TSD</span> <span><strong>(Temporary Storage Declaration) :</strong> De goederen worden op de kade gelost voor tijdelijke opslag (max 90 dagen).</span></li>
+                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">GA</span> <span><strong>(Goods Accounting) :</strong> Het "grootboek". Het houdt alle aanwezige voorraden in de haven in realtime bij.</span></li>
+                                <li class="flex"><span class="font-black text-nuls-blue w-12 flex-shrink-0">REN</span> <span><strong>(Re-Export Notification) :</strong> Als de container rechtstreeks weer buiten de EU vertrekt, gebruikt men REN om deze af te voeren en de voorraad te "zuiveren" in GA.</span></li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <div class="unbreakable bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm mt-8 mb-12">
-                        <h4 class="font-bold text-center mb-6 text-gray-800">Samenvattend schema van de reis</h4>
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium">
-                            <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
-                                🇯🇵 Tokio<br><span class="text-xs text-gray-500">(Buiten EU)</span>
-                            </div>
-                            <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
-                            <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
-                            
-                            <div class="bg-blue-50 p-3 rounded-lg text-center border-b-4 border-blue-300 w-full md:w-auto">
-                                📥 <strong>IDMS</strong><br><span class="text-xs text-gray-500">Plaatsing in Entrepot</span>
-                            </div>
-                            <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
-                            <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
-
-                            <div class="bg-green-50 p-3 rounded-lg text-center border-b-4 border-green-300 w-full md:w-auto">
-                                📤 <strong>AES</strong><br><span class="text-xs text-gray-500">Wederuitvoer</span>
-                            </div>
-                            <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
-                            <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
-
-                            <div class="bg-purple-50 p-3 rounded-lg text-center border-b-4 border-purple-300 w-full md:w-auto">
-                                🔄 <strong>NCTS</strong><br><span class="text-xs text-gray-500">Vrachtwagen (T1)</span>
-                            </div>
-                            <i class="fas fa-arrow-right text-nuls-yellow text-xl hidden md:block"></i>
-                            <i class="fas fa-arrow-down text-nuls-yellow text-xl block md:hidden"></i>
-
-                            <div class="bg-gray-100 p-3 rounded-lg text-center border-b-4 border-gray-300 w-full md:w-auto">
-                                🇨🇭 Zwitserland<br><span class="text-xs text-gray-500">(Eindbestemming)</span>
-                            </div>
                         </div>
                     </div>
 
@@ -434,45 +521,56 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 3 -->
                 <div id="chap3" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
                                 <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">3</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">De Fiscale Wereld van de Accijnzen 🍷</h2>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Accijnzen: De Bewegingen 🍷</h2>
                             </div>
                         </div>
 
                         <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 mb-8 text-justify">
                             <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-question-circle mr-2"></i> Waarom douanerechten ÉN accijnzen?</h4>
-                            <p class="text-sm mb-3"><strong>Douanerechten</strong> hebben een economisch doel: ze maken producten geproduceerd buiten de EU duurder om onze lokale bedrijven te beschermen tegen buitenlandse concurrentie. <strong>Accijnzen</strong> hebben daarentegen een doelstelling inzake volksgezondheid en ecologie (en spekken de staatskas). Ze belasten alcohol, tabak en brandstoffen om hun consumptie te beperken, ongeacht of ze in België of in het buitenland zijn geproduceerd.</p>
+                            <p class="text-sm mb-3"><strong>Douanerechten</strong> hebben een economisch doel: ze maken producten geproduceerd buiten de EU duurder om onze lokale bedrijven te beschermen tegen buitenlandse concurrentie. <strong>Accijnzen</strong> hebben daarentegen een doelstelling inzake volksgezondheid en ecologie. Ze belasten alcohol, tabak en brandstoffen om hun consumptie te beperken, ongeacht of ze in België of in het buitenland zijn geproduceerd.</p>
                             <div class="bg-white p-3 rounded border border-blue-100">
                                 <strong class="text-blue-800 text-sm"><i class="fas fa-shopping-bag mr-1"></i> En de Duty Free?</strong>
                                 <p class="text-xs mt-1">Op luchthavens bevinden "Duty Free"-winkels zich in de internationale zone. Producten (alcohol, parfum) worden daar verkocht zonder douanerechten, btw en accijnzen, omdat ze bestemd zijn om het Europese grondgebied onmiddellijk te verlaten met de passagier. Maar let op de toegestane hoeveelheden bij terugkeer!</p>
                             </div>
                         </div>
 
-                        <p class="mb-6 text-justify">Europa gebruikt het zeer strikte systeem <strong>EMCS (Excise Movement and Control System)</strong> om deze producten te volgen onder schorsing van rechten, vergezeld van een elektronisch document (het e-AD).</p>
+                        <p class="mb-6 text-justify">Om te voorkomen dat vrachtwagens vol alcohol zomaar in de natuur verdwijnen, gebruikt Europa het zeer strikte systeem <strong>EMCS (Excise Movement and Control System)</strong> om deze producten te volgen die reizen "onder schorsing van rechten". De chauffeur moet altijd vergezeld zijn van een elektronisch document: het <strong>e-AD</strong>.</p>
                     </div>
                     
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Het Fiscale Entrepot</h3>
-                        <p class="mb-4 text-justify bg-gray-50 p-4 rounded-xl border border-gray-200"><i class="fas fa-exclamation-triangle text-nuls-yellow mr-2"></i> <strong>Niet verwarren!</strong> Het <em>douane-entrepot</em> beheert niet-EU goederen (douanerechten/btw). Het <em>fiscale entrepot (accijnsentrepot)</em> laat toe om goederen (EU of niet) op te slaan onder schorsing van accijnsrechten.</p>
+                        <p class="mb-4 text-justify bg-gray-50 p-4 rounded-xl border border-gray-200"><i class="fas fa-exclamation-triangle text-nuls-yellow mr-2"></i> <strong>Niet verwarren!</strong> Het <em>douane-entrepot</em> beheert niet-EU goederen (douanerechten/btw). Het <em>fiscale entrepot</em> laat toe om goederen (EU of niet) op te slaan onder schorsing van accijnsrechten.</p>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-glass-cheers"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De Wijn en de Gebroken Fles</h4>
-                        <p class="text-justify">Een groothandelaar uit Namen ontvangt een vrachtwagen met wijn uit Bordeaux 🇫🇷 gedekt door een e-AD (via EMCS). Hij parkeert deze in zijn accijnsentrepot. Wanneer betaalt hij de Belgische accijns? <strong>Op het moment van de uitslag tot verbruik</strong> (het verlaten van het entrepot naar de restaurants). Daarvoor gebruikt hij een specifieke webapplicatie genaamd <strong class="text-nuls-blue">AC4</strong>.</p>
+                        <p class="text-justify">Een groothandelaar uit Namen ontvangt een vrachtwagen met wijn uit Bordeaux 🇫🇷 gedekt door een e-AD (via EMCS). Hij parkeert deze in zijn fiscale entrepot. Wanneer betaalt hij de Belgische accijns? <strong>Op het moment van de uitslag tot verbruik</strong> (het fysieke vertrek uit het entrepot naar de restaurants). Daarvoor gebruikt hij een specifieke webapplicatie genaamd <strong class="text-nuls-blue">AC4</strong>.</p>
                         <div class="mt-4 bg-red-50 p-3 rounded-lg border border-red-100 text-justify">
                             <p class="text-red-700 font-bold mb-1">Wat als een pallet valt en flessen breken in het entrepot?</p>
-                            <p class="text-sm">Aangezien er geen uitslag tot verbruik is geweest, eist de douane <strong>niet</strong> de betaling van de accijnzen (op voorwaarde dat er onweerlegbaar bewijs van vernietiging is voor de boekhouding).</p>
+                            <p class="text-sm">Aangezien er geen uitslag tot verbruik is geweest, eist de douane <strong>niet</strong> de betaling van de accijnzen (op voorwaarde dat er onweerlegbaar bewijs van vernietiging is voor de inspecteur!).</p>
                         </div>
+                    </div>
+                </div>
+
+                <div id="chap4" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable w-full">
+                        <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">4</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Accijnzen: De Actoren 🏢</h2>
+                            </div>
+                        </div>
+                        <p class="mb-6 text-justify">Afhankelijk van wat de onderneming wil doen (opslaan of direct verkopen), kent de douane haar een specifieke status toe.</p>
                     </div>
 
                     <div class="unbreakable mb-8">
-                        <h3 class="text-2xl font-bold mb-6 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Het Jargon van de Accijnsactoren</h3>
+                        <h3 class="text-2xl font-bold mb-6 mt-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Het Jargon van de Actoren</h3>
                         <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
                             <table class="min-w-full bg-white text-sm">
                                 <thead class="bg-gray-100 border-b-2 border-nuls-black">
@@ -510,7 +608,7 @@
                                     </tr>
                                     <tr class="bg-gray-50 print:bg-white border-t-2 border-nuls-black">
                                         <td class="py-4 px-5"><strong>Gecertificeerde geadresseerde / afzender</strong></td>
-                                        <td colspan="3" class="py-4 px-5 text-center text-gray-600 text-xs">Bewegingen van goederen waarvan de accijnsrechten <strong>al zijn voldaan</strong> in een andere lidstaat.</td>
+                                        <td colspan="3" class="py-4 px-5 text-center text-gray-600 text-xs">Bewegingen met accijnsrechten <strong>die al zijn voldaan</strong> in een andere lidstaat.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -526,23 +624,22 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 4 -->
-                <div id="chap4" class="mb-16 scroll-mt-8">
+                <div id="chap5" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">4</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Speciale Statussen en Vergunningen 🛠️</h2>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">5</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Speciale Statussen (CDMS) 🛠️</h2>
                             </div>
                         </div>
-                        <p class="mb-4 text-justify">De douaneadministratie is niet alleen een censor, ze is ook een economische partner die een reeks vergunningen aanbiedt om internationale handel te vergemakkelijken. Om alles te harmoniseren, heeft Europa deze aanvragen gecentraliseerd.</p>
+                        <p class="mb-4 text-justify">De douaneadministratie is niet alleen een censor, ze is ook een economische partner die een panel van vergunningen aanbiedt om de internationale handel te vergemakkelijken. Om alles te harmoniseren, heeft Europa deze aanvragen gecentraliseerd.</p>
                     </div>
                     
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. De 22 Europese Vergunningen (CDMS)</h3>
-                        <p class="mb-4 text-justify">Vergeet de lokale papieren formulieren. Vandaag bestaan er <strong>22 Europese douanevergunningen</strong> die allemaal centraal beheerd worden via een groot Europees portaal voor operatoren: het <strong>CDMS</strong> (Customs Decisions Management System). Onder deze 22 vergunningen vinden we de meest strategische:</p>
+                        <p class="mb-4 text-justify">Vergeet de lokale papieren formulieren. Vandaag bestaan er <strong>22 Europese douanevergunningen</strong> die allemaal centraal worden beheerd via een groot Europees portaal bestemd voor operatoren: het <strong>CDMS</strong> (Customs Decisions Management System). Onder deze 22 vergunningen vinden we de meest strategische:</p>
                         <ul class="list-none space-y-3 mb-6 bg-white p-5 rounded-xl border border-gray-200">
-                            <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CW (Customs Warehousing) :</strong> De vergunning om een Douane-entrepot te exploiteren.</div></li>
+                            <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CW (Customs Warehousing) :</strong> De vergunning om een Douane-entrepot uit te baten.</div></li>
                             <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">IP / OP (Inward / Outward Processing) :</strong> De vergunningen voor Actieve en Passieve Veredeling.</div></li>
                             <li class="flex items-center"><i class="fas fa-caret-right text-nuls-yellow mr-3 text-xl"></i> <div><strong class="text-nuls-black">CGU (Comprehensive Guarantee) :</strong> De vergunning Doorlopende Zekerheid om uw operaties te dekken.</div></li>
                         </ul>
@@ -550,28 +647,28 @@
 
                     <div class="unbreakable mt-8">
                         <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Het Geval van Veredeling (IP / OP)</h3>
-                        <p class="mb-4 text-justify">Deze "op maat gemaakte" regelingen, waarvan de vergunning (IP/OP) in het CDMS wordt beheerd, laten toe om goederen internationaal te bewerken zonder de volledige belastingen te betalen.</p>
+                        <p class="mb-4 text-justify">Deze "op maat gemaakte" regelingen, waarvan de vergunning (IP/OP) in het CDMS wordt beheerd, laten toe om goederen internationaal te verwerken zonder de volledige belastingen te betalen.</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
                                 <h4 class="font-bold text-lg mb-2 text-nuls-black"><i class="fas fa-sign-in-alt text-gray-500 mr-2"></i> A. Actieve Veredeling (IP)</h4>
-                                <p class="text-sm text-justify">Motoren uit China importeren, ze assembleren in auto's in België, en de afgewerkte auto's naar Marokko exporteren. De fabriek gebruikt code H4 in IDMS om een <em>volledige schorsing van belastingen bij invoer</em> te verkrijgen.</p>
+                                <p class="text-sm text-justify">Motoren uit China importeren, ze assembleren in auto's in België, en de afgewerkte auto's naar Marokko exporteren. De fabriek gebruikt code H4 in <span class="sys-idms">IDMS</span> om een <em>volledige schorsing van belastingen bij invoer</em> te verkrijgen.</p>
                             </div>
                             <div class="bg-white p-6 rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none">
                                 <h4 class="font-bold text-lg mb-2 text-nuls-black"><i class="fas fa-sign-out-alt text-gray-500 mr-2"></i> B. Passieve Veredeling (OP)</h4>
-                                <p class="text-sm text-justify">Een atelier in Doornik exporteert Belgische stof naar Tunesië om ze te naaien, en herimporteert vervolgens de afgewerkte pakken. Bij de terugkeer zal het atelier enkel <em>belastingen betalen op de buitenlandse toegevoegde waarde (de arbeidskost)</em>.</p>
+                                <p class="text-sm text-justify">Een atelier in Doornik exporteert Belgische stof naar Tunesië om ze te naaien, en herimporteert vervolgens de afgewerkte pakken. Bij de terugkeer zal men <em>enkel belastingen betalen op de buitenlandse toegevoegde waarde (de arbeidskost)</em>.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-ban"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De ontbrekende vergunning</h4>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-lg">🪤 Klassieke Valkuil</span> De ontbrekende vergunning</h4>
                         <p class="text-justify">De autofabriek probeert haar Chinese motoren in te voeren. De expediteur stuurt de aangifte (code H4 voor Actieve Veredeling) in IDMS. Maar let op: als de fabriek haar aanvraag niet in het Europese systeem heeft gedaan en de vergunning (IP) niet is gevalideerd en actief is in het <strong>CDMS</strong>, zal het Belgische IT-systeem <strong>IDMS de aangifte onmiddellijk weigeren</strong>. Het bedrijf zal normaal moeten inklaren (H1) en het volle tarief betalen.</p>
                     </div>
 
                     <div class="unbreakable">
-                        <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. Het Labyrint van Garanties (GUM, FINDA, GMS)</h3>
+                        <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. Het Labyrint van Garanties (GUM, FINDA)</h3>
                         <p class="mb-5 text-justify">Om van actieve veredeling te genieten, eist de staat een financiële borgtocht om het bedrag van de geschorste belastingen te dekken. Haal de verschillende systemen niet meer door elkaar:</p>
                         
                         <div class="space-y-4">
@@ -583,65 +680,31 @@
                                 <div class="font-black text-2xl text-yellow-500 w-16 text-center">🇧🇪</div>
                                 <div><strong class="text-yellow-700">FINDA :</strong> De <em>puur Belgische</em> boekhoudsoftware. Deze software past concreet de blokkering van uw fondsen toe tijdens een nationale import-/exportaangifte (IDMS/AES).</div>
                             </div>
-                            <div class="flex bg-purple-50 border border-purple-200 rounded-xl p-4">
-                                <div class="font-black text-2xl text-purple-300 w-16 text-center">🔄</div>
-                                <div><strong class="text-purple-700">GMS (Guarantee Management System) :</strong> Een module die strikt is gereserveerd voor garanties gekoppeld aan douanevervoer (<a href="#chap8" class="text-nuls-blue underline font-bold">zie Hoofdstuk 8</a>).</div>
-                            </div>
                         </div>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-sync-alt"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De wentelrekening in FINDA</h4>
-                        <p class="text-justify mb-3">De fabriek in Charleroi heeft een garantie van € 100.000. Ze hebben al voor € 90.000 aan motoren in de fabriek. Een nieuwe container komt aan met € 20.000 aan potentiële belastingen. Wat doet FINDA? <strong>Het blokkeert de hele container!</strong> IDMS splitst de aangifte niet op.</p>
+                        <p class="text-justify mb-3">De fabriek in Charleroi heeft een garantie van € 100.000. Ze hebben al voor € 90.000 aan motoren in de fabriek. Een nieuwe container komt aan met € 20.000 aan potentiële belastingen. Wat doet FINDA? <strong>Het blokkeert de hele container!</strong> IDMS splitst de peer niet in twee.</p>
                         <div class="bg-green-50 p-3 rounded-lg border border-green-200 text-sm text-justify">
-                            <strong class="text-green-700 block mb-1">De logistieke oplossing :</strong>
-                            Als de fabriek de afgewerkte auto's eindelijk buiten de EU exporteert, registreert het AES-systeem de uitgang. <strong>FINDA</strong> sluit het dossier af en <strong>crediteert automatisch weer € 90.000</strong> op uw balans! De fabriek kan dan de wachtende container deblokkeren. Dit is de wentelrekening.
+                            <strong class="text-green-700 block mb-1">De logistieke of financiële oplossing :</strong>
+                            Ofwel exporteert de fabriek de afgewerkte auto's eindelijk buiten de EU via <span class="sys-aes">AES</span> (FINDA crediteert dan de € 90.000 terug op de balans, dit is de wentelrekening), ofwel <strong>betaalt ze eenvoudigweg de belastingen</strong> die verschuldigd zijn op de oude motoren om direct garantie vrij te maken voor de nieuwe container.
                         </div>
                     </div>
 
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-10 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 4. Het vertrouwenslabel: AEO</h3>
-                        <p class="mb-4 text-justify">Dit is de hoogste certificering in de douanewereld (Geautoriseerde Marktdeelnemer). Het bestaat in verschillende types naargelang uw behoeften. <strong class="text-red-600">Let op :</strong> Dit statuut wordt afgeleverd door Europa en is <strong>enkel geldig binnen de Europese Unie</strong> (behalve in geval van MRA, <a href="#chap15" class="text-nuls-blue underline font-bold">zie Hoofdstuk 15</a>).</p>
-                        <div class="overflow-hidden rounded-2xl border-2 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2 mb-6">
-                            <table class="min-w-full bg-white text-sm">
-                                <thead class="bg-gray-100 border-b-2 border-nuls-black">
-                                    <tr>
-                                        <th class="py-3 px-4 text-left font-black uppercase tracking-wider">Type AEO</th>
-                                        <th class="py-3 px-4 text-left font-black uppercase tracking-wider">Belangrijkste Voordelen</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 font-medium">
-                                    <tr>
-                                        <td class="py-3 px-4 font-bold text-nuls-blue whitespace-nowrap">AEOC <span class="text-xs text-gray-500 block font-normal">(Vereenvoudigingen)</span></td>
-                                        <td class="py-3 px-4 text-justify">Vlottere toegang tot douaneregelingen, vermindering van de doorlopende zekerheid, verminderde documentaire en fysieke controles.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3 px-4 font-bold text-purple-700 whitespace-nowrap">AEOS <span class="text-xs text-gray-500 block font-normal">(Veiligheid)</span></td>
-                                        <td class="py-3 px-4 text-justify">Verlichting van veiligheidscontroles (bv. ENS-aangiften), wederzijdse erkenning met derde landen.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3 px-4 font-bold text-green-700 bg-green-50 whitespace-nowrap">AEOF <span class="text-xs text-gray-500 block font-normal">(Full)</span></td>
-                                        <td class="py-3 px-4 text-justify bg-green-50">Cumulatie van alle voordelen (AEOC + AEOS). Ideaal voor een fabriek die wil dat haar vrachtwagens de grens met absolute prioriteit passeren.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p class="mb-4 text-justify">Dit is de hoogste certificering in de douanewereld (Geautoriseerde Marktdeelnemer). Het bestaat in verschillende types naargelang uw behoeften (AEOC, AEOS, AEOF). Dit statuut wordt afgeleverd door Europa en is <strong>enkel geldig binnen de Europese Unie</strong>.</p>
+                        <div class="bg-blue-50 border-l-[6px] border-blue-500 p-4 rounded-r-xl mt-4 mb-6 shadow-sm">
+                            <h4 class="font-black text-blue-800 mb-2"><i class="fas fa-handshake mr-2"></i> De rol van MRA's (Mutual Recognition Agreement)</h4>
+                            <p class="text-sm text-blue-900 text-justify">Dankzij de akkoorden voor wederzijdse erkenning (MRA) die zijn gesloten tussen de EU en derde landen (zoals de Verenigde Staten of Japan), erkent de Europese douane dit buitenlandse label als het equivalent van de AEO. Het vertrouwensniveau stijgt en het risico daalt drastisch, wat de internationale stromen vergemakkelijkt.</p>
                         </div>
                     </div>
 
                     <div class="unbreakable mt-10">
                         <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 5. Verlegging van de BTW: ET14000</h3>
-                        <p class="mb-4 text-justify">De vergunning <strong>ET14000</strong> is een puur fiscaal mechanisme verbonden aan de Belgische btw, essentieel voor importerende bedrijven.</p>
-                        <ul class="list-none space-y-4 print:space-y-2 mb-6">
-                            <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                                <strong class="text-nuls-black block mb-1">Het mechanisme :</strong>
-                                <span class="text-sm text-justify block">Het laat toe om de betaling van de btw bij het douanekantoor tijdens de invoer te vermijden. De belasting wordt rechtstreeks verlegd naar uw periodieke btw-aangifte. Daar wordt ze gelijktijdig geïnd en afgetrokken, waardoor de onmiddellijke financiële impact wordt tenietgedaan.</span>
-                            </li>
-                            <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                                <strong class="text-nuls-black block mb-1">De aanvraag :</strong>
-                                <span class="text-sm text-justify block">Om hiervan te kunnen genieten, gebeurt de aanvraag online via <strong>MyMinfin</strong> (het officiële portaal van de FOD Financiën). Bij invoer moet het ET14000-nummer eenvoudigweg in de douaneaangifte worden vermeld.</span>
-                            </li>
-                        </ul>
+                        <p class="mb-4 text-justify">De vergunning <strong>ET14000</strong> is een puur fiscaal mechanisme verbonden aan de Belgische btw, beheerd via MyMinfin. Het laat toe om de betaling van de btw bij het douanekantoor tijdens de invoer te vermijden. De belasting wordt rechtstreeks verlegd (autoliquidatie) naar de periodieke btw-aangifte van de onderneming, waardoor de onmiddellijke financiële impact op de cashflow wordt tenietgedaan.</p>
                     </div>
 
                     <div class="unbreakable text-center mt-10">
@@ -652,12 +715,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 5 -->
-                <div id="chap5" class="mb-16 scroll-mt-8">
+                <div id="chap6" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">5</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">6</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">De Taal van de Datasets 💻</h2>
                             </div>
                         </div>
@@ -699,9 +761,9 @@
                     <div class="unbreakable mt-12 mb-8">
                         <h3 class="text-2xl font-bold mb-4 text-red-600 flex items-center"><span class="w-2 h-6 bg-red-600 mr-3 rounded-sm"></span> UPDATE ALARM: De revolutie van kleine pakketten (Juli 2026) 🚨</h3>
 
-                        <p class="mb-4 text-justify">Tot voor kort genoot e-commerce van een gouden voordeel: elk pakket met een waarde van minder dan € 150 (de bekende H7) kwam Europa binnen <strong>zonder een cent aan douanerechten te betalen</strong> (alleen de btw was verschuldigd). Geconfronteerd met de lawine van miljarden Aziatische minipakketjes, heeft Europa het speelkwartier beëindigd!</p>
+                        <p class="mb-4 text-justify">Tot voor kort genoot e-commerce van een gouden voordeel: elk pakket met een waarde van minder dan € 150 (de bekende H7) kwam Europa binnen <strong>zonder een cent aan douanerechten te betalen</strong>. Let op, er is een veelvoorkomende verwarring: <strong class="bg-red-100 text-red-800 px-1 rounded">de btw is wél verschuldigd vanaf de eerste cent!</strong> De btw-vrijstelling van € 22 is in 2021 afgeschaft.</p>
 
-                        <p class="mb-4 text-justify"><strong>Sinds 1 juli 2026 is de douanevrijstelling afgeschaft.</strong> Voortaan is een forfaitair en tijdelijk douanerecht van <strong>€ 3 per artikel</strong> (per aangifteregel) van toepassing op alle afstandsverkopen onder de € 150 (B2C).</p>
+                        <p class="mb-4 text-justify"><strong>Sinds 1 juli 2026 is de douanevrijstelling van € 150 eveneens afgeschaft.</strong> Voortaan is een forfaitair en tijdelijk douanerecht van <strong>€ 3 per artikel</strong> (per aangifteregel) van toepassing op alle afstandsverkopen onder de € 150 (B2C).</p>
 
                         <div class="bg-red-50 p-4 border-l-[6px] border-red-500 rounded-r-xl mb-8 shadow-sm print:border-l-4">
                             <h4 class="font-black text-red-800 mb-2"><i class="fas fa-bolt mr-2"></i> De Donderklap van de H7</h4>
@@ -748,12 +810,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 6 -->
-                <div id="chap6" class="mb-16 scroll-mt-8">
+                <div id="chap7" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">6</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">7</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Centrale Douaneafhandeling (CCE) 🌍</h2>
                             </div>
                         </div>
@@ -762,27 +823,23 @@
 
                     <div class="unbreakable mt-6">
                         <p class="mb-4 text-justify">Dankzij CCE kan een bedrijf zijn invoeraangifte indienen in het systeem van zijn eigen land (waar het is gevestigd), zelfs als de goederen fysiek in een andere lidstaat aankomen. De twee douaneadministraties communiceren achter de schermen op een geautomatiseerde manier met elkaar.</p>
+                        <p class="mb-4 text-justify border-l-4 border-blue-400 bg-blue-50 p-4 rounded-r"><strong class="text-blue-900 block mb-1">Let op de btw:</strong> Zelfs als de H1-aangifte in België wordt verwerkt en de douanerechten er worden betaald, <strong>blijft de nationale btw verschuldigd in het land van de eindbestemming</strong> van de goederen! Dit maakt de boekhouding aanzienlijk complexer.</p>
                     </div>
 
-                    <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
-                        <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-network-wired"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De container in Rotterdam</h4>
-                        <p class="text-justify">Een bedrijf uit Namen importeert speelgoed uit China. Het schip komt fysiek aan in de haven van Rotterdam (Nederland). In plaats van een Nederlandse makelaar de opdracht te geven en belastingen in Nederland te betalen, gebruikt het bedrijf CCE. Het dient zijn H1-dataset in <strong>IDMS (het Belgische systeem)</strong> in vanuit zijn zetel in Namen, en betaalt zijn belastingen in België. De Belgische computer neemt contact op met de Nederlandse computer om het bevel te geven de container in Rotterdam vrij te geven. Zo simpel is het!</p>
-                    </div>
-
-                    <div class="unbreakable text-center mt-10">
-                        <img src="4.png" class="chapter-illustration mx-auto" alt="Illustration Chapitres 5 et 6">
+                    <div class="nuls-box unbreakable border-blue-500 shadow-[6px_6px_0px_#3B82F6] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-blue-500 text-white border-blue-500"><i class="fas fa-network-wired"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-blue-700 print:text-black">Praktijkvoorbeeld: De container in Rotterdam</h4>
+                        <p class="text-justify text-blue-900 print:text-black">Een bedrijf uit Namen importeert speelgoed uit China. Het schip komt fysiek aan in de haven van Rotterdam (Nederland). In plaats van een Nederlandse makelaar de opdracht te geven en belastingen in Nederland te betalen, gebruikt het bedrijf CCE. Het dient zijn H1-dataset in <strong><span class="sys-idms border-blue-400 text-white">IDMS</span> (het Belgische systeem)</strong> in vanuit zijn zetel in Namen, en betaalt zijn belastingen in België. De Belgische computer neemt contact op met de Nederlandse computer om het bevel te geven de container in Rotterdam vrij te geven. Zo simpel is het!</p>
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 7 -->
-                <div id="chap7" class="mb-16 scroll-mt-8">
+                <div id="chap8" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">7</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">8</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Terugkerende Goederen (Franchises) 🔄</h2>
                             </div>
                         </div>
@@ -793,43 +850,57 @@
                         <p class="mb-4 text-justify">Het basisprincipe van de douane is om de invoer te belasten. Maar als u uw *eigen* product (dat vervaardigd is of reeds ingeklaard was in de EU) binnen de 3 jaar en in dezelfde staat herimporteert, gaat u niet opnieuw douanerechten betalen. De douane verleent een volledige "vrijstelling" (franchise), op voorwaarde dat u kunt bewijzen dat het object wel degelijk hetzelfde is.</p>
                     </div>
 
-                    <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
-                        <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-undo-alt"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: Het bekraste horloge</h4>
-                        <p class="text-justify">Een Belgische horlogemaker exporteert een horloge naar een klant in Zwitserland (buiten de EU) via een AES-aangifte (B1). De Zwitserse klant ontvangt het horloge, merkt dat het bekrast is en stuurt het onmiddellijk terug naar België. Bij terugkeer van het pakket gebruikt de Belgische aangever het IDMS-systeem. Door de juiste vrijstellingscode (F03) in te voeren en het MRN van de oorspronkelijke uitvoeraangifte te verstrekken om de identiteit van het horloge te bewijzen, herimporteert hij het met betaling van 0 € rechten en 0 € btw!</p>
+                    <div class="nuls-box unbreakable border-orange-400 shadow-[6px_6px_0px_#F97316] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-orange-500 text-white border-orange-500"><i class="fas fa-undo-alt"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-orange-700 print:text-black">Praktijkvoorbeeld: Het bekraste horloge</h4>
+                        <p class="text-justify text-orange-900 print:text-black">Een Belgische horlogemaker exporteert een horloge naar een klant in Zwitserland (buiten de EU) via een <span class="sys-aes border-orange-400 text-white">AES</span>-aangifte (B1). De Zwitserse klant ontvangt het horloge, merkt dat het bekrast is en stuurt het onmiddellijk terug naar België. Bij terugkeer van het pakket gebruikt de Belgische aangever het <span class="sys-idms border-orange-400 text-white">IDMS</span>-systeem. Door de juiste vrijstellingscode (F03) in te voeren en het MRN van de oorspronkelijke uitvoeraangifte te verstrekken om de identiteit van het horloge te bewijzen, herimporteert hij het met betaling van 0 € rechten en 0 € btw!</p>
                     </div>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 8 -->
-                <div id="chap8" class="mb-16 scroll-mt-8">
+                <div id="chap9" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">8</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Het Douanevervoer (NCTS) & GMS 🔄</h2>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">9</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Het Douanevervoer (NCTS) en zijn Kluis (GMS) 🔄</h2>
                             </div>
                         </div>
-                        <p class="mb-4 text-justify">We hebben gezien dat wanneer een goed door Europa reist zonder de belastingen te betalen, het dit doet onder de regeling douanevervoer via het <strong>NCTS</strong>-systeem (<a href="#chap2" class="text-nuls-blue underline font-bold">zie Hoofdstuk 2</a>). Omdat de staat een risico neemt, is een financiële garantie vereist via het <strong>GMS</strong>.</p>
+                        <p class="mb-4 text-justify">We hebben gezien dat wanneer een goed door Europa reist zonder de belastingen te betalen, het dit doet onder de regeling douanevervoer via het <span class="sys-ncts text-lg">NCTS</span>-systeem. Omdat de staat een risico neemt, is een financiële garantie vereist via een virtuele "kluis": het <strong>GMS (Guarantee Management System)</strong>.</p>
                     </div>
 
                     <div class="unbreakable mt-8">
-                        <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Aankomst en Controle (NCTS Fasen 5 & 6)</h3>
+                        <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. T1 of T2: Wat is het fundamentele verschil?</h3>
+                        <p class="mb-4 text-justify">Voordat u een vrachtwagen de weg op stuurt, moet u de juiste regeling voor douanevervoer kiezen. Haal ze niet door elkaar!</p>
+                        <ul class="list-none space-y-4 mb-8">
+                            <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm border-l-[6px] border-blue-500">
+                                <strong class="text-blue-700 block mb-1">Extern Douanevervoer (T1) :</strong>
+                                <span class="text-sm text-justify block">Betreft <strong>niet-Europese</strong> goederen (die hun belastingen nog niet hebben betaald). Met het T1 kunnen deze goederen van punt A naar punt B in de EU worden verplaatst waarbij de rechten en belastingen worden geschorst.</span>
+                            </li>
+                            <li class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm border-l-[6px] border-green-500">
+                                <strong class="text-green-700 block mb-1">Intern Douanevervoer (T2) :</strong>
+                                <span class="text-sm text-justify block">Betreft <strong>Europese</strong> goederen. Waarom een vervoer uitvoeren als ze al Europees zijn? Omdat de goederen een derde land zullen doorkruisen (bv. een vrachtwagen die van Italië naar Duitsland rijdt via Zwitserland). Het T2 bewijst aan de Duitse douane bij terugkeer dat de goederen bij vertrek al Europees waren!</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="unbreakable mt-8">
+                        <h3 class="text-2xl font-bold mb-6 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Aankomst en Controle (NCTS Fasen 5 & 6)</h3>
                         <p class="mb-5 text-justify">Wat gebeurt er als de vrachtwagen op zijn bestemming aankomt? Het moderne NCTS is uiterst strikt geworden.</p>
                         
                         <div class="space-y-4">
                             <div class="bg-white border-l-4 border-nuls-black p-4 shadow-sm">
-                                <strong class="text-nuls-black text-lg block mb-1">1. De Wachttimer</strong>
+                                <strong class="text-nuls-black text-lg block mb-1">De Wachttimer</strong>
                                 <p class="text-sm">Zodra de aankomst is geaccepteerd, start een aftelklok (bijv. 15 min). Dit geeft de douane de tijd om te beslissen over een fysieke controle.</p>
                             </div>
                             <div class="bg-white border-l-4 border-green-500 p-4 shadow-sm">
-                                <strong class="text-green-700 text-lg block mb-1">2. Lossingsbevindingen (Conform)</strong>
+                                <strong class="text-green-700 text-lg block mb-1">Lossingsbevindingen (Conform)</strong>
                                 <p class="text-sm">Als alles perfect is, wordt de aangifte "Conform" gemeld (<em>Satisfactory</em>). De garantie in het GMS wordt vrijgegeven.</p>
                             </div>
                             <div class="bg-white border-l-4 border-red-500 p-4 shadow-sm">
-                                <strong class="text-red-600 text-lg block mb-1">3. De Verschillen (Discrepancies)</strong>
-                                <p class="text-sm">Als het zegel verbroken is of er ontbreekt een pakket, meldt men "Niet conform". Het NCTS eist dan te weten wat de reactie van de houder is: <span class="font-bold">No opposition</span> (accepteert), <span class="font-bold">Opposition</span> (betwist), of <span class="font-bold">Undecided</span> (in afwachting).</p>
+                                <strong class="text-red-600 text-lg block mb-1">De Verschillen (Discrepancies)</strong>
+                                <p class="text-sm">Als het zegel verbroken is of er ontbreekt een pakket, meldt men "Niet conform". Het NCTS eist dan te weten wat de reactie van de houder is: <span class="font-bold">No opposition</span> (accepteert om de schuld te betalen op de geblokkeerde borgtocht), <span class="font-bold">Opposition</span> (betwist de boete), of <span class="font-bold">Undecided</span> (de borgtocht blijft in afwachting geblokkeerd).</p>
                             </div>
                         </div>
                     </div>
@@ -847,12 +918,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 9 -->
-                <div id="chap9" class="mb-16 scroll-mt-8">
+                <div id="chap10" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">9</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">10</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">De Gouden Driehoek 📐</h2>
                             </div>
                         </div>
@@ -882,49 +952,56 @@
                     </div>
 
                     <div class="unbreakable">
-                        <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Tariefindeling en TARBEL</h3>
-                        <p class="mb-4 text-justify">De douane leest geen beschrijvingen, ze leest cijfers: de eerste 6 cijfers zijn het wereldwijde <strong>Geharmoniseerd Systeem (HS)</strong>, aangevuld door de Gecombineerde Nomenclatuur en de TARIC (Europa, 10 cijfers).</p>
+                        <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Tariefindeling en TARBEL</h3>
+                        <p class="mb-4 text-justify">De douane leest geen beschrijvingen, ze leest cijfers: de eerste 6 cijfers zijn het <strong>Geharmoniseerd Systeem (HS)</strong> (wereldwijd), aangevuld door de Gecombineerde Nomenclatuur en de TARIC (Europa, 10 cijfers).</p>
                         
                         <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl mb-5 text-justify">
                             <strong class="text-blue-800">De onmisbare tool: TARBEL.</strong><br>
-                            <span class="text-sm">Om deze code te vinden, gebruiken aangevers de applicatie <strong>TARBEL</strong> (het Belgische Tarief). Deze combineert de TARIC-databank (rechten, antidumping) met de Belgische maatregelen (btw, accijnzen). Dit is de bijbel van de aangever.</span>
+                            <span class="text-sm">Om deze code te vinden, gebruiken aangevers de applicatie <strong>TARBEL</strong> (het Belgische Tarief). Deze combineert de TARIC-databank (rechten, antidumping) met de Belgische maatregelen (btw, accijnzen). Dit is de bijbel van de classificeerder.</span>
                         </div>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-laptop-code"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De DNA-fout</h4>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-lg">🪤 Klassieke Valkuil</span> De DNA-fout</h4>
                         <p class="text-justify">Een bedrijf importeert high-end touchtablets (onderworpen aan belastingen), maar de aangever vergist zich in TARBEL en gebruikt de HS-code voor "digitale fotolijsten" (belast tegen 0%). Tijdens een controle zet de douanier het scherm aan: fiscale correctie en boete voor valse aangifte!</p>
                     </div>
 
                     <div class="unbreakable mt-10">
                         <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Oorsprong en de Waarde</h3>
-                        <p class="mb-4 text-justify"><strong>Oorsprong :</strong> Verwar <em>herkomst</em> en <em>oorsprong</em> niet. De preferentiële oorsprong (vrijhandelsakkoorden, EUR.1-certificaten) maakt het mogelijk de rechten tot 0% te verlagen.</p>
-                        <p class="mb-4 text-justify"><strong>Waarde :</strong> De douane belast de "transactiewaarde" <strong>tot aan de Europese grens</strong> (inclusief de kostprijs van het product + zeetransport + verzekering).</p>
+                        <p class="mb-4 text-justify"><strong>Oorsprong :</strong> Verwar <em>herkomst</em> en <em>oorsprong</em> niet. De preferentiële oorsprong (vrijhandelsakkoorden) maakt het mogelijk de rechten tot 0% te verlagen. Om dit te bewijzen gebruikt men een <strong>EUR.1-certificaat</strong> (het officiële "paspoort" dat de oorsprong van de goederen valideert).</p>
+                        <p class="mb-4 text-justify"><strong>Waarde :</strong> De douane belast de "transactiewaarde" <strong>tot aan de Europese grens</strong> (inclusief de kostprijs van het product + zeetransport + verzekering). <strong class="text-nuls-blue">Let op de Licentierechten (Royalties) :</strong> Als u blanco t-shirts importeert voor 2€ maar u betaalt een licentie van 5€ om het logo van een groot merk erop af te drukken, moeten deze 5€ verplicht worden toegevoegd aan de douanewaarde!</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <div class="nuls-box unbreakable my-0 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
-                            <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-bicycle"></i></div>
-                            <h4 class="font-black text-lg mb-3 mt-4 tracking-tight">Het valse Zwitserse paspoort</h4>
-                            <p class="text-sm text-justify">Je koopt fietsen in Genève (Zwitserse herkomst). Maar de motor en het frame zijn gemaakt in Taiwan. Het Zwitserse bedrijf heeft er enkel een etiket op geplakt. De werkelijke <strong>oorsprong</strong> is Taiwanees: je zal de volle rechten betalen.</p>
+                        <div class="nuls-box unbreakable my-0 border-green-500 shadow-[4px_4px_0px_#10B981] print:shadow-none print:border-2">
+                            <div class="nuls-box-icon bg-green-500 text-white border-green-500"><i class="fas fa-bicycle"></i></div>
+                            <h4 class="font-black text-lg mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-sm block">🪤 Klassieke Valkuil</span> Het valse Zwitserse paspoort</h4>
+                            <p class="text-sm text-justify">Je koopt fietsen in Genève (Zwitserse herkomst). Maar de motor en het frame zijn gemaakt in Taiwan. Het Zwitserse bedrijf heeft er enkel een etiket op geplakt. De werkelijke <strong>oorsprong</strong> is Taiwanees: het EUR.1-certificaat is ongeldig en je zal de volle rechten betalen.</p>
                         </div>
-                        <div class="nuls-box unbreakable my-0 border-nuls-black shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
-                            <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-ship"></i></div>
-                            <h4 class="font-black text-lg mb-3 mt-4 tracking-tight">De dure vergeetachtigheid</h4>
+                        <div class="nuls-box unbreakable my-0 border-amber-500 shadow-[4px_4px_0px_#F59E0B] print:shadow-none print:border-2">
+                            <div class="nuls-box-icon bg-amber-500 text-white border-amber-500"><i class="fas fa-ship"></i></div>
+                            <h4 class="font-black text-lg mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-sm block">🪤 Klassieke Valkuil</span> De dure vergeetachtigheid</h4>
                             <p class="text-sm text-justify">Een bedrijf geeft een container aan, maar "vergeet" de € 3.000 aan zeetransport op te nemen in de aangegeven Waarde (H1). Bij een controle zal het het verschil in btw en douanerechten op deze € 3.000 moeten terugbetalen.</p>
                         </div>
                     </div>
+
+                    <details class="bg-white p-5 rounded-xl border-2 border-nuls-black mt-8 cursor-pointer shadow-[4px_4px_0px_#1A1A1A] no-print">
+                        <summary class="font-black text-lg text-nuls-black outline-none"><i class="fas fa-question-circle text-nuls-yellow text-2xl mr-2 align-middle"></i> Mini-Quiz : Test uw kennis</summary>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="font-medium text-gray-800">Een container vertrekt uit de Verenigde Staten. De waarde van de goederen is € 10.000. Het zeetransport kost € 2.000. Op welke basis (maatstaf van heffing) zal de Belgische douane de invoerrechten berekenen?</p>
+                            <p class="mt-3 text-sm text-gray-600 bg-gray-100 p-3 rounded italic"><strong class="text-green-700">Antwoord :</strong> Op € 12.000. De douane belast de waarde "tot aan de grens van de EU", dus de transport- en verzekeringskosten moeten verplicht worden opgenomen in de berekening!</p>
+                        </div>
+                    </details>
                 </div>
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 10 -->
-                <div id="chap10" class="mb-16 scroll-mt-8">
+                <div id="chap11" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">10</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">11</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Wie betaalt wat? Incoterms 🤝</h2>
                             </div>
                         </div>
@@ -970,7 +1047,7 @@
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-exclamation-triangle"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De val van "goedkoop" (EXW)</h4>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight"><span class="font-normal text-gray-500 text-sm block">🪤 Klassieke Valkuil</span> De val van "goedkoop" (EXW)</h4>
                         <p class="text-justify">Een Chinese leverancier biedt u T-shirts aan "EXW Beijing" (goedkoper) of "FOB Shanghai". U kiest EXW. Slechtste idee ooit! U zult een transporteur in China moeten inschakelen om de dozen in de fabriek op te halen, en vooral, <strong>u zult verantwoordelijk zijn voor de Chinese uitvoeraangifte</strong> (een nachtmerrie zonder licentie in China). FOB was de echt veilige keuze.</p>
                     </div>
 
@@ -981,12 +1058,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 11 -->
-                <div id="chap11" class="mb-16 scroll-mt-8">
+                <div id="chap12" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">11</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">12</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Het Veiligheidsschild (ICS2) 🛡️</h2>
                             </div>
                         </div>
@@ -1002,12 +1078,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 12 -->
-                <div id="chap12" class="mb-16 scroll-mt-8">
+                <div id="chap13" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">12</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">13</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Sancties & Dual-Use 🚫</h2>
                             </div>
                         </div>
@@ -1033,7 +1108,7 @@
                     <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] print:shadow-none print:border-2 mt-8">
                         <div class="nuls-box-icon bg-red-500 text-white border-red-500"><i class="fas fa-gem"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-red-700 print:text-black">Praktijkvoorbeeld: De geblokkeerde luxehorloges</h4>
-                        <p class="text-justify text-red-900 print:text-black">Een Antwerpse juwelier probeert voor € 200.000 aan luxehorloges te exporteren naar een land dat onder Europese sancties valt. Het AES-systeem van de douane analyseert het DNA van het product (de HS-code van het horloge) en het land van bestemming. Een rood alarm gaat af: zogenaamde "luxe" producten vallen onder een strikt embargo naar deze bestemming. De aangifte wordt geweigerd, de export wordt geannuleerd, de goederen worden in beslag genomen en de juwelier stelt zich bloot aan strafrechtelijke vervolging.</p>
+                        <p class="text-justify text-red-900 print:text-black">Een Antwerpse juwelier probeert voor € 200.000 aan luxehorloges te exporteren naar een land dat onder Europese sancties valt. Het <span class="sys-aes">AES</span>-systeem van de douane analyseert het DNA van het product (de HS-code van het horloge) en het land van bestemming. Een rood alarm gaat af: zogenaamde "luxe" producten vallen onder een strikt embargo naar deze bestemming. De aangifte wordt geweigerd, de export wordt geannuleerd, de goederen worden in beslag genomen en de juwelier stelt zich bloot aan strafrechtelijke vervolging.</p>
                     </div>
 
                     <div class="unbreakable mt-12">
@@ -1044,7 +1119,7 @@
                     <div class="nuls-box unbreakable border-gray-800 shadow-[6px_6px_0px_#1F2937] print:shadow-none print:border-2 mt-8">
                         <div class="nuls-box-icon bg-gray-800 text-white border-gray-800"><i class="fas fa-microchip"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-gray-800 print:text-black">Praktijkvoorbeeld: De gemilitariseerde wasmachine</h4>
-                        <p class="text-justify text-gray-800 print:text-black">Een Belgisch bedrijf produceert hoogwaardige elektronische chips voor industriële wasmachines (een 100% civiel goed). Het ontvangt een grote bestelling uit een land dat momenteel onder geopolitieke spanning staat. Tijdens de uitvoeraangifte (AES) blokkeert het douane-algoritme (SEDA) de operatie. Waarom? Omdat de inlichtingendiensten hebben ontdekt dat het leger van dit land deze civiele chips recupereert om er de geleidingssystemen van zijn gevechtsdrones mee uit te rusten. De "Dual-Use" licentie zal categorisch worden geweigerd.</p>
+                        <p class="text-justify text-gray-800 print:text-black">Een Belgisch bedrijf produceert hoogwaardige elektronische chips voor industriële wasmachines (een 100% civiel goed). Het ontvangt een grote bestelling uit een land dat momenteel onder geopolitieke spanning staat. Tijdens de uitvoeraangifte (<span class="sys-aes">AES</span>) blokkeert het douane-algoritme (<span class="sys-seda">SEDA</span>) de operatie. Waarom? Omdat de inlichtingendiensten hebben ontdekt dat het leger van dit land deze civiele chips recupereert om er de geleidingssystemen van zijn gevechtsdrones mee uit te rusten. De "Dual-Use" licentie zal categorisch worden geweigerd.</p>
                     </div>
 
                     <div class="unbreakable text-center mt-10">
@@ -1054,12 +1129,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 13 -->
-                <div id="chap13" class="mb-16 scroll-mt-8">
+                <div id="chap14" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">13</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">14</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">De "Groene" Douane 🌿</h2>
                             </div>
                         </div>
@@ -1080,12 +1154,11 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 14 -->
-                <div id="chap14" class="mb-16 scroll-mt-8">
+                <div id="chap15" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">14</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">15</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">Het Uniek Loket (Single Window) 🤝</h2>
                             </div>
                         </div>
@@ -1093,13 +1166,13 @@
                     </div>
 
                     <div class="unbreakable mt-6">
-                        <p class="mb-4 text-justify">Om te vermijden dat een operator zijn papieren certificaten aan drie verschillende agentschappen moet voorleggen, heeft Europa het <strong>Uniek Loket (EU CSW-CERTEX / Single Window)</strong> opgericht. Het is een gigantische IT-snelweg waar de douane-applicatie (IDMS) automatisch overlegt met de applicaties van de andere agentschappen (zoals TRACES voor het FAVV).</p>
+                        <p class="mb-4 text-justify">Om te vermijden dat een operator zijn papieren certificaten aan drie verschillende agentschappen moet voorleggen, heeft Europa het <strong>Uniek Loket (EU CSW-CERTEX / Single Window)</strong> opgericht. Het is een gigantische IT-snelweg waar de douane-applicatie (<span class="sys-idms">IDMS</span>) automatisch overlegt met de applicaties van de andere agentschappen (zoals TRACES voor het FAVV).</p>
                     </div>
 
                     <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-building"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De container ananassen</h4>
-                        <p class="text-justify">Een Belgische importeur laat een container verse ananassen overkomen uit Costa Rica. Zijn aangever dient de H1-aangifte in via IDMS. Alvorens haar goedkeuring te geven, ondervraagt IDMS automatisch het Single Window-systeem om te weten of het FAVV het fytosanitair certificaat heeft gevalideerd. Als de FAVV-inspecteur het vakje "OK" in zijn eigen software (TRACES) niet heeft aangevinkt, blokkeert de douane de H1-aangifte binnen de seconde. De twee administraties werken in perfecte synchronisatie zonder één enkel telefoontje te plegen.</p>
+                        <p class="text-justify">Een Belgische importeur laat een container verse ananassen overkomen uit Costa Rica. Zijn aangever dient de H1-aangifte in via <span class="sys-idms">IDMS</span>. Alvorens haar goedkeuring te geven, ondervraagt de applicatie automatisch het Single Window-systeem om te weten of het FAVV het fytosanitair certificaat heeft gevalideerd. Als de FAVV-inspecteur het vakje "OK" in zijn eigen software (TRACES) niet heeft aangevinkt, blokkeert de douane de H1-aangifte binnen de seconde. De twee administraties werken in perfecte synchronisatie zonder één enkel telefoontje te plegen.</p>
                     </div>
 
                     <div class="unbreakable text-center mt-10">
@@ -1109,26 +1182,25 @@
 
                 <hr class="border-2 border-gray-100 my-12">
 
-                <!-- Chapitre 15 -->
-                <div id="chap15" class="mb-16 scroll-mt-8">
+                <div id="chap16" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 pb-4">
                             <div class="flex items-center">
-                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">15</div>
+                                <div class="bg-nuls-black text-nuls-yellow rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] print:shadow-none print:border-2 print:border-black flex-shrink-0">16</div>
                                 <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black">De Douaneradar (SEDA 3.0) 🎯</h2>
                             </div>
                         </div>
-                        <p class="mb-6 text-justify">Hoe kiest de douane de container uit om te openen tussen de miljoenen die elk jaar passeren? De administratie kiest niet willekeurig, ze steunt op een uiterst geavanceerde data-analyse: dit is de rol van de regelmotor <strong>SEDA</strong>.</p>
+                        <p class="mb-6 text-justify">Hoe kiest de douane de container uit om te openen tussen de miljoenen die elk jaar passeren? De administratie kiest niet willekeurig, ze steunt op een uiterst geavanceerde data-analyse: dit is de rol van de regelmotor <span class="sys-seda text-lg">SEDA 3.0</span>.</p>
                     </div>
 
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. De Europese communicatie: RIF en CRMS</h3>
-                        <p class="mb-6 text-justify">Het risico stopt niet aan de grenzen. Als de Franse douane een nieuwe methode ontdekt om cocaïne te verbergen, stelt ze een fiche op, een <strong>RIF (Risk Information Form)</strong>. Dit is een veiligheidswaarschuwing die naar alle lidstaten wordt gestuurd via het <strong>CRMS</strong> (Customs Risk Management System). Het Belgische algoritme (SEDA) integreert deze dreiging vervolgens onmiddellijk in zijn berekeningen.</p>
+                        <p class="mb-6 text-justify">Het risico stopt niet aan de grenzen. Als de Franse douane een nieuwe methode ontdekt om cocaïne te verbergen, stelt ze een fiche op, een <strong>RIF (Risk Information Form)</strong>. Dit is een veiligheidswaarschuwing die naar alle lidstaten wordt gestuurd via het <strong>CRMS</strong> (Customs Risk Management System). Het Belgische algoritme (<span class="sys-seda">SEDA</span>) integreert deze dreiging vervolgens onmiddellijk in zijn berekeningen.</p>
                     </div>
 
                     <div class="unbreakable mt-6">
                         <h3 class="text-2xl font-bold mb-4 text-nuls-black flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Artificiële Intelligentie: SEDA 3.0</h3>
-                        <p class="mb-4 text-justify">Vroeger was het systeem rigide: ofwel kreeg de aangifte groen licht, ofwel blokkeerde ze op rood. Vandaag de dag berekent de <strong>SEDA 3.0</strong>-motor een <strong>continue Risicoscore (tussen 0 en 1)</strong> voor elke aangifte. Hoe dichter bij 1, hoe kritieker het is.</p>
+                        <p class="mb-4 text-justify">Vroeger was het systeem rigide: ofwel kreeg de aangifte groen licht, ofwel blokkeerde ze op rood. Vandaag de dag berekent de <span class="sys-seda">SEDA 3.0</span>-motor een <strong>continue Risicoscore (tussen 0 en 1)</strong> voor elke aangifte. Hoe dichter bij 1, hoe kritieker het is.</p>
                         
                         <p class="font-bold mb-3">Deze score wordt berekend volgens 4 grote wiskundige pijlers :</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -1151,10 +1223,10 @@
                         </div>
                     </div>
 
-                    <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A]">
+                    <div class="nuls-box unbreakable border-nuls-black shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black"><i class="fas fa-award"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight">Praktijkvoorbeeld: De geannuleerde AEO Bonus</h4>
-                        <p class="text-justify text-gray-800 print:text-black">Herinner u het AEO-statuut (<a href="#chap4" class="text-nuls-blue underline font-bold">Hoofdstuk 4</a>). In SEDA past de AEO een "Facilitering" toe: het algoritme vermindert wiskundig uw kans op controle (bijvoorbeeld -50% score). <strong>Maar let op:</strong> Als SEDA een alarm van een absoluut Embargo detecteert (internationale sancties) of als de naam van één van de actoren op een Zwarte Lijst staat (bewezen fraude), dan "snijdt" het algoritme letterlijk dit voordeel weg. De AEO-bonus wordt geannuleerd en de score stijgt terug naar 1 (Verplichte prioritaire controle).</p>
+                        <p class="text-justify text-gray-800 print:text-black">Herinner u het AEO-statuut (<a href="#chap4" class="text-nuls-blue underline font-bold">Hoofdstuk 5</a>). In SEDA past de AEO een "Facilitering" toe: het algoritme vermindert wiskundig uw kans op controle (bijvoorbeeld -50% score). <strong>Maar let op:</strong> Als SEDA een alarm van een absoluut Embargo detecteert (internationale sancties) of als de naam van één van de actoren op een Zwarte Lijst staat (bewezen fraude), dan "snijdt" het algoritme letterlijk dit voordeel weg. De AEO-bonus wordt geannuleerd en de score stijgt terug naar 1 (Verplichte prioritaire controle).</p>
                     </div>
 
                     <div class="unbreakable mt-10">
@@ -1163,10 +1235,9 @@
                         <p class="mb-5 text-justify">Degene die de drempel overschrijden, belanden op het scherm van de douaniers (het veldteam CRC). Dit beslissingsscherm noemt men de tool <strong>MRA (Manual Risk Analysis)</strong>.</p>
 
                         <div class="bg-red-50 p-4 border-l-4 border-red-600 rounded-r-xl mb-8">
-                            <h4 class="font-black text-red-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> LET OP HET JARGON : De Valkuil van de twee "MRA's" !</h4>
-                            <p class="text-sm text-red-900 text-justify">De douanewereld is dol op acroniemen, zelfs zozeer dat ze hetzelfde acroniem gebruiken voor twee totaal verschillende dingen!</p>
+                            <h4 class="font-black text-red-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> LET OP HET JARGON : De Valkuil van de twee MRA's !</h4>
                             <ul class="list-disc pl-5 mt-2 text-sm text-red-900 font-medium">
-                                <li>In Hoofdstuk 4 (Speciale Statussen), betekent MRA <strong>Mutual Recognition Agreement</strong> (het internationale akkoord dat het AEO-statuut in het buitenland erkent).</li>
+                                <li>In Hoofdstuk 5 (Speciale Statussen), betekent MRA <strong>Mutual Recognition Agreement</strong> (het internationale akkoord dat het AEO-statuut in het buitenland erkent).</li>
                                 <li>Hier (Risicoanalyse), betekent MRA <strong>Manual Risk Analysis</strong> (de software waarin de douanier beslist of een verdachte aangifte al dan niet gecontroleerd wordt). Haal ze niet door elkaar!</li>
                             </ul>
                         </div>
@@ -1192,7 +1263,31 @@
                     </div>
 
                     <div class="unbreakable text-center mt-10">
-                        <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapitre 15">
+                        <img src="9.png" class="chapter-illustration mx-auto" alt="Illustration Chapitre 16">
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-100 my-12">
+
+                <div id="lexique" class="mb-16 scroll-mt-8 unbreakable bg-gray-900 text-white rounded-3xl p-8 shadow-xl print:bg-white print:text-black print:border-4 print:border-black">
+                    <h2 class="text-3xl font-black mb-6 flex items-center border-b-2 border-gray-700 pb-4 print:border-gray-200">
+                        <i class="fas fa-life-ring text-nuls-yellow mr-4"></i> Het IT Survival Lexicon
+                    </h2>
+                    <p class="text-sm text-gray-300 mb-6 print:text-gray-600">De essentiële samenvatting van de acroniemen gebruikt op de SSDD-afdeling.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                        <div><span class="text-nuls-yellow font-bold">IDMS</span> : Nationaal Invoersysteem.</div>
+                        <div><span class="text-nuls-yellow font-bold">AES</span> : Nationaal Uitvoersysteem.</div>
+                        <div><span class="text-nuls-yellow font-bold">NCTS</span> : Europees systeem voor Douanevervoer.</div>
+                        <div><span class="text-nuls-yellow font-bold">SEDA 3.0</span> : De regelmotor voor Risicoanalyse.</div>
+                        <div><span class="text-nuls-yellow font-bold">FINDA</span> : De boekhoudapplicatie voor douanegaranties.</div>
+                        <div><span class="text-nuls-yellow font-bold">GMS</span> : Het garantiesysteem exclusief voor vervoer (NCTS).</div>
+                        <div><span class="text-nuls-yellow font-bold">IRP</span> : Inbound Release Platform (Het brein van de haven).</div>
+                        <div><span class="text-nuls-yellow font-bold">EMCS</span> : Het systeem voor het volgen van Accijnzen in schorsing.</div>
+                        <div><span class="text-nuls-yellow font-bold">AC4</span> : De nationale applicatie voor de betaling van Accijnzen.</div>
+                        <div><span class="text-nuls-yellow font-bold">CDMS</span> : Europees portaal voor het beheer van Vergunningen.</div>
+                        <div><span class="text-nuls-yellow font-bold">ICS2</span> : Het veiligheidsschild van de grenzen (Voor laden).</div>
+                        <div><span class="text-nuls-yellow font-bold">MRA</span> : Mutual Recognition Agreement OF Manual Risk Analysis.</div>
                     </div>
                 </div>
 
@@ -1201,7 +1296,7 @@
                     <div class="space-y-6 text-lg font-light text-gray-300 print:text-gray-800 text-justify">
                         <p>Hier zijn we aangekomen bij het einde van deze reis naar het hart van de douane en accijnzen.</p>
                         <p>Dit document is gemaakt met één enkele ambitie: proberen een universum te <strong class="text-white print:text-black font-bold">vulgariseren</strong> dat vaak als te complex wordt beschouwd, en het toegankelijk te maken voor iedereen die de essentiële werking ervan wil begrijpen.</p>
-                        <p>Ik wil graag alle collega's en professionals die me gedurende mijn hele carrière hebben geïnspireerd, hartelijk bedanken. Omdat ik meer dan <strong class="text-[#FFD600] print:text-black font-bold">8 jaar als Business Analyst heb gewerkt in de IMI-dienst</strong> (de oude naam van onze huidige afdeling <strong>SSDD</strong>), heb ik kunnen vaststellen hoe belangrijk helderheid en kennisoverdracht zijn binnen onze administratie.</p>
+                        <p>Ik wil graag alle collega's en professionals die me gedurende mijn hele carrière hebben geïnspireerd, hartelijk bedanken. Omdat ik meer dan <strong class="text-[#FFD600] print:text-black font-bold">8 jaar als Business Analyst heb gewerkt in de IMI-dienst</strong> (de oude naam van onze huidige afdeling <strong>SSDD</strong>), heb ik kunnen vaststellen hoe cruciaal helderheid en kennisoverdracht zijn binnen onze administratie.</p>
                         <p>Bedankt voor uw lezing en veel succes in uw verdere carrière binnen de FOD Financiën!</p>
                     </div>
                     <div class="mt-12 inline-block bg-white/10 print:bg-gray-100 p-8 rounded-2xl backdrop-blur-sm border border-white/10 print:border-gray-300">
@@ -1209,7 +1304,7 @@
                         <p class="text-sm uppercase tracking-widest opacity-70 font-semibold print:text-gray-600">Expert IMI / QAS • SSDD</p>
                     </div>
                     <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest text-sm">Douane voor Dummies</p>
+                        <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest text-sm">Douane voor Dummies (V4)</p>
                         <p class="text-xs opacity-50 font-medium">© 2026 FOD FINANCIËN - AAD&A</p>
                     </div>
                 </footer>
@@ -1219,42 +1314,46 @@
 
     </div>
 
+    <!-- UI (Back to top) -->
     <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
-        
-        <!-- Bouton Retour en Haut -->
-        <button id="backToTopBtn" class="bg-nuls-black text-white hover:bg-gray-800 font-black w-14 h-14 rounded-full shadow-xl border-[3px] border-nuls-black transition-all transform translate-y-12 opacity-0 flex items-center justify-center text-xl">
+        <button id="backToTopBtn" class="bg-nuls-black text-white hover:bg-gray-800 font-black w-14 h-14 rounded-full shadow-xl border-[3px] border-nuls-black transition-all transform translate-y-12 opacity-0 flex items-center justify-center text-xl cursor-pointer">
             <i class="fas fa-arrow-up"></i>
         </button>
-
-        <!-- Bouton d'impression 
-        <button onclick="window.print()" class="bg-[#FFD600] text-[#1A1A1A] hover:bg-yellow-400 font-black py-4 px-8 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-[#1A1A1A] transition-all hover:-translate-y-1 flex items-center gap-3 text-lg">
-            <i class="fas fa-print"></i> Genereer de PDF
-        </button>-->
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const backToTopBtn = document.getElementById("backToTopBtn");
             const tocLinks = document.querySelectorAll('.toc-link');
-            const sections = document.querySelectorAll('div[id^="chap"], div[id="preface"], div[id="intro"], footer[id="conclusion"]');
+            const sections = document.querySelectorAll('div[id^="chap"], div[id="preface"], div[id="intro"], div[id="lexique"], footer[id="conclusion"]');
 
             window.addEventListener("scroll", () => {
-                if (window.scrollY > 500) { backToTopBtn.classList.remove("translate-y-12", "opacity-0"); } 
-                else { backToTopBtn.classList.add("translate-y-12", "opacity-0"); }
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.remove("translate-y-12", "opacity-0");
+                } else {
+                    backToTopBtn.classList.add("translate-y-12", "opacity-0");
+                }
             });
 
-            backToTopBtn.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
 
             window.addEventListener('scroll', () => {
                 let currentSection = '';
+
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (scrollY >= sectionTop - 250) { currentSection = section.getAttribute('id'); }
+                    if (scrollY >= sectionTop - 250) {
+                        currentSection = section.getAttribute('id');
+                    }
                 });
 
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection && currentSection !== '') { link.classList.add('active'); }
+                    if (link.getAttribute('href') === '#' + currentSection && currentSection !== '') {
+                        link.classList.add('active');
+                    }
                 });
             });
         });
