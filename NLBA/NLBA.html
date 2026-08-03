@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analysis Framework - Information Management</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        nuls: {
+                            yellow: '#FFD600',
+                            black: '#1A1A1A',
+                            gray: '#F8F9FA',
+                            blue: '#2563EB',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --nuls-border: 3px solid #1A1A1A;
+            --nuls-shadow: 6px 6px 0px #1A1A1A;
+            --bg-body: #E5E7EB;
+            --text-body: #1A1A1A;
+            --card-bg: #ffffff;
+            --card-border: #1A1A1A;
+            --section-bg: #F8F9FA;
+        }
+
+        .dark {
+            --nuls-border: 3px solid #FFD600;
+            --nuls-shadow: 6px 6px 0px #FFD600;
+            --bg-body: #111827; 
+            --text-body: #F3F4F6; 
+            --card-bg: #1F2937; 
+            --card-border: #FFD600;
+            --section-bg: #374151; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, .font-nuls { font-family: 'Montserrat', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .bg-nuls-yellow { background-color: #FFD600; color: #1A1A1A;}
+        .text-nuls-yellow { color: #FFD600; }
+        .dark .text-nuls-black { color: #FFD600; } 
+        .text-nuls-black { color: #1A1A1A; }
+
+        .nuls-box {
+            position: relative;
+            border: var(--nuls-border);
+            border-radius: 1.25rem;
+            padding: 3rem 1.5rem 1.5rem 1.5rem;
+            margin: 3.5rem 0 2.5rem 0;
+            background-color: var(--card-bg);
+            box-shadow: var(--nuls-shadow);
+            transition: transform 0.2s ease, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .nuls-box:hover { transform: translateY(-2px); }
+
+        .nuls-box-icon {
+            position: absolute;
+            top: -28px;
+            left: 24px;
+            background: #FFD600;
+            border: var(--nuls-border);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1A1A1A;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.6rem 1rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.5rem;
+            color: #6B7280; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+        .dark .toc-link { color: #9CA3AF; }
+        .toc-link:hover { background-color: var(--section-bg); color: var(--text-body); transform: translateX(4px); }
+        .toc-link.active {
+            background-color: #FFD600;
+            color: #1A1A1A;
+            font-weight: 800;
+            border: 2px solid #1A1A1A;
+            box-shadow: 3px 3px 0px #1A1A1A;
+            transform: translateX(4px);
+        }
+        .dark .toc-link.active { border-color: #1A1A1A; }
+
+        .unbreakable { page-break-inside: avoid !important; break-inside: avoid !important; display: block !important; }
+        .flow-arrow { text-align: center; font-size: 1.5rem; color: #9CA3AF; margin: 0.5rem 0; }
+        
+        .lexicon-term {
+            border-bottom: 2px dotted #FFD600;
+            cursor: help;
+            font-weight: 600;
+            position: relative;
+            background: none;
+            padding: 0;
+            color: inherit;
+            transition: color 0.2s;
+        }
+        .lexicon-term:hover { color: #FFD600; }
+
+        @media print {
+            @page { size: A4 portrait; margin: 1.5cm; }
+            body { background-color: #fff !important; color: #000 !important; font-size: 9.5pt !important; }
+            .print-container { box-shadow: none !important; margin: 0 !important; max-width: 100% !important; border: none !important; }
+            .page-break { page-break-before: always !important; }
+            .nuls-box { margin: 2rem 0 1rem 0 !important; border-width: 2px !important; box-shadow: 4px 4px 0px #1A1A1A !important; background-color: #fff !important; border-color: #1A1A1A !important;}
+            .nuls-box-icon { border-color: #1A1A1A !important; }
+            .no-print { display: none !important; }
+            .sidebar-nav { display: none !important; }
+            .content-area { width: 100% !important; max-width: 100% !important; border: none !important; padding: 0 !important; box-shadow: none !important; background-color: #fff !important;}
+            .lexicon-term { border-bottom: none; font-weight: normal; }
+        }
+    </style>
+</head>
+<body class="transition-colors duration-300">
+
+    <!-- Language Switcher -->
+    <div class="fixed top-6 right-6 z-[100] flex gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-2 rounded-xl border-2 border-nuls-black dark:border-white shadow-[4px_4px_0px_#1A1A1A] dark:shadow-[4px_4px_0px_#FFD600] no-print transition-colors duration-300">
+        <a href="ba_framework_nuls_v7.html" class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold px-3 py-1 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm text-sm hover:scale-105 transition-transform hover:border-nuls-black dark:hover:border-nuls-yellow">FR</a>
+        <a href="ba_framework_nuls_nl.html" class="bg-nuls-yellow text-nuls-black font-black px-3 py-1 rounded-lg border-2 border-nuls-black shadow-sm text-sm hover:scale-105 transition-transform">NL</a>
+        <a href="ba_framework_nuls_en.html" class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold px-3 py-1 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm text-sm hover:scale-105 transition-transform hover:border-nuls-black dark:hover:border-nuls-yellow">EN</a>
+    </div>
+
+    <!-- Lexicon Modal -->
+    <div id="lexiconModal" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity opacity-0 duration-300">
+        <div class="bg-white dark:bg-gray-800 border-4 border-nuls-black dark:border-nuls-yellow rounded-2xl p-6 max-w-md w-[90%] shadow-[8px_8px_0px_#1A1A1A] dark:shadow-[8px_8px_0px_#FFD600] transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modalTitle" class="font-nuls font-black text-2xl text-nuls-black dark:text-nuls-yellow border-b-2 border-gray-200 dark:border-gray-600 pb-2">Titel</h3>
+                <button onclick="closeLexicon()" class="text-gray-500 hover:text-red-500 text-xl font-bold transition-colors"><i class="fas fa-times"></i></button>
+            </div>
+            <p id="modalContent" class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify">Inhoud van de definitie...</p>
+        </div>
+    </div>
+
+    <div class="print-container max-w-[1600px] w-[95%] mx-auto my-8 print:my-0 print:w-full">
+        
+        <!-- Cover Page -->
+        <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-4 border-[#1A1A1A] rounded-3xl p-16 text-center relative z-10 overflow-hidden shadow-2xl print:border-2 mb-12">
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
+
+            <div class="absolute top-8 left-8 right-8 flex justify-between items-start z-20">
+                <div class="text-left bg-white border-4 border-nuls-black px-4 py-2 rounded-xl shadow-[4px_4px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    <h3 class="font-bold text-gray-900 text-xl font-nuls tracking-wider uppercase">FOD Financiën</h3>
+                    <p class="text-xs font-bold text-gray-700 mt-1">Information Management - SSDD</p>
+                </div>
+                <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Interactieve Editie (V7)</span>
+                    <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Gegamificeerd, Uitgebreid & Dark Mode</p>
+                </div>
+            </div>
+
+            <div class="relative z-20 mt-20 print:mt-12">
+                <h2 class="text-2xl font-bold mb-6 uppercase tracking-[0.3em] border-t-4 border-b-4 border-gray-900 py-3 inline-block">De Methodologische Gids</h2>
+                <h1 class="text-6xl md:text-7xl font-nuls font-black mb-8 text-gray-900 leading-[1.1] tracking-tight">
+                    Business Analyse<br>& Agile<br>
+                    <span class="text-white relative inline-block mt-2 px-4 py-2 bg-nuls-black rounded-2xl transform -rotate-2 shadow-[8px_8px_0px_#fff] print:shadow-none print:rotate-0 print:border-4 print:border-black print:text-black print:bg-transparent">
+                        voor Dummies
+                    </span>
+                </h1>
+                
+                <p class="text-2xl font-semibold mt-8 max-w-2xl mx-auto text-gray-800 bg-white p-4 border-4 border-nuls-black rounded-xl shadow-[6px_6px_0px_#1A1A1A] print:shadow-none print:border-2">
+                    De complete gids: Rollen, Levenscyclus, Scoping, Artefacten, Gherkin, Prototyping en Overleven in een project.
+                </p>
+            </div>
+            
+            <div class="unbreakable relative z-20 mt-16 bg-white px-8 py-6 rounded-2xl border-[3px] border-gray-900 shadow-[8px_8px_0px_#1A1A1A] text-left inline-block print:shadow-none print:mt-8">
+                <p class="text-gray-500 text-xs uppercase tracking-widest mb-2 font-bold">Gestandaardiseerd door</p>
+                <p class="text-2xl font-black text-gray-900 mb-3">Mohamed Amine EL AAJI</p>
+                <div class="flex items-center text-gray-800 mb-2">
+                    <div class="bg-green-100 p-1.5 rounded-lg mr-3"><i class="fas fa-check-circle text-green-600"></i></div>
+                    <p class="font-bold text-sm">Quality Assurance Services (QAS) - Team Lead</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="flex flex-col lg:flex-row gap-8 relative">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar-nav w-full lg:w-1/4 no-print relative z-10">
+                <div class="sticky top-8 bg-[var(--card-bg)] border-[3px] border-[var(--card-border)] rounded-3xl p-6 shadow-[6px_6px_0px_var(--card-border)] max-h-[calc(100vh-4rem)] overflow-y-auto transition-colors duration-300">
+                    <h3 class="font-nuls font-black text-xl mb-4 border-b-2 border-gray-200 dark:border-gray-700 pb-3 flex items-center text-[var(--text-body)]">
+                        <i class="fas fa-book-open text-nuls-yellow mr-3"></i> Inhoudsopgave
+                    </h3>
+                    <nav class="space-y-1" id="toc">
+                        <a href="#chap1" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">1</span> Fundamenten & BuCa</a>
+                        <a href="#chap2" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">2</span> De Projectrollen</a>
+                        <a href="#chap3" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">3</span> De Levenscyclus</a>
+                        <a href="#chap4" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">4</span> Scoping & Veldwerk</a>
+                        <a href="#chap5" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">5</span> Agile & Prototyping</a>
+                        <a href="#chap6" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">6</span> Artefacten & Oplevering</a>
+                        <a href="#chap7" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">7</span> Use Case vs User Story</a>
+                        <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">8</span> Definition of Ready</a>
+                        <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">9</span> Traceerbaarheid & BPMN</a>
+                        <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">10</span> BDD & Gherkin Syntaxis</a>
+                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">11</span> Toolkit & Organisatie</a>
+                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">12</span> Overleving & Soft Skills</a>
+                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">13</span> Overlevingsquiz!</a>
+                        <a href="#conclusion" class="toc-link mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"><i class="fas fa-flag-checkered text-gray-400 mr-2"></i> Checklist & Einde</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content-area w-full lg:w-3/4 bg-[var(--card-bg)] border-4 border-[var(--card-border)] rounded-3xl shadow-2xl p-8 lg:p-12 print-border-none text-lg transition-colors duration-300">
+                
+                <!-- Chapter 1 -->
+                <div id="chap1" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">1</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Fundamenten, Jargon & BuCa 💎</h2>
+                        </div>
+                    </div>
+                    <div class="bg-[var(--section-bg)] p-8 rounded-2xl border-l-[6px] border-nuls-yellow shadow-sm text-justify mb-8 transition-colors">
+                        <p class="mb-4">Business Analyse (BA) is niet zomaar een administratieve documentatiestap. Het is de strategische discipline die een zakelijk probleem of opportuniteit omzet in een oplossing die tastbare <strong><button class="lexicon-term" data-term="Waarde">Waarde</button></strong> genereert voor de organisatie.</p>
+                        <p class="mb-4">Zonder een grondige analyse mislukken IT-projecten niet door de technologie, maar omdat ze een antwoord bieden op de verkeerde vraag. Het doel van BA binnen Information Management is ervoor te zorgen dat we <strong>het juiste ding bouwen</strong> voordat we ons afvragen <strong>hoe we het moeten bouwen</strong>.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-6">
+                            <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm">
+                                <h4 class="font-black text-lg mb-2 text-nuls-blue dark:text-blue-400"><i class="fas fa-book-reader mr-2"></i> De <button class="lexicon-term" data-term="BABOK">BABOK</button></h4>
+                                <p class="text-sm text-justify">Dit is de wereldwijde bijbel van best practices voor bedrijfsstrategie. Het is geen strikte methode, maar een immense "gereedschapskist" die definieert hoe een analist waarde moet extraheren en relevante oplossingen moet ontwerpen.</p>
+                            </div>
+                            <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm">
+                                <h4 class="font-black text-lg mb-2 text-green-600 dark:text-green-400"><i class="fas fa-certificate mr-2"></i> De <button class="lexicon-term" data-term="IREB">IREB</button></h4>
+                                <p class="text-sm text-justify">De wereldwijde certificeringsinstantie voor <strong>Requirements Engineering</strong>. Het leert je hoe je behoeften moet vastleggen, schrijven, modelleren en traceren zodat een IT-ontwikkelaar ze foutloos kan begrijpen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Oorsprong: De Business Case (BuCa)</h3>
+                    <p class="mb-4 text-justify text-sm">Nog voordat je de eerste regel code schrijft of een proces tekent, moet je het bestaan van het project en de financiering ervan verantwoorden. Dit is de rol van de <strong>Business Case (BuCa)</strong>. Het beantwoordt 6 existentiële vragen om het management te overtuigen om te investeren.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-sm">
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">1. WHY ? (De Voordelen)</strong> : Waarom dit project doen? We definiëren <button class="lexicon-term" data-term="SMART">SMART</button> voordelen en de <button class="lexicon-term" data-term="ROI">ROI</button>.</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">2. FOR WHO ? (Gebruikers)</strong> : Wie wordt er beïnvloed? (bijv. De 204 douane-ploegbazen).</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (De Producten)</strong> : Wat gaan we leveren? We gebruiken de <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button>-methode om te prioriteren.</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">4. HOW ? (De Kosten)</strong> : Hoeveel Mensdagen (Ontwikkelaars, FA, BA) gaat dit kosten?</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">5. HOW LONG ? (De Timing)</strong> : Wat is de geschatte duur en wat zijn de projectfasen?</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-red-600 dark:text-red-400">6. WHAT IF ? (Optie 0)</strong> : Wat gebeurt er als we NIETS doen (Optie 0)? En wat zijn de risico's?</div>
+                    </div>
+
+                    <div class="bg-yellow-50 dark:bg-gray-800 border-l-[6px] border-nuls-yellow p-4 rounded-r-xl text-gray-800 dark:text-gray-200">
+                        <strong class="block mb-2 text-nuls-black dark:text-nuls-yellow"><i class="far fa-calendar-alt mr-2"></i> De Seizoenscyclus van de BuCa bij de FOD:</strong>
+                        <ul class="text-sm space-y-1">
+                            <li>🌱 <strong>Lente:</strong> Opstellen van de voorlopige versie met experts en het COC (Centre of Competence).</li>
+                            <li>☀️ <strong>Juni:</strong> De "Pitch"! Mondelinge presentatie voor het comité om het project te verdedigen.</li>
+                            <li>🏖️ <strong>Zomer:</strong> Verwerken van feedback en verfijnen van het document.</li>
+                            <li>🍂 <strong>September:</strong> Indienen van de definitieve BuCa voor budgettaire goedkeuring voor het volgende jaar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 2 -->
+                <div id="chap2" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">2</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">De Rollen: Het Grote Misverstand (BA vs FA) 🎭</h2>
+                            </div>
+                        </div>
+                        <p class="mb-6 text-justify">Het succes van een project hangt af van een strikte scheiding van verantwoordelijkheden. De mythe van de BA als een simpele "luxe secretaresse" of "schrijver van User Stories" moet verdwijnen. De ene houdt zich bezig met het "Wat", de andere met het "Hoe".</p>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-6 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 1. De Afbakening BA vs FA</h3>
+                    <div class="space-y-6 mb-10">
+                        <!-- BA -->
+                        <div class="unbreakable bg-[var(--card-bg)] p-6 border-2 border-[var(--card-border)] rounded-2xl shadow-[6px_6px_0px_var(--card-border)] transition-colors">
+                            <h3 class="font-black text-2xl text-nuls-yellow bg-nuls-black dark:bg-nuls-yellow dark:text-nuls-black inline-block px-4 py-1 rounded-lg mb-4">De Business Analist (BA)</h3>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 mb-2">De garant voor de "WAT". De Business Architect.</p>
+                            <p class="text-sm mb-4 text-justify">De BA is de ontwerper van de behoefte. Hij is de officiële brug tussen de douane-business en IT. Hij noteert niet zomaar wat hem wordt gedicteerd; hij is analist, facilitator en vertaler.</p>
+                            <div class="bg-[var(--section-bg)] p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <strong class="text-sm">Belangrijkste verantwoordelijkheden:</strong>
+                                <ul class="list-disc pl-5 text-sm mt-2 grid grid-cols-1 md:grid-cols-2 gap-1">
+                                    <li>Definitie van de Scope (In/Out)</li>
+                                    <li>Modelleren van Processen (<button class="lexicon-term" data-term="BPMN">BPMN</button>)</li>
+                                    <li>Analyse AS-IS, TO-BE en GAP</li>
+                                    <li>Schrijven van Use Cases (Happy & Unhappy flows)</li>
+                                    <li class="font-bold text-blue-600 dark:text-blue-400">Uitvoeren/superviseren van business tests (<button class="lexicon-term" data-term="UAT">UAT</button>)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- FA -->
+                        <div class="unbreakable bg-blue-50 dark:bg-blue-900 p-6 border-2 border-blue-900 dark:border-blue-400 rounded-2xl shadow-[6px_6px_0px_#1E3A8A] dark:shadow-[6px_6px_0px_#60A5FA] transition-colors text-blue-900 dark:text-white">
+                            <h3 class="font-black text-2xl text-white bg-blue-900 dark:bg-blue-600 inline-block px-4 py-1 rounded-lg mb-4">De Functioneel Analist (FA)</h3>
+                            <p class="font-bold text-blue-800 dark:text-blue-200 mb-2">De garant voor de "HOE". De Oplossingsingenieur.</p>
+                            <p class="text-sm mb-4 text-justify">De FA neemt het over zodra de zakelijke behoefte duidelijk en vastgelegd is. Hij vertaalt het "Wat" (Use Cases van de BA) in een actiegerichte taal voor de ontwikkelaars.</p>
+                            <div class="bg-white dark:bg-blue-800 p-3 rounded-lg border border-blue-200 dark:border-blue-700">
+                                <strong class="text-sm">Belangrijkste verantwoordelijkheden:</strong>
+                                <ul class="list-disc pl-5 text-sm mt-2 grid grid-cols-1 md:grid-cols-2 gap-1">
+                                    <li>Ontwerp van de technische oplossing (Schermen, DB)</li>
+                                    <li>Definitie van integraties (API tussen systemen)</li>
+                                    <li>Opsplitsen in User Stories voor de codeurs</li>
+                                    <li>Schrijven van Acceptance Criteria (AC)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Het Directieteam (Stuurgroep)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
+                            <h4 class="font-bold mb-1">De Sponsor (Executive)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">De grote baas. Hij financiert het project, valideert de BuCa en neemt de kritieke Go/No-Go beslissingen.</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">Senior User (Business)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Vertegenwoordigt de belangen van degenen die de uiteindelijke oplossing zullen gebruiken (bijv. de directeur douane Antwerpen).</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">Senior Supplier (IT)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Vertegenwoordigt de IT-entiteit of dienstverlener die de oplossing technisch bouwt en levert.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 3. De Bewakers van Kwaliteit en Tijd</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 unbreakable mb-8">
+                        <div class="bg-green-50 dark:bg-green-900 p-5 rounded-2xl border-l-[6px] border-green-500 shadow-sm text-green-900 dark:text-green-100">
+                            <h4 class="font-black text-lg mb-2"><i class="fas fa-check-double mr-2"></i> <button class="lexicon-term" data-term="QAS">Quality Assurance (QAS)</button></h4>
+                            <p class="text-sm text-justify mb-2">Zij zijn de bewakers van de tempel. Bij ons onderscheiden we twee vitale takken:</p>
+                            <ul class="list-disc pl-5 text-sm space-y-1">
+                                <li><strong>Quality IT :</strong> Controleert de netheid van de code en de architectuur.</li>
+                                <li><strong>Quality BA :</strong> Hun rol is om de conformiteit te <em>verifiëren</em>, niet om uit te voeren. Ze schrijven de tests niet, ze waken over het naleven van procedures, geven de formele <em>Business Approval</em>, het Go/No-Go advies en valideren de <em>Release Notes</em> voor externe economische operatoren.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900 p-5 rounded-2xl border-l-[6px] border-purple-500 shadow-sm text-purple-900 dark:text-purple-100">
+                            <h4 class="font-black text-lg mb-2"><i class="fas fa-tasks mr-2"></i> Project Management (PM)</h4>
+                            <p class="text-sm text-justify mb-2">De <strong>Projectleider (PM)</strong> beheert het budget, de planning en de risico's. Hij wordt ondersteund door het <strong>COC</strong> dat toeziet op de naleving van de methodologie.</p>
+                            <p class="text-xs font-bold text-red-600 dark:text-red-300 mt-2 bg-white dark:bg-purple-800 p-2 rounded">💡 Overleven: Als je geen toegewezen PM hebt, is het aan jou (de BA) om de scoop te beheren en risico's te escaleren!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 3 -->
+                <div id="chap3" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">3</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">De Gedetailleerde Levenscyclus ⏱️</h2>
+                            </div>
+                        </div>
+                        <p class="mb-8 text-justify">Magie gebeurt niet per toeval. Het is een informatietransformatiestroom die is gestructureerd in strikte fasen, van de ontdekking van de behoefte tot de ingebruikname. Hier is de officiële "Pipeline" van de SSDD, met alle uitleg.</p>
+                    </div>
+
+                    <div class="unbreakable bg-[var(--card-bg)] p-6 md:p-8 border-[3px] border-[var(--card-border)] rounded-3xl shadow-[8px_8px_0px_var(--card-border)] transition-colors mb-10">
+                        
+                        <div class="flex flex-col md:flex-row md:items-center bg-[var(--section-bg)] p-4 rounded-xl border-l-[6px] border-gray-500 shadow-sm mb-2">
+                            <div class="font-black text-xl w-32 text-gray-500 mb-2 md:mb-0">Fase 1</div>
+                            <div class="flex-1 font-bold">
+                                1. Probleem <i class="fas fa-arrow-right mx-2 text-gray-400"></i> 2. Behoefte <i class="fas fa-arrow-right mx-2 text-gray-400"></i> 3. Scope
+                                <p class="text-sm mt-1 text-gray-600 dark:text-gray-400 font-normal">We bakenen het speelveld af. Wat is het echte zakelijke probleem en wat is formeel uitgesloten van het project?</p>
+                            </div>
+                            <div class="bg-nuls-yellow text-nuls-black text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">BA</div>
+                        </div>
+                        
+                        <div class="flow-arrow"><i class="fas fa-chevron-down"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-[var(--section-bg)] p-4 rounded-xl border-l-[6px] border-gray-500 shadow-sm mb-2">
+                            <div class="font-black text-xl w-32 text-gray-500 mb-2 md:mb-0">Fase 2</div>
+                            <div class="flex-1 font-bold">
+                                4. Requirements <i class="fas fa-arrow-right mx-2 text-gray-400"></i> 5. AS-IS
+                                <p class="text-sm mt-1 text-gray-600 dark:text-gray-400 font-normal">We fotograferen het heden. Hoe werken de douaniers vandaag de dag concreet?</p>
+                            </div>
+                            <div class="bg-nuls-yellow text-nuls-black text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">BA</div>
+                        </div>
+
+                        <div class="flow-arrow"><i class="fas fa-chevron-down"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-[var(--section-bg)] p-4 rounded-xl border-l-[6px] border-gray-500 shadow-sm mb-2">
+                            <div class="font-black text-xl w-32 text-gray-500 mb-2 md:mb-0">Fase 3</div>
+                            <div class="flex-1 font-bold">
+                                6. TO-BE <i class="fas fa-arrow-right mx-2 text-gray-400"></i> 7. GAP Analysis
+                                <p class="text-sm mt-1 text-gray-600 dark:text-gray-400 font-normal">We tekenen de toekomst. Hoe ziet het nieuwe proces eruit en wat missen we om daar te komen?</p>
+                            </div>
+                            <div class="bg-nuls-yellow text-nuls-black text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">BA</div>
+                        </div>
+
+                        <div class="flow-arrow"><i class="fas fa-chevron-down"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-[#FEF08A] dark:bg-yellow-900 p-4 rounded-xl border-l-[6px] border-nuls-black dark:border-nuls-yellow shadow-inner transform scale-105 my-4">
+                            <div class="font-black text-xl w-32 text-gray-800 dark:text-gray-200 mb-2 md:mb-0">Fase 4</div>
+                            <div class="flex-1 font-black text-lg text-nuls-black dark:text-white">
+                                8. Use Cases (Happy & Unhappy Flows)
+                                <p class="text-sm mt-1 text-gray-800 dark:text-gray-300 font-medium">We schrijven de volledige scenario's. Het beslissende moment: de BA draagt het gevalideerde dossier over aan de FA.</p>
+                            </div>
+                            <div class="bg-nuls-black dark:bg-white text-nuls-yellow dark:text-nuls-black text-sm font-black px-3 py-1 rounded shadow-md mt-2 md:mt-0 w-max flex items-center self-start md:self-center"><i class="fas fa-exchange-alt mr-2"></i> HANDOVER</div>
+                        </div>
+
+                        <div class="flow-arrow"><i class="fas fa-chevron-down text-blue-500"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-blue-50 dark:bg-blue-900 p-4 rounded-xl border-l-[6px] border-blue-900 dark:border-blue-400 text-blue-900 dark:text-white shadow-sm mb-2">
+                            <div class="font-black text-xl w-32 text-blue-800 dark:text-blue-300 mb-2 md:mb-0">Fase 5</div>
+                            <div class="flex-1 font-bold">
+                                9. FA Analysis <i class="fas fa-arrow-right mx-2 text-blue-400"></i> 10. User Stories / AC
+                                <p class="text-sm mt-1 text-blue-700 dark:text-blue-300 font-normal">IT neemt het over. De FA vertaalt de business naar technische specificaties (Hoe) en deelt deze op in taken voor de programmeurs.</p>
+                            </div>
+                            <div class="bg-blue-900 dark:bg-blue-600 text-white text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">FA</div>
+                        </div>
+
+                        <div class="flow-arrow"><i class="fas fa-chevron-down text-blue-500"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-blue-50 dark:bg-blue-900 p-4 rounded-xl border-l-[6px] border-blue-900 dark:border-blue-400 text-blue-900 dark:text-white shadow-sm mb-2">
+                            <div class="font-black text-xl w-32 text-blue-800 dark:text-blue-300 mb-2 md:mb-0">Fase 6</div>
+                            <div class="flex-1 font-bold">
+                                11. Development <i class="fas fa-arrow-right mx-2 text-blue-400"></i> 12. Testing (UAT)
+                                <p class="text-sm mt-1 text-blue-700 dark:text-blue-300 font-normal">Ontwikkelaars coderen en doen geautomatiseerde regressietesten. Daarna test de business (UAT).</p>
+                            </div>
+                            <div class="bg-blue-900 dark:bg-blue-600 text-white text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">DEV / QA</div>
+                        </div>
+
+                        <div class="flow-arrow"><i class="fas fa-chevron-down text-green-500"></i></div>
+
+                        <div class="flex flex-col md:flex-row md:items-center bg-green-50 dark:bg-green-900 p-4 rounded-xl border-l-[6px] border-green-600 text-green-900 dark:text-white shadow-sm">
+                            <div class="font-black text-xl w-32 text-green-800 dark:text-green-300 mb-2 md:mb-0">Fase 7</div>
+                            <div class="flex-1 font-bold">
+                                13. Release & Go-Live
+                                <p class="text-sm mt-1 text-green-700 dark:text-green-300 font-normal">Champagne! De oplossing is geïmplementeerd op het terrein voor de douaniers.</p>
+                            </div>
+                            <div class="bg-green-600 text-white text-sm font-black px-3 py-1 rounded shadow-sm mt-2 md:mt-0 w-max self-start md:self-center">ALL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 4 -->
+                <div id="chap4" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable w-full">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">4</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Scoping & Veldwerk 🗺️</h2>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-justify">Voordat je ook maar iets codeert (Fase 1 tot 3), moet je de huidige status in kaart brengen (AS-IS) om de gewenste toekomstige status (TO-BE) te projecteren. Gapanalyse identificeert wat er ontbreekt om van de een naar de ander te gaan.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 mt-6 text-sm">
+                        <div class="bg-[var(--card-bg)] p-4 rounded-xl border-2 border-[var(--card-border)] shadow-sm">
+                            <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-nuls-yellow"><i class="fas fa-globe-europe text-blue-500 mr-2"></i> PESTLE</h4>
+                            <p class="text-justify">Onderzoekt externe factoren: Politiek, Economisch, Sociaal, Technologisch, Legaal (zeer belangrijk in de Douane!) en Omgeving (bijv. CBAM).</p>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-4 rounded-xl border-2 border-[var(--card-border)] shadow-sm">
+                            <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-nuls-yellow"><i class="fas fa-bullseye text-red-500 mr-2"></i> MOST</h4>
+                            <p class="text-justify">Interne analyse van de AAD&A: Missie, Objectieven, Strategieën en Tactieken. Is het project afgestemd op de visie van het management?</p>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-4 rounded-xl border-2 border-[var(--card-border)] shadow-sm">
+                            <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-nuls-yellow"><i class="fas fa-users-cog text-green-500 mr-2"></i> CATWOE</h4>
+                            <p class="text-justify">Identificeert: Klanten (operatoren), Acteurs (douaniers), Transformatie, Wereldbeeld, Eigenaar (Sponsor), en Omgeving.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Elicitatie (Informatieverzameling in het veld)</h3>
+                    <p class="mb-4 text-sm text-justify">Elicitatie is de kunst van het omzetten van latente behoeften in expliciete vereisten. Je moet niet zomaar aannemen wat gebruikers zeggen te willen, je moet begrijpen wat ze echt nodig hebben.</p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-gray-300 dark:border-gray-600">
+                            <i class="fas fa-comment-dots text-2xl text-blue-500 mr-4 mt-1 w-8 text-center"></i>
+                            <div class="text-sm"><strong class="block text-nuls-black dark:text-nuls-yellow text-base">De "Stille Meester" techniek</strong> Laat na een antwoord opzettelijk een stilte vallen van 3 tot 4 seconden. Deze psychologische leegte dwingt de spreker om dieper te graven en kritische details prijs te geven.</div>
+                        </div>
+                        <div class="flex items-start bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-gray-300 dark:border-gray-600">
+                            <i class="fas fa-binoculars text-2xl text-green-500 mr-4 mt-1 w-8 text-center"></i>
+                            <div class="text-sm"><strong class="block text-nuls-black dark:text-nuls-yellow text-base">Observatie (Job Shadowing)</strong> Ga het veld in. Observeer wat douaniers <em>doen</em>. De "workarounds" (de post-its op de schermen) zijn je beste bron van echte behoeften.</div>
+                        </div>
+                    </div>
+
+                    <div class="unbreakable bg-[var(--section-bg)] p-6 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md mb-8 transition-colors">
+                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advies: De Eenzame BA</h4>
+                        <p class="text-sm mb-4 text-justify">In een ideale wereld leiden we een workshop met twee personen: een BA die het interview leidt, en een tweede die aantekeningen maakt. Maar laten we realistisch zijn: <strong>bij de SSDD heb je niet altijd deze luxe en sta je er vaak alleen voor bij je stakeholders.</strong> Hoe overleef je en mis je niets?</p>
+                        
+                        <ul class="space-y-3 text-sm font-medium">
+                            <li class="flex items-start">
+                                <i class="fas fa-record-vinyl text-red-500 mt-1 mr-2"></i>
+                                <div><strong class="text-nuls-black dark:text-white">Opnemen zonder schaamte:</strong> Vraag in Teams standaard toestemming om op te nemen. Zo kan je je 100% concentreren op actief luisteren en empathie.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-desktop text-blue-500 mt-1 mr-2"></i>
+                                <div><strong class="text-nuls-black dark:text-white">Live Scribing (Scherm delen):</strong> Projecteer je aantekeningen of leeg diagram op het scherm. Typ live met hen mee. Als ze een fout zien, corrigeren ze je onmiddellijk.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-hourglass-half text-nuls-yellow mt-1 mr-2 bg-nuls-black rounded p-0.5"></i>
+                                <div><strong class="text-nuls-black dark:text-white">De 60-minuten regel:</strong> Tegelijkertijd leiden en noteren is uitputtend. Deel je interviews op in blokken van maximaal één uur om een heldere geest te behouden.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 5 -->
+                <div id="chap5" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable w-full">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">5</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Agile & Prototyping (SpaceX) 🏃‍♂️</h2>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-justify">De SSDD hanteert een <strong>Agile</strong> aanpak. Om dit te begrijpen, moet je het afzetten tegen de oude methode: het watervalmodel (Waterfall).</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 mb-8">
+                        <!-- Waterfall -->
+                        <div class="bg-[var(--section-bg)] rounded-2xl border-2 border-gray-300 dark:border-gray-600 p-6 relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 opacity-5 text-8xl text-black dark:text-white"><i class="fas fa-water"></i></div>
+                            <h3 class="font-black text-xl mb-4 text-gray-700 dark:text-gray-300 border-b-2 border-gray-300 dark:border-gray-600 pb-2">De Waterfall Methode (Waterval)</h3>
+                            <p class="text-sm text-justify mb-4">We knippen het project op in opeenvolgende fasen: 1. Analyseer <em>alles</em>, 2. Codeer <em>alles</em>, 3. Test <em>alles</em>.</p>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i> <div><strong>Tunneleffect:</strong> De douaniers zien de applicatie pas helemaal aan het einde van het project (soms na 2 jaar). Vaak komt het eindresultaat niet meer overeen met de huidige wetgeving.</div></li>
+                            </ul>
+                        </div>
+
+                        <!-- Agile -->
+                        <div class="bg-[var(--card-bg)] rounded-2xl border-[3px] border-[var(--card-border)] p-6 shadow-[6px_6px_0px_var(--card-border)] relative overflow-hidden transition-colors">
+                            <div class="absolute -right-4 -top-4 opacity-5 text-8xl text-black dark:text-white"><i class="fas fa-sync-alt"></i></div>
+                            <h3 class="font-black text-xl mb-4 text-blue-600 dark:text-blue-400 border-b-2 border-[var(--card-border)] pb-2">Agile (Scrum)</h3>
+                            <p class="text-sm text-justify mb-4">We knippen het project op in korte cycli (Sprints, van 2 tot 4 weken).</p>
+                            <ul class="space-y-3 text-sm font-medium">
+                                <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i> <div><strong>Continue Levering:</strong> Aan het einde van elke sprint leveren we een klein, testbaar stukje software dat al waarde toevoegt voor de business. Als de wet verandert, passen we ons aan zonder alles af te breken!</div></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="nuls-box unbreakable border-nuls-black dark:border-nuls-yellow shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black dark:border-nuls-yellow"><i class="fas fa-rocket"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-nuls-black dark:text-nuls-yellow">Rapid Prototyping (SpaceX Methode)</h4>
+                        <p class="text-justify text-sm mb-3">Hoe voorkom je "Analyse Verlamming"? Door de mentaliteit aan te nemen: "Build, Try, Correct".</p>
+                        <ul class="space-y-4 text-sm text-justify">
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Presenteer opties, geen lege vragen:</strong> Stel <em>jouw</em> optimale oplossing voor op basis van de huidige info, en laat de stakeholders deze afbreken. <strong>Fouten maken is de snelste manier om de juiste informatie te krijgen!</strong></li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. De "Good Enough" diagrammen regel:</strong> Er is geen perfect diagram. Voeg <em>alleen</em> detail toe op basis van feedback.</li>
+                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Mondelinge communicatie heeft een retentie van 0.00000:</strong> Maak <em>altijd</em> een verslag van beslissingen. Als iemand klaagt, stel dan voor dat zij bij de volgende vergadering de verantwoordelijkheid op zich nemen.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 6 -->
+                <div id="chap6" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">6</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Artefacten & Oplevering ✍️</h2>
+                            </div>
+                        </div>
+                        <p class="mb-6 text-justify">Elke stap in de cyclus genereert een specifieke oplevering (Artefact). Ze mogen niet met elkaar verward worden. Hier is het officiële woordenboek van de artefacten.</p>
+                    </div>
+
+                    <div class="overflow-x-auto border-[3px] border-[var(--card-border)] rounded-xl shadow-[6px_6px_0px_var(--card-border)] unbreakable transition-colors mb-10">
+                        <table class="min-w-full bg-[var(--card-bg)] text-sm text-left">
+                            <thead class="bg-[var(--section-bg)] border-b-[3px] border-[var(--card-border)] font-black uppercase tracking-wider text-nuls-black dark:text-gray-300">
+                                <tr>
+                                    <th class="p-4 w-1/5">Artefact</th>
+                                    <th class="p-4 w-1/12 text-center">Auteur</th>
+                                    <th class="p-4 w-1/3">Doel</th>
+                                    <th class="p-4">Voorbeeld & Kwaliteitscriteria</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700 font-medium">
+                                <tr>
+                                    <td class="p-4 font-bold">Scope Document</td>
+                                    <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
+                                    <td class="p-4 text-gray-700 dark:text-gray-300">Bepaalt wat is inbegrepen en expliciet uitgesloten van het project (<button class="lexicon-term" data-term="MoSCoW">MoSCoW</button>).</td>
+                                    <td class="p-4 text-gray-600 dark:text-gray-400 italic">Bv: "De module beheert de H1. Buiten Scope: H7."<br>Criterium: Gevalideerd door allen.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">BPMN (Processen)</td>
+                                    <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
+                                    <td class="p-4 text-gray-700 dark:text-gray-300">Visuele mapping van werkstromen (AS-IS en TO-BE).</td>
+                                    <td class="p-4 text-gray-600 dark:text-gray-400 italic">Bv: Swimlane diagram.<br>Criterium: Leesbaar van begin tot eind.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">BRD (Business Req.)</td>
+                                    <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
+                                    <td class="p-4 text-gray-700 dark:text-gray-300">Uitgebreide lijst van zakelijke behoeften, losgekoppeld van techniek.</td>
+                                    <td class="p-4 text-gray-600 dark:text-gray-400 italic">Bv: "Het systeem moet de boetes berekenen."<br>Criterium: Traceerbaar en geprioriteerd.</td>
+                                </tr>
+                                <tr class="bg-yellow-50 dark:bg-yellow-900 border-t-[3px] border-[var(--card-border)]">
+                                    <td class="p-4 font-black text-base text-nuls-black dark:text-white">Use Case</td>
+                                    <td class="p-4 text-center"><span class="bg-nuls-black dark:bg-white text-nuls-yellow dark:text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
+                                    <td class="p-4 font-bold text-nuls-black dark:text-white">Gebruikersinteractiescenario inclusief Happy & Unhappy Flows.</td>
+                                    <td class="p-4 font-bold text-nuls-black dark:text-white">Bv: "UC-01: Aangifte indienen."<br>Criterium: Dekt fouten af.</td>
+                                </tr>
+                                <tr class="border-t-[3px] border-[var(--card-border)]">
+                                    <td class="p-4 font-bold text-blue-700 dark:text-blue-400">User Story</td>
+                                    <td class="p-4 text-center"><span class="bg-blue-900 dark:bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">FA</span></td>
+                                    <td class="p-4 text-gray-700 dark:text-gray-300">Technische werkeenheid voor ontwikkelaars.</td>
+                                    <td class="p-4 text-gray-600 dark:text-gray-400 italic">Bv: "Als Agent wil ik..."<br>Criterium: INVEST formaat.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold text-blue-700 dark:text-blue-400">Acceptance Criteria</td>
+                                    <td class="p-4 text-center"><span class="bg-blue-900 dark:bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">FA</span></td>
+                                    <td class="p-4 text-gray-700 dark:text-gray-300">Exacte voorwaarden waaronder een User Story wordt gevalideerd.</td>
+                                    <td class="p-4 text-gray-600 dark:text-gray-400 italic">Bv: "Gegeven... Wanneer... Dan..."<br>Criterium: Testbaar (Ja/Nee).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Kunst van Precisie</h3>
+                    <p class="mb-4 text-sm text-justify">De taalbarrière tussen de "Business" en "IT" veroorzaakt 90% van de bugs. Je schrijfstijl moet chirurgisch zijn.</p>
+                    
+                    <div class="unbreakable overflow-hidden rounded-2xl border-[3px] border-[var(--card-border)] shadow-sm mb-8 transition-colors">
+                        <table class="min-w-full bg-[var(--card-bg)] text-sm">
+                            <thead class="bg-[var(--section-bg)] border-b-[3px] border-[var(--card-border)]">
+                                <tr>
+                                    <th class="py-2 px-4 text-left font-black uppercase tracking-wider text-red-600 dark:text-red-400">Te vermijden ❌</th>
+                                    <th class="py-2 px-4 text-left font-black uppercase tracking-wider text-green-600 dark:text-green-400">Aan te bevelen ✅</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700 font-medium">
+                                <tr>
+                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic">"De beslissing zal worden verzonden" (Passief)</td>
+                                    <td class="py-3 px-4 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200">"Het systeem <button class="lexicon-term" data-term="IDMS">IDMS</button> verzendt de beslissing"</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic">"De app moet snel zijn" Vaag)</td>
+                                    <td class="py-3 px-4 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200">"Reactietijd H1 < 2 seconden"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="unbreakable">
+                        <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> ISO 25010 (Niet-Functionele Vereisten)</h3>
+                        <p class="mb-4 text-sm text-justify">Wees niet tevreden met het opsommen van wat de app moet <em>doen</em>. Specificeer <em>hoe</em> hij moet zijn: Prestaties, Betrouwbaarheid (Beschikbaarheid 99.9%), Bruikbaarheid, Beveiliging, Onderhoudbaarheid.</p>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 7 -->
+                <div id="chap7" class="mb-16 scroll-mt-8">
+                    <div class="unbreakable">
+                        <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                            <div class="flex items-center">
+                                <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">7</div>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Use Case vs User Story</h2>
+                            </div>
+                        </div>
+                        <p class="mb-6 text-justify">Dit is het meest onbegrepen concept. Een Use Case <strong>is niet</strong> een grote User Story! De een wordt geschreven door de bedrijfsontwerper (de BA), de ander door de oplossingsingenieur (de FA).</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 unbreakable mb-8">
+                        <!-- USE CASE -->
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-black text-2xl text-nuls-black dark:text-white">De Use Case</h3>
+                                <span class="bg-nuls-black dark:bg-white text-nuls-yellow dark:text-nuls-black font-bold px-3 py-1 rounded text-sm shadow-sm">Door de BA</span>
+                            </div>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Het algemene zakelijke gedrag.</p>
+                            <ul class="space-y-3 text-sm">
+                                <li><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Beschrijft de intentie van de gebruiker om een doel te bereiken.</li>
+                                <li><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Volledig <strong>onafhankelijk van technologie</strong>.</li>
+                                <li class="bg-yellow-50 dark:bg-yellow-900 p-3 rounded-lg border border-yellow-200 dark:border-yellow-700 text-nuls-black dark:text-white"><strong class="block mb-1">Essentieel: De Unhappy Flow.</strong> De BA <em>moet</em> de bedrijfsregel specificeren voor wanneer dingen fout gaan (bijv. douanefout). De analyse beperkt zich niet tot het ideale scenario!</li>
+                            </ul>
+                        </div>
+
+                        <!-- USER STORY -->
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-blue-900 dark:border-blue-400 rounded-2xl shadow-[6px_6px_0px_#1E3A8A] dark:shadow-[6px_6px_0px_#60A5FA] transition-colors">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-black text-2xl text-blue-900 dark:text-blue-400">De User Story</h3>
+                                <span class="bg-blue-900 dark:bg-blue-600 text-white font-bold px-3 py-1 rounded text-sm shadow-sm">Door de FA</span>
+                            </div>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De technische implementatie opgesplitst.</p>
+                            <ul class="space-y-3 text-sm">
+                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Het vertaalt de Unhappy Flow in een uitvoerbare taak voor de programmeurs.</li>
+                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Het omvat technische keuzes (knop, API-oproep).</li>
+                                <li class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-900 dark:text-white"><strong class="block mb-1">Essentieel: De Acceptance Criteria.</strong> Altijd vergezeld van nauwkeurige AC om de technische oplevering tijdens de Sprint te valideren.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-[var(--section-bg)] border-[3px] border-[var(--card-border)] rounded-2xl p-6 shadow-sm unbreakable transition-colors">
+                        <h4 class="font-black text-xl mb-4 text-center uppercase tracking-wide text-nuls-black dark:text-gray-300"><i class="fas fa-comments mr-2 text-nuls-yellow"></i> Praktijkcasus: De controle in Antwerpen</h4>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1 bg-[var(--card-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm">
+                                <h5 class="font-bold mb-2 text-nuls-black dark:text-nuls-yellow">1. De BA (Business) dicteert de regel:</h5>
+                                <p class="text-sm italic text-gray-600 dark:text-gray-400">"Hier is de Unhappy Flow: Als de container zwaarder is dan 20 ton, blokkeert IDMS de aangifte en is de goedkeuring van de leidinggevende vereist."</p>
+                            </div>
+                            <div class="flex-1 bg-[var(--card-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm">
+                                <h5 class="font-bold mb-2 text-blue-700 dark:text-blue-400">2. De FA (IT) dicteert de oplossing:</h5>
+                                <p class="text-sm italic text-gray-600 dark:text-gray-400">"Oké. Mijn User Story creëert een API-oproep naar IAM om de rol van de leidinggevende te controleren, en toont een rode fout Pop-up in IDMS."</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-center font-bold mt-4 text-red-600 dark:text-red-400">Gouden regel: De BA tekent de pop-ups niet. De FA dicteert de douanewetten niet.</p>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 8 -->
+                <div id="chap8" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">8</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Definition of Ready (De Overdracht)</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[var(--section-bg)] p-8 rounded-2xl border-[3px] border-[var(--card-border)] shadow-[6px_6px_0px_var(--card-border)] transition-colors">
+                        <p class="text-justify mb-5">De overdracht (Fase 4) is kritiek. Een dossier wordt alleen naar het technische team gestuurd als het voldoet aan de <strong>Definition of Ready (DoR)</strong> van de bedrijfsanalyse. Als je een onvolledige analyse naar IT stuurt, zullen ze fouten coderen.</p>
+                        
+                        <h4 class="font-bold text-xl mb-4 border-b-2 border-gray-300 dark:border-gray-600 pb-2 flex items-center">
+                            <i class="fas fa-clipboard-check text-nuls-yellow text-2xl mr-3 shadow-sm rounded-full bg-nuls-black dark:bg-gray-800 p-2"></i> 
+                            Overdracht Checklist (BA naar FA)
+                        </h4>
+                        <ul class="space-y-4 text-sm font-medium">
+                            <li class="flex items-start">
+                                <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
+                                <div><strong class="block text-base text-nuls-black dark:text-white">1. Scope vergrendeld:</strong> Gevalideerd door de PO. We weten expliciet wat "Out of Scope" is.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
+                                <div><strong class="block text-base text-nuls-black dark:text-white">2. Gevalideerde processen:</strong> De BPMN diagrammen zijn goedgekeurd door de field experts.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
+                                <div><strong class="block text-base text-nuls-black dark:text-white">3. Kogelvrije Use Cases:</strong> Alle <em>Unhappy Flows</em> (fouten, weigeringen) zijn gespecificeerd.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
+                                <div><strong class="block text-base text-nuls-black dark:text-white">4. Juridische kwesties beslecht:</strong> De Jira tickets naar de juridische afdeling zijn opgelost en gedocumenteerd met de officiële reactie (tag `legislative`).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 9 -->
+                <div id="chap9" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">9</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Traceerbaarheid & BPMN</h2>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Traceerbaarheidsmatrix</h3>
+                    <p class="text-justify text-sm mb-4">Waarom de moeite nemen om elk document in Jira/Confluence te koppelen? Stel je voor dat een IT-test faalt op de automatische weigering van een aangifte. Hoe weet je welke bedrijfsregel wordt beïnvloed? Dat is de kracht van verticale traceerbaarheid.</p>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-between text-center gap-4 bg-[var(--section-bg)] p-6 rounded-2xl border border-gray-300 dark:border-gray-600 mb-10 text-sm transition-colors">
+                        <div class="font-bold"><i class="fas fa-file-contract text-blue-500 text-2xl block mb-2"></i> Business Req.</div>
+                        <i class="fas fa-link text-gray-400"></i>
+                        <div class="font-bold"><i class="fas fa-sitemap text-nuls-yellow text-2xl block mb-2"></i> Use Case</div>
+                        <i class="fas fa-link text-gray-400"></i>
+                        <div class="font-bold"><i class="fas fa-code text-blue-800 dark:text-blue-400 text-2xl block mb-2"></i> User Story</div>
+                        <i class="fas fa-link text-gray-400"></i>
+                        <div class="font-bold"><i class="fas fa-vial text-green-500 text-2xl block mb-2"></i> Test Scenario</div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> BPMN Spiekbriefje</h3>
+                    <p class="text-justify text-sm mb-4">BPMN is de universele taal voor het tekenen van processen. Je hoeft geen expert te zijn, hier zijn de 4 overlevingssymbolen:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
+                            <div class="w-12 h-12 rounded-full border-4 border-green-500 flex-shrink-0 flex items-center justify-center mr-4"></div>
+                            <div>
+                                <strong class="block">Gebeurtenis (Event)</strong>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">Trigger. Bv: "Aankomst van het schip in Antwerpen".</span>
+                            </div>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
+                            <div class="w-12 h-10 border-4 border-blue-500 rounded-lg flex-shrink-0 flex items-center justify-center mr-4"></div>
+                            <div>
+                                <strong class="block">Taak (Task)</strong>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">Actie. Bv: "Douanerechten berekenen".</span>
+                            </div>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
+                            <div class="w-10 h-10 border-4 border-nuls-yellow transform rotate-45 flex-shrink-0 mr-6 ml-2"></div>
+                            <div>
+                                <strong class="block">Gateway (Beslissing)</strong>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">Beslissing/Voorwaarde. Bv: "Gewicht > 20 ton?"</span>
+                            </div>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
+                            <div class="w-12 h-12 border-4 border-gray-400 flex flex-col justify-between p-1 flex-shrink-0 mr-4">
+                                <div class="border-b-2 border-gray-400 h-1/2"></div>
+                            </div>
+                            <div>
+                                <strong class="block">Zwembanen (Swimlanes)</strong>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">Wie doet wat (Aangever, IDMS, Douanier).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 10 -->
+                <div id="chap10" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">10</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">BDD & Gherkin Syntaxis 🥒</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify"><strong>Behavior-Driven Development (<button class="lexicon-term" data-term="BDD">BDD</button>)</strong> beschrijft <em>bedrijfsgedrag</em> en niet een technische implementatie. Gherkin transformeert je bedrijfsvoorbeelden in automatiseerbare tests.</p>
+                    
+                    <div class="nuls-box unbreakable border-green-600 shadow-[6px_6px_0px_#16A34A] dark:shadow-[6px_6px_0px_#4ADE80] bg-green-50 dark:bg-green-950 mt-8">
+                        <div class="nuls-box-icon bg-green-500 text-white border-green-700 dark:border-green-400"><i class="fas fa-code"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-green-900 dark:text-green-100">Praktijkcasus: Automatisering met Gherkin</h4>
+                        
+                        <div class="bg-gray-900 text-green-400 p-4 rounded-xl font-mono text-xs overflow-x-auto border-2 border-nuls-black shadow-inner">
+                            <span class="text-purple-400 font-bold">Feature:</span> EORI controle op IDMS<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Background:</span> <span class="text-gray-500 italic"># Gemeenschappelijke randvoorwaarden</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> een douanegebruiker ingelogd op het systeem<br><br>
+
+                            <span class="text-yellow-400 font-bold">Scenario Outline:</span> EORI validatie<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> de aangever heeft de EORI "&lt;eori_code&gt;" ingevoerd<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">When</span> hij op Indienen klikt<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Then</span> het systeem moet de status "&lt;resultaat&gt;" tonen<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Examples:</span><br>
+                            &nbsp;&nbsp;| eori_code | resultaat | <span class="text-gray-500 italic"># Uitleg</span><br>
+                            &nbsp;&nbsp;| BE1234    | OK        | <span class="text-gray-500 italic"># Geldige EORI</span><br>
+                            &nbsp;&nbsp;| FRA567    | Weigering | <span class="text-gray-500 italic"># Onbekende EORI in EOS</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 11 -->
+                <div id="chap11" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Templates & Toolkit SSDD 🛠️</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Documentatie heeft maar één doel: informatie uit je hoofd halen om te communiceren. Vergeet de verloren Word-documenten. Bij de SSDD draait alles om Jira (Actie) en Confluence (Kennis).</p>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Confluence Boomstructuur</h3>
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-300 dark:border-gray-700 font-mono text-sm mb-8 shadow-inner">
+                        <p class="font-bold text-gray-700 dark:text-gray-300">📂 BUSINESS ANALYSIS SERVICE</p>
+                        <p class="pl-4 text-blue-700 dark:text-blue-400">↳ 📂 [Naam van je Project (bv: BA-DECL-EXPORT)]</p>
+                        <p class="pl-8 text-gray-600 dark:text-gray-400">↳ 📄 Project Management (Context, Roadmap)</p>
+                        <p class="pl-8 text-gray-600 dark:text-gray-400">↳ 📂 Business Analysis</p>
+                        <p class="pl-12 text-gray-500">↳ 📄 Context Model</p>
+                        <p class="pl-12 text-gray-500">↳ 📄 Process Model (BPMN AS-IS/TO-BE)</p>
+                        <p class="pl-12 text-gray-500">↳ 📄 Data / Lifecycle Model</p>
+                        <p class="pl-8 text-gray-600 dark:text-gray-400">↳ 📄 Legislative QA (Legale FAQ met tag `legislative`)</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900 dark:to-blue-900 p-6 rounded-2xl border-l-[6px] border-purple-500 mt-8 shadow-sm">
+                        <h4 class="font-black text-lg mb-2 text-purple-900 dark:text-purple-100"><i class="fas fa-robot mr-2"></i> Gouden regel over AI (Max Jacobs / Amine)</h4>
+                        <p class="text-sm text-purple-800 dark:text-purple-200"><strong>Gebruik AI om het werk voor je te doen (herschrijven, Gherkin genereren), maar gebruik het NOOIT om in jouw plaats te DENKEN over douane-bedrijfslogica!</strong></p>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 12 -->
+                <div id="chap12" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">12</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Overleving & Soft Skills in Vergaderingen</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">De theorie is mooi, maar de realiteit van de analist is het omgaan met ego's en vergaderingen die uitlopen. De BA is een facilitator en onderhandelaar.</p>
+
+                    <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] dark:shadow-[6px_6px_0px_#F87171] print:shadow-none print:border-2">
+                        <div class="nuls-box-icon bg-red-500 text-white border-red-500 dark:border-red-400"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-red-600 dark:text-red-400">Praktijkcasus: Scope Creep (De fatale knop)</h4>
+                        <p class="text-justify text-sm">Het project is goedgekeurd. Plotseling zegt een stakeholder: "Trouwens, het zou geweldig zijn om een kleine knop te hebben om naar Excel te exporteren". De ontwikkelaar antwoordt: "Dat is makkelijk, 10 minuten". <strong>GEVAAR! Dit is Gold Plating.</strong></p>
+                        <p class="text-justify text-sm font-bold mt-2">De rol van de BA: Het idee in de kiem smoren.</p>
+                        <p class="text-justify text-sm mt-1">"Deze knop vereist een update van het BRD, het schrijven van nieuwe UAT-tests, het controleren van de GDPR. Voldoet dit aan de doelstelling van de Business Case? Nee. <em>Out of Scope</em> voor V1."</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 mt-8 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Conflicten beheren: Antwerpen vs Luik</h3>
+                    <p class="text-sm text-justify mb-4">De expert uit Antwerpen wil een handmatig proces. De expert uit Luik eist dat het geautomatiseerd is. Wat doe je?</p>
+                    <ul class="space-y-3 text-sm font-medium bg-[var(--section-bg)] p-6 rounded-2xl border border-gray-300 dark:border-gray-700">
+                        <li class="flex items-start"><i class="fas fa-hand-paper text-yellow-500 mt-1 mr-3"></i> <div><strong>1. Stop met emoties:</strong> Heroriënteer het debat op de wet. Wat zegt de Europese richtlijn? (Maak een `legislative` ticket aan).</div></li>
+                        <li class="flex items-start"><i class="fas fa-calculator text-blue-500 mt-1 mr-3"></i> <div><strong>2. Kwantificeer het meningsverschil:</strong> Documenteer beide opties en vraag de FA om de IT-kosten voor beide te schatten.</div></li>
+                        <li class="flex items-start"><i class="fas fa-gavel text-red-500 mt-1 mr-3"></i> <div><strong>3. Escalatie naar de PO:</strong> Presenteer de gekwantificeerde opties aan de Product Owner. Het is aan HEM/HAAR om de beslissing te nemen.</div></li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold mb-4 mt-8 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Persoonlijke Organisatie</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-[var(--card-bg)] p-6 border-l-[6px] border-blue-500 rounded-2xl shadow-sm">
+                            <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-white">Stap 0: Het "To-Do" Bestand</h4>
+                            <p class="text-sm">Maak ÉÉN enkel bestand aan (Kladblok). Alles wat in je hoofd "popt" gaat daarin. Je verwijdert de enorme mentale belasting van het proberen om alles te onthouden.</p>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-6 border-l-[6px] border-nuls-yellow rounded-2xl shadow-sm">
+                            <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-white">De Escalatie ("Send to Jira")</h4>
+                            <p class="text-sm">Reageert een stakeholder niet? Stuur een e-mail met een <strong>deadline</strong>. Om een officieel spoor achter te laten: log in op de <strong>webversie van Outlook</strong>, gebruik de optie <strong>"Send to Jira"</strong>. Je kunt dan een nieuw ticket aanmaken of het toevoegen aan een bestaand ticket en de e-mail bijvoegen. Keihard bewijs voor het management!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 13 -->
+                <div id="chap13" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0"><i class="fas fa-gamepad"></i></div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">De Overlevingsquiz!</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Voordat je de definitieve checklist tekent, laten we kijken of je de ziel hebt van een echte SSDD Business Analist. Klik op het antwoord dat jou het meest geschikt lijkt.</p>
+
+                    <!-- Quiz UI -->
+                    <div class="space-y-8 no-print">
+                        
+                        <!-- Q1 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q1">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">1. Tijdens de vergadering begint de Functioneel Analist (FA) te dicteren hoe de douane de H7-belasting moet berekenen. Wat is je reactie?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q1', false, 'Fout! De FA zorgt voor het technische gedeelte (het Hoe). De bedrijfsregel (het Wat) is de exclusieve verantwoordelijkheid van de BA en de Business.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Je maakt aantekeningen en werkt je Use Case bij met zijn regel.</button>
+                                <button onclick="checkAnswer('q1', true, 'Correct! Ieder zijn rol. De FA is de garant voor de technische oplossing, maar de wetgeving en de bedrijfsregels worden gedicteerd door de BA.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Je wijst hem er vriendelijk op: IT dicteert de douanewetten niet.</button>
+                            </div>
+                            <div id="q1-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q2">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">2. Een dossier is klaar voor de Handover. Je bent vergeten het scenario op te schrijven waarin het douane-netwerk uitvalt. Is dat erg?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q2', false, 'Fout! De FA kan de fallback bedrijfsregels niet zomaar verzinnen.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Nee, de FA raadt het wel tijdens het schrijven van de User Story.</button>
+                                <button onclick="checkAnswer('q2', true, 'Klopt! De Definition of Ready vereist dat de Unhappy Flows door de BA worden gedocumenteerd voor overdracht.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Ja. Een Use Case moet absoluut de Unhappy Flows (uitzonderingen) bevatten.</button>
+                            </div>
+                            <div id="q2-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q3">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">3. Een stakeholder vraagt dringend om een "Export naar Excel" knop. De IT-developer zegt: "Dat is makkelijk, kost me 10 minuten". Wat doe je?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q3', false, 'Fout! Dit is Gold Plating. Het beïnvloedt onderhoud, GDPR en de initiële scope.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. "Het is snel, we voegen het toe om hen een plezier te doen."</button>
+                                <button onclick="checkAnswer('q3', true, 'Klopt! We beschermen de Scope. Het staat niet in de Business Case, dus weigeren we het voor V1.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. "We weigeren dit voor V1. Het valt buiten de Scope gedefinieerd in de Business Case."</button>
+                            </div>
+                            <div id="q3-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q4">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">4. De IDMS-applicatie moet controleren of de EORI van een bedrijf geldig is in de Europese database (EOS). Hoe praten deze systemen met elkaar?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q4', false, 'Fout! Te traag en verouderd voor real-time verificaties.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Europa stuurt elke ochtend een groot XML-bestand via e-mail.</button>
+                                <button onclick="checkAnswer('q4', true, 'Exact! Web Services (API) laten onze systemen toe om de Europese database direct aan te spreken.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Via een API: IDMS doet een direct verzoek (vaak in JSON) naar EOS voor een direct antwoord.</button>
+                            </div>
+                            <div id="q4-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q5">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">5. Waarom schrijven we de rekenregels met de Gherkin-syntaxis (Given / When / Then) in de Acceptance Criteria?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q5', true, 'Klopt! Dit is BDD. Het is leesbaar voor de business, EN IT-testers gebruiken het als code om automatische tests te starten.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Omdat de business dit begrijpt EN IT hiermee tests (non-regressie) kan automatiseren.</button>
+                                <button onclick="checkAnswer('q5', false, 'Fout! Gherkin is geen echte programmeertaal, het is een brug tussen gewone taal en code.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Omdat het een oude programmeertaal is die nog steeds door de FOD Financiën wordt gebruikt.</button>
+                            </div>
+                            <div id="q5-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                    </div>
+                    <p class="print:block hidden text-gray-500 italic mt-4">(Interactieve quiz alleen beschikbaar op de webversie).</p>
+                </div>
+
+                <footer id="conclusion" class="bg-[#1A1A1A] text-white p-12 rounded-3xl mt-16 print:border-t-4 print:border-black print:bg-white print:text-black unbreakable scroll-mt-8 transition-colors">
+                    <h2 class="font-nuls text-5xl font-black mb-8 text-[#FFD600] print:text-black tracking-tight">Ultieme Checklist.</h2>
+                    
+                    <div class="bg-white/10 p-6 rounded-xl border border-white/20 mb-8 print:bg-gray-100 print:border-gray-300">
+                        <p class="text-sm text-gray-300 print:text-gray-700 mb-4 uppercase tracking-widest font-bold">Voordat je victorie kraait (DoD):</p>
+                        <ul class="space-y-3 text-[0.95rem] font-medium">
+                            <li class="flex items-center"><i class="fas fa-check-square text-nuls-yellow mr-3 text-xl"></i> Is de <button class="lexicon-term font-bold text-white print:text-black" data-term="Waarde">Waarde</button> van de Use Case duidelijk en in lijn met de strategie?</li>
+                            <li class="flex items-center"><i class="fas fa-check-square text-nuls-yellow mr-3 text-xl"></i> Heb je alle beïnvloede Stakeholders geïdentificeerd?</li>
+                            <li class="flex items-center"><i class="fas fa-check-square text-nuls-yellow mr-3 text-xl"></i> Is de Unhappy flow (het bedrijfsfoutgeval) opgesteld?</li>
+                            <li class="flex items-center"><i class="fas fa-check-square text-nuls-yellow mr-3 text-xl"></i> Heeft de FA alles wat hij nodig heeft om op te splitsen in User Stories?</li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-6 text-lg font-light text-gray-300 print:text-gray-800 text-justify">
+                        <p>Uitmuntendheid in Business Analyse is niet aangeboren, het is een methode. Respecteer de scheidslijn BA/FA, wees niet bang om snel fouten te maken om snel te corrigeren (Prototyping), maak je mentale last vrij met een strikte organisatie, beheer de kunst van het onderhandelen (Soft Skills) en gebruik de slagkracht van het SSDD-netwerk.</p>
+                    </div>
+                    
+                    <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="font-black text-[#FFD600] print:text-black uppercase tracking-widest text-sm">Business Analysis Framework</p>
+                        <p class="text-xs opacity-50 font-medium">© 2026 FOD FINANCIËN - IM - SSDD</p>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
+        <!-- Dark Mode Button -->
+        <button onclick="toggleDarkMode()" class="bg-gray-800 dark:bg-gray-200 text-yellow-400 dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-white font-black w-14 h-14 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-nuls-black dark:border-white transition-all flex items-center justify-center text-xl" title="Nachtmodus">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+
+        <button id="backToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="bg-nuls-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 font-black w-14 h-14 rounded-full shadow-xl border-[3px] border-nuls-black transition-all flex items-center justify-center text-xl opacity-0 transform translate-y-12">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        /* 1. DARK MODE LOGIC */
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        /* 2. LEXICON LOGIC (TRANSLATED) */
+        const lexiconData = {
+            "UAT": "User Acceptance Testing (Gebruikersacceptatietesten). De laatste tests waarbij de business controleert of de opgeleverde applicatie voldoet aan de behoefte uit de Use Case.",
+            "QAS": "Quality Assurance Services. Onze tempelbewakers bij de SSDD. Ze coderen niet en schrijven geen bedrijfstests, maar valideren formeel of het werk conform is en geven de Go/No-Go adviezen.",
+            "BDD": "Behavior-Driven Development. Een agile aanpak waarbij het verwachte gedrag van een systeem wordt beschreven via eenvoudige voorbeelden (Given/When/Then - Gherkin) nog voordat er gecodeerd wordt.",
+            "EORI": "Economic Operators Registration and Identification. Het unieke douane-identificatienummer voor bedrijven die handelen binnen de Europese Unie.",
+            "SEDA": "De risicoanalyse-engine van de Belgische douane. Het richt zich op verdachte aangiften op basis van complexe algoritmen.",
+            "IDMS": "Het moderne Belgische IT-systeem voor de verwerking van invoeraangiften (H1, H7...).",
+            "BABOK": "Business Analysis Body of Knowledge. De wereldwijde standaard voor best practices in Business Analyse, uitgegeven door IIBA. Onze bijbel!",
+            "IREB": "International Requirements Engineering Board. De wereldwijde certificeringsinstantie voor requirements engineering (de precisie van schrijven).",
+            "Waarde": "De gerealiseerde waarde. Dit is het concrete en meetbare voordeel dat de organisatie ervaart na implementatie (bijv. Tijdwinst, fraude voorkomen). Code is nutteloos als het geen Waarde oplevert.",
+            "SMART": "Methode voor het opstellen van doelen: Specifiek, Meetbaar, Acceptabel, Realistisch, Tijdgebonden.",
+            "MoSCoW": "Prioriteringsmethode voor de scope: Must have (Vitaal), Should have (Belangrijk), Could have (Bonus), Won't have (Uitgesloten).",
+            "BPMN": "Business Process Model and Notation. De universele taal bestaande uit eenvoudige vormen (cirkels, ruiten, zwembanen) om een bedrijfsproces grafisch van A tot Z uit te tekenen.",
+            "ROI": "Return on Investment (Rendement op investering). Financiële ratio die ervoor zorgt dat het project meer oplevert dan het kost."
+        };
+
+        const modal = document.getElementById('lexiconModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        document.querySelectorAll('.lexicon-term').forEach(term => {
+            term.addEventListener('click', (e) => {
+                const keyword = e.target.getAttribute('data-term');
+                modalTitle.innerText = keyword;
+                modalContent.innerText = lexiconData[keyword] || "Definitie wordt momenteel geschreven...";
+                
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.querySelector('div').classList.remove('scale-95');
+                }, 10);
+            });
+        });
+
+        function closeLexicon() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeLexicon();
+        });
+
+        /* 3. QUIZ LOGIC */
+        function checkAnswer(questionId, isCorrect, feedbackText) {
+            const feedbackDiv = document.getElementById(`${questionId}-feedback`);
+            feedbackDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            if(isCorrect) {
+                feedbackDiv.classList.add('bg-green-100', 'text-green-800');
+                feedbackDiv.innerHTML = `<i class="fas fa-check-circle mr-2"></i> ${feedbackText}`;
+            } else {
+                feedbackDiv.classList.add('bg-red-100', 'text-red-800');
+                feedbackDiv.innerHTML = `<i class="fas fa-times-circle mr-2"></i> ${feedbackText}`;
+            }
+        }
+
+        /* 4. SCROLLSPY & UI LOGIC */
+        document.addEventListener("DOMContentLoaded", function() {
+            const backToTopBtn = document.getElementById("backToTopBtn");
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('div[id^="chap"], footer[id="conclusion"]');
+
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.remove("translate-y-12", "opacity-0");
+                } else {
+                    backToTopBtn.classList.add("translate-y-12", "opacity-0");
+                }
+
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 250) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection && currentSection !== '') {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
