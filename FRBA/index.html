@@ -41,11 +41,11 @@
         .dark {
             --nuls-border: 3px solid #FFD600;
             --nuls-shadow: 6px 6px 0px #FFD600;
-            --bg-body: #111827; /* gray-900 */
-            --text-body: #F3F4F6; /* gray-100 */
-            --card-bg: #1F2937; /* gray-800 */
+            --bg-body: #111827; 
+            --text-body: #F3F4F6; 
+            --card-bg: #1F2937; 
             --card-border: #FFD600;
-            --section-bg: #374151; /* gray-700 */
+            --section-bg: #374151; 
         }
 
         body {
@@ -147,6 +147,14 @@
 </head>
 <body class="transition-colors duration-300">
 
+    <!-- Sélecteur de Langue -->
+    <div class="fixed top-6 right-6 z-[100] flex gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-2 rounded-xl border-2 border-nuls-black dark:border-white shadow-[4px_4px_0px_#1A1A1A] dark:shadow-[4px_4px_0px_#FFD600] no-print transition-colors duration-300">
+        <a href="https://melaaji.github.io/QAS/FRBA/" class="bg-nuls-yellow text-nuls-black font-black px-3 py-1 rounded-lg border-2 border-nuls-black shadow-sm text-sm hover:scale-105 transition-transform">FR</a>
+        <a href="https://melaaji.github.io/QAS/NLBA/" class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold px-3 py-1 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm text-sm hover:scale-105 transition-transform hover:border-nuls-black dark:hover:border-nuls-yellow">NL</a>
+        <a href="https://melaaji.github.io/QAS/ENBA/" class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold px-3 py-1 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm text-sm hover:scale-105 transition-transform hover:border-nuls-black dark:hover:border-nuls-yellow">EN</a>
+    </div>
+
+    <!-- Lexicon Modal -->
     <div id="lexiconModal" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity opacity-0 duration-300">
         <div class="bg-white dark:bg-gray-800 border-4 border-nuls-black dark:border-nuls-yellow rounded-2xl p-6 max-w-md w-[90%] shadow-[8px_8px_0px_#1A1A1A] dark:shadow-[8px_8px_0px_#FFD600] transform scale-95 transition-transform duration-300">
             <div class="flex justify-between items-start mb-4">
@@ -159,6 +167,7 @@
 
     <div class="print-container max-w-[1600px] w-[95%] mx-auto my-8 print:my-0 print:w-full">
         
+        <!-- Couverture -->
         <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-4 border-[#1A1A1A] rounded-3xl p-16 text-center relative z-10 overflow-hidden shadow-2xl print:border-2 mb-12">
             <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
 
@@ -168,7 +177,7 @@
                     <p class="text-xs font-bold text-gray-700 mt-1">Information Management - SSDD</p>
                 </div>
                 <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
-                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Édition Interactive Ultimate (V7)</span>
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Édition Interactive (V7)</span>
                     <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Gamifié, Exhaustif & Dark Mode</p>
                 </div>
             </div>
@@ -201,6 +210,7 @@
 
         <div class="flex flex-col lg:flex-row gap-8 relative">
             
+            <!-- Sidebar -->
             <aside class="sidebar-nav w-full lg:w-1/4 no-print relative z-10">
                 <div class="sticky top-8 bg-[var(--card-bg)] border-[3px] border-[var(--card-border)] rounded-3xl p-6 shadow-[6px_6px_0px_var(--card-border)] max-h-[calc(100vh-4rem)] overflow-y-auto transition-colors duration-300">
                     <h3 class="font-nuls font-black text-xl mb-4 border-b-2 border-gray-200 dark:border-gray-700 pb-3 flex items-center text-[var(--text-body)]">
@@ -217,16 +227,19 @@
                         <a href="#chap8" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">8</span> Definition of Ready</a>
                         <a href="#chap9" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">9</span> Traçabilité & BPMN</a>
                         <a href="#chap10" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">10</span> BDD & Syntaxe Gherkin</a>
-                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">11</span> Toolkit & Organisation</a>
-                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">12</span> Survie & Soft Skills</a>
-                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">13</span> Quiz de Survie !</a>
+                        <a href="#chap11" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">11</span> La Technique pour les Nuls</a>
+                        <a href="#chap12" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">12</span> Toolkit & Organisation</a>
+                        <a href="#chap13" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">13</span> Survie & Soft Skills</a>
+                        <a href="#chap14" class="toc-link"><span class="font-bold text-gray-400 w-6 inline-block text-xs text-center">14</span> Quiz de Survie !</a>
                         <a href="#conclusion" class="toc-link mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"><i class="fas fa-flag-checkered text-gray-400 mr-2"></i> Check-list & Fin</a>
                     </nav>
                 </div>
             </aside>
 
+            <!-- Main Content -->
             <main class="content-area w-full lg:w-3/4 bg-[var(--card-bg)] border-4 border-[var(--card-border)] rounded-3xl shadow-2xl p-8 lg:p-12 print-border-none text-lg transition-colors duration-300">
                 
+                <!-- Chapter 1 -->
                 <div id="chap1" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
@@ -275,6 +288,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 2 -->
                 <div id="chap2" class="mb-16 scroll-mt-8">
                     <div class="unbreakable">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -361,6 +375,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 3 -->
                 <div id="chap3" class="mb-16 scroll-mt-8">
                     <div class="unbreakable">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -453,12 +468,13 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 4 -->
                 <div id="chap4" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                             <div class="flex items-center">
                                 <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">4</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Cadrage Stratégique & Terrain 🗺️</h2>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Cadrage & Terrain 🗺️</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">Avant de coder quoi que ce soit (Phase 1 à 3), il faut cartographier l'état actuel (AS-IS) pour projeter l'état futur souhaité (TO-BE). L'analyse d'écarts (Gap Analysis) permet d'identifier ce qui manque pour passer de l'un à l'autre.</p>
@@ -516,6 +532,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 5 -->
                 <div id="chap5" class="mb-16 scroll-mt-8">
                     <div class="unbreakable w-full">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -563,6 +580,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 6 -->
                 <div id="chap6" class="mb-16 scroll-mt-8">
                     <div class="unbreakable">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -657,6 +675,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 7 -->
                 <div id="chap7" class="mb-16 scroll-mt-8">
                     <div class="unbreakable">
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -716,6 +735,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 8 -->
                 <div id="chap8" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
@@ -734,7 +754,7 @@
                         <ul class="space-y-4 text-sm font-medium">
                             <li class="flex items-start">
                                 <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
-                                <div><strong class="block text-base text-nuls-black dark:text-white">1. Scope verrouillé :</strong> Validé par le PO. On sait ce qui est explicitement "Out of Scope".</div>
+                                <div><strong class="block text-base text-nuls-black dark:text-white">1. Scope verrouillé :</strong> Validé par le PO. On sait explicitement ce qui est "Out of Scope".</div>
                             </li>
                             <li class="flex items-start">
                                 <div class="bg-green-100 dark:bg-green-900 p-1.5 rounded-lg mr-3"><i class="fas fa-check text-green-700 dark:text-green-300"></i></div>
@@ -754,6 +774,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 9 -->
                 <div id="chap9" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
@@ -814,6 +835,7 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 10 -->
                 <div id="chap10" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
@@ -848,10 +870,77 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 11 -->
                 <div id="chap11" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
                             <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">La Technique pour les Nuls (API, SQL) 🔌</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">Le BA ne code pas. Cependant, pour discuter d'égal à égal avec l'IT et vérifier la faisabilité de ses <em>Use Cases</em>, il doit comprendre comment les systèmes communiquent entre eux. Voici les 3 concepts à maîtriser pour briller en réunion technique.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <!-- API -->
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-nuls-blue dark:text-blue-400"><i class="fas fa-plug mr-2"></i> L'API (Web Services)</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Le serveur de restaurant.</p>
+                            <p class="text-sm text-justify mb-3">Une API permet à deux systèmes différents de se parler. Imagine un restaurant :</p>
+                            <ul class="text-sm space-y-2">
+                                <li><strong>Le client (IDMS) :</strong> Demande des infos.</li>
+                                <li><strong>La cuisine (IAM/CSAM) :</strong> Possède les bases de données des utilisateurs.</li>
+                                <li><strong>L'API (Le serveur) :</strong> IDMS ne va pas lui-même fouiller dans la cuisine. Il donne sa commande à l'API, qui va chercher l'info dans IAM et ramène la réponse ("Oui, cet utilisateur est bien un chef d'équipe").</li>
+                            </ul>
+                        </div>
+
+                        <!-- SQL -->
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-green-600 dark:text-green-400"><i class="fas fa-database mr-2"></i> Le SQL</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Le langage des bases de données.</p>
+                            <p class="text-sm text-justify mb-3">Le SQL sert à interroger de gros tableaux de données. La structure de base est toujours la même : <code>SELECT</code> (ce que je veux) <code>FROM</code> (de quelle table) <code>WHERE</code> (sous quelle condition).</p>
+                            <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-600 shadow-inner overflow-x-auto text-nuls-black dark:text-gray-200">
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">SELECT</span> id_declaration, statut<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">FROM</span> declarations_h1<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">WHERE</span> poids > 20000;
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 italic">Traduction : Donne-moi le numéro et le statut de toutes les déclarations H1 dont le poids dépasse 20 tonnes.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> JSON vs XML : Le langage des données</h3>
+                    <p class="mb-4 text-sm text-justify">Quand deux applications se parlent (via l'API), elles doivent utiliser un format standardisé pour s'envoyer les données. En douane, on utilise principalement deux formats :</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 mb-4">
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-red-600 dark:text-red-400 mb-2"><i class="fas fa-file-code mr-2"></i> XML (L'Ancien, lourd mais robuste)</h4>
+                            <p class="text-xs mb-2">Il utilise des balises (comme le HTML). Très utilisé pour les anciens messages douaniers (EDI).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                &lt;Declarant&gt;<br>
+                                &nbsp;&nbsp;&lt;Nom&gt;Dupont&lt;/Nom&gt;<br>
+                                &nbsp;&nbsp;&lt;EORI&gt;BE1234&lt;/EORI&gt;<br>
+                                &lt;/Declarant&gt;
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-yellow-600 dark:text-yellow-400 mb-2"><i class="fas fa-brackets-curly mr-2"></i> JSON (Le Moderne, léger)</h4>
+                            <p class="text-xs mb-2">Il fonctionne par paires <code>"Clé": "Valeur"</code>. C'est le standard du web actuel (REST APIs).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                "Declarant": {<br>
+                                &nbsp;&nbsp;"Nom": "Dupont",<br>
+                                &nbsp;&nbsp;"EORI": "BE1234"<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 12 -->
+                <div id="chap12" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">12</div>
                             <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Templates & Toolkit SSDD 🛠️</h2>
                         </div>
                     </div>
@@ -877,10 +966,11 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
-                <div id="chap12" class="mb-16 scroll-mt-8 unbreakable">
+                <!-- Chapter 13 -->
+                <div id="chap13" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
-                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">12</div>
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">13</div>
                             <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Survie & Soft Skills en Réunion</h2>
                         </div>
                     </div>
@@ -897,7 +987,7 @@
                     <h3 class="text-xl font-bold mb-4 mt-8 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Gérer les conflits : Anvers vs Liège</h3>
                     <p class="text-sm text-justify mb-4">L'expert d'Anvers veut un processus manuel. L'expert de Liège exige que ce soit automatisé. Que fais-tu ?</p>
                     <ul class="space-y-3 text-sm font-medium bg-[var(--section-bg)] p-6 rounded-2xl border border-gray-300 dark:border-gray-700">
-                        <li class="flex items-start"><i class="fas fa-hand-paper text-yellow-500 mt-1 mr-3"></i> <div><strong>1. Stop à l'affect :</strong> Recentrer le débat sur la Loi. Que dit la directive européenne ? (Création ticket `legislative`).</div></li>
+                        <li class="flex items-start"><i class="fas fa-hand-paper text-yellow-500 mt-1 mr-3"></i> <div><strong>1. Stop à l'affect :</strong> Recentrer le débat sur la Loi. Que dit la directive européenne ? (Création d'un ticket `legislative`).</div></li>
                         <li class="flex items-start"><i class="fas fa-calculator text-blue-500 mt-1 mr-3"></i> <div><strong>2. Chiffrer le désaccord :</strong> Documente les deux options et demande au FA d'estimer les coûts IT des deux.</div></li>
                         <li class="flex items-start"><i class="fas fa-gavel text-red-500 mt-1 mr-3"></i> <div><strong>3. Escalade au PO :</strong> Présente les options chiffrées au Product Owner. C'est à LUI de prendre la décision.</div></li>
                     </ul>
@@ -917,7 +1007,8 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
-                <div id="chap13" class="mb-16 scroll-mt-8 unbreakable">
+                <!-- Chapter 14 -->
+                <div id="chap14" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                         <div class="flex items-center">
                             <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0"><i class="fas fa-gamepad"></i></div>
@@ -931,22 +1022,52 @@
                         
                         <!-- Q1 -->
                         <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q1">
-                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">1. En réunion, le Functional Analyst (FA) commence à dicter comment la douane devrait calculer la taxe H7. Quelle est ta réaction ?</h4>
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">1. En réunion, le Functional Analyst (FA) commence à t'expliquer comment la douane devrait calculer la taxe H7. Quelle est ta réaction ?</h4>
                             <div class="space-y-3">
-                                <button onclick="checkAnswer('q1', false, 'Faux ! Le FA s\'occupe de la technique (le Comment). La règle métier (le Quoi) est la responsabilité exclusive du BA et du Métier.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Tu prends note et mets à jour ton Use Case.</button>
-                                <button onclick="checkAnswer('q1', true, 'Exact ! Chacun son rôle. Le FA est le garant de la solution technique, mais la législation et les règles métiers sont dictées par le BA.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Tu le recadres gentiment : l'IT ne dicte pas les lois douanières.</button>
+                                <button onclick="checkAnswer('q1', false, 'Faux ! Le FA s\'occupe de la technique (le Comment). La règle métier (le Quoi) est la responsabilité exclusive du BA et du Métier.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Tu prends note et mets à jour ton Use Case avec sa règle.</button>
+                                <button onclick="checkAnswer('q1', true, 'Exact ! Chacun son rôle. Le FA est le garant de la solution technique, mais la législation et les règles métiers sont dictées par le BA.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Tu le recadres gentiment : l\'IT ne dicte pas les lois douanières.</button>
                             </div>
                             <div id="q1-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
                         </div>
 
                         <!-- Q2 -->
                         <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q2">
-                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">2. Un dossier est prêt pour le Handover. Tu as oublié de rédiger le scénario où le réseau tombe en panne. Est-ce grave ?</h4>
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">2. Un dossier est prêt pour le Handover. Tu as oublié de rédiger le scénario où le réseau de la douane tombe en panne. Est-ce grave ?</h4>
                             <div class="space-y-3">
-                                <button onclick="checkAnswer('q2', false, 'Faux ! Le FA ne peut pas inventer les règles métiers de fallback.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Non, le FA va le deviner en rédigeant sa User Story.</button>
-                                <button onclick="checkAnswer('q2', true, 'Vrai ! La Definition of Ready impose que les Unhappy Flows soient documentés par le BA avant transmission.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Oui. Un Use Case doit impérativement contenir les Unhappy Flows.</button>
+                                <button onclick="checkAnswer('q2', false, 'Faux ! Le FA ne peut pas inventer les règles métiers de fallback (secours).')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Non, le FA va le deviner en rédigeant sa User Story.</button>
+                                <button onclick="checkAnswer('q2', true, 'Vrai ! La Definition of Ready impose que les Unhappy Flows soient documentés par le BA avant transmission.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Oui. Un Use Case doit absolument contenir les Unhappy Flows (exceptions).</button>
                             </div>
                             <div id="q2-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q3">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">3. Un stakeholder te demande en urgence un bouton "Export Excel". Le dev IT dit : "C'est facile, ça me prend 10 min". Que fais-tu ?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q3', false, 'Faux ! C\'est du Gold Plating (ajout non validé). Cela impactera la maintenance, le RGPD et le scope initial.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. "C'est rapide, on l'ajoute pour leur faire plaisir."</button>
+                                <button onclick="checkAnswer('q3', true, 'Vrai ! On protège le Scope. Ce n\'est pas dans le Business Case, on refuse pour la V1.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. "On refuse pour cette release. C'est hors du Scope défini dans le Business Case."</button>
+                            </div>
+                            <div id="q3-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q4">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">4. L'application IDMS doit vérifier si l'EORI d'une entreprise est valide dans la base européenne (EOS). Comment ces systèmes se parlent-ils ?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q4', false, 'Faux ! Trop lent et obsolète pour des vérifications en temps réel.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. L'Europe envoie un gros fichier XML par e-mail chaque matin pour mise à jour.</button>
+                                <button onclick="checkAnswer('q4', true, 'Exact ! Les Web Services (API) permettent à nos systèmes d\'interroger en direct (souvent en JSON) la base européenne.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Par une API : IDMS fait une requête informatique directe à EOS pour avoir la réponse instantanément.</button>
+                            </div>
+                            <div id="q4-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q5">
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">5. Pourquoi écrit-on les règles de calcul des taxes avec la syntaxe Gherkin (Given / When / Then) dans les Acceptance Criteria ?</h4>
+                            <div class="space-y-3">
+                                <button onclick="checkAnswer('q5', true, 'Vrai ! C\'est le BDD. C\'est lisible par les douaniers, ET les testeurs IT l\'utilisent comme code pour lancer les tests auto.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Car c'est un langage que le métier comprend ET qui permet à l'IT d'automatiser les tests de non-régression.</button>
+                                <button onclick="checkAnswer('q5', false, 'Faux ! Gherkin n\'est pas un langage de programmation, c\'est un pont entre le français et le code.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Parce que c'est un vieux langage de programmation encore utilisé par les serveurs du SPF Finances.</button>
+                            </div>
+                            <div id="q5-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
                         </div>
 
                     </div>
@@ -980,8 +1101,9 @@
         </div>
     </div>
 
+    <!-- Floating Buttons -->
     <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
-        <!-- Bouton Dark Mode -->
+        <!-- Dark Mode Button -->
         <button onclick="toggleDarkMode()" class="bg-gray-800 dark:bg-gray-200 text-yellow-400 dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-white font-black w-14 h-14 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-nuls-black dark:border-white transition-all flex items-center justify-center text-xl" title="Mode Nuit">
             <i class="fas fa-moon dark:hidden"></i>
             <i class="fas fa-sun hidden dark:block"></i>
@@ -1007,7 +1129,7 @@
 
         /* 2. LEXICON LOGIC */
         const lexiconData = {
-            "UAT": "User Acceptance Testing (Tests d'Acceptation Utilisateur). Les tests finaux où le métier vérifie que l'application livrée répond bien au besoin exprimé dans le Use Case.",
+            "UAT": "User Acceptance Testing (Tests d'Acceptation Utilisateur). Les tests finaux où le métier (les douaniers) vérifie que l'application livrée répond bien au besoin exprimé dans le Use Case.",
             "QAS": "Quality Assurance Services. Nos gardiens du temple au SSDD. Ils ne codent pas et ne rédigent pas les tests métiers, mais valident formellement la conformité du travail et donnent les avis de Go/No-Go.",
             "BDD": "Behavior-Driven Development. Une approche agile où l'on décrit le comportement attendu d'un système via des exemples simples (Given/When/Then - Gherkin) avant même de coder.",
             "EORI": "Economic Operators Registration and Identification. Le numéro d'identification douanier unique pour les entreprises faisant du commerce dans l'Union Européenne.",
