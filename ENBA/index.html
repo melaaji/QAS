@@ -64,6 +64,11 @@
         .dark .text-nuls-black { color: #FFD600; } 
         .text-nuls-black { color: #1A1A1A; }
 
+        /* Correction des contrastes en Mode Sombre */
+        .dark .bg-nuls-yellow,
+        .dark .dark\:bg-nuls-yellow { color: #1A1A1A !important; }
+        .dark .dark\:bg-white.dark\:text-nuls-black { color: #1A1A1A !important; }
+
         .nuls-box {
             position: relative;
             border: var(--nuls-border);
@@ -569,11 +574,11 @@
                     <div class="nuls-box unbreakable border-nuls-black dark:border-nuls-yellow shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black dark:border-nuls-yellow"><i class="fas fa-rocket"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-nuls-black dark:text-nuls-yellow">Rapid Prototyping (SpaceX Method)</h4>
-                        <p class="text-justify text-sm mb-3">How do we avoid "Analysis Paralysis"? By adopting the mindset: "Build, Try, Correct".</p>
+                        <p class="text-justify text-sm mb-3"><strong>What exactly is prototyping?</strong> Instead of writing a 100-page abstract document that no one will read, immediately create a visual aid (a draft BPMN diagram, a fake screen interface, a simplified Excel table). Use this "imperfect" prototype during your next workshop to trigger reactions from the business. How do we avoid "Analysis Paralysis"? By adopting the mindset: "Build, Try, Correct".</p>
                         <ul class="space-y-4 text-sm text-justify">
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Present options, not empty questions:</strong> Propose <em>your</em> optimal solution based on current info, and let the stakeholders tear it down. <strong>Being wrong is the fastest way to get the right information!</strong></li>
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. The "Good Enough" diagrams rule:</strong> There is no perfect diagram. Add detail <em>only</em> based on feedback.</li>
-                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Oral communication has 0.00000 retention:</strong> <em>Always</em> write a decision report. If someone complains, suggest they take responsibility for it at the next meeting.</li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Present mock-ups, not empty questions:</strong> Propose <em>your</em> optimal visual solution based on current info, and let the stakeholders tear it down. <strong>Being wrong on a prototype is the fastest way to get the right information!</strong></li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. The "Good Enough" diagrams rule:</strong> There is no perfect diagram from day one. Don't wait until you have 100% of the info to start drawing. Add detail <em>only</em> iteratively, based on feedback.</li>
+                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Words fade away (Retention < 20%):</strong> Human memory is not reliable. Decisions made orally over a prototype are quickly forgotten. <em>Always</em> write a decision report. If someone complains, suggest they take responsibility for it at the next meeting.</li>
                         </ul>
                     </div>
                 </div>

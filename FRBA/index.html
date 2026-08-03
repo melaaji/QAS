@@ -64,6 +64,11 @@
         .dark .text-nuls-black { color: #FFD600; } 
         .text-nuls-black { color: #1A1A1A; }
 
+        /* Correction des contrastes en Mode Sombre */
+        .dark .bg-nuls-yellow,
+        .dark .dark\:bg-nuls-yellow { color: #1A1A1A !important; }
+        .dark .dark\:bg-white.dark\:text-nuls-black { color: #1A1A1A !important; }
+
         .nuls-box {
             position: relative;
             border: var(--nuls-border);
@@ -569,11 +574,11 @@
                     <div class="nuls-box unbreakable border-nuls-black dark:border-nuls-yellow shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black dark:border-nuls-yellow"><i class="fas fa-rocket"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-nuls-black dark:text-nuls-yellow">Le Rapid Prototyping (Méthode SpaceX)</h4>
-                        <p class="text-justify text-sm mb-3">Comment éviter la "Paralysie de l'Analyse" ? En adoptant la mentalité : "Build, Try, Correct".</p>
+                        <p class="text-justify text-sm mb-3"><strong>Concrètement, qu'est-ce que le prototypage ?</strong> Au lieu de rédiger un document abstrait de 100 pages que personne ne lira, créez immédiatement un support visuel (un schéma BPMN brouillon, une fausse interface d'écran, un tableau Excel simplifié). Utilisez ce prototype "imparfait" lors de votre prochain workshop pour faire réagir le métier. Comment éviter la "Paralysie de l'Analyse" ? En adoptant la mentalité : "Build, Try, Correct".</p>
                         <ul class="space-y-4 text-sm text-justify">
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Présente des options, pas des questions vides :</strong> Propose <em>ta</em> solution optimale selon les infos actuelles, et laisse les stakeholders la démonter. <strong>Se tromper est la façon la plus rapide d'obtenir la bonne information !</strong></li>
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. La règle des diagrammes "Good Enough" :</strong> Il n'y a pas de diagramme parfait. Ajoute du détail <em>seulement</em> en fonction des retours.</li>
-                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. L'oral a une rétention de 0.00000 :</strong> Rédige <em>toujours</em> un compte-rendu des décisions. Si quelqu'un s'en plaint, propose-lui d'en prendre la responsabilité au prochain meeting.</li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Présente des maquettes, pas des questions vides :</strong> Propose <em>ta</em> solution visuelle optimale selon les infos actuelles, et laisse les stakeholders la démonter. <strong>Se tromper sur un prototype est la façon la plus rapide d'obtenir la bonne information !</strong></li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. La règle des diagrammes "Good Enough" :</strong> Il n'y a pas de diagramme parfait dès le premier jour. N'attendez pas d'avoir 100% des infos pour dessiner. Ajoutez du détail <em>seulement</em> de manière itérative, en fonction des retours.</li>
+                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Les paroles s'envolent (Rétention < 20%) :</strong> La mémoire humaine n'est pas fiable. Les décisions prises oralement sur un prototype s'oublient très vite. Rédigez <em>toujours</em> un compte-rendu de décision. Si quelqu'un s'en plaint, proposez-lui d'en prendre la responsabilité au prochain meeting.</li>
                         </ul>
                     </div>
                 </div>

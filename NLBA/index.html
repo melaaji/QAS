@@ -64,6 +64,11 @@
         .dark .text-nuls-black { color: #FFD600; } 
         .text-nuls-black { color: #1A1A1A; }
 
+        /* Correction des contrastes en Mode Sombre */
+        .dark .bg-nuls-yellow,
+        .dark .dark\:bg-nuls-yellow { color: #1A1A1A !important; }
+        .dark .dark\:bg-white.dark\:text-nuls-black { color: #1A1A1A !important; }
+
         .nuls-box {
             position: relative;
             border: var(--nuls-border);
@@ -569,11 +574,11 @@
                     <div class="nuls-box unbreakable border-nuls-black dark:border-nuls-yellow shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black dark:border-nuls-yellow"><i class="fas fa-rocket"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-nuls-black dark:text-nuls-yellow">Rapid Prototyping (SpaceX Methode)</h4>
-                        <p class="text-justify text-sm mb-3">Hoe voorkom je "Analyse Verlamming"? Door de mentaliteit aan te nemen: "Build, Try, Correct".</p>
+                        <p class="text-justify text-sm mb-3"><strong>Wat is prototyping concreet?</strong> In plaats van een abstract document van 100 pagina's te schrijven dat niemand leest, maak je onmiddellijk een visueel hulpmiddel (een ruw BPMN-schema, een mock-up van een scherm, een vereenvoudigde Excel-tabel). Gebruik dit "onvolmaakte" prototype tijdens je volgende workshop om de business te laten reageren. Hoe voorkom je "Analyse Verlamming"? Door de mentaliteit aan te nemen: "Build, Try, Correct".</p>
                         <ul class="space-y-4 text-sm text-justify">
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Presenteer opties, geen lege vragen:</strong> Stel <em>jouw</em> optimale oplossing voor op basis van de huidige info, en laat de stakeholders deze afbreken. <strong>Fouten maken is de snelste manier om de juiste informatie te krijgen!</strong></li>
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. De "Good Enough" diagrammen regel:</strong> Er is geen perfect diagram. Voeg <em>alleen</em> detail toe op basis van feedback.</li>
-                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Mondelinge communicatie heeft een retentie van 0.00000:</strong> Maak <em>altijd</em> een verslag van beslissingen. Als iemand klaagt, stel dan voor dat zij bij de volgende vergadering de verantwoordelijkheid op zich nemen.</li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Presenteer mock-ups, geen lege vragen:</strong> Stel <em>jouw</em> optimale visuele oplossing voor op basis van de huidige info, en laat de stakeholders deze afbreken. <strong>Zich vergissen op een prototype is de snelste manier om de juiste informatie te krijgen!</strong></li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. De "Good Enough" diagrammen regel:</strong> Er is geen perfect diagram vanaf dag één. Wacht niet tot je 100% van de info hebt om te tekenen. Voeg <em>alleen</em> iteratief detail toe, op basis van feedback.</li>
+                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Woorden vervliegen (Retentie < 20%):</strong> Het menselijk geheugen is niet betrouwbaar. Beslissingen die mondeling over een prototype worden genomen, worden snel vergeten. Maak <em>altijd</em> een verslag van beslissingen. Als iemand klaagt, stel dan voor dat zij bij de volgende vergadering de verantwoordelijkheid op zich nemen.</li>
                         </ul>
                     </div>
                 </div>
