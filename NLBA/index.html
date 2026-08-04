@@ -683,6 +683,7 @@
 
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> ISO 25010 (Niet-Functionele Vereisten)</h3>
+                        <p class="mb-4 text-sm text-justify">Een applicatie die alle bedrijfsregels netjes volgt, kan nog steeds een totale mislukking zijn als ze onbruikbaar, onveilig is of elke dag crasht. Hier komt <strong>ISO 25010</strong> kijken, de internationale standaard voor softwarekwaliteit.</p>
                         <p class="mb-4 text-sm text-justify">Wees niet tevreden met het opsommen van wat de app moet <em>doen</em>. Specificeer <em>hoe</em> hij moet zijn: Prestaties, Betrouwbaarheid (Beschikbaarheid 99.9%), Bruikbaarheid, Beveiliging, Onderhoudbaarheid.</p>
                     </div>
                 </div>
@@ -724,7 +725,7 @@
                             </div>
                             <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De technische implementatie opgesplitst.</p>
                             <ul class="space-y-3 text-sm">
-                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Het vertaalt de Unhappy Flow in een uitvoerbare taak voor de programmeurs.</li>
+                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Het vertaalt de volledige Use Case (zowel de <strong>Happy</strong> als de <strong>Unhappy Flows</strong>) in een uitvoerbare taak voor de programmeurs.</li>
                                 <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Het omvat technische keuzes (knop, API-oproep).</li>
                                 <li class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-900 dark:text-white"><strong class="block mb-1">Essentieel: De Acceptance Criteria.</strong> Altijd vergezeld van nauwkeurige AC om de technische oplevering tijdens de Sprint te valideren.</li>
                             </ul>
@@ -748,7 +749,7 @@
                                 <p class="text-sm italic text-gray-600 dark:text-gray-400">"Oké. Mijn User Story creëert een API-oproep naar IAM om de rol van de leidinggevende te controleren, en toont een rode fout Pop-up in IDMS."</p>
                             </div>
                         </div>
-                        <p class="text-sm text-center font-bold mt-4 text-red-600 dark:text-red-400">Gouden regel: De BA tekent de pop-ups niet. De FA dicteert de douanewetten niet.</p>
+                        <p class="text-sm text-center font-bold mt-4 text-red-600 dark:text-red-400">Gouden regel: De BA stopt bij de regels, de FA blijft er vanaf. De BA ontwerpt geen schermen, de FA verzint geen wetten.</p>
                     </div>
                 </div>
 
@@ -850,106 +851,68 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
-
-                <!-- Chapter 10 -->
-                <div id="chap10" class="mb-16 scroll-mt-8 unbreakable">
-                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
-                        <div class="flex items-center">
-                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">10</div>
-                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">BDD & Gherkin Syntaxis 🥒</h2>
-                        </div>
-                    </div>
-                    <p class="mb-4 text-justify"><strong>Behavior-Driven Development (<button class="lexicon-term" data-term="BDD">BDD</button>)</strong> beschrijft <em>bedrijfsgedrag</em> en niet een technische implementatie. Gherkin transformeert je bedrijfsvoorbeelden in automatiseerbare tests.</p>
-                    
-                    <div class="nuls-box unbreakable border-green-600 shadow-[6px_6px_0px_#16A34A] dark:shadow-[6px_6px_0px_#4ADE80] bg-green-50 dark:bg-green-950 mt-8">
-                        <div class="nuls-box-icon bg-green-500 text-white border-green-700 dark:border-green-400"><i class="fas fa-code"></i></div>
-                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-green-900 dark:text-green-100">Praktijkcasus: Automatisering met Gherkin</h4>
+                    <div class="mt-8 bg-[var(--card-bg)] p-6 rounded-2xl border-[3px] border-[var(--card-border)] shadow-sm transition-colors">
+                        <h4 class="font-bold mb-6 text-center text-nuls-black dark:text-gray-300 uppercase tracking-wide"><i class="fas fa-project-diagram text-nuls-yellow mr-2"></i> Voorbeeld van een standaard BPMN-diagram</h4>
+                        <p class="text-sm text-center mb-6 text-gray-600 dark:text-gray-400">Om een echt schema in je documenten te integreren, modelleer je het in <strong>Draw.io</strong>, exporteer je het als <strong>SVG</strong> of <strong>PNG</strong> en voeg je de afbeelding in. Hier zie je hoe de BPMN 2.0-standaard eruitziet:</p>
                         
-                        <div class="bg-gray-900 text-green-400 p-4 rounded-xl font-mono text-xs overflow-x-auto border-2 border-nuls-black shadow-inner">
-                            <span class="text-purple-400 font-bold">Feature:</span> EORI controle op IDMS<br><br>
-                            
-                            <span class="text-yellow-400 font-bold">Background:</span> <span class="text-gray-500 italic"># Gemeenschappelijke randvoorwaarden</span><br>
-                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> een douanegebruiker ingelogd op het systeem<br><br>
+                        <div class="w-full overflow-x-auto flex justify-center bg-white p-4 rounded-xl border border-gray-200">
+                            <svg viewBox="0 0 800 300" class="min-w-[600px] w-full max-w-3xl h-auto font-sans" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563" />
+                                    </marker>
+                                </defs>
 
-                            <span class="text-yellow-400 font-bold">Scenario Outline:</span> EORI validatie<br>
-                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> de aangever heeft de EORI "&lt;eori_code&gt;" ingevoerd<br>
-                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">When</span> hij op Indienen klikt<br>
-                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Then</span> het systeem moet de status "&lt;resultaat&gt;" tonen<br><br>
-                            
-                            <span class="text-yellow-400 font-bold">Examples:</span><br>
-                            &nbsp;&nbsp;| eori_code | resultaat | <span class="text-gray-500 italic"># Uitleg</span><br>
-                            &nbsp;&nbsp;| BE1234    | OK        | <span class="text-gray-500 italic"># Geldige EORI</span><br>
-                            &nbsp;&nbsp;| FRA567    | Weigering | <span class="text-gray-500 italic"># Onbekende EORI in EOS</span><br>
-                        </div>
-                    </div>
-                </div>
+                                <!-- Pool / Swimlanes -->
+                                <rect x="10" y="10" width="780" height="280" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+                                <rect x="10" y="10" width="30" height="280" fill="#F3F4F6" stroke="#1A1A1A" stroke-width="2"/>
+                                <text transform="translate(25, 150) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="14" fill="#1A1A1A" letter-spacing="2">IMPORTPROCES</text>
 
-                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+                                <rect x="40" y="10" width="750" height="140" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
+                                <rect x="40" y="10" width="30" height="140" fill="#E5E7EB" stroke="#1A1A1A" stroke-width="1"/>
+                                <text transform="translate(55, 80) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="12" fill="#1A1A1A">Aangever</text>
 
-                <!-- Chapter 11 -->
-                <div id="chap11" class="mb-16 scroll-mt-8 unbreakable">
-                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
-                        <div class="flex items-center">
-                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">11</div>
-                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">IT voor Dummies (API's, SQL) 🔌</h2>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-justify">De BA codeert niet. Maar om op gelijke voet met IT te kunnen discussiëren en de haalbaarheid van zijn <em>Use Cases</em> te verifiëren, moet hij begrijpen hoe systemen met elkaar communiceren. Hier zijn de 3 concepten die je moet beheersen om te schitteren in technische vergaderingen.</p>
+                                <rect x="40" y="150" width="750" height="140" fill="#F9FAFB" stroke="#1A1A1A" stroke-width="1"/>
+                                <rect x="40" y="150" width="30" height="140" fill="#E5E7EB" stroke="#1A1A1A" stroke-width="1"/>
+                                <text transform="translate(55, 220) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="12" fill="#1A1A1A">IDMS (Douane)</text>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <!-- API -->
-                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
-                            <h3 class="font-black text-xl mb-3 text-nuls-blue dark:text-blue-400"><i class="fas fa-plug mr-2"></i> De API (Web Services)</h3>
-                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De ober van het restaurant.</p>
-                            <p class="text-sm text-justify mb-3">Een API zorgt ervoor dat twee verschillende systemen met elkaar kunnen praten. Stel je een restaurant voor:</p>
-                            <ul class="text-sm space-y-2">
-                                <li><strong>De klant (IDMS) :</strong> Vraagt om informatie.</li>
-                                <li><strong>De keuken (IAM/CSAM) :</strong> Bevat de gebruikersdatabases.</li>
-                                <li><strong>De API (De ober) :</strong> IDMS gaat niet zelf in de keuken rommelen. Het geeft zijn bestelling door aan de API, die de info uit IAM haalt en het antwoord terugbrengt ("Ja, deze gebruiker is inderdaad een ploegbaas").</li>
-                            </ul>
-                        </div>
+                                <!-- Elements -->
+                                <circle cx="120" cy="80" r="18" fill="#ECFDF5" stroke="#16A34A" stroke-width="2"/>
+                                <text x="120" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Aankomst Schip</text>
 
-                        <!-- SQL -->
-                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
-                            <h3 class="font-black text-xl mb-3 text-green-600 dark:text-green-400"><i class="fas fa-database mr-2"></i> SQL</h3>
-                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De taal van databanken.</p>
-                            <p class="text-sm text-justify mb-3">SQL wordt gebruikt om grote gegevenstabellen te bevragen. De basisstructuur is altijd hetzelfde: <code>SELECT</code> (wat ik wil) <code>FROM</code> (uit welke tabel) <code>WHERE</code> (onder welke voorwaarde).</p>
-                            <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-600 shadow-inner overflow-x-auto text-nuls-black dark:text-gray-200">
-                                <span class="text-blue-600 dark:text-blue-400 font-bold">SELECT</span> id_declaration, status<br>
-                                <span class="text-blue-600 dark:text-blue-400 font-bold">FROM</span> declarations_h1<br>
-                                <span class="text-blue-600 dark:text-blue-400 font-bold">WHERE</span> weight > 20000;
-                            </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 italic">Vertaling: Geef me het ID en de status van alle H1-aangiften waarvan het gewicht meer dan 20 ton is.</p>
-                        </div>
-                    </div>
+                                <path d="M 138 80 L 180 80" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
 
-                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> JSON vs XML : De taal van data</h3>
-                    <p class="mb-4 text-sm text-justify">Wanneer twee applicaties met elkaar praten (via de API), moeten ze een gestandaardiseerd formaat gebruiken om gegevens te verzenden. Bij de douane gebruiken we voornamelijk twee formaten:</p>
-                    
-                    <div class="flex flex-col md:flex-row gap-6 mb-4">
-                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
-                            <h4 class="font-bold text-red-600 dark:text-red-400 mb-2"><i class="fas fa-file-code mr-2"></i> XML (De Oude, zwaar maar robuust)</h4>
-                            <p class="text-xs mb-2">Gebruikt tags (zoals HTML). Zeer gebruikelijk voor oudere douaneberichten (EDI).</p>
-                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
-                                &lt;Declarant&gt;<br>
-                                &nbsp;&nbsp;&lt;Name&gt;Dupont&lt;/Name&gt;<br>
-                                &nbsp;&nbsp;&lt;EORI&gt;BE1234&lt;/EORI&gt;<br>
-                                &lt;/Declarant&gt;
-                            </div>
+                                <rect x="180" y="55" width="120" height="50" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+                                <text x="240" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A">H1 Indienen</text>
+
+                                <path d="M 240 105 L 240 220 L 280 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+
+                                <polygon points="305,200 330,220 305,240 280,220" fill="#FEF08A" stroke="#D97706" stroke-width="2"/>
+                                <text x="305" y="255" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Gewicht > 20t ?</text>
+
+                                <path d="M 330 220 L 420 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <text x="375" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#16A34A">Nee</text>
+
+                                <rect x="420" y="195" width="120" height="50" rx="8" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
+                                <text x="480" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">Vrijgave Verlenen</text>
+
+                                <path d="M 540 220 L 590 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <circle cx="610" cy="220" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
+                                <text x="610" y="255" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Einde (Vrijgegeven)</text>
+
+                                <path d="M 305 200 L 305 80 L 420 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <text x="315" y="140" text-anchor="start" font-size="12" font-weight="bold" fill="#DC2626">Ja</text>
+
+                                <rect x="420" y="55" width="120" height="50" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
+                                <text x="480" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#991B1B">Blokkeren (Controle)</text>
+
+                                <path d="M 540 80 L 590 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <circle cx="610" cy="80" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
+                                <text x="610" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Einde (Geblokkeerd)</text>
+                            </svg>
                         </div>
-                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
-                            <h4 class="font-bold text-yellow-600 dark:text-yellow-400 mb-2"><i class="fas fa-brackets-curly mr-2"></i> JSON (De Moderne, lichtgewicht)</h4>
-                            <p class="text-xs mb-2">Werkt in <code>"Sleutel": "Waarde"</code> paren. Dit is de huidige webstandaard (REST API's).</p>
-                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
-                                "Declarant": {<br>
-                                &nbsp;&nbsp;"Name": "Dupont",<br>
-                                &nbsp;&nbsp;"EORI": "BE1234"<br>
-                                }
-                            </div>
-                        </div>
+                        <p class="text-xs text-gray-500 text-center mt-3 italic">* Opmerking: Dit schema is een sterk vereenvoudigde illustratie voor educatieve doeleinden.</p>
                     </div>
                 </div>
 
@@ -1235,11 +1198,15 @@
 
                 let currentSection = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (scrollY >= sectionTop - 250) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 300) {
                         currentSection = section.getAttribute('id');
                     }
                 });
+
+                if (window.scrollY < 200 && sections.length > 0) {
+                    currentSection = sections[0].getAttribute('id');
+                }
 
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
