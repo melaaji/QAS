@@ -336,47 +336,33 @@
                                     <li>Defining integrations (API between systems)</li>
                                     <li>Breaking down into User Stories for coders</li>
                                     <li>Writing Acceptance Criteria (AC)</li>
-                                    <li class="col-span-1 md:col-span-2 text-blue-600 dark:text-blue-300 font-bold mt-1">💡 Participates very early in business workshops (Shift-Left) to guide towards technically viable solutions.</li>
+                                    <li class="col-span-1 md:col-span-2 text-blue-600 dark:text-blue-300 font-bold mt-1">💡 Participates very early in business workshops (<button class="lexicon-term" data-term="Shift-Left">Shift-Left</button>) to guide towards technically viable solutions.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The Executive Team (Steering Committee)</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The Executive & Architecture Team</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 text-sm">
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
-                            <h4 class="font-bold mb-1">The Product Owner (PO) / Sponsor</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Guarantor of the vision and ROI. Gives the <strong>final validation on the MoSCoW</strong>, prioritizes the Backlog and arbitrates priority conflicts.</p>
+                            <h4 class="font-bold mb-1">Sponsor & PO</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Guarantor of the vision and ROI. The Sponsor funds, the PO validates the <strong>MoSCoW</strong> and prioritizes the Backlog.</p>
                         </div>
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
                             <h4 class="font-bold mb-1">Senior User (Business)</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Represents the interests of those who will use the final solution (Stakeholders and experts).</p>
+                            <p class="text-gray-600 dark:text-gray-400">Represents the interests of the final users (e.g., Antwerp customs management).</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-handshake text-3xl text-purple-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">Senior Supplier (IT)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Represents the IT entity or contractor building and technically delivering the solution.</p>
                         </div>
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
                             <h4 class="font-bold mb-1">IT Architect</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Defines the overall structure at the start of the project (Software Architecture Document). Gives the initial Go/NoGo (Architecture Board), then lets the FA manage the Sprints.</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The Executive Team (Steering Committee)</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
-                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
-                            <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
-                            <h4 class="font-bold mb-1">The Sponsor (Executive)</h4>
-                            <p class="text-gray-600 dark:text-gray-400">The big boss. Funds the project, validates the BuCa, and makes critical Go/No-Go decisions.</p>
-                        </div>
-                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
-                            <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
-                            <h4 class="font-bold mb-1">Senior User (Business)</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Represents the interests of those who will use the final solution (e.g., Antwerp customs director).</p>
-                        </div>
-                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
-                            <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
-                            <h4 class="font-bold mb-1">Senior Supplier (IT)</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Represents the IT entity or contractor building and technically delivering the solution.</p>
+                            <p class="text-gray-600 dark:text-gray-400">Defines the overall structure. Gives the initial Go/NoGo, then lets the FA manage the Sprints.</p>
                         </div>
                     </div>
 
@@ -536,7 +522,7 @@
 
                     <div class="unbreakable bg-[var(--section-bg)] p-6 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md mb-8 transition-colors">
                         <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advice: Don't isolate the FA!</h4>
-                        <p class="text-sm mb-4 text-justify">In the past, the BA did their analysis in their corner, then threw the file "over the wall" to the FA. That's over. <strong>Involve the FA from the very first business workshops (Shift-Left)!</strong> If they understand the need early, they will prevent you from drawing a TO-BE process that would cost 3 million euros to develop, by immediately proposing viable technical alternatives.</p>
+                        <p class="text-sm mb-4 text-justify">In the past, the BA did their analysis in their corner, then threw the file "over the wall" to the FA. That's over. <strong>Involve the FA from the very first business workshops (<button class="lexicon-term" data-term="Shift-Left">Shift-Left</button>)!</strong> If they understand the need early, they will prevent you from drawing a TO-BE process that would cost 3 million euros to develop, by immediately proposing viable technical alternatives.</p>
                         
                         <h4 class="font-black text-lg mb-3 mt-6 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-headset mr-3"></i> Survival for the Lone BA</h4>
                         <p class="text-sm mb-4 text-justify">In an ideal world, a workshop is led by two people: one BA animating, and a second taking notes. <strong>At SSDD, you'll often face your stakeholders alone.</strong> How do you survive?</p>
@@ -1186,6 +1172,7 @@
             "MoSCoW": "Scope prioritization method: Must have (Vital), Should have (Important), Could have (Bonus), Won't have (Excluded).",
             "BPMN": "Business Process Model and Notation. The universal language consisting of simple shapes (circles, diamonds, swimlanes) to graphically draw a business process from A to Z.",
             "ROI": "Return on Investment. Financial ratio ensuring the project brings in more than it costs.",
+            "Shift-Left": "An Agile practice that involves moving tasks (like technical analysis, involving the FA, or testing) as early as possible in the project lifecycle (to the 'left' on a timeline). Goal: detect and prevent issues before they become expensive to fix.",
             "COC": "Centre of Competence (or PMO). The cross-functional team that provides standards, templates (like the Business Case), and ensures that project management methodologies are respected within the organization."
         };
 
