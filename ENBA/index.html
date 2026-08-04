@@ -274,7 +274,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-sm">
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">1. WHY ? (Benefits)</strong> : Why do this project? We define <button class="lexicon-term" data-term="SMART">SMART</button> benefits and the <button class="lexicon-term" data-term="ROI">ROI</button>.</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">2. FOR WHO ? (Users)</strong> : Who is impacted? (e.g. The 204 customs team leaders).</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (Products)</strong> : What will we deliver? We use the <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button> method to prioritize.</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (Products)</strong> : What will we deliver? We use the <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button> method to prioritize (prepared by the BA, finally validated by the PO).</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">4. HOW ? (Costs)</strong> : How many Man-Days (Developers, FA, BA) will this cost?</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">5. HOW LONG ? (Timing)</strong> : What is the estimated duration and project phases?</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-red-600 dark:text-red-400">6. WHAT IF ? (Option 0)</strong> : What happens if we do NOTHING (Option 0)? And what are the risks?</div>
@@ -336,8 +336,28 @@
                                     <li>Defining integrations (API between systems)</li>
                                     <li>Breaking down into User Stories for coders</li>
                                     <li>Writing Acceptance Criteria (AC)</li>
+                                    <li class="col-span-1 md:col-span-2 text-blue-600 dark:text-blue-300 font-bold mt-1">💡 Participates very early in business workshops (Shift-Left) to guide towards technically viable solutions.</li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. The Executive Team (Steering Committee)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
+                            <h4 class="font-bold mb-1">The Product Owner (PO) / Sponsor</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Guarantor of the vision and ROI. Gives the <strong>final validation on the MoSCoW</strong>, prioritizes the Backlog and arbitrates priority conflicts.</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">Senior User (Business)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Represents the interests of those who will use the final solution (Stakeholders and experts).</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">IT Architect</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Defines the overall structure at the start of the project (Software Architecture Document). Gives the initial Go/NoGo (Architecture Board), then lets the FA manage the Sprints.</p>
                         </div>
                     </div>
 
@@ -515,8 +535,11 @@
                     </div>
 
                     <div class="unbreakable bg-[var(--section-bg)] p-6 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md mb-8 transition-colors">
-                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advice: The Lone BA</h4>
-                        <p class="text-sm mb-4 text-justify">In an ideal world, a workshop is led by two people: one BA animating the interview, and a second taking notes. But let's be realistic: <strong>at SSDD, you won't always have this luxury and you'll often face your stakeholders alone.</strong> How do you survive and not miss anything?</p>
+                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advice: Don't isolate the FA!</h4>
+                        <p class="text-sm mb-4 text-justify">In the past, the BA did their analysis in their corner, then threw the file "over the wall" to the FA. That's over. <strong>Involve the FA from the very first business workshops (Shift-Left)!</strong> If they understand the need early, they will prevent you from drawing a TO-BE process that would cost 3 million euros to develop, by immediately proposing viable technical alternatives.</p>
+                        
+                        <h4 class="font-black text-lg mb-3 mt-6 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-headset mr-3"></i> Survival for the Lone BA</h4>
+                        <p class="text-sm mb-4 text-justify">In an ideal world, a workshop is led by two people: one BA animating, and a second taking notes. <strong>At SSDD, you'll often face your stakeholders alone.</strong> How do you survive?</p>
                         
                         <ul class="space-y-3 text-sm font-medium">
                             <li class="flex items-start">
@@ -720,6 +743,11 @@
                                 <li class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-900 dark:text-white"><strong class="block mb-1">Essential: Acceptance Criteria.</strong> Always accompanied by precise ACs to validate technical delivery during the Sprint.</li>
                             </ul>
                         </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900 p-6 rounded-2xl border-l-[6px] border-green-500 shadow-sm mb-8 unbreakable">
+                        <h4 class="font-black text-xl mb-2 text-green-900 dark:text-green-100"><i class="fas fa-check-double mr-2"></i> The "Reverse-Review" (BA Sign-off)</h4>
+                        <p class="text-sm text-green-800 dark:text-green-200 text-justify">Once the FA has written their User Stories and Acceptance Criteria, the process is not over! <strong>The BA must review the FA's work.</strong> The BA ensures that the technical translation has not distorted the original business need and verifies the "Business Value". The BA then gives formal approval (Sign-off) before the developers start coding the Story.</p>
                     </div>
 
                     <div class="bg-[var(--section-bg)] border-[3px] border-[var(--card-border)] rounded-2xl p-6 shadow-sm unbreakable transition-colors">
@@ -949,7 +977,18 @@
                             <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Templates & SSDD Toolkit 🛠️</h2>
                         </div>
                     </div>
-                    <p class="mb-6 text-justify">Documentation has only one purpose: to get information out of your head to communicate. Forget lost Word documents. At SSDD, everything revolves around Jira (Action) and Confluence (Knowledge).</p>
+                    <p class="mb-6 text-justify">Documentation has only one purpose: to get information out of your head to communicate. Forget lost Word documents. At SSDD, everything revolves around the Atlassian ecosystem and its integrated tools.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-blue-500 dark:border-blue-400 rounded-2xl shadow-sm transition-colors">
+                            <h3 class="font-black text-lg mb-2 text-blue-600 dark:text-blue-400"><i class="fas fa-project-diagram mr-2"></i> Draw.io (Modeling)</h3>
+                            <p class="text-sm text-justify">The drawing tool integrated into Confluence. This is where the BA draws their BPMN flows (AS-IS / TO-BE) in a standardized way so that understanding is uniform across Business, BA, FA, and IT.</p>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-green-500 dark:border-green-400 rounded-2xl shadow-sm transition-colors">
+                            <h3 class="font-black text-lg mb-2 text-green-600 dark:text-green-400"><i class="fas fa-vial mr-2"></i> Xray (Testing)</h3>
+                            <p class="text-sm text-justify">The testing plugin integrated into Jira. During UAT phases, it is via Xray that the BA and stakeholders execute acceptance scenarios, register bugs (defects), and track them until final Sign-off.</p>
+                        </div>
+                    </div>
 
                     <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> The Confluence Tree Structure</h3>
                     <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-300 dark:border-gray-700 font-mono text-sm mb-8 shadow-inner">

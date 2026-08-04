@@ -274,7 +274,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-sm">
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">1. WHY ? (De Voordelen)</strong> : Waarom dit project doen? We definiëren <button class="lexicon-term" data-term="SMART">SMART</button> voordelen en de <button class="lexicon-term" data-term="ROI">ROI</button>.</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">2. FOR WHO ? (Gebruikers)</strong> : Wie wordt er beïnvloed? (bijv. De 204 douane-ploegbazen).</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (De Producten)</strong> : Wat gaan we leveren? We gebruiken de <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button>-methode om te prioriteren.</div>
+                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (De Producten)</strong> : Wat gaan we leveren? We gebruiken de <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button>-methode om te prioriteren (voorbereid door de BA, definitief gevalideerd door de Product Owner).</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">4. HOW ? (De Kosten)</strong> : Hoeveel Mensdagen (Ontwikkelaars, FA, BA) gaat dit kosten?</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">5. HOW LONG ? (De Timing)</strong> : Wat is de geschatte duur en wat zijn de projectfasen?</div>
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-red-600 dark:text-red-400">6. WHAT IF ? (Optie 0)</strong> : Wat gebeurt er als we NIETS doen (Optie 0)? En wat zijn de risico's?</div>
@@ -336,8 +336,28 @@
                                     <li>Definitie van integraties (API tussen systemen)</li>
                                     <li>Opsplitsen in User Stories voor de codeurs</li>
                                     <li>Schrijven van Acceptance Criteria (AC)</li>
+                                    <li class="col-span-1 md:col-span-2 text-blue-600 dark:text-blue-300 font-bold mt-1">💡 Neemt zeer vroeg deel aan workshops (Shift-Left) om te sturen naar technisch haalbare oplossingen.</li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. Het Directieteam (Stuurgroep)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
+                            <h4 class="font-bold mb-1">De Product Owner (PO) / Sponsor</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Garant voor de visie en ROI. Hij geeft de <strong>finale validatie op de MoSCoW</strong>, prioriteert de Backlog en bemiddelt bij prioriteitsconflicten.</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">Senior User (Business)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Vertegenwoordigt de belangen van degenen die de uiteindelijke oplossing zullen gebruiken (Stakeholders en experts).</p>
+                        </div>
+                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
+                            <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
+                            <h4 class="font-bold mb-1">IT Architect</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Bepaalt de globale structuur in het begin (Software Architecture Document). Geeft de initiële Go/NoGo (Architecture Board), waarna de FA de Sprints beheert.</p>
                         </div>
                     </div>
 
@@ -515,8 +535,11 @@
                     </div>
 
                     <div class="unbreakable bg-[var(--section-bg)] p-6 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md mb-8 transition-colors">
-                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advies: De Eenzame BA</h4>
-                        <p class="text-sm mb-4 text-justify">In een ideale wereld leiden we een workshop met twee personen: een BA die het interview leidt, en een tweede die aantekeningen maakt. Maar laten we realistisch zijn: <strong>bij de SSDD heb je niet altijd deze luxe en sta je er vaak alleen voor bij je stakeholders.</strong> Hoe overleef je en mis je niets?</p>
+                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Expert Advies: Isoleer de FA niet!</h4>
+                        <p class="text-sm mb-4 text-justify">In het verleden deed de BA zijn analyse en gooide het dossier daarna "over de muur" naar de FA. Dat is voorbij. <strong>Betrek de FA vanaf de eerste business workshops (Shift-Left)!</strong> Als hij de behoefte vroeg begrijpt, voorkomt hij dat je een TO-BE proces tekent dat 3 miljoen euro kost om te ontwikkelen, door direct technisch haalbare alternatieven voor te stellen.</p>
+                        
+                        <h4 class="font-black text-lg mb-3 mt-6 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-headset mr-3"></i> Overleven voor de Eenzame BA</h4>
+                        <p class="text-sm mb-4 text-justify">In een ideale wereld leiden we een workshop met twee personen: een BA die leidt, en een tweede die noteert. <strong>Bij de SSDD sta je er vaak alleen voor bij je stakeholders.</strong> Hoe overleef je?</p>
                         
                         <ul class="space-y-3 text-sm font-medium">
                             <li class="flex items-start">
@@ -720,6 +743,11 @@
                                 <li class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-900 dark:text-white"><strong class="block mb-1">Essentieel: De Acceptance Criteria.</strong> Altijd vergezeld van nauwkeurige AC om de technische oplevering tijdens de Sprint te valideren.</li>
                             </ul>
                         </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900 p-6 rounded-2xl border-l-[6px] border-green-500 shadow-sm mb-8 unbreakable">
+                        <h4 class="font-black text-xl mb-2 text-green-900 dark:text-green-100"><i class="fas fa-check-double mr-2"></i> De "Reverse-Review" (De Sign-off van de BA)</h4>
+                        <p class="text-sm text-green-800 dark:text-green-200 text-justify">Zodra de FA zijn User Stories en Acceptance Criteria heeft geschreven, is het proces nog niet klaar! <strong>De BA moet het werk van de FA nalezen.</strong> De BA zorgt ervoor dat de technische vertaling de oorspronkelijke businessbehoefte niet heeft vervormd en controleert de "Business Value". De BA geeft vervolgens formele goedkeuring (Sign-off) voordat de ontwikkelaars beginnen te coderen.</p>
                     </div>
 
                     <div class="bg-[var(--section-bg)] border-[3px] border-[var(--card-border)] rounded-2xl p-6 shadow-sm unbreakable transition-colors">
@@ -949,7 +977,18 @@
                             <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Templates & Toolkit SSDD 🛠️</h2>
                         </div>
                     </div>
-                    <p class="mb-6 text-justify">Documentatie heeft maar één doel: informatie uit je hoofd halen om te communiceren. Vergeet de verloren Word-documenten. Bij de SSDD draait alles om Jira (Actie) en Confluence (Kennis).</p>
+                    <p class="mb-6 text-justify">Documentatie heeft maar één doel: informatie uit je hoofd halen om te communiceren. Vergeet de verloren Word-documenten. Bij de SSDD draait alles om het Atlassian ecosysteem en zijn plugins.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-blue-500 dark:border-blue-400 rounded-2xl shadow-sm transition-colors">
+                            <h3 class="font-black text-lg mb-2 text-blue-600 dark:text-blue-400"><i class="fas fa-project-diagram mr-2"></i> Draw.io (Modellering)</h3>
+                            <p class="text-sm text-justify">De tekentool geïntegreerd in Confluence. Hier tekent de BA zijn BPMN flows (AS-IS / TO-BE) op een gestandaardiseerde manier, zodat het begrip uniform is tussen Business, BA, FA en IT.</p>
+                        </div>
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-green-500 dark:border-green-400 rounded-2xl shadow-sm transition-colors">
+                            <h3 class="font-black text-lg mb-2 text-green-600 dark:text-green-400"><i class="fas fa-vial mr-2"></i> Xray (Testing)</h3>
+                            <p class="text-sm text-justify">De test-plugin geïntegreerd in Jira. Tijdens de UAT fasen is het via Xray dat de BA en de stakeholders de acceptatiescenario's uitvoeren, bugs (defects) registreren en opvolgen tot de finale Sign-off.</p>
+                        </div>
+                    </div>
 
                     <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> De Confluence Boomstructuur</h3>
                     <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-300 dark:border-gray-700 font-mono text-sm mb-8 shadow-inner">
