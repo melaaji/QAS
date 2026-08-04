@@ -41,11 +41,11 @@
         .dark {
             --nuls-border: 3px solid #FFD600;
             --nuls-shadow: 6px 6px 0px #FFD600;
-            --bg-body: #111827; 
-            --text-body: #F3F4F6; 
-            --card-bg: #1F2937; 
+            --bg-body: #111827; /* gray-900 */
+            --text-body: #F3F4F6; /* gray-100 */
+            --card-bg: #1F2937; /* gray-800 */
             --card-border: #FFD600;
-            --section-bg: #374151; 
+            --section-bg: #374151; /* gray-700 */
         }
 
         body {
@@ -62,16 +62,6 @@
         .bg-nuls-yellow { background-color: #FFD600; color: #1A1A1A;}
         .text-nuls-yellow { color: #FFD600; }
         .text-nuls-black { color: #1A1A1A; }
-
-        /* Règle CSS pour garantir la lisibilité du texte sur fond jaune en mode sombre */
-        .dark .bg-nuls-yellow { color: #1A1A1A !important; }
-        .dark .text-nuls-yellow { color: #FFD600 !important; }
-        .dark .text-nuls-black { color: #FFD600; }
-        .dark .bg-nuls-yellow .text-nuls-black,
-        .dark .bg-nuls-yellow i,
-        .dark .bg-nuls-yellow span,
-        .dark .bg-nuls-yellow strong,
-        .dark .bg-nuls-yellow a { color: #1A1A1A !important; }
 
         .nuls-box {
             position: relative;
@@ -98,7 +88,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: #1A1A1A !important;
+            color: #1A1A1A;
             box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
         }
 
@@ -117,7 +107,7 @@
         .toc-link:hover { background-color: var(--section-bg); color: var(--text-body); transform: translateX(4px); }
         .toc-link.active {
             background-color: #FFD600;
-            color: #1A1A1A !important;
+            color: #1A1A1A;
             font-weight: 800;
             border: 2px solid #1A1A1A;
             box-shadow: 3px 3px 0px #1A1A1A;
@@ -146,7 +136,7 @@
             .print-container { box-shadow: none !important; margin: 0 !important; max-width: 100% !important; border: none !important; }
             .page-break { page-break-before: always !important; }
             .nuls-box { margin: 2rem 0 1rem 0 !important; border-width: 2px !important; box-shadow: 4px 4px 0px #1A1A1A !important; background-color: #fff !important; border-color: #1A1A1A !important;}
-            .nuls-box-icon { border-color: #1A1A1A !important; color: #1A1A1A !important; }
+            .nuls-box-icon { border-color: #1A1A1A !important; }
             .no-print { display: none !important; }
             .sidebar-nav { display: none !important; }
             .content-area { width: 100% !important; max-width: 100% !important; border: none !important; padding: 0 !important; box-shadow: none !important; background-color: #fff !important;}
@@ -163,7 +153,6 @@
         <a href="https://melaaji.github.io/QAS/ENBA/" class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold px-3 py-1 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm text-sm hover:scale-105 transition-transform hover:border-nuls-black dark:hover:border-nuls-yellow">EN</a>
     </div>
 
-    <!-- Lexicon Modal -->
     <div id="lexiconModal" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center backdrop-blur-sm transition-opacity opacity-0 duration-300">
         <div class="bg-white dark:bg-gray-800 border-4 border-nuls-black dark:border-nuls-yellow rounded-2xl p-6 max-w-md w-[90%] shadow-[8px_8px_0px_#1A1A1A] dark:shadow-[8px_8px_0px_#FFD600] transform scale-95 transition-transform duration-300">
             <div class="flex justify-between items-start mb-4">
@@ -176,7 +165,6 @@
 
     <div class="print-container max-w-[1600px] w-[95%] mx-auto my-8 print:my-0 print:w-full">
         
-        <!-- Couverture -->
         <div class="cover-page flex flex-col justify-center items-center bg-nuls-yellow border-4 border-[#1A1A1A] rounded-3xl p-16 text-center relative z-10 overflow-hidden shadow-2xl print:border-2 mb-12">
             <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1A1A1A 2px, transparent 2px); background-size: 30px 30px;"></div>
 
@@ -186,7 +174,7 @@
                     <p class="text-xs font-bold text-gray-700 mt-1">Information Management - SSDD</p>
                 </div>
                 <div class="text-right bg-nuls-black text-white px-4 py-2 rounded-xl border-2 border-white shadow-lg print:border-nuls-black print:text-black print:bg-white">
-                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Édition Interactive (V7)</span>
+                    <span class="font-bold text-sm text-nuls-yellow print:text-black">Édition Interactive Ultimate (V7)</span>
                     <p class="text-[10px] font-semibold mt-1 opacity-80 print:opacity-100">Gamifié, Exhaustif & Dark Mode</p>
                 </div>
             </div>
@@ -219,7 +207,6 @@
 
         <div class="flex flex-col lg:flex-row gap-8 relative">
             
-            <!-- Sidebar -->
             <aside class="sidebar-nav w-full lg:w-1/4 no-print relative z-10">
                 <div class="sticky top-8 bg-[var(--card-bg)] border-[3px] border-[var(--card-border)] rounded-3xl p-6 shadow-[6px_6px_0px_var(--card-border)] max-h-[calc(100vh-4rem)] overflow-y-auto transition-colors duration-300">
                     <h3 class="font-nuls font-black text-xl mb-4 border-b-2 border-gray-200 dark:border-gray-700 pb-3 flex items-center text-[var(--text-body)]">
@@ -245,7 +232,6 @@
                 </div>
             </aside>
 
-            <!-- Main Content -->
             <main class="content-area w-full lg:w-3/4 bg-[var(--card-bg)] border-4 border-[var(--card-border)] rounded-3xl shadow-2xl p-8 lg:p-12 print-border-none text-lg transition-colors duration-300">
                 
                 <div id="chap1" class="mb-16 scroll-mt-8 unbreakable">
@@ -276,21 +262,21 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-sm">
                         <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">1. WHY ? (Les Bénéfices)</strong> : Pourquoi faire ce projet ? On y définit des bénéfices <button class="lexicon-term" data-term="SMART">SMART</button> et le <button class="lexicon-term" data-term="ROI">ROI</button>.</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">2. FOR WHO ? (Utilisateurs)</strong> : Qui est impacté ? (ex: Les 204 chefs d'équipe douaniers).</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">3. WHAT ? (Les Produits)</strong> : Qu'allons-nous livrer ? On utilise la méthode <button class="lexicon-term" data-term="MoSCoW">MoSCoW</button> pour prioriser (préparé par le BA, validé par le PO).</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">4. HOW ? (Les Coûts)</strong> : Combien de Jours-Hommes (Développeurs, FA, BA) cela va-t-il coûter ?</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-blue-600 dark:text-blue-400">5. HOW LONG ? (Le Timing)</strong> : Quelle est la durée estimée et les phases du projet ?</div>
-                        <div class="bg-[var(--section-bg)] p-4 border border-gray-300 dark:border-gray-600 rounded-xl"><strong class="text-red-600 dark:text-red-400">6. WHAT IF ? (Option 0)</strong> : Que se passe-t-il si on ne fait RIEN (Option 0) ? Et quels sont les risques ?</div>
-                    </div>
+                                <circle cx="610" cy="220" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
+                                <text x="610" y="255" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Fin (Libéré)</text>
 
-                    <div class="bg-yellow-50 dark:bg-gray-800 border-l-[6px] border-nuls-yellow p-4 rounded-r-xl text-gray-800 dark:text-gray-200">
-                        <strong class="block mb-2 text-nuls-black dark:text-nuls-yellow"><i class="far fa-calendar-alt mr-2"></i> Le Cycle Saisonnier du BuCa au SPF :</strong>
-                        <ul class="text-sm space-y-1">
-                            <li>🌱 <strong>Printemps :</strong> Rédaction de la version préliminaire avec les experts et le <button class="lexicon-term" data-term="COC">COC</button>.</li>
-                            <li>☀️ <strong>Juin :</strong> Le "Pitch" ! Présentation orale devant le comité pour défendre le projet.</li>
-                            <li>🏖️ <strong>Été :</strong> Traitement des feedbacks et affinage du document.</li>
-                            <li>🍂 <strong>Septembre :</strong> Introduction du BuCa final pour l'approbation budgétaire de l'année suivante.</li>
-                        </ul>
+                                <path d="M 305 200 L 305 80 L 420 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <text x="315" y="140" text-anchor="start" font-size="12" font-weight="bold" fill="#DC2626">Oui</text>
+
+                                <rect x="420" y="55" width="120" height="50" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
+                                <text x="480" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#991B1B">Bloquer (Contrôle)</text>
+
+                                <path d="M 540 80 L 590 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
+                                <circle cx="610" cy="80" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
+                                <text x="610" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Fin (Bloqué)</text>
+                            </svg>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center mt-3 italic">* Note : Ce schéma est une illustration très simplifiée à but pédagogique.</p>
                     </div>
                 </div>
 
@@ -338,18 +324,17 @@
                                     <li>Définition des intégrations (API entre systèmes)</li>
                                     <li>Découpage en User Stories pour les codeurs</li>
                                     <li>Rédaction des Acceptance Criteria (AC)</li>
-                                    <li class="col-span-1 md:col-span-2 text-blue-600 dark:text-blue-300 font-bold mt-1">💡 Participe très tôt aux workshops (<button class="lexicon-term" data-term="Shift-Left">Shift-Left</button>) pour orienter vers des solutions techniquement viables.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. L'Équipe de Direction et d'Architecture</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 text-sm">
+                    <h3 class="text-2xl font-bold mb-4 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> 2. L'Équipe de Direction (Comité de Pilotage)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-sm">
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-crown text-3xl text-nuls-yellow mb-2 drop-shadow-md"></i>
-                            <h4 class="font-bold mb-1">Sponsor & PO</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Garant du ROI et de la vision. Le Sponsor finance et valide le Go/NoGo, le PO valide le <strong>MoSCoW</strong> et priorise le Backlog.</p>
+                            <h4 class="font-bold mb-1">Le Sponsor (Executive)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Le grand patron. Il finance le projet, valide le BuCa et prend les décisions critiques de Go/No-Go final.</p>
                         </div>
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-users text-3xl text-blue-500 mb-2"></i>
@@ -357,14 +342,9 @@
                             <p class="text-gray-600 dark:text-gray-400">Représente les intérêts de ceux qui utiliseront la solution finale (ex: le directeur des douanes d'Anvers).</p>
                         </div>
                         <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
-                            <i class="fas fa-handshake text-3xl text-purple-500 mb-2"></i>
-                            <h4 class="font-bold mb-1">Senior Supplier (IT)</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Représente l'entité IT ou le prestataire externe qui construit et livre techniquement la solution.</p>
-                        </div>
-                        <div class="bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm text-center">
                             <i class="fas fa-server text-3xl text-green-500 mb-2"></i>
-                            <h4 class="font-bold mb-1">Architecte IT</h4>
-                            <p class="text-gray-600 dark:text-gray-400">Définit la structure globale en début de projet (SAD). Il donne le Go/NoGo initial, puis laisse le FA gérer les Sprints.</p>
+                            <h4 class="font-bold mb-1">Senior Supplier (IT)</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Représente l'entité IT ou le prestataire qui construit et livre techniquement la solution.</p>
                         </div>
                     </div>
 
@@ -380,7 +360,7 @@
                         </div>
                         <div class="bg-purple-50 dark:bg-purple-900 p-5 rounded-2xl border-l-[6px] border-purple-500 shadow-sm text-purple-900 dark:text-purple-100">
                             <h4 class="font-black text-lg mb-2"><i class="fas fa-tasks mr-2"></i> Gestion de Projet (PM)</h4>
-                            <p class="text-sm text-justify mb-2">Le <strong>Chef de projet (PM)</strong> gère le budget, le planning et les risques. Il est soutenu par le <strong><button class="lexicon-term" data-term="COC">COC</button></strong> qui s'assure que la méthodologie est respectée.</p>
+                            <p class="text-sm text-justify mb-2">Le <strong>Chef de projet (PM)</strong> gère le budget, le planning et les risques. Il est soutenu par le <strong>COC</strong> qui s'assure que la méthodologie est respectée.</p>
                             <p class="text-xs font-bold text-red-600 dark:text-red-300 mt-2 bg-white dark:bg-purple-800 p-2 rounded">💡 Survie : Si tu n'as pas de PM assigné, c'est à toi (le BA) d'endosser la gestion du périmètre et d'escalader les risques !</p>
                         </div>
                     </div>
@@ -485,7 +465,7 @@
                         <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
                             <div class="flex items-center">
                                 <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">4</div>
-                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Cadrage & Terrain 🗺️</h2>
+                                <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Cadrage Stratégique & Terrain 🗺️</h2>
                             </div>
                         </div>
                         <p class="mb-4 text-justify">Avant de coder quoi que ce soit (Phase 1 à 3), il faut cartographier l'état actuel (AS-IS) pour projeter l'état futur souhaité (TO-BE). L'analyse d'écarts (Gap Analysis) permet d'identifier ce qui manque pour passer de l'un à l'autre.</p>
@@ -521,11 +501,8 @@
                     </div>
 
                     <div class="unbreakable bg-[var(--section-bg)] p-6 rounded-2xl border-l-[6px] border-nuls-yellow shadow-md mb-8 transition-colors">
-                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Conseil d'Expert : N'isolez pas le FA !</h4>
-                        <p class="text-sm mb-4 text-justify">Dans le passé, le BA faisait son analyse dans son coin, puis jetait le dossier "par-dessus le mur" au FA. C'est fini. <strong>Impliquez le FA dès les premiers workshops métiers (<button class="lexicon-term" data-term="Shift-Left">Shift-Left</button>) !</strong> S'il comprend le besoin très tôt, il évitera que vous dessiniez un processus TO-BE qui coûterait 3 millions d'euros à développer, en proposant des alternatives techniques viables immédiates.</p>
-                        
-                        <h4 class="font-black text-lg mb-3 mt-6 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-headset mr-3"></i> Survie pour le BA Solitaire</h4>
-                        <p class="text-sm mb-4 text-justify">Dans un monde idéal, on mène un workshop à deux : un BA qui anime, et un second qui prend note. <strong>Au SSDD, tu seras souvent seul face à tes stakeholders.</strong> Comment survivre ?</p>
+                        <h4 class="font-black text-xl mb-3 flex items-center text-nuls-black dark:text-nuls-yellow"><i class="fas fa-user-ninja mr-3"></i> Conseil d'Expert : Le BA Solitaire</h4>
+                        <p class="text-sm mb-4 text-justify">Dans un monde idéal, on mène un workshop à deux : un BA qui anime l'interview, et un second qui prend note. Mais soyons réalistes : <strong>au SSDD, tu n'auras pas toujours ce luxe et tu seras souvent seul face à tes stakeholders.</strong> Comment survivre et ne rien rater ?</p>
                         
                         <ul class="space-y-3 text-sm font-medium">
                             <li class="flex items-start">
@@ -582,11 +559,11 @@
                     <div class="nuls-box unbreakable border-nuls-black dark:border-nuls-yellow shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-nuls-yellow text-nuls-black border-nuls-black dark:border-nuls-yellow"><i class="fas fa-rocket"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-nuls-black dark:text-nuls-yellow">Le Rapid Prototyping (Méthode SpaceX)</h4>
-                        <p class="text-justify text-sm mb-3"><strong>Concrètement, qu'est-ce que le prototypage ?</strong> Au lieu de rédiger un document abstrait de 100 pages que personne ne lira, créez immédiatement un support visuel (un schéma BPMN brouillon, une fausse interface d'écran, un tableau Excel simplifié). Utilisez ce prototype "imparfait" lors de votre prochain workshop pour faire réagir le métier. Comment éviter la "Paralysie de l'Analyse" ? En adoptant la mentalité : "Build, Try, Correct".</p>
+                        <p class="text-justify text-sm mb-3">Comment éviter la "Paralysie de l'Analyse" ? En adoptant la mentalité : "Build, Try, Correct".</p>
                         <ul class="space-y-4 text-sm text-justify">
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Présente des maquettes, pas des questions vides :</strong> Propose <em>ta</em> solution visuelle optimale selon les infos actuelles, et laisse les stakeholders la démonter. <strong>Se tromper sur un prototype est la façon la plus rapide d'obtenir la bonne information !</strong></li>
-                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. La règle des diagrammes "Good Enough" :</strong> Il n'y a pas de diagramme parfait dès le premier jour. N'attendez pas d'avoir 100% des infos pour dessiner. Ajoutez du détail <em>seulement</em> de manière itérative, en fonction des retours.</li>
-                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. Les paroles s'envolent (Rétention < 20%) :</strong> La mémoire humaine n'est pas fiable. Les décisions prises oralement sur un prototype s'oublient très vite. Rédigez <em>toujours</em> un compte-rendu de décision. Si quelqu'un s'en plaint, proposez-lui d'en prendre la responsabilité au prochain meeting.</li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">1. Présente des options, pas des questions vides :</strong> Propose <em>ta</em> solution optimale selon les infos actuelles, et laisse les stakeholders la démonter. <strong>Se tromper est la façon la plus rapide d'obtenir la bonne information !</strong></li>
+                            <li><strong class="text-blue-600 dark:text-blue-400 block mb-1">2. La règle des diagrammes "Good Enough" :</strong> Il n'y a pas de diagramme parfait. Ajoute du détail <em>seulement</em> en fonction des retours.</li>
+                            <li><strong class="text-red-600 dark:text-red-400 block mb-1">3. L'oral a une rétention de 0.00000 :</strong> Rédige <em>toujours</em> un compte-rendu des décisions. Si quelqu'un s'en plaint, propose-lui d'en prendre la responsabilité au prochain meeting.</li>
                         </ul>
                     </div>
                 </div>
@@ -616,19 +593,19 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700 font-medium">
                                 <tr>
-                                    <td class="p-4 font-bold text-nuls-black dark:text-white">Scope Document</td>
+                                    <td class="p-4 font-bold">Scope Document</td>
                                     <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
                                     <td class="p-4 text-gray-700 dark:text-gray-300">Délimite ce qui est inclus et explicitement exclu du projet (<button class="lexicon-term" data-term="MoSCoW">MoSCoW</button>).</td>
                                     <td class="p-4 text-gray-600 dark:text-gray-400 italic">Ex: "Le module gérera les H1. Out of Scope : H7."<br>Critère: Validé par tous.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-4 font-bold text-nuls-black dark:text-white">BPMN (Processus)</td>
+                                    <td class="p-4 font-bold">BPMN (Processus)</td>
                                     <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
                                     <td class="p-4 text-gray-700 dark:text-gray-300">Cartographie visuelle des flux d'activités (AS-IS et TO-BE).</td>
                                     <td class="p-4 text-gray-600 dark:text-gray-400 italic">Ex: Diagramme des couloirs.<br>Critère: Lisible de bout en bout.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-4 font-bold text-nuls-black dark:text-white">BRD (Business Req.)</td>
+                                    <td class="p-4 font-bold">BRD (Business Req.)</td>
                                     <td class="p-4 text-center"><span class="bg-nuls-yellow text-nuls-black text-xs font-bold px-2 py-1 rounded">BA</span></td>
                                     <td class="p-4 text-gray-700 dark:text-gray-300">Liste exhaustive des besoins métiers décorrélée de la technique.</td>
                                     <td class="p-4 text-gray-600 dark:text-gray-400 italic">Ex: "Le système doit calculer les pénalités."<br>Critère: Traçable et priorisé.</td>
@@ -668,11 +645,11 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700 font-medium">
                                 <tr>
-                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic text-nuls-black dark:text-gray-300">"La décision sera envoyée" (Passif)</td>
+                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic">"La décision sera envoyée" (Passif)</td>
                                     <td class="py-3 px-4 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200">"Le système <button class="lexicon-term" data-term="IDMS">IDMS</button> envoie la décision"</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic text-nuls-black dark:text-gray-300">"L'application doit être rapide" (Vague)</td>
+                                    <td class="py-3 px-4 bg-red-50 dark:bg-red-900/30 italic">"L'application doit être rapide" (Vague)</td>
                                     <td class="py-3 px-4 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200">"Temps de réponse H1 < 2 secondes"</td>
                                 </tr>
                             </tbody>
@@ -681,7 +658,6 @@
 
                     <div class="unbreakable">
                         <h3 class="text-2xl font-bold mb-4 mt-8 text-nuls-black dark:text-nuls-yellow flex items-center"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'ISO 25010 (Exigences Non-Fonctionnelles)</h3>
-                        <p class="mb-4 text-sm text-justify">Une application qui respecte toutes les règles métiers peut quand même être un échec cuisant si elle est inutilisable, non sécurisée ou si elle plante tous les jours. C'est là qu'intervient l'<strong>ISO 25010</strong>, le standard international pour évaluer la qualité d'un logiciel.</p>
                         <p class="mb-4 text-sm text-justify">Ne te contente pas de lister ce que l'application doit <em>faire</em>. Spécifie <em>comment</em> elle doit être : Performance, Fiabilité (Disponibilité 99.9%), Utilisabilité, Sécurité, Maintenabilité.</p>
                     </div>
                 </div>
@@ -708,8 +684,8 @@
                             </div>
                             <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Le comportement métier global.</p>
                             <ul class="space-y-3 text-sm">
-                                <li class="text-nuls-black dark:text-gray-300"><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Décrit l'intention de l'utilisateur pour atteindre un objectif.</li>
-                                <li class="text-nuls-black dark:text-gray-300"><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Totalement <strong>indépendant de la technologie</strong>.</li>
+                                <li><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Décrit l'intention de l'utilisateur pour atteindre un objectif.</li>
+                                <li><i class="fas fa-caret-right text-nuls-yellow mr-2"></i> Totalement <strong>indépendant de la technologie</strong>.</li>
                                 <li class="bg-yellow-50 dark:bg-yellow-900 p-3 rounded-lg border border-yellow-200 dark:border-yellow-700 text-nuls-black dark:text-white"><strong class="block mb-1">Essentiel : L'Unhappy Flow.</strong> Le BA <em>doit</em> spécifier la règle métier quand ça tourne mal (ex: erreur douanière). L'analyse ne se limite pas au scénario idéal !</li>
                             </ul>
                         </div>
@@ -722,16 +698,11 @@
                             </div>
                             <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">L'implémentation technique découpée.</p>
                             <ul class="space-y-3 text-sm">
-                                <li class="text-nuls-black dark:text-gray-300"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Elle traduit la globalité du Use Case (le <strong>Happy</strong> ET les <strong>Unhappy Flows</strong>) en tâches actionnables pour les codeurs.</li>
-                                <li class="text-nuls-black dark:text-gray-300"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Elle implique des choix techniques (bouton, appel API).</li>
+                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Elle traduit l'Unhappy Flow en tâche actionnable pour les codeurs.</li>
+                                <li><i class="fas fa-caret-right text-blue-500 mr-2"></i> Elle implique des choix techniques (bouton, appel API).</li>
                                 <li class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-900 dark:text-white"><strong class="block mb-1">Essentiel : L'Acceptance Criteria.</strong> Toujours accompagnée d'AC précis pour valider la livraison technique lors du Sprint.</li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="bg-green-50 dark:bg-green-900 p-6 rounded-2xl border-l-[6px] border-green-500 shadow-sm mb-8 unbreakable">
-                        <h4 class="font-black text-xl mb-2 text-green-900 dark:text-green-100"><i class="fas fa-check-double mr-2"></i> La "Reverse-Review" (Le Sign-off du BA)</h4>
-                        <p class="text-sm text-green-800 dark:text-green-200 text-justify">Une fois que le FA a écrit ses User Stories et ses Acceptance Criteria, le processus n'est pas fini ! <strong>Le BA doit relire le travail du FA.</strong> Le BA s'assure que la traduction technique n'a pas dénaturé le besoin métier d'origine et vérifie la "Business Value". Le BA donne alors une approbation formelle (Sign-off) avant que les développeurs ne commencent à coder la Story.</p>
                     </div>
 
                     <div class="bg-[var(--section-bg)] border-[3px] border-[var(--card-border)] rounded-2xl p-6 shadow-sm unbreakable transition-colors">
@@ -746,7 +717,7 @@
                                 <p class="text-sm italic text-gray-600 dark:text-gray-400">"OK. Ma User Story va créer un appel API vers IAM pour vérifier le rôle du superviseur, et afficher un Pop-up d'erreur rouge sur IDMS."</p>
                             </div>
                         </div>
-                        <p class="text-sm text-center font-bold mt-4 text-red-600 dark:text-red-400">Règle d'or : Le BA s'arrête aux règles, le FA n'y touche pas. Le BA ne dessine pas l'écran, le FA n'invente pas la loi.</p>
+                        <p class="text-sm text-center font-bold mt-4 text-red-600 dark:text-red-400">Règle d'or : Le BA ne dessine pas les pop-ups. Le FA ne dicte pas les lois douanières.</p>
                     </div>
                 </div>
 
@@ -761,9 +732,9 @@
                     </div>
                     
                     <div class="bg-[var(--section-bg)] p-8 rounded-2xl border-[3px] border-[var(--card-border)] shadow-[6px_6px_0px_var(--card-border)] transition-colors">
-                        <p class="text-justify mb-5 text-nuls-black dark:text-gray-300">Le passage de relais (Phase 4) est critique. Un dossier n'est transmis à l'équipe technique que s'il répond à la <strong>Definition of Ready (DoR)</strong> de l'analyse métier. Si tu passes une analyse incomplète à l'IT, ils coderont des erreurs.</p>
+                        <p class="text-justify mb-5">Le passage de relais (Phase 4) est critique. Un dossier n'est transmis à l'équipe technique que s'il répond à la <strong>Definition of Ready (DoR)</strong> de l'analyse métier. Si tu passes une analyse incomplète à l'IT, ils coderont des erreurs.</p>
                         
-                        <h4 class="font-bold text-xl mb-4 border-b-2 border-gray-300 dark:border-gray-600 pb-2 flex items-center text-nuls-black dark:text-gray-200">
+                        <h4 class="font-bold text-xl mb-4 border-b-2 border-gray-300 dark:border-gray-600 pb-2 flex items-center">
                             <i class="fas fa-clipboard-check text-nuls-yellow text-2xl mr-3 shadow-sm rounded-full bg-nuls-black dark:bg-gray-800 p-2"></i> 
                             Checklist de transfert (BA vers FA)
                         </h4>
@@ -802,13 +773,13 @@
                     <p class="text-justify text-sm mb-4">Pourquoi s'embêter à lier chaque document dans Jira/Confluence ? Imagine qu'un test IT échoue sur le rejet automatique d'une déclaration. Comment savoir quelle règle métier est impactée ? C'est le pouvoir de la traçabilité verticale.</p>
                     
                     <div class="flex flex-col md:flex-row items-center justify-between text-center gap-4 bg-[var(--section-bg)] p-6 rounded-2xl border border-gray-300 dark:border-gray-600 mb-10 text-sm transition-colors">
-                        <div class="font-bold text-nuls-black dark:text-gray-300"><i class="fas fa-file-contract text-blue-500 text-2xl block mb-2"></i> Business Req.</div>
+                        <div class="font-bold"><i class="fas fa-file-contract text-blue-500 text-2xl block mb-2"></i> Business Req.</div>
                         <i class="fas fa-link text-gray-400"></i>
-                        <div class="font-bold text-nuls-black dark:text-gray-300"><i class="fas fa-sitemap text-nuls-yellow text-2xl block mb-2"></i> Use Case</div>
+                        <div class="font-bold"><i class="fas fa-sitemap text-nuls-yellow text-2xl block mb-2"></i> Use Case</div>
                         <i class="fas fa-link text-gray-400"></i>
-                        <div class="font-bold text-nuls-black dark:text-gray-300"><i class="fas fa-code text-blue-800 dark:text-blue-400 text-2xl block mb-2"></i> User Story</div>
+                        <div class="font-bold"><i class="fas fa-code text-blue-800 dark:text-blue-400 text-2xl block mb-2"></i> User Story</div>
                         <i class="fas fa-link text-gray-400"></i>
-                        <div class="font-bold text-nuls-black dark:text-gray-300"><i class="fas fa-vial text-green-500 text-2xl block mb-2"></i> Test Scenario</div>
+                        <div class="font-bold"><i class="fas fa-vial text-green-500 text-2xl block mb-2"></i> Test Scenario</div>
                     </div>
 
                     <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> BPMN Cheat Sheet</h3>
@@ -818,21 +789,21 @@
                         <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
                             <div class="w-12 h-12 rounded-full border-4 border-green-500 flex-shrink-0 flex items-center justify-center mr-4"></div>
                             <div>
-                                <strong class="block text-nuls-black dark:text-white">Événement (Event)</strong>
+                                <strong class="block">Événement (Event)</strong>
                                 <span class="text-xs text-gray-600 dark:text-gray-400">Déclencheur. Ex: "Arrivée du navire à Anvers".</span>
                             </div>
                         </div>
                         <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
                             <div class="w-12 h-10 border-4 border-blue-500 rounded-lg flex-shrink-0 flex items-center justify-center mr-4"></div>
                             <div>
-                                <strong class="block text-nuls-black dark:text-white">Tâche (Task)</strong>
+                                <strong class="block">Tâche (Task)</strong>
                                 <span class="text-xs text-gray-600 dark:text-gray-400">Action. Ex: "Calculer les droits de douane".</span>
                             </div>
                         </div>
                         <div class="bg-[var(--card-bg)] p-4 border-2 border-[var(--card-border)] rounded-xl flex items-center shadow-sm">
                             <div class="w-10 h-10 border-4 border-nuls-yellow transform rotate-45 flex-shrink-0 mr-6 ml-2"></div>
                             <div>
-                                <strong class="block text-nuls-black dark:text-white">Passerelle (Gateway)</strong>
+                                <strong class="block">Passerelle (Gateway)</strong>
                                 <span class="text-xs text-gray-600 dark:text-gray-400">Décision/Condition. Ex: "Poids > 20 tonnes ?"</span>
                             </div>
                         </div>
@@ -841,73 +812,10 @@
                                 <div class="border-b-2 border-gray-400 h-1/2"></div>
                             </div>
                             <div>
-                                <strong class="block text-nuls-black dark:text-white">Couloirs (Swimlanes)</strong>
+                                <strong class="block">Couloirs (Swimlanes)</strong>
                                 <span class="text-xs text-gray-600 dark:text-gray-400">Qui fait quoi (Déclarant, IDMS, Douanier).</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mt-8 bg-[var(--card-bg)] p-6 rounded-2xl border-[3px] border-[var(--card-border)] shadow-sm transition-colors">
-                        <h4 class="font-bold mb-6 text-center text-nuls-black dark:text-gray-300 uppercase tracking-wide"><i class="fas fa-project-diagram text-nuls-yellow mr-2"></i> Un Vrai Diagramme BPMN</h4>
-                        <p class="text-sm text-center mb-6 text-gray-600 dark:text-gray-400">Pour intégrer un vrai schéma dans vos documents, modélisez-le sur <strong>Draw.io</strong>, exportez-le en format <strong>SVG</strong> ou <strong>PNG</strong>, et insérez l'image. Voici à quoi ressemble le standard BPMN 2.0 :</p>
-                        
-                        <div class="w-full overflow-x-auto flex justify-center bg-white p-4 rounded-xl border border-gray-200 dark:border-gray-700">
-                            <svg viewBox="0 0 800 300" class="min-w-[600px] w-full max-w-3xl h-auto font-sans" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563" />
-                                    </marker>
-                                </defs>
-
-                                <!-- Pool / Swimlanes -->
-                                <rect x="10" y="10" width="780" height="280" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                                <rect x="10" y="10" width="30" height="280" fill="#F3F4F6" stroke="#1A1A1A" stroke-width="2"/>
-                                <text transform="translate(25, 150) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="14" fill="#1A1A1A" letter-spacing="2">PROCESSUS IMPORT</text>
-
-                                <rect x="40" y="10" width="750" height="140" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
-                                <rect x="40" y="10" width="30" height="140" fill="#E5E7EB" stroke="#1A1A1A" stroke-width="1"/>
-                                <text transform="translate(55, 80) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="12" fill="#1A1A1A">Déclarant</text>
-
-                                <rect x="40" y="150" width="750" height="140" fill="#F9FAFB" stroke="#1A1A1A" stroke-width="1"/>
-                                <rect x="40" y="150" width="30" height="140" fill="#E5E7EB" stroke="#1A1A1A" stroke-width="1"/>
-                                <text transform="translate(55, 220) rotate(-90)" text-anchor="middle" font-weight="bold" font-size="12" fill="#1A1A1A">IDMS (Douane)</text>
-
-                                <!-- Elements -->
-                                <circle cx="120" cy="80" r="18" fill="#ECFDF5" stroke="#16A34A" stroke-width="2"/>
-                                <text x="120" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Arrivée Navire</text>
-
-                                <path d="M 138 80 L 180 80" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-
-                                <rect x="180" y="55" width="120" height="50" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
-                                <text x="240" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A">Soumettre H1</text>
-
-                                <path d="M 240 105 L 240 220 L 280 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-
-                                <polygon points="305,200 330,220 305,240 280,220" fill="#FEF08A" stroke="#D97706" stroke-width="2"/>
-                                <text x="305" y="255" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Poids > 20t ?</text>
-
-                                <path d="M 330 220 L 420 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-                                <text x="375" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#16A34A">Non</text>
-
-                                <rect x="420" y="195" width="120" height="50" rx="8" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
-                                <text x="480" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">Accorder Mainlevée</text>
-
-                                <path d="M 540 220 L 590 220" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-                                <circle cx="610" cy="220" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
-                                <text x="610" y="255" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Fin (Libéré)</text>
-
-                                <path d="M 305 200 L 305 80 L 420 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-                                <text x="315" y="140" text-anchor="start" font-size="12" font-weight="bold" fill="#DC2626">Oui</text>
-
-                                <rect x="420" y="55" width="120" height="50" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
-                                <text x="480" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#991B1B">Bloquer (Contrôle)</text>
-
-                                <path d="M 540 80 L 590 80" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)"/>
-                                <circle cx="610" cy="80" r="18" fill="#FEF2F2" stroke="#DC2626" stroke-width="5"/>
-                                <text x="610" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Fin (Bloqué)</text>
-                            </svg>
-                        </div>
-                        <p class="text-xs text-gray-500 text-center mt-3 italic">* Note : Ce schéma est une illustration très simplifiée à but pédagogique.</p>
                     </div>
                 </div>
 
@@ -961,7 +869,7 @@
                             <h3 class="font-black text-xl mb-3 text-nuls-blue dark:text-blue-400"><i class="fas fa-plug mr-2"></i> L'API (Web Services)</h3>
                             <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Le serveur de restaurant.</p>
                             <p class="text-sm text-justify mb-3">Une API permet à deux systèmes différents de se parler. Imagine un restaurant :</p>
-                            <ul class="text-sm space-y-2 text-nuls-black dark:text-gray-300">
+                            <ul class="text-sm space-y-2">
                                 <li><strong>Le client (IDMS) :</strong> Demande des infos.</li>
                                 <li><strong>La cuisine (IAM/CSAM) :</strong> Possède les bases de données des utilisateurs.</li>
                                 <li><strong>L'API (Le serveur) :</strong> IDMS ne va pas lui-même fouiller dans la cuisine. Il donne sa commande à l'API, qui va chercher l'info dans IAM et ramène la réponse ("Oui, cet utilisateur est bien un chef d'équipe").</li>
@@ -971,7 +879,7 @@
                         <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
                             <h3 class="font-black text-xl mb-3 text-green-600 dark:text-green-400"><i class="fas fa-database mr-2"></i> Le SQL</h3>
                             <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">Le langage des bases de données.</p>
-                            <p class="text-sm text-justify mb-3 text-nuls-black dark:text-gray-300">Le SQL sert à interroger de gros tableaux de données. La structure de base est toujours la même : <code>SELECT</code> (ce que je veux) <code>FROM</code> (de quelle table) <code>WHERE</code> (sous quelle condition).</p>
+                            <p class="text-sm text-justify mb-3">Le SQL sert à interroger de gros tableaux de données. La structure de base est toujours la même : <code>SELECT</code> (ce que je veux) <code>FROM</code> (de quelle table) <code>WHERE</code> (sous quelle condition).</p>
                             <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-600 shadow-inner overflow-x-auto text-nuls-black dark:text-gray-200">
                                 <span class="text-blue-600 dark:text-blue-400 font-bold">SELECT</span> id_declaration, statut<br>
                                 <span class="text-blue-600 dark:text-blue-400 font-bold">FROM</span> declarations_h1<br>
@@ -987,7 +895,7 @@
                     <div class="flex flex-col md:flex-row gap-6 mb-4">
                         <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
                             <h4 class="font-bold text-red-600 dark:text-red-400 mb-2"><i class="fas fa-file-code mr-2"></i> XML (L'Ancien, lourd mais robuste)</h4>
-                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">Il utilise des balises (comme le HTML). Très utilisé pour les anciens messages douaniers (EDI).</p>
+                            <p class="text-xs mb-2">Il utilise des balises (comme le HTML). Très utilisé pour les anciens messages douaniers (EDI).</p>
                             <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
                                 &lt;Declarant&gt;<br>
                                 &nbsp;&nbsp;&lt;Nom&gt;Dupont&lt;/Nom&gt;<br>
@@ -997,7 +905,7 @@
                         </div>
                         <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
                             <h4 class="font-bold text-yellow-600 dark:text-yellow-400 mb-2"><i class="fas fa-brackets-curly mr-2"></i> JSON (Le Moderne, léger)</h4>
-                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">Il fonctionne par paires <code>"Clé": "Valeur"</code>. C'est le standard du web actuel (REST APIs).</p>
+                            <p class="text-xs mb-2">Il fonctionne par paires <code>"Clé": "Valeur"</code>. C'est le standard du web actuel (REST APIs).</p>
                             <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
                                 "Declarant": {<br>
                                 &nbsp;&nbsp;"Nom": "Dupont",<br>
@@ -1017,18 +925,7 @@
                             <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">Templates & Toolkit SSDD 🛠️</h2>
                         </div>
                     </div>
-                    <p class="mb-6 text-justify">La documentation n'a qu'un but : sortir l'information de ta tête pour communiquer. Oublie les documents Word perdus. Au SSDD, tout tourne autour de l'écosystème Atlassian et de ses outils intégrés.</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-blue-500 dark:border-blue-400 rounded-2xl shadow-sm transition-colors">
-                            <h3 class="font-black text-lg mb-2 text-blue-600 dark:text-blue-400"><i class="fas fa-project-diagram mr-2"></i> Draw.io (Modélisation)</h3>
-                            <p class="text-sm text-justify text-nuls-black dark:text-gray-300">L'outil de dessin intégré à Confluence. C'est ici que le BA dessine ses flux BPMN (AS-IS / TO-BE) de manière standardisée pour que la compréhension soit uniforme entre le Métier, le BA, le FA et l'IT.</p>
-                        </div>
-                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-green-500 dark:border-green-400 rounded-2xl shadow-sm transition-colors">
-                            <h3 class="font-black text-lg mb-2 text-green-600 dark:text-green-400"><i class="fas fa-vial mr-2"></i> Xray (Testing)</h3>
-                            <p class="text-sm text-justify text-nuls-black dark:text-gray-300">Le plugin de test intégré à Jira. Lors des phases de recette (UAT), c'est via Xray que le BA et les stakeholders exécutent les scénarios d'acceptation, enregistrent les bugs et font le suivi jusqu'au Sign-off final.</p>
-                        </div>
-                    </div>
+                    <p class="mb-6 text-justify">La documentation n'a qu'un but : sortir l'information de ta tête pour communiquer. Oublie les documents Word perdus. Au SSDD, tout tourne autour de Jira (Action) et Confluence (Savoir).</p>
 
                     <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> L'Arborescence Confluence</h3>
                     <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-300 dark:border-gray-700 font-mono text-sm mb-8 shadow-inner">
@@ -1062,28 +959,28 @@
                     <div class="nuls-box unbreakable border-red-500 shadow-[6px_6px_0px_#EF4444] dark:shadow-[6px_6px_0px_#F87171] print:shadow-none print:border-2">
                         <div class="nuls-box-icon bg-red-500 text-white border-red-500 dark:border-red-400"><i class="fas fa-exclamation-triangle"></i></div>
                         <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-red-600 dark:text-red-400">Cas Pratique : Le Scope Creep (Le bouton fatal)</h4>
-                        <p class="text-justify text-sm text-nuls-black dark:text-gray-300">Le projet est validé. Soudain, un stakeholder dit : "Au fait, ce serait génial d'avoir un petit bouton d'export vers Excel". Le développeur répond : "C'est facile, 10 minutes". <strong>DANGER ! C'est du Gold Plating.</strong></p>
-                        <p class="text-justify text-sm font-bold mt-2 text-nuls-black dark:text-gray-300">Le rôle du BA : Tuer l'idée dans l'œuf.</p>
-                        <p class="text-justify text-sm mt-1 text-nuls-black dark:text-gray-300">"Ce bouton nécessite de mettre à jour le BRD, de rédiger de nouveaux tests UAT, de vérifier le RGPD. Est-ce que ça répond à l'objectif du Business Case ? Non. <em>Out of Scope</em> pour la V1."</p>
+                        <p class="text-justify text-sm">Le projet est validé. Soudain, un stakeholder dit : "Au fait, ce serait génial d'avoir un petit bouton d'export vers Excel". Le développeur répond : "C'est facile, 10 minutes". <strong>DANGER ! C'est du Gold Plating.</strong></p>
+                        <p class="text-justify text-sm font-bold mt-2">Le rôle du BA : Tuer l'idée dans l'œuf.</p>
+                        <p class="text-justify text-sm mt-1">"Ce bouton nécessite de mettre à jour le BRD, de rédiger de nouveaux tests UAT, de vérifier le RGPD. Est-ce que ça répond à l'objectif du Business Case ? Non. <em>Out of Scope</em> pour la V1."</p>
                     </div>
 
                     <h3 class="text-xl font-bold mb-4 mt-8 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Gérer les conflits : Anvers vs Liège</h3>
                     <p class="text-sm text-justify mb-4">L'expert d'Anvers veut un processus manuel. L'expert de Liège exige que ce soit automatisé. Que fais-tu ?</p>
                     <ul class="space-y-3 text-sm font-medium bg-[var(--section-bg)] p-6 rounded-2xl border border-gray-300 dark:border-gray-700">
-                        <li class="flex items-start"><i class="fas fa-hand-paper text-yellow-500 mt-1 mr-3"></i> <div><strong class="text-nuls-black dark:text-white">1. Stop à l'affect :</strong> Recentrer le débat sur la Loi. Que dit la directive européenne ? (Création ticket `legislative`).</div></li>
-                        <li class="flex items-start"><i class="fas fa-calculator text-blue-500 mt-1 mr-3"></i> <div><strong class="text-nuls-black dark:text-white">2. Chiffrer le désaccord :</strong> Documente les deux options et demande au FA d'estimer les coûts IT des deux.</div></li>
-                        <li class="flex items-start"><i class="fas fa-gavel text-red-500 mt-1 mr-3"></i> <div><strong class="text-nuls-black dark:text-white">3. Escalade au PO :</strong> Présente les options chiffrées au Product Owner. C'est à LUI de prendre la décision.</div></li>
+                        <li class="flex items-start"><i class="fas fa-hand-paper text-yellow-500 mt-1 mr-3"></i> <div><strong>1. Stop à l'affect :</strong> Recentrer le débat sur la Loi. Que dit la directive européenne ? (Création ticket `legislative`).</div></li>
+                        <li class="flex items-start"><i class="fas fa-calculator text-blue-500 mt-1 mr-3"></i> <div><strong>2. Chiffrer le désaccord :</strong> Documente les deux options et demande au FA d'estimer les coûts IT des deux.</div></li>
+                        <li class="flex items-start"><i class="fas fa-gavel text-red-500 mt-1 mr-3"></i> <div><strong>3. Escalade au PO :</strong> Présente les options chiffrées au Product Owner. C'est à LUI de prendre la décision.</div></li>
                     </ul>
 
                     <h3 class="text-xl font-bold mb-4 mt-8 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> Organisation Personnelle</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <div class="bg-[var(--card-bg)] p-6 border-l-[6px] border-blue-500 rounded-2xl shadow-sm">
                             <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-white">Step 0 : Le Fichier "To-Do"</h4>
-                            <p class="text-sm text-nuls-black dark:text-gray-300">Crée un SEUL fichier (Bloc-notes). Tout ce qui "pop" dans ta tête va dedans. Tu supprimes l'énorme charge mentale d'essayer de te souvenir de tout.</p>
+                            <p class="text-sm">Crée un SEUL fichier (Bloc-notes). Tout ce qui "pop" dans ta tête va dedans. Tu supprimes l'énorme charge mentale d'essayer de te souvenir de tout.</p>
                         </div>
                         <div class="bg-[var(--card-bg)] p-6 border-l-[6px] border-nuls-yellow rounded-2xl shadow-sm">
                             <h4 class="font-black text-lg mb-2 text-nuls-black dark:text-white">L'Escalade ("Send to Jira")</h4>
-                            <p class="text-sm text-nuls-black dark:text-gray-300">Un stakeholder ne répond pas ? Envoie un mail avec une <strong>deadline</strong>. Pour laisser une trace officielle : connecte-toi sur <strong>Outlook version Web</strong>, utilise l'option <strong>"Send to Jira"</strong>. Tu pourras alors créer un nouveau ticket ou l'ajouter à un ticket existant en incluant l'e-mail. Une preuve en béton pour le management !</p>
+                            <p class="text-sm">Un stakeholder ne répond pas ? Envoie un mail avec une <strong>deadline</strong>. Pour laisser une trace officielle : connecte-toi sur <strong>Outlook version Web</strong>, utilise l'option <strong>"Send to Jira"</strong>. Tu pourras alors créer un nouveau ticket ou l'ajouter à un ticket existant en incluant l'e-mail. Une preuve en béton pour le management !</p>
                         </div>
                     </div>
                 </div>
@@ -1114,27 +1011,27 @@
 
                         <!-- Q2 -->
                         <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q2">
-                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">2. Un dossier est prêt pour le Handover. Tu as oublié de rédiger le scénario où le réseau de la douane tombe en panne. Est-ce grave ?</h4>
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">2. Un dossier est prêt pour le Handover (Phase 4). Tu as oublié de rédiger le scénario où le réseau de la douane tombe en panne. Est-ce grave ?</h4>
                             <div class="space-y-3">
                                 <button onclick="checkAnswer('q2', false, 'Faux ! Le FA ne peut pas inventer les règles métiers de fallback (secours).')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Non, le FA va le deviner en rédigeant sa User Story.</button>
-                                <button onclick="checkAnswer('q2', true, 'Vrai ! La Definition of Ready impose que les Unhappy Flows soient documentés par le BA avant transmission.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Oui. Un Use Case doit absolument contenir les Unhappy Flows (exceptions).</button>
+                                <button onclick="checkAnswer('q2', true, 'Vrai ! La Definition of Ready impose que les Unhappy Flows soient documentés par le BA avant transmission.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Oui. Un Use Case doit impérativement contenir les Unhappy Flows (exceptions).</button>
                             </div>
                             <div id="q2-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
                         </div>
 
                         <!-- Q3 -->
                         <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q3">
-                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">3. Un stakeholder te demande en urgence un bouton "Export Excel". Le dev IT dit : "C'est facile, ça me prend 10 min". Que fais-tu ?</h4>
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">3. Un stakeholder te demande en urgence un bouton "Export Excel". Le dev IT te dit : "C'est facile, ça me prend 10 min". Que fais-tu ?</h4>
                             <div class="space-y-3">
                                 <button onclick="checkAnswer('q3', false, 'Faux ! C\'est du Gold Plating (ajout non validé). Cela impactera la maintenance, le RGPD et le scope initial.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. "C'est rapide, on l'ajoute pour leur faire plaisir."</button>
-                                <button onclick="checkAnswer('q3', true, 'Vrai ! On protège le Scope. Ce n\'est pas dans le Business Case, on refuse pour la V1.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. "On refuse pour cette release. C'est hors du Scope défini dans le Business Case."</button>
+                                <button onclick="checkAnswer('q3', true, 'Vrai ! On protège le Scope. Ce n\'est pas dans le Business Case, c\'est refusé pour la V1.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. "On refuse pour cette release. C'est hors du Scope défini dans le Business Case."</button>
                             </div>
                             <div id="q3-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
                         </div>
 
                         <!-- Q4 -->
                         <div class="bg-[var(--card-bg)] p-6 rounded-2xl border-2 border-[var(--card-border)] shadow-sm quiz-question" id="q4">
-                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">4. L'application IDMS doit vérifier si l'EORI d'une entreprise est valide dans la base européenne (EOS). Comment ces systèmes se parlent-ils ?</h4>
+                            <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">4. L'application IDMS doit vérifier si l'EORI d'une entreprise est valide en interrogeant la base européenne (EOS). Comment ces systèmes se parlent-ils ?</h4>
                             <div class="space-y-3">
                                 <button onclick="checkAnswer('q4', false, 'Faux ! Trop lent et obsolète pour des vérifications en temps réel.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. L'Europe envoie un gros fichier XML par e-mail chaque matin pour mise à jour.</button>
                                 <button onclick="checkAnswer('q4', true, 'Exact ! Les Web Services (API) permettent à nos systèmes d\'interroger en direct (souvent en JSON) la base européenne.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Par une API : IDMS fait une requête informatique directe à EOS pour avoir la réponse instantanément.</button>
@@ -1147,7 +1044,7 @@
                             <h4 class="font-bold text-lg mb-4 text-nuls-black dark:text-white">5. Pourquoi écrit-on les règles de calcul des taxes avec la syntaxe Gherkin (Given / When / Then) dans les Acceptance Criteria ?</h4>
                             <div class="space-y-3">
                                 <button onclick="checkAnswer('q5', true, 'Vrai ! C\'est le BDD. C\'est lisible par les douaniers, ET les testeurs IT l\'utilisent comme code pour lancer les tests auto.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">A. Car c'est un langage que le métier comprend ET qui permet à l'IT d'automatiser les tests de non-régression.</button>
-                                <button onclick="checkAnswer('q5', false, 'Faux ! Gherkin n\'est pas un langage de programmation, c\'est un pont entre le français et le code.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Parce que c'est un vieux langage de programmation encore utilisé par les serveurs du SPF Finances.</button>
+                                <button onclick="checkAnswer('q5', false, 'Faux ! Gherkin n\'est pas un langage de programmation à proprement parler, c\'est un pont entre le français et le code.')" class="w-full text-left p-3 rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-nuls-black dark:text-white transition">B. Parce que c'est un vieux langage de programmation encore utilisé par les serveurs du SPF Finances.</button>
                             </div>
                             <div id="q5-feedback" class="mt-4 p-3 rounded-lg hidden font-bold text-sm"></div>
                         </div>
@@ -1183,9 +1080,8 @@
         </div>
     </div>
 
-    <!-- Floating Buttons -->
     <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-4 z-50">
-        <!-- Dark Mode Button -->
+        <!-- Bouton Dark Mode -->
         <button onclick="toggleDarkMode()" class="bg-gray-800 dark:bg-gray-200 text-yellow-400 dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-white font-black w-14 h-14 rounded-full shadow-[0px_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-nuls-black dark:border-white transition-all flex items-center justify-center text-xl" title="Mode Nuit">
             <i class="fas fa-moon dark:hidden"></i>
             <i class="fas fa-sun hidden dark:block"></i>
@@ -1211,7 +1107,7 @@
 
         /* 2. LEXICON LOGIC */
         const lexiconData = {
-            "UAT": "User Acceptance Testing (Tests d'Acceptation Utilisateur). Les tests finaux où le métier (les douaniers) vérifie que l'application livrée répond bien au besoin exprimé dans le Use Case.",
+            "UAT": "User Acceptance Testing (Tests d'Acceptation Utilisateur). Les tests finaux où le métier vérifie que l'application livrée répond bien au besoin exprimé dans le Use Case.",
             "QAS": "Quality Assurance Services. Nos gardiens du temple au SSDD. Ils ne codent pas et ne rédigent pas les tests métiers, mais valident formellement la conformité du travail et donnent les avis de Go/No-Go.",
             "BDD": "Behavior-Driven Development. Une approche agile où l'on décrit le comportement attendu d'un système via des exemples simples (Given/When/Then - Gherkin) avant même de coder.",
             "EORI": "Economic Operators Registration and Identification. Le numéro d'identification douanier unique pour les entreprises faisant du commerce dans l'Union Européenne.",
@@ -1223,9 +1119,7 @@
             "SMART": "Méthode de rédaction d'objectifs : Spécifique, Mesurable, Atteignable, Réaliste, Temporel.",
             "MoSCoW": "Méthode de priorisation du périmètre (Scope) : Must have (Vital), Should have (Important), Could have (Bonus), Won't have (Exclu).",
             "BPMN": "Business Process Model and Notation. Le langage universel composé de formes simples (ronds, losanges, couloirs) pour dessiner graphiquement un processus métier de A à Z.",
-            "ROI": "Return on Investment (Retour sur Investissement). Ratio financier qui permet de s'assurer que le projet rapporte plus qu'il ne coûte.",
-            "Shift-Left": "Pratique Agile consistant à avancer des tâches (comme l'analyse technique, l'implication du FA ou les tests) le plus tôt possible dans le cycle de vie du projet (vers la « gauche » sur une ligne du temps). But : détecter et prévenir les problèmes avant qu'ils ne coûtent cher à corriger.",
-            "COC": "Centre of Competence (ou PMO). L'équipe transversale qui fournit les standards, les templates (comme le Business Case), et s'assure que la méthodologie de gestion de projet est respectée au sein de l'organisation."
+            "ROI": "Return on Investment (Retour sur Investissement). Ratio financier qui permet de s'assurer que le projet rapporte plus qu'il ne coûte."
         };
 
         const modal = document.getElementById('lexiconModal');
@@ -1285,20 +1179,13 @@
                     backToTopBtn.classList.add("translate-y-12", "opacity-0");
                 }
 
-                // ScrollSpy robuste basé sur la position réelle à l'écran
                 let currentSection = '';
                 sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    // Si le haut de la section a dépassé le haut de l'écran (avec une marge de 300px)
-                    if (rect.top <= 300) {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 250) {
                         currentSection = section.getAttribute('id');
                     }
                 });
-
-                // Si on est tout en haut de la page, on force le premier lien
-                if (window.scrollY < 200 && sections.length > 0) {
-                    currentSection = sections[0].getAttribute('id');
-                }
 
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
