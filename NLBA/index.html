@@ -912,6 +912,105 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 10 -->
+                <div id="chap10" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">10</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">BDD & Gherkin Syntaxis 🥒</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify"><strong>Behavior-Driven Development (<button class="lexicon-term" data-term="BDD">BDD</button>)</strong> beschrijft een <em>bedrijfsgedrag</em> en geen technische implementatie. Gherkin transformeert je zakelijke voorbeelden in automatiseerbare tests.</p>
+                    
+                    <div class="nuls-box unbreakable border-green-600 shadow-[6px_6px_0px_#16A34A] dark:shadow-[6px_6px_0px_#4ADE80] bg-green-50 dark:bg-green-950 mt-8">
+                        <div class="nuls-box-icon bg-green-500 text-white border-green-700 dark:border-green-400"><i class="fas fa-code"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-green-900 dark:text-green-100">Praktijkcasus: Automatisering met Gherkin</h4>
+                        
+                        <div class="bg-gray-900 text-green-400 p-4 rounded-xl font-mono text-xs overflow-x-auto border-2 border-nuls-black shadow-inner">
+                            <span class="text-purple-400 font-bold">Feature:</span> EORI-controle op IDMS<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Background:</span> <span class="text-gray-500 italic"># Gemeenschappelijke randvoorwaarden</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> een douanier ingelogd in het systeem<br><br>
+
+                            <span class="text-yellow-400 font-bold">Scenario Outline:</span> EORI Validatie<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> de aangever heeft de EORI "&lt;eori_code&gt;" ingevoerd<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">When</span> hij op Verzenden klikt<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Then</span> moet het systeem de status "&lt;resultaat&gt;" tonen<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Examples:</span><br>
+                            &nbsp;&nbsp;| eori_code | resultaat | <span class="text-gray-500 italic"># Uitleg</span><br>
+                            &nbsp;&nbsp;| BE1234    | OK        | <span class="text-gray-500 italic"># Geldige EORI</span><br>
+                            &nbsp;&nbsp;| FRA567    | Afwijzing | <span class="text-gray-500 italic"># Onbekende EORI in EOS</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 11 -->
+                <div id="chap11" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">IT voor Dummies (API's, SQL) 🔌</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">De BA codeert niet. Om echter op gelijke voet met IT te communiceren en de haalbaarheid van zijn Use Cases te verifiëren, moet hij begrijpen hoe systemen met elkaar praten. Hier zijn de 3 concepten die je moet beheersen.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-nuls-blue dark:text-blue-400"><i class="fas fa-plug mr-2"></i> De API (Web Services)</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De ober in het restaurant.</p>
+                            <p class="text-sm text-justify mb-3">Een API laat twee verschillende systemen praten. Stel je een restaurant voor:</p>
+                            <ul class="text-sm space-y-2 text-nuls-black dark:text-gray-300">
+                                <li><strong>De klant (IDMS):</strong> Vraagt info.</li>
+                                <li><strong>De keuken (IAM/CSAM):</strong> Heeft de gebruikersdatabases.</li>
+                                <li><strong>De API (De ober):</strong> IDMS gaat niet zelf in de keuken zoeken. Het geeft zijn bestelling aan de API, die de info in IAM ophaalt en het antwoord terugbrengt.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-green-600 dark:text-green-400"><i class="fas fa-database mr-2"></i> SQL</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">De taal van databases.</p>
+                            <p class="text-sm text-justify mb-3 text-nuls-black dark:text-gray-300">SQL wordt gebruikt om grote datatabellen te bevragen. De basisstructuur is altijd hetzelfde: <code>SELECT</code> (wat ik wil) <code>FROM</code> (welke tabel) <code>WHERE</code> (onder welke voorwaarde).</p>
+                            <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-600 shadow-inner overflow-x-auto text-nuls-black dark:text-gray-200">
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">SELECT</span> id_aangifte, status<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">FROM</span> aangiften_h1<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">WHERE</span> gewicht > 20000;
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 italic">Vertaling: Geef me het nummer en de status van alle H1-aangiften waarvan het gewicht meer dan 20 ton is.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> JSON vs XML : De taal van data</h3>
+                    <p class="mb-4 text-sm text-justify">Wanneer twee applicaties praten (via een API), gebruiken ze een standaardformaat om data te versturen:</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 mb-4">
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-red-600 dark:text-red-400 mb-2"><i class="fas fa-file-code mr-2"></i> XML (Oud, zwaar maar robuust)</h4>
+                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">Gebruikt tags (zoals HTML). Veel gebruikt voor oude douaneberichten (EDI).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                &lt;Aangever&gt;<br>
+                                &nbsp;&nbsp;&lt;Naam&gt;Janssens&lt;/Naam&gt;<br>
+                                &nbsp;&nbsp;&lt;EORI&gt;BE1234&lt;/EORI&gt;<br>
+                                &lt;/Aangever&gt;
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-yellow-600 dark:text-yellow-400 mb-2"><i class="fas fa-brackets-curly mr-2"></i> JSON (Modern, licht)</h4>
+                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">Werkt via <code>"Sleutel": "Waarde"</code>. De standaard van het huidige web (REST API's).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                "Aangever": {<br>
+                                &nbsp;&nbsp;"Naam": "Janssens",<br>
+                                &nbsp;&nbsp;"EORI": "BE1234"<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
                 <!-- Chapter 12 -->
                 <div id="chap12" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -1189,26 +1288,34 @@
                 } else {
                     backToTopBtn.classList.add("translate-y-12", "opacity-0");
                 }
-
-                let currentSection = '';
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 300) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                if (window.scrollY < 200 && sections.length > 0) {
-                    currentSection = sections[0].getAttribute('id');
-                }
-
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection && currentSection !== '') {
-                        link.classList.add('active');
-                    }
-                });
             });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "-20% 0px -70% 0px", 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            if (tocLinks.length > 0) tocLinks[0].classList.add('active');
         });
     </script>
 </body>

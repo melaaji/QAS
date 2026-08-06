@@ -912,6 +912,105 @@
 
                 <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
 
+                <!-- Chapter 10 -->
+                <div id="chap10" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">10</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">BDD & Gherkin Syntax 🥒</h2>
+                        </div>
+                    </div>
+                    <p class="mb-4 text-justify"><strong>Behavior-Driven Development (<button class="lexicon-term" data-term="BDD">BDD</button>)</strong> describes a <em>business behavior</em> and not a technical implementation. Gherkin transforms your business examples into automatable tests.</p>
+                    
+                    <div class="nuls-box unbreakable border-green-600 shadow-[6px_6px_0px_#16A34A] dark:shadow-[6px_6px_0px_#4ADE80] bg-green-50 dark:bg-green-950 mt-8">
+                        <div class="nuls-box-icon bg-green-500 text-white border-green-700 dark:border-green-400"><i class="fas fa-code"></i></div>
+                        <h4 class="font-black text-xl mb-3 mt-4 tracking-tight text-green-900 dark:text-green-100">Practical Case: Automation with Gherkin</h4>
+                        
+                        <div class="bg-gray-900 text-green-400 p-4 rounded-xl font-mono text-xs overflow-x-auto border-2 border-nuls-black shadow-inner">
+                            <span class="text-purple-400 font-bold">Feature:</span> EORI Control on IDMS<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Background:</span> <span class="text-gray-500 italic"># Common preconditions</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> a customs user logged into the system<br><br>
+
+                            <span class="text-yellow-400 font-bold">Scenario Outline:</span> EORI Validation<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Given</span> the declarant has entered the EORI "&lt;eori_code&gt;"<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">When</span> they click Submit<br>
+                            &nbsp;&nbsp;<span class="text-blue-400 font-bold">Then</span> the system must display the status "&lt;result&gt;"<br><br>
+                            
+                            <span class="text-yellow-400 font-bold">Examples:</span><br>
+                            &nbsp;&nbsp;| eori_code | result | <span class="text-gray-500 italic"># Explanation</span><br>
+                            &nbsp;&nbsp;| BE1234    | OK     | <span class="text-gray-500 italic"># Valid EORI</span><br>
+                            &nbsp;&nbsp;| FRA567    | Reject | <span class="text-gray-500 italic"># Unknown EORI in EOS</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
+                <!-- Chapter 11 -->
+                <div id="chap11" class="mb-16 scroll-mt-8 unbreakable">
+                    <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="flex items-center">
+                            <div class="bg-nuls-black text-nuls-yellow dark:bg-nuls-yellow dark:text-nuls-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-3xl mr-5 shadow-[4px_4px_0px_#FFD600] flex-shrink-0">11</div>
+                            <h2 class="text-3xl md:text-4xl font-black m-0 tracking-tight text-nuls-black dark:text-nuls-yellow">IT for Dummies (APIs, SQL) 🔌</h2>
+                        </div>
+                    </div>
+                    <p class="mb-6 text-justify">The BA does not code. However, to discuss on equal terms with IT and verify the feasibility of their Use Cases, they must understand how systems communicate with each other. Here are the 3 concepts to master.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-nuls-blue dark:text-blue-400"><i class="fas fa-plug mr-2"></i> The API (Web Services)</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">The restaurant waiter.</p>
+                            <p class="text-sm text-justify mb-3">An API allows two different systems to talk. Imagine a restaurant:</p>
+                            <ul class="text-sm space-y-2 text-nuls-black dark:text-gray-300">
+                                <li><strong>The client (IDMS):</strong> Asks for info.</li>
+                                <li><strong>The kitchen (IAM/CSAM):</strong> Owns the user databases.</li>
+                                <li><strong>The API (The waiter):</strong> IDMS won't go dig in the kitchen itself. It gives its order to the API, which fetches the info in IAM and brings the answer back.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-[var(--card-bg)] p-6 border-[3px] border-nuls-black dark:border-nuls-yellow rounded-2xl shadow-[6px_6px_0px_#1A1A1A] dark:shadow-[6px_6px_0px_#FFD600] transition-colors">
+                            <h3 class="font-black text-xl mb-3 text-green-600 dark:text-green-400"><i class="fas fa-database mr-2"></i> SQL</h3>
+                            <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 border-b-2 border-gray-200 dark:border-gray-700 pb-2">The language of databases.</p>
+                            <p class="text-sm text-justify mb-3 text-nuls-black dark:text-gray-300">SQL is used to query large data tables. The basic structure is always the same: <code>SELECT</code> (what I want) <code>FROM</code> (which table) <code>WHERE</code> (under what condition).</p>
+                            <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-600 shadow-inner overflow-x-auto text-nuls-black dark:text-gray-200">
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">SELECT</span> declaration_id, status<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">FROM</span> declarations_h1<br>
+                                <span class="text-blue-600 dark:text-blue-400 font-bold">WHERE</span> weight > 20000;
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 italic">Translation: Give me the number and status of all H1 declarations whose weight exceeds 20 tons.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-nuls-black dark:text-nuls-yellow"><span class="w-2 h-6 bg-nuls-yellow mr-3 rounded-sm"></span> JSON vs XML: The language of data</h3>
+                    <p class="mb-4 text-sm text-justify">When two applications talk (via the API), they must use a standardized format to send data. In customs, we mainly use two formats:</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 mb-4">
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-red-600 dark:text-red-400 mb-2"><i class="fas fa-file-code mr-2"></i> XML (The Old, heavy but robust)</h4>
+                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">It uses tags (like HTML). Highly used for older customs messages (EDI).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                &lt;Declarant&gt;<br>
+                                &nbsp;&nbsp;&lt;Name&gt;Smith&lt;/Name&gt;<br>
+                                &nbsp;&nbsp;&lt;EORI&gt;BE1234&lt;/EORI&gt;<br>
+                                &lt;/Declarant&gt;
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-[var(--section-bg)] p-4 rounded-xl border border-gray-300 dark:border-gray-600 shadow-sm transition-colors">
+                            <h4 class="font-bold text-yellow-600 dark:text-yellow-400 mb-2"><i class="fas fa-brackets-curly mr-2"></i> JSON (The Modern, light)</h4>
+                            <p class="text-xs mb-2 text-nuls-black dark:text-gray-300">It works by <code>"Key": "Value"</code> pairs. It is the current web standard (REST APIs).</p>
+                            <div class="bg-white dark:bg-gray-900 p-3 rounded font-mono text-xs border border-gray-300 dark:border-gray-700 text-nuls-black dark:text-gray-300">
+                                "Declarant": {<br>
+                                &nbsp;&nbsp;"Name": "Smith",<br>
+                                &nbsp;&nbsp;"EORI": "BE1234"<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-2 border-gray-200 dark:border-gray-700 my-12">
+
                 <!-- Chapter 12 -->
                 <div id="chap12" class="mb-16 scroll-mt-8 unbreakable">
                     <div class="mb-8 border-b-[3px] border-gray-200 dark:border-gray-700 pb-4">
@@ -1189,26 +1288,34 @@
                 } else {
                     backToTopBtn.classList.add("translate-y-12", "opacity-0");
                 }
-
-                let currentSection = '';
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 300) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                if (window.scrollY < 200 && sections.length > 0) {
-                    currentSection = sections[0].getAttribute('id');
-                }
-
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection && currentSection !== '') {
-                        link.classList.add('active');
-                    }
-                });
             });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "-20% 0px -70% 0px", 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            if (tocLinks.length > 0) tocLinks[0].classList.add('active');
         });
     </script>
 </body>
