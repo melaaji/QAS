@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour de Contrôle SLA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <!-- SheetJS pour lire Excel -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- html2canvas pour l'export -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #f1f5f9; }
+        
+        .glass { background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); }
+        .row-interactive { cursor: pointer; transition: all 0.2s; }
+        .row-interactive:hover { background-color: #f8fafc; transform: translateX(2px); }
+        
+        th.sortable { cursor: pointer; user-select: none; position: relative; padding-right: 1.5rem; }
+        th.sortable:hover { background-color: #f1f5f9; }
+        th.sort-active.asc::after { content: ' ↑'; position: absolute; right: 0.5rem; color: #3b82f6; }
+        th.sort-active.desc::after { content: ' ↓'; position: absolute; right: 0.5rem; color: #3b82f6; }
+        th.sort-inactive::after { content: ' ↕'; position: absolute; right: 0.5rem; color: #cbd5e1; }
+        
+        /* Style sparklines CSS pur */
+        .sparkline { display: inline-flex; align-items: flex-end; gap: 2px; height: 24px; vertical-align: middle; }
+        .sparkbar { width: 5px; background-color: #6366f1; border-radius: 1px; min-height: 2px; }
+        
+        /* Tooltip cliquable */
+        .info-btn { font-family: serif; font-style: italic; cursor: pointer; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden text-slate-800" onclick="closeAllTooltips()">
+
+    <!-- ASIDE (Sidebar) -->
+    <aside class="w-72 bg-white border-r border-slate-200 h-full flex flex-col z-20 shrink-0 shadow-sm" data-html2canvas-ignore="true">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-black leading-tight text-slate-800">SLA Tracker</h1>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase" data-i18n="subtitle">Analyse ServiceNow (task_sla)</p>
+                </div>
+            </div>
+            <select id="langSwitch" onchange="changeLang(this.value)" class="text-xs border-slate-200 rounded text-slate-600 focus:ring-indigo-500 font-bold bg-slate-50 cursor-pointer p-1">
+                <option value="fr">FR</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+
+        <div class="p-5 border-b border-slate-100 bg-slate-50/50">
+            <div id="dropZone" class="border-2 border-dashed border-indigo-200 rounded-xl p-4 text-center cursor-pointer hover:bg-indigo-50 transition-colors bg-white relative">
+                <input type="file" id="fileInput" accept=".xlsx, .xls" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                <svg class="mx-auto h-6 w-6 text-indigo-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                <p class="text-xs font-bold text-slate-700" data-i18n="drop_title">Charger l'export SLA</p>
+                <p class="text-[10px] text-slate-400 mt-1" data-i18n="drop_sub">Format .xlsx supporté</p>
+            </div>
+            <div id="fileInfo" class="mt-2 text-xs text-emerald-700 font-bold hidden flex items-center gap-1 bg-emerald-50 px-2 py-1.5 rounded border border-emerald-100">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span id="fileName" class="truncate"></span>
+            </div>
+            <div id="errorBanner" class="mt-2 text-xs text-red-700 font-bold hidden bg-red-50 px-2 py-1.5 rounded border border-red-200"></div>
+        </div>
+
+        <div class="p-4 flex-1 overflow-y-auto">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider" data-i18n="filters">Filtres Dynamiques</h2>
+                <button onclick="resetFilters()" class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold transition-colors shadow-sm border border-slate-200" data-i18n="reset_btn">🔄 Réinitialiser</button>
+            </div>
+            <div id="filtersContainer" class="space-y-3">
+                <p class="text-xs text-slate-400 italic" data-i18n="waiting_data">En attente de données...</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="flex-1 overflow-y-auto relative" id="mainDashboard">
+        <div class="p-6 max-w-[1600px] mx-auto space-y-6">
+            
+            <div class="flex justify-between items-end pb-2">
+                <div>
+                    <h2 class="text-2xl font-black text-indigo-950 tracking-tight" data-i18n="dashboard_title">Performances des Équipes</h2>
+                    <p class="text-sm text-slate-500 font-medium mt-1"><span data-i18n="vol_analysed">Volume analysé :</span> <strong id="recordCount" class="text-indigo-600">0</strong> <span data-i18n="tickets">tickets</span></p>
+                    <p id="crossFilterMsg" class="text-xs text-indigo-600 font-bold bg-indigo-50 px-3 py-1.5 rounded inline-block mt-2 hidden border border-indigo-100"></p>
+                </div>
+                <div class="flex gap-2" data-html2canvas-ignore="true">
+                    <button onclick="showSettings()" class="bg-slate-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-700 transition-colors flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span data-i18n="btn_settings">Paramètres & Calculs</span>
+                    </button>
+                    <button onclick="showExportConfig()" class="bg-white border border-slate-300 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50 transition-colors flex items-center gap-1 opacity-50 cursor-not-allowed" id="btnExportGraph">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <span data-i18n="btn_export">Exporter (PNG)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+                <div class="glass p-4 border-l-4 border-l-emerald-500 relative flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <p class="text-[10px] font-black text-slate-500 uppercase" data-i18n="kpi_achieved">SLA Respectés</p>
+                        <div id="sparkAchieved" class="sparkline"></div>
+                    </div>
+                    <div class="flex items-end gap-2 mt-2">
+                        <p class="text-3xl font-black text-emerald-600 leading-none" id="kpi-achieved">0</p>
+                        <p class="text-sm font-bold text-emerald-500 mb-0.5" id="kpi-achieved-pct">(0%)</p>
+                    </div>
+                    <div id="kpi-achieved-yoy" class="mt-2 h-4"></div>
+                </div>
+                <div class="glass p-4 border-l-4 border-l-red-500 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <p class="text-[10px] font-black text-slate-500 uppercase" data-i18n="kpi_breached">SLA Dépassés</p>
+                        <div id="sparkBreached" class="sparkline"></div>
+                    </div>
+                    <div class="flex items-end gap-2 mt-2">
+                        <p class="text-3xl font-black text-red-600 leading-none" id="kpi-breached">0</p>
+                        <p class="text-sm font-bold text-red-400 mb-0.5" id="kpi-breached-pct">(0%)</p>
+                    </div>
+                    <div id="kpi-breached-yoy" class="mt-2 h-4"></div>
+                </div>
+                <div class="glass p-4 bg-slate-800 border-l-4 border-l-orange-500 flex flex-col justify-between relative">
+                    <div class="flex items-center gap-1">
+                        <p class="text-[10px] font-black text-slate-300 uppercase truncate" data-i18n="kpi_worst">Pire Taux <span class="text-slate-500">(Min. 5)</span></p>
+                    </div>
+                    <p class="text-xl font-black text-orange-400 mt-2 leading-tight" id="kpi-worst-app">-</p>
+                </div>
+                <div class="glass p-4 bg-slate-50 border-l-4 border-l-teal-500 flex flex-col justify-between relative">
+                    <div class="flex items-center gap-1">
+                        <p class="text-[10px] font-black text-slate-600 uppercase truncate" data-i18n="kpi_best">Meilleur Taux <span class="text-slate-400">(Min. 5)</span></p>
+                    </div>
+                    <p class="text-xl font-black text-teal-600 mt-2 leading-tight" id="kpi-best-app">-</p>
+                </div>
+                <div class="glass p-4 border-l-4 border-l-blue-500 flex flex-col justify-between relative">
+                    <div class="flex justify-between items-start">
+                        <div class="flex items-center gap-1 relative">
+                            <p class="text-[10px] font-black text-slate-500 uppercase">Médiane (P50)</p>
+                            <button onclick="toggleTooltip(this, event)" class="info-btn w-3.5 h-3.5 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[9px]" data-html2canvas-ignore="true">i</button>
+                            <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-56 z-[100] left-0 top-6 border border-slate-700" data-i18n="p50_tooltip">50% des tickets sont résolus en moins de ce temps. Calcul basé sur le temps ouvré (Business).</div>
+                        </div>
+                        <div id="sparkP50" class="sparkline"></div>
+                    </div>
+                    <p class="text-2xl font-black text-blue-600 mt-2 leading-none" id="kpi-p50">-</p>
+                    <div id="kpi-p50-yoy" class="mt-2 h-4"></div>
+                </div>
+                <div class="glass p-4 border-l-4 border-l-purple-500 flex flex-col justify-between relative">
+                    <div class="flex items-center gap-1 relative">
+                        <p class="text-[10px] font-black text-slate-500 uppercase">Percentile 90 (P90)</p>
+                        <button onclick="toggleTooltip(this, event)" class="info-btn w-3.5 h-3.5 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[9px]" data-html2canvas-ignore="true">i</button>
+                        <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-56 z-[100] right-0 top-6 border border-slate-700" data-i18n="p90_tooltip">90% des tickets sont résolus en moins de ce temps. Élimine les anomalies extrêmes.</div>
+                    </div>
+                    <p class="text-2xl font-black text-purple-600 mt-2 leading-none" id="kpi-p90">-</p>
+                    <div id="kpi-p90-yoy" class="mt-2 h-4"></div>
+                </div>
+            </div>
+
+            <!-- CORE CHARTS -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="section-core-charts">
+                <div class="glass p-5 lg:col-span-2">
+                    <div class="flex items-center gap-1.5 relative w-max mb-2">
+                        <h3 class="font-black text-slate-800 text-sm" data-i18n="chart_bar_title">Volume et Respect par Équipe (Top 12)</h3>
+                        <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                        <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-0 top-6 border border-slate-700" data-i18n="tt_vol">Compare le volume total de tickets (Achieved + Breached). Cliquez sur une barre pour isoler cette équipe.</div>
+                    </div>
+                    <div class="h-64"><canvas id="chartVolume"></canvas></div>
+                </div>
+                <div class="glass p-5">
+                    <div class="flex items-center gap-1.5 relative w-max mb-2">
+                        <h3 class="font-black text-slate-800 text-sm" data-i18n="chart_prio_title">Répartition par Priorité</h3>
+                        <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                        <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] right-0 top-6 border border-slate-700" data-i18n="tt_prio">Affiche vos libellés de priorité. Cliquez sur une tranche pour filtrer.</div>
+                    </div>
+                    <div class="h-64 flex justify-center items-center"><canvas id="chartPriority"></canvas></div>
+                </div>
+            </div>
+
+            <div class="glass p-5" id="section-trend">
+                <div class="flex items-center gap-1.5 relative w-max mb-2">
+                    <h3 class="font-black text-slate-800 text-sm" data-i18n="chart_trend_title">Tendance Évolutive (YoY)</h3>
+                    <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                    <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-0 top-6 border border-slate-700" data-i18n="tt_trend">Superposition des années par mois. Survolez un point pour voir le Top 3 des applications responsables.</div>
+                </div>
+                <div class="h-56"><canvas id="chartTrend"></canvas></div>
+            </div>
+
+            <!-- MATRICES DATA -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="section-matrices">
+                <!-- Matrice Groupe -->
+                <div class="glass p-0 overflow-hidden flex flex-col shadow-sm">
+                    <div class="p-4 bg-indigo-600 text-white flex justify-between items-center relative">
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-black text-sm flex items-center gap-2" data-i18n="table_grp_title">Performances par Groupe d'assignation</h3>
+                            <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-indigo-400 text-white flex items-center justify-center hover:bg-white hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                            <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-4 top-10 border border-slate-700" data-i18n="tt_matrix">Affiche l'activité mensuelle. Clic: filtrer. Double-clic: détails tickets. Recherche: filtre le dashboard.</div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center" data-html2canvas-ignore="true">
+                        <span class="text-xs text-slate-500 font-bold ml-1" data-i18n="table_click_hint">Clic = Filtrer. Double-clic = Tickets.</span>
+                        <input type="text" oninput="setGlobalSearch('GRP', this.value)" class="text-sm border-slate-200 rounded px-2.5 py-1.5 w-5/12 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-white" placeholder="Chercher/Filtrer..." data-i18n="search_ph">
+                    </div>
+                    <div class="overflow-y-auto max-h-[500px]">
+                        <table class="w-full text-left text-sm whitespace-nowrap">
+                            <thead class="bg-white sticky top-0 shadow-sm z-10">
+                                <tr>
+                                    <th class="px-4 py-3 font-bold text-slate-700 sortable sort-inactive" onclick="sortTable('matrix',0,'string')" data-i18n="col_grp">Assignment Group<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-slate-700 text-center sortable sort-inactive" onclick="sortTable('matrix',1,'number')" data-i18n="col_vol">Volume<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-red-600 text-center sortable sort-inactive" onclick="sortTable('matrix',2,'number')" data-i18n="col_breach">Breached<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-indigo-700 text-center sortable sort-active desc" onclick="sortTable('matrix',3,'number')" data-i18n="col_success">Succès<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-slate-500 text-center" data-i18n="col_trend">Activité & YoY</th>
+                                </tr>
+                            </thead>
+                            <tbody id="matrixBody" class="divide-y divide-slate-100 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Matrice Collaborateur -->
+                <div class="glass p-0 overflow-hidden flex flex-col shadow-sm">
+                    <div class="p-4 bg-slate-800 text-white flex justify-between items-center relative">
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-black text-sm flex items-center gap-2" data-i18n="table_collab_title">Charge par Collaborateur</h3>
+                            <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-500 text-white flex items-center justify-center hover:bg-white hover:text-slate-800 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                            <div class="tooltip-content absolute hidden bg-indigo-600 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-4 top-10 border border-indigo-800" data-i18n="tt_collab">Charge par agent. Clic: filtrer l'agent. Double-clic: tickets. Tag: tickets par projet.</div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center" data-html2canvas-ignore="true">
+                        <span class="text-xs text-slate-500 font-bold ml-1" data-i18n="table_collab_hint">Clic = Filtrer. Double-clic = Tickets. Tag = Projet.</span>
+                        <input type="text" oninput="setGlobalSearch('COLLAB', this.value)" class="text-sm border-slate-200 rounded px-2.5 py-1.5 w-5/12 shadow-sm focus:border-slate-500 focus:ring-1 focus:ring-slate-500 bg-white" placeholder="Chercher/Filtrer..." data-i18n="search_ph">
+                    </div>
+                    <div class="overflow-y-auto max-h-[500px]">
+                        <table class="w-full text-left text-sm whitespace-nowrap">
+                            <thead class="bg-white sticky top-0 shadow-sm z-10">
+                                <tr>
+                                    <th class="px-4 py-3 font-bold text-slate-700 sortable sort-inactive" onclick="sortTable('collab',0,'string')" data-i18n="col_collab">Collaborateur<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-slate-700 text-center sortable sort-active desc" onclick="sortTable('collab',1,'number')" data-i18n="col_total">Total<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-slate-700 text-center sortable sort-inactive" onclick="sortTable('collab',2,'number')" data-i18n="col_pct_global">% Vue<span class="sort-icon"></span></th>
+                                    <th class="px-4 py-3 font-bold text-slate-700" data-i18n="col_repartition">Groupes (Répartition)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="collabBody" class="divide-y divide-slate-100 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAGNOSTIC (EXPERT) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="section-expert">
+                <div class="glass p-5 border-t-4 border-t-indigo-500">
+                    <div class="flex items-center gap-1.5 relative w-max mb-2">
+                        <h3 class="font-black text-slate-800 text-sm flex items-center gap-1"><span title="Expert Mode">🧠</span> <span data-i18n="chart_risk_title">Marge de Sécurité SLA (Risk Profiling)</span></h3>
+                        <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                        <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-0 top-6 border border-slate-700" data-i18n="tt_risk">Isole les tickets réussis pour voir la tension (Near-Breach = clôturé à >80%). Cliquez pour filtrer.</div>
+                    </div>
+                    <div class="h-56"><canvas id="chartRisk"></canvas></div>
+                </div>
+                <div class="glass p-5 border-t-4 border-t-indigo-500">
+                    <div class="flex items-center gap-1.5 relative w-max mb-2">
+                        <h3 class="font-black text-slate-800 text-sm flex items-center gap-1"><span title="Expert Mode">🧠</span> <span data-i18n="chart_word_title">Text Mining (Mots-clés des échecs)</span></h3>
+                        <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                        <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] right-0 top-6 border border-slate-700" data-i18n="tt_words">Analyse sémantique (Bigrammes) des descriptions de tickets en échec. Mots les plus fréquents.</div>
+                    </div>
+                    <div id="wordCloud" class="h-56 flex flex-wrap gap-3 items-center justify-center p-4 bg-slate-50 rounded-lg overflow-hidden border border-slate-100">
+                        <span class="text-xs text-slate-400 italic">Chargement...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-5 border-t-4 border-t-indigo-500" id="section-scatter">
+                <div class="flex items-center gap-1.5 relative w-max mb-2">
+                    <h3 class="font-black text-slate-800 text-sm flex items-center gap-1"><span title="Expert Mode">🧠</span> <span data-i18n="chart_scatter_title">Matrice de Criticité Stratégique (Équipes)</span></h3>
+                    <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-indigo-200 hover:text-indigo-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                    <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-0 top-6 border border-slate-700" data-i18n="tt_scatter">Croise le volume (X) et l'échec (Y). Cliquez sur un point pour filtrer sur cette équipe.</div>
+                </div>
+                <div class="h-72"><canvas id="chartScatter"></canvas></div>
+            </div>
+
+            <!-- HEATMAP CONTAINER -->
+            <div class="glass p-6 border-t-4 border-t-orange-500" id="section-heatmap">
+                <div class="flex items-center gap-1.5 relative w-max mb-2">
+                    <h3 class="font-black text-slate-800 text-sm flex items-center gap-1"><span title="Expert Mode">🧠</span> <span data-i18n="chart_heat_title">Heatmap de Saisonnalité (Crash Time)</span></h3>
+                    <button onclick="toggleTooltip(this, event)" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-orange-200 hover:text-orange-700 transition-colors text-[10px]" data-html2canvas-ignore="true">i</button>
+                    <div class="tooltip-content absolute hidden bg-slate-800 text-white text-xs p-2.5 rounded-lg shadow-2xl w-64 z-[100] left-0 top-6 border border-slate-700" data-i18n="tt_heat">Identifie les heures et jours de crash. Cliquez sur une case pour filtrer ce créneau horaire !</div>
+                </div>
+                <div id="heatmapContainer" class="w-full overflow-x-auto mt-4 pb-3">
+                    <p class="text-sm text-slate-400 italic">En attente de données temporellement valides...</p>
+                </div>
+            </div>
+
+            <div class="h-10"></div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="exportConfigModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity" data-html2canvas-ignore="true">
+        <div class="bg-white rounded-xl shadow-2xl w-[450px] max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center p-5 border-b border-slate-100 bg-indigo-50 rounded-t-xl">
+                <h3 class="text-lg font-black text-indigo-900 flex items-center gap-2">Configurer l'Export</h3>
+                <button onclick="closeModal('exportConfigModal')" class="text-indigo-400 hover:text-indigo-700 bg-white p-1 rounded-md shadow-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto text-sm text-slate-700 space-y-4">
+                <p class="text-xs text-slate-500 mb-2">Décochez les sections que vous ne souhaitez pas faire apparaître dans votre capture PNG.</p>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-core-charts" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Graphiques Principaux</span></label>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-trend" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Tendance Évolutive (YoY)</span></label>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-matrices" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Tableaux Matrices</span></label>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-expert" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Mode Expert (Risk & Text Mining)</span></label>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-scatter" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Matrice Stratégique</span></label>
+                <label class="flex items-center gap-3 cursor-pointer p-2 hover:bg-slate-50 rounded"><input type="checkbox" id="exp-heatmap" checked class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4"><span class="font-bold">Heatmap de Saisonnalité</span></label>
+            </div>
+            <div class="p-5 border-t border-slate-100 bg-slate-50 rounded-b-xl flex justify-end gap-3">
+                <button onclick="closeModal('exportConfigModal')" class="px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-800">Annuler</button>
+                <button onclick="executeExport()" class="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-indigo-700 flex items-center gap-2">Capturer l'image</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drillDownModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity" data-html2canvas-ignore="true">
+        <div class="bg-white rounded-xl shadow-2xl w-11/12 max-w-7xl max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-slate-100 bg-slate-50 rounded-t-xl">
+                <div>
+                    <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                        <span class="bg-indigo-600 text-white px-3 py-1 rounded-md shadow-sm text-sm" id="modalAppName">APP</span>
+                        <span data-i18n="modal_title">Investigation Détaillée (Tickets)</span>
+                    </h3>
+                </div>
+                <button onclick="closeModal('drillDownModal')" class="text-slate-400 hover:text-red-500 bg-white shadow-sm border border-slate-200 p-1.5 rounded-md transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto flex-1 p-0">
+                <table class="w-full text-left text-sm whitespace-nowrap">
+                    <thead class="bg-slate-100 text-slate-600 sticky top-0 shadow-sm z-10">
+                        <tr>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200">Ticket</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200" data-i18n="th_status">Statut SLA</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200" data-i18n="th_pct">% Temps Utilisé</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200" data-i18n="th_start">Début (Start time)</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200" data-i18n="th_end">Fin (Stop time)</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200" data-i18n="th_dur">Durée Réelle</th>
+                            <th class="px-4 py-3 font-bold border-b border-slate-200 w-full" data-i18n="th_desc">Description (Short description)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modalTableBody" class="divide-y divide-slate-100 bg-white"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity" data-html2canvas-ignore="true">
+        <div class="bg-white rounded-xl shadow-2xl w-[700px] max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center p-5 border-b border-slate-100 bg-indigo-50 rounded-t-xl">
+                <h3 class="text-lg font-black text-indigo-900 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span data-i18n="settings_title">Documentation des Calculs (Audit)</span>
+                </h3>
+                <button onclick="closeModal('settingsModal')" class="text-indigo-400 hover:text-indigo-700 bg-white p-1 rounded-md shadow-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto text-sm text-slate-700 space-y-4">
+                <div class="border border-slate-200 p-4 rounded-lg bg-slate-50">
+                    <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Dépassement SLA (Achieved / Breached)</h4>
+                    <p class="text-xs">Conformément aux validations du Helpdesk, l'échec SLA est calculé <b>strictement et uniquement</b> sur la colonne <code>Business elapsed percentage</code>. Le code retraite les formats européens avec espaces et virgules (ex: 1 250,50% devient 1250.50). Tout ticket dont ce pourcentage est strictement supérieur à 100 est classé en échec.</p>
+                </div>
+                <div class="border border-slate-200 p-4 rounded-lg bg-slate-50">
+                    <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Percentiles (P50 & P90)</h4>
+                    <p class="text-xs">Calculés sur la durée <code>Business elapsed time</code> (Temps ouvré). La formule lit intelligemment les formats Jours:Heures:Minutes pour éviter le bug Excel des dates '1899'. Le <b>P50</b> est la médiane. Le <b>P90</b> donne le délai maximum subi pour 90% des tickets, éliminant ainsi les 10% de valeurs extrêmes.</p>
+                </div>
+                <div class="border border-slate-200 p-4 rounded-lg bg-slate-50">
+                    <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>Filtres par Clic et Double-Clic</h4>
+                    <p class="text-xs">Dans les tableaux des Équipes et Collaborateurs : un <b>Clic simple</b> agit comme un filtre dynamique sur tout le dashboard. Un <b>Double-clic</b> ouvre immédiatement l'investigation détaillée des tickets. La <b>Barre de recherche</b> filtre également les données globales en direct.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- STREAMING_CHUNK:Traductions ---
+        const dict = {
+            fr: {
+                subtitle: "Analyse ServiceNow (task_sla)", drop_title: "Charger l'export SLA", drop_sub: "Format .xlsx supporté",
+                filters: "Filtres Dynamiques", reset_btn: "🔄 Réinitialiser", waiting_data: "En attente de données...",
+                dashboard_title: "Performances des Équipes", vol_analysed: "Volume analysé :", tickets: "tickets",
+                btn_settings: "Paramètres & Calculs", btn_export: "Exporter (PNG)",
+                kpi_achieved: "SLA Respectés", kpi_breached: "SLA Dépassés", kpi_worst: "Pire Taux <span class='text-slate-500'>(Min. 5)</span>", kpi_best: "Meilleur Taux <span class='text-slate-400'>(Min. 5)</span>",
+                p50_tooltip: "50% des tickets sont résolus en moins de ce temps. Basé sur le temps ouvré.", 
+                p90_tooltip: "90% des tickets sont résolus en moins de ce temps (Élimine les anomalies extrêmes).",
+                chart_bar_title: "Volume et Respect par Équipe (Top 12)", 
+                chart_prio_title: "Répartition par Priorité", chart_trend_title: "Tendance Évolutive (YoY)",
+                table_grp_title: "Performances par Groupe d'assignation", table_click_hint: "Clic simple = Filtrer le dashboard. Double-clic = Voir les tickets.",
+                search_ph: "Chercher & Filtrer dashboard...", col_grp: "Assignment Group", col_vol: "Volume Total", col_breach: "Breached", col_success: "Succès Global", col_trend: "Activité & YoY",
+                table_collab_title: "Charge par Collaborateur", table_collab_hint: "Clic = Filtrer. Double-clic = Voir les tickets. Tag = Filtrer projet.",
+                col_collab: "Collaborateur", col_total: "Total", col_pct_global: "% Vue", col_repartition: "Groupes (Répartition)",
+                chart_risk_title: "Marge de Sécurité SLA (Risk Profiling)", chart_word_title: "Text Mining (Mots-clés des échecs)", chart_scatter_title: "Matrice de Criticité Stratégique (Équipes)", chart_heat_title: "Heatmap de Saisonnalité (Crash Time)",
+                modal_title: "Investigation Détaillée (Tickets)", th_status: "Statut SLA", th_pct: "% Temps Utilisé", th_start: "Début (Start time)", th_end: "Fin (Stop time)", th_dur: "Durée Réelle", th_desc: "Description (Short description)",
+                settings_title: "Documentation des Calculs (Audit)", lbl_all: "Tous", lbl_none: "Aucun", active_filters: "Filtres actifs :", err_parse: "Erreur de lecture Excel. Vérifiez les colonnes.",
+                risk_safe: "Safe (<50%)", risk_warn: "Warning (50-80%)", risk_near: "Near-Breach (>80%)", unknown: "Inconnue", empty: "(Vide)", days: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+                tt_vol: "Compare le volume total de tickets (Achieved + Breached). Cliquez sur une barre pour isoler cette équipe dans tout le dashboard.",
+                tt_prio: "Répartition de la charge par niveau de priorité. Cliquez sur une tranche pour filtrer.",
+                tt_trend: "Superposition des années par mois. Survolez un point pour voir le Top 3 des applications responsables de la charge.",
+                tt_matrix: "Vue détaillée par équipe. Clic: filtrer. Double-clic: détails.",
+                tt_collab: "Charge de travail par agent. Clic: filtrer. Double-clic: détails.",
+                tt_risk: "Isole les tickets réussis pour voir la \"tension\" de l'équipe (Near-Breach = clôturé avec plus de 80% du SLA écoulé). Cliquez pour filtrer.",
+                tt_words: "Analyse sémantique (Bigrammes) des descriptions de tickets en échec (RCA). Affiche les paires de mots les plus fréquentes.",
+                tt_scatter: "Croise le volume de tickets (X) et le taux d'échec (Y). Cliquez sur un point pour filtrer le dashboard sur cette équipe.",
+                tt_heat: "Identifies les heures et jours de crash. Cliquez sur une case colorée pour filtrer les tickets à ce moment précis !"
+            },
+            en: {
+                subtitle: "ServiceNow Analysis (task_sla)", drop_title: "Load SLA Export", drop_sub: "Supported format: .xlsx",
+                filters: "Dynamic Filters", reset_btn: "🔄 Reset Filters", waiting_data: "Waiting for data...",
+                dashboard_title: "Team Performances", vol_analysed: "Analyzed volume:", tickets: "tickets",
+                btn_settings: "Settings & Logic", btn_export: "Export (PNG)",
+                kpi_achieved: "SLA Achieved", kpi_breached: "SLA Breached", kpi_worst: "Worst Rate <span class='text-slate-500'>(Min. 5)</span>", kpi_best: "Best Rate <span class='text-slate-400'>(Min. 5)</span>",
+                p50_tooltip: "50% of tickets are resolved in less than this time. Based on Business elapsed time.", 
+                p90_tooltip: "90% of tickets are resolved in less than this time.",
+                chart_bar_title: "Volume & Compliance by Team (Top 12)", 
+                chart_prio_title: "Priority Distribution", chart_trend_title: "Evolution Trend (YoY)",
+                table_grp_title: "Performance by Assignment Group", table_click_hint: "Click = Filter dashboard. Double-click = View tickets.",
+                search_ph: "Search & Filter dashboard...", col_grp: "Assignment Group", col_vol: "Total Volume", col_breach: "Breached", col_success: "Global Success", col_trend: "Activity & YoY",
+                table_collab_title: "Workload by Collaborator", table_collab_hint: "Click = Filter. Double-click = View agent tickets. Tag = Filter project.",
+                col_collab: "Collaborator", col_total: "Total", col_pct_global: "% View", col_repartition: "Groups (Split)",
+                chart_risk_title: "SLA Safety Margin (Risk Profiling)", chart_word_title: "Text Mining (Failure Keywords)", chart_scatter_title: "Strategic Criticality Matrix (Teams)", chart_heat_title: "Seasonality Heatmap (Crash Time)",
+                modal_title: "Detailed Investigation (Tickets)", th_status: "SLA Status", th_pct: "% Time Used", th_start: "Start (Start time)", th_end: "End (Stop time)", th_dur: "Real Duration", th_desc: "Description (Short description)",
+                settings_title: "Calculation Documentation (Audit)", lbl_all: "All", lbl_none: "None", active_filters: "Active filters:", err_parse: "Excel parsing error. Check columns.",
+                risk_safe: "Safe (<50%)", risk_warn: "Warning (50-80%)", risk_near: "Near-Breach (>80%)", unknown: "Unknown", empty: "(Empty)", days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                tt_vol: "Compares total ticket volume (Achieved + Breached). Click a bar to isolate this team across the dashboard.",
+                tt_prio: "Workload distribution by priority level. Click a slice to filter.",
+                tt_trend: "Displays ticket volume evolution month by month. Hover over a point to see the Top 3 applications.",
+                tt_matrix: "Detailed view per team. Click: filter. Double-click: details.",
+                tt_collab: "Workload by agent. Click: filter. Double-click: details.",
+                tt_risk: "Analyzes only successful tickets to see team tension. Click to filter.",
+                tt_words: "Semantic analysis (Bigrams) of breached ticket descriptions.",
+                tt_scatter: "Cross-references workload (X) and failure rate (Y). Click a point to filter.",
+                tt_heat: "Identifies crash hours and days. Click a colored cell to filter!"
+            }
+        };
+
+        Chart.register(ChartDataLabels);
+        let curLang = 'fr';
+        let rawData = [], filterOptions = {}, activeFilters = {};
+        
+        let selectedAppsFromChart = new Set();
+        let selectedCollabs = new Set();
+        let selectedRiskProfile = null, selectedPrioProfile = null;
+        let selectedDay = null, selectedHour = null;
+        let textFilterGrp = "", textFilterCollab = "";
+        
+        let chartVol, chartPrio, chartTrend, chartRisk, chartScatter;
+        let trendTooltipData = {};
+        let currentMatrixData = [], currentCollabData = [];
+        let sortState = { 'matrix': { colIndex: 1, asc: false }, 'collab': { colIndex: 1, asc: false } };
+
+        const stopWords = new Set(["le","la","les","un","une","des","du","de","et","ou","en","pour","par","sur","dans","avec","est","sont","pas","plus","ticket","incident","error","erreur","call","request","the","a","an","and","or","in","on","for","with","is","are","to","of","het","de","een","en","of","in","op","voor","met","is","zijn","van"]);
+
+        function changeLang(lang) {
+            curLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                let key = el.getAttribute('data-i18n');
+                if(dict[lang][key]) {
+                    if(el.tagName === 'INPUT' && el.hasAttribute('placeholder')) el.placeholder = dict[lang][key];
+                    else el.innerHTML = dict[lang][key];
+                }
+            });
+            if(rawData.length > 0) { renderFilters(); updateDashboard(); }
+        }
+
+        // --- STREAMING_CHUNK:Gestion Tooltips ---
+        document.body.addEventListener('click', () => {
+            document.querySelectorAll('.tooltip-content').forEach(el => el.classList.add('hidden'));
+        });
+        
+        window.toggleTooltip = function(btn, event) {
+            event.stopPropagation();
+            const content = btn.nextElementSibling;
+            const isHidden = content.classList.contains('hidden');
+            document.querySelectorAll('.tooltip-content').forEach(el => el.classList.add('hidden'));
+            if (isHidden) content.classList.remove('hidden');
+        };
+        
+        window.closeAllTooltips = function() {
+            document.querySelectorAll('.tooltip-content').forEach(el => el.classList.add('hidden'));
+        };
+
+        // --- STREAMING_CHUNK:Parseur Excel ---
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        function parseAggressiveDate(val) {
+            if (!val || val === "(Vide)") return null;
+            if (val instanceof Date) return isNaN(val.getTime()) ? null : val;
+            let str = String(val).trim().replace(/[\u200B-\u200D\uFEFF]/g, '');
+            if (!str) return null;
+            let exactMatch = str.match(/^(\d{2})-(\d{2})-(\d{4})\s+(\d{2}):(\d{2}):(\d{2})$/);
+            if (exactMatch) return new Date(exactMatch[3], exactMatch[2] - 1, exactMatch[1], exactMatch[4], exactMatch[5], exactMatch[6]);
+            let eurMatch = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})(?:\s+(\d{1,2})[:h](\d{1,2})(?:[:m](\d{1,2}))?)?/i);
+            if (eurMatch) {
+                let d = parseInt(eurMatch[1], 10), m = parseInt(eurMatch[2], 10) - 1, y = parseInt(eurMatch[3], 10);
+                if (y < 100) y += 2000;
+                return new Date(y, m, d, eurMatch[4]?parseInt(eurMatch[4],10):0, eurMatch[5]?parseInt(eurMatch[5],10):0, eurMatch[6]?parseInt(eurMatch[6],10):0);
+            }
+            let fb = new Date(str); return isNaN(fb.getTime()) ? null : fb;
+        }
+
+        function formatDisplayDate(dateObj) {
+            if(!dateObj || !(dateObj instanceof Date) || isNaN(dateObj.getTime())) return '-';
+            let pad = (n) => n<10?'0'+n:n;
+            return `${pad(dateObj.getDate())}/${pad(dateObj.getMonth()+1)}/${dateObj.getFullYear()} ${pad(dateObj.getHours())}:${pad(dateObj.getMinutes())}`;
+        }
+
+        function formatDur(min) {
+            if(min === null || min === undefined || isNaN(min) || !isFinite(min) || min < 0) return '-';
+            let h = Math.floor(min/60), m = Math.round(min%60);
+            return h>0 ? `${h}h${m.toString().padStart(2,'0')}` : `${m}m`;
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileInfo').classList.remove('hidden');
+            document.getElementById('errorBanner').classList.add('hidden');
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array', cellDates: false});
+                    
+                    let bestSheet = workbook.SheetNames[0];
+                    let maxRows = 0;
+                    for(let name of workbook.SheetNames) {
+                        let sheet = workbook.Sheets[name];
+                        if(sheet['!ref']) {
+                            let range = XLSX.utils.decode_range(sheet['!ref']);
+                            let rows = range.e.r - range.s.r + 1;
+                            if(rows > maxRows) { maxRows = rows; bestSheet = name; }
+                        }
+                    }
+
+                    let json = XLSX.utils.sheet_to_json(workbook.Sheets[bestSheet], { header: 1, raw: false, defval: "(Vide)" });
+                    if (json.length < 2) throw new Error("Feuille Excel vide.");
+
+                    let headerRowIndex = -1;
+                    for (let i = 0; i < Math.min(20, json.length); i++) {
+                        let rowStr = json[i].map(c => String(c).toLowerCase().trim()).join(' ');
+                        if (rowStr.includes('task') && (rowStr.includes('group') || rowStr.includes('sla') || rowStr.includes('assign'))) {
+                            headerRowIndex = i; break;
+                        }
+                    }
+                    if(headerRowIndex === -1) headerRowIndex = 0;
+
+                    let headers = json[headerRowIndex].map(h => String(h).trim());
+                    let rows = json.slice(headerRowIndex + 1);
+                    let validJson = rows.map(row => {
+                        let obj = {};
+                        headers.forEach((h, i) => { obj[h] = row[i] !== undefined ? row[i] : "(Vide)"; });
+                        return obj;
+                    });
+
+                    processData(validJson, headers);
+                } catch(err) {
+                    let errEl = document.getElementById('errorBanner');
+                    errEl.textContent = dict[curLang].err_parse + " (" + err.message + ")";
+                    errEl.classList.remove('hidden');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // --- STREAMING_CHUNK:Traitement des Données (Anti-Milliers) ---
+        function processData(json, headers) {
+            const findCol = (keywords, exclude = []) => {
+                return headers.find(h => {
+                    let hl = String(h).toLowerCase().replace(/[^a-z]/g, '');
+                    let match = keywords.some(k => hl.includes(k.replace(/[^a-z]/g, '')));
+                    let isExcluded = exclude.some(e => hl.includes(e.replace(/[^a-z]/g, '')));
+                    return match && !isExcluded;
+                });
+            };
+
+            const colTask = headers.find(h => h === 'Task') || findCol(['task', 'number', 'ticket']) || headers[0];
+            const colGrp = headers.find(h => h === 'Assignment group') || findCol(['assignment group', 'groupe']);
+            const colCollab = headers.find(h => h === 'Assigned to') || findCol(['assigned to', 'assigné à', 'collaborateur'], ['group']);
+            
+            const colPrioExact = headers.find(h => h.toLowerCase() === 'priority' || h.toLowerCase() === 'priorité');
+            const colSlaDef = headers.find(h => h === 'SLA definition') || findCol(['sla definition', 'définition']);
+            
+            const colPct = headers.find(h => h === 'Business elapsed percentage') || findCol(['business elapsed percentage', 'jours ouvrés'], ['actual', 'réel', 'reel', 'time', 'left']);
+            const colBizTime = headers.find(h => h === 'Business elapsed time') || findCol(['business elapsed time'], ['actual', 'percentage', 'left']);
+            const colDesc = headers.find(h => h === 'Short description') || findCol(['short description', 'description', 'titre']);
+            const colStart = headers.find(h => h === 'Start time') || findCol(['start', 'debut', 'begin']);
+            const colEnd = headers.find(h => h === 'Stop time') || findCol(['stop', 'end', 'fin']);
+
+            rawData = [];
+            
+            json.forEach(row => {
+                let task = String(row[colTask] || "(Vide)").trim();
+                if(task === "(Vide)" || task === "") return;
+
+                let grp = String(row[colGrp] || "(Vide)").trim().toUpperCase();
+                let collab = String(row[colCollab] || "(Vide)").trim();
+                if(collab === "") collab = "(Vide)";
+                
+                let prio = "Normale";
+                if (colPrioExact && row[colPrioExact] && row[colPrioExact] !== "(Vide)") {
+                    prio = String(row[colPrioExact]).trim();
+                } else if (colSlaDef) {
+                    let prioRaw = String(row[colSlaDef] || "").toUpperCase();
+                    let prioMatch = prioRaw.match(/P[1-5]/);
+                    if(prioMatch) prio = prioMatch[0];
+                }
+
+                // LE COEUR DU CORRECTIF : Parseur "Anti-Milliers"
+                let pctRaw = row[colPct];
+                let pct = 0;
+                if (typeof pctRaw === 'number') {
+                    pct = pctRaw;
+                } else {
+                    // Supprime les espaces (ex: "1 250,50")
+                    let str = String(pctRaw || "0").trim().replace(/[\s\u202F\u00A0]/g, '');
+                    let cIdx = str.lastIndexOf(',');
+                    let dIdx = str.lastIndexOf('.');
+                    
+                    if (cIdx > -1 && dIdx > -1) {
+                        if (cIdx > dIdx) str = str.replace(/\./g, '').replace(',', '.'); // FR: 1.250,50 -> 1250.50
+                        else str = str.replace(/,/g, ''); // EN: 1,250.50 -> 1250.50
+                    } else if (cIdx > -1) {
+                        str = str.replace(',', '.'); // FR: 1250,50 -> 1250.50
+                    }
+                    
+                    let pctMatchNum = str.match(/-?\d+(\.\d+)?/);
+                    pct = pctMatchNum ? parseFloat(pctMatchNum[0]) : 0;
+                }
+
+                // La règle absolue validée par les formules Excel :
+                let status = pct > 100 ? "Breached" : "Achieved";
+
+                let startObj = parseAggressiveDate(row[colStart]);
+                let endObj = parseAggressiveDate(row[colEnd]);
+                
+                let durMin = null;
+                let bizTimeRaw = row[colBizTime];
+                if (bizTimeRaw !== undefined && bizTimeRaw !== "(Vide)" && bizTimeRaw !== "") {
+                    let str = String(bizTimeRaw).toLowerCase().trim();
+                    let d = 0, h = 0, m = 0;
+                    let colonMatch = str.match(/^(\d+)[:\s]+(\d{1,2}):(\d{1,2}):(\d{1,2})$/);
+                    if (colonMatch) {
+                        d = parseInt(colonMatch[1], 10); h = parseInt(colonMatch[2], 10); m = parseInt(colonMatch[3], 10);
+                    } else {
+                        let dMatch = str.match(/(\d+)\s*(days?|jours?|d|j)/);
+                        if (dMatch) d = parseInt(dMatch[1], 10);
+                        let tMatch = str.match(/(\d{1,2}):(\d{1,2}):(\d{1,2})/);
+                        if (tMatch) { h = parseInt(tMatch[1], 10); m = parseInt(tMatch[2], 10); } 
+                    }
+                    if (colonMatch || str.match(/\d/)) durMin = (d * 24 * 60) + (h * 60) + m;
+                }
+
+                if((durMin === null || isNaN(durMin)) && startObj && endObj && endObj.getTime() >= startObj.getTime()) {
+                    durMin = (endObj.getTime() - startObj.getTime()) / (1000 * 60);
+                }
+
+                let year = dict[curLang].unknown, month = 1;
+                if(startObj) {
+                    year = String(startObj.getFullYear());
+                    month = startObj.getMonth() + 1;
+                }
+
+                rawData.push({
+                    t: task, g: grp, c: collab, p: prio, pct: pct, s: status,
+                    dStart: startObj, dEnd: endObj, durMin: durMin,
+                    y: year, m: month, desc: String(row[colDesc] || ""),
+                    strStart: formatDisplayDate(startObj), strEnd: formatDisplayDate(endObj)
+                });
+            });
+
+            filterOptions = {
+                'Année': new Set(rawData.map(d => d.y).filter(y => y !== dict[curLang].unknown && parseInt(y) > 2000 && parseInt(y) < 2040)),
+                'Priorité': new Set(rawData.map(d => d.p)),
+                'Statut SLA': new Set(rawData.map(d => d.s))
+            };
+            if(filterOptions['Année'].size === 0) filterOptions['Année'].add(dict[curLang].unknown);
+
+            for(let k in filterOptions) activeFilters[k] = Array.from(filterOptions[k]);
+            
+            resetFilters(false);
+            document.getElementById('btnExportGraph').classList.remove('opacity-50', 'cursor-not-allowed');
+
+            renderFilters();
+            updateDashboard();
+        }
+
+        // --- STREAMING_CHUNK:Filtres ---
+        function renderFilters() {
+            const container = document.getElementById('filtersContainer');
+            container.innerHTML = '';
+            
+            for (let category in filterOptions) {
+                let values = Array.from(filterOptions[category]).sort();
+                let card = document.createElement('div');
+                card.className = "bg-white border border-slate-200 rounded-lg p-3 shadow-sm";
+                
+                let header = `
+                    <div class="flex justify-between items-center mb-2 pb-2 border-b border-slate-50">
+                        <h3 class="text-[10px] font-bold text-slate-700 uppercase">${category}</h3>
+                        <div class="space-x-1 text-[9px] font-bold">
+                            <button onclick="toggleAll('${category}', true)" class="text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-1.5 py-0.5 rounded transition-colors">${dict[curLang].lbl_all}</button>
+                            <button onclick="toggleAll('${category}', false)" class="text-slate-500 hover:text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded transition-colors">${dict[curLang].lbl_none}</button>
+                        </div>
+                    </div><div class="space-y-1.5 max-h-40 overflow-y-auto">
+                `;
+                
+                let checkboxes = values.map(val => {
+                    let isChecked = activeFilters[category].includes(val) ? 'checked' : '';
+                    let display = val === "(Vide)" ? dict[curLang].empty : val;
+                    return `<label class="flex items-center gap-2 text-xs text-slate-600 hover:text-slate-900 cursor-pointer p-1 hover:bg-slate-50 rounded transition-colors">
+                        <input type="checkbox" value="${val}" data-cat="${category}" class="filter-cb rounded text-indigo-600 border-slate-300 focus:ring-indigo-500" ${isChecked}>
+                        <span class="truncate">${display}</span>
+                    </label>`;
+                }).join('');
+                
+                card.innerHTML = header + checkboxes + '</div>';
+                container.appendChild(card);
+            }
+
+            document.querySelectorAll('.filter-cb').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    let cat = e.target.dataset.cat, val = e.target.value;
+                    if(e.target.checked) { if(!activeFilters[cat].includes(val)) activeFilters[cat].push(val); }
+                    else { activeFilters[cat] = activeFilters[cat].filter(v => v !== val); }
+                    updateDashboard();
+                });
+            });
+        }
+
+        window.toggleAll = function(category, checkAll) {
+            activeFilters[category] = checkAll ? Array.from(filterOptions[category]) : [];
+            document.querySelectorAll(`.filter-cb[data-cat="${category}"]`).forEach(cb => cb.checked = checkAll);
+            updateDashboard();
+        }
+
+        window.resetFilters = function(reRender = true) {
+            selectedAppsFromChart.clear();
+            selectedCollabs.clear();
+            selectedRiskProfile = null;
+            selectedPrioProfile = null;
+            selectedDay = null;
+            selectedHour = null;
+            textFilterGrp = "";
+            textFilterCollab = "";
+            let iptGrp = document.getElementById('searchGrp'); if(iptGrp) iptGrp.value = "";
+            let iptCol = document.getElementById('searchCollab'); if(iptCol) iptCol.value = "";
+            for(let k in filterOptions) activeFilters[k] = Array.from(filterOptions[k]);
+            if(reRender) { renderFilters(); updateDashboard(); }
+        }
+
+        window.setGlobalSearch = function(type, val) {
+            if (type === 'GRP') textFilterGrp = val;
+            if (type === 'COLLAB') textFilterCollab = val;
+            updateDashboard();
+        }
+
+        let rowClickTimer = null;
+        window.handleRowAction = function(type, name, subTarget = null) {
+            if (rowClickTimer) {
+                clearTimeout(rowClickTimer); rowClickTimer = null;
+                showDrillDown(name, type, subTarget); 
+            } else {
+                rowClickTimer = setTimeout(() => {
+                    rowClickTimer = null;
+                    if (type === 'APP') {
+                        if (selectedAppsFromChart.has(name)) selectedAppsFromChart.clear();
+                        else { selectedAppsFromChart.clear(); selectedAppsFromChart.add(name); }
+                    } else if (type === 'COLLAB') {
+                        if (selectedCollabs.has(name)) selectedCollabs.clear();
+                        else { selectedCollabs.clear(); selectedCollabs.add(name); }
+                    }
+                    updateDashboard();
+                }, 250);
+            }
+        };
+
+        function updateDashboard() {
+            let baseData = rawData.filter(d => 
+                activeFilters['Année'].includes(d.y) &&
+                activeFilters['Priorité'].includes(d.p) &&
+                activeFilters['Statut SLA'].includes(d.s)
+            );
+
+            let activeData = baseData;
+            let crossMsgs = [];
+            
+            if (textFilterGrp) {
+                let txt = textFilterGrp.toUpperCase();
+                activeData = activeData.filter(d => d.g.includes(txt));
+                crossMsgs.push(`Recherche Groupe`);
+            }
+            if (textFilterCollab) {
+                let txt = textFilterCollab.toLowerCase();
+                activeData = activeData.filter(d => d.c.toLowerCase().includes(txt));
+                crossMsgs.push(`Recherche Agent`);
+            }
+
+            if (selectedAppsFromChart.size > 0) {
+                activeData = activeData.filter(d => selectedAppsFromChart.has(d.g));
+                crossMsgs.push(`Groupes (${selectedAppsFromChart.size})`);
+            }
+            if (selectedCollabs.size > 0) {
+                activeData = activeData.filter(d => selectedCollabs.has(d.c));
+                crossMsgs.push(`Agents (${selectedCollabs.size})`);
+            }
+            if (selectedRiskProfile) {
+                activeData = activeData.filter(d => {
+                    if (d.s !== "Achieved") return false;
+                    if (selectedRiskProfile === 'safe') return d.pct <= 50;
+                    if (selectedRiskProfile === 'warn') return d.pct > 50 && d.pct <= 80;
+                    if (selectedRiskProfile === 'near') return d.pct > 80;
+                });
+                crossMsgs.push(`Risk: ${dict[curLang]['risk_'+selectedRiskProfile]}`);
+            }
+            if (selectedPrioProfile) {
+                activeData = activeData.filter(d => d.p === selectedPrioProfile);
+                crossMsgs.push(`Prio: ${selectedPrioProfile}`);
+            }
+            if (selectedDay !== null && selectedHour !== null) {
+                activeData = activeData.filter(d => d.dStart && d.dStart.getDay() === selectedDay && d.dStart.getHours() === selectedHour);
+                crossMsgs.push(`CrashTime: ${dict[curLang].days[selectedDay]} ${selectedHour}h`);
+            }
+
+            const crossMsgEl = document.getElementById('crossFilterMsg');
+            if (crossMsgs.length > 0) {
+                crossMsgEl.classList.remove('hidden');
+                crossMsgEl.textContent = `${dict[curLang].active_filters} ${crossMsgs.join(' + ')}`;
+            } else { crossMsgEl.classList.add('hidden'); }
+
+            document.getElementById('recordCount').textContent = activeData.length;
+
+            renderKPIs(activeData, baseData);
+            renderCoreCharts(baseData, activeData);
+            renderExpertCharts(activeData);
+            renderHeatmap(activeData);
+            buildMatrix(activeData);
+            buildCollabMatrix(activeData);
+        }
+
+        // --- STREAMING_CHUNK:KPIs & Sparklines ---
+        function renderSparkline(containerId, monthlyCounts) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            let max = Math.max(...monthlyCounts, 1);
+            container.innerHTML = monthlyCounts.map(val => {
+                let heightPct = Math.round((val / max) * 24);
+                return `<div class="sparkbar" style="height: ${Math.max(2, heightPct)}px;" title="${val}"></div>`;
+            }).join('');
+        }
+
+        function renderKPIs(data, baseData) {
+            let tot = 0, ach = 0, brc = 0;
+            let grpStats = {}, durations = [];
+            
+            let mAch = Array(12).fill(0), mBrc = Array(12).fill(0), mP50Vals = Array(12).fill().map(() => []);
+            let aYears = Array.from(activeFilters['Année']).filter(y=>y!==dict[curLang].unknown).sort();
+            let yN = aYears.length > 0 ? aYears[aYears.length-1] : null;
+            let yN1 = aYears.length > 1 ? aYears[aYears.length-2] : null;
+            let statsN = {t:0, a:0, b:0, dur:[]}, statsN1 = {t:0, a:0, b:0, dur:[]};
+
+            data.forEach(d => {
+                tot++;
+                if(d.s === "Achieved") { ach++; if(d.m>=1 && d.m<=12) mAch[d.m-1]++; }
+                else { brc++; if(d.m>=1 && d.m<=12) mBrc[d.m-1]++; }
+                
+                if(!grpStats[d.g]) grpStats[d.g] = { t:0, a:0 };
+                grpStats[d.g].t++;
+                if(d.s === "Achieved") grpStats[d.g].a++;
+
+                if(d.y === yN) {
+                    statsN.t++;
+                    if(d.s === "Achieved") statsN.a++; else statsN.b++;
+                    if(d.durMin !== null && d.durMin >= 0) statsN.dur.push(d.durMin);
+                }
+                if(d.y === yN1) {
+                    statsN1.t++;
+                    if(d.s === "Achieved") statsN1.a++; else statsN1.b++;
+                    if(d.durMin !== null && d.durMin >= 0) statsN1.dur.push(d.durMin);
+                }
+                
+                if(d.durMin !== null && d.durMin >= 0) {
+                    durations.push(d.durMin);
+                    if(d.m >= 1 && d.m <= 12) mP50Vals[d.m-1].push(d.durMin);
+                }
+            });
+
+            document.getElementById('kpi-achieved').textContent = ach;
+            document.getElementById('kpi-achieved-pct').textContent = tot>0 ? `(${Math.round(ach/tot*100)}%)` : '(0%)';
+            document.getElementById('kpi-breached').textContent = brc;
+            document.getElementById('kpi-breached-pct').textContent = tot>0 ? `(${Math.round(brc/tot*100)}%)` : '(0%)';
+
+            let worstGrp = "-", worstPct = 101, bestGrp = "-", bestPct = -1;
+            for(let g in grpStats) {
+                if(grpStats[g].t >= 5) { 
+                    let pct = (grpStats[g].a / grpStats[g].t) * 100;
+                    if(pct < worstPct) { worstPct = pct; worstGrp = g; }
+                    if(pct > bestPct) { bestPct = pct; bestGrp = g; }
+                }
+            }
+            document.getElementById('kpi-worst-app').textContent = worstGrp !== "-" ? `${worstGrp} (${Math.round(worstPct)}%)` : "-";
+            document.getElementById('kpi-best-app').textContent = bestGrp !== "-" ? `${bestGrp} (${Math.round(bestPct)}%)` : "-";
+
+            durations.sort((a,b) => a-b);
+            let p50 = durations.length > 0 ? durations[Math.floor(durations.length * 0.5)] : null;
+            let p90 = durations.length > 0 ? durations[Math.floor(durations.length * 0.9)] : null;
+            
+            document.getElementById('kpi-p50').textContent = formatDur(p50);
+            document.getElementById('kpi-p90').textContent = formatDur(p90);
+
+            // Badges YoY
+            let yoyAchHtml = '', yoyBrcHtml = '', yoyP50Html = '', yoyP90Html = '';
+            if (yN && yN1 && statsN.t > 0 && statsN1.t > 0) {
+                let pctN = (statsN.a / statsN.t) * 100, pctN1 = (statsN1.a / statsN1.t) * 100;
+                let diffA = pctN - pctN1;
+                let colA = diffA >= 0 ? 'text-emerald-700 bg-emerald-100 border-emerald-200' : 'text-amber-700 bg-amber-100 border-amber-200';
+                yoyAchHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold border ${colA}">${yN} vs ${yN1} : ${diffA>=0?'↗':'↘'} ${diffA>0?'+':''}${diffA.toFixed(1)}%</span>`;
+
+                let pctBN = (statsN.b / statsN.t) * 100, pctBN1 = (statsN1.b / statsN1.t) * 100;
+                let diffB = pctBN - pctBN1;
+                let colB = diffB <= 0 ? 'text-emerald-700 bg-emerald-100 border-emerald-200' : 'text-red-700 bg-red-100 border-red-200';
+                yoyBrcHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold border ${colB}">${yN} vs ${yN1} : ${diffB<=0?'↘':'↗'} ${diffB>0?'+':''}${diffB.toFixed(1)}%</span>`;
+
+                statsN.dur.sort((a,b)=>a-b); statsN1.dur.sort((a,b)=>a-b);
+                let p50N = statsN.dur.length > 0 ? statsN.dur[Math.floor(statsN.dur.length * 0.5)] : 0;
+                let p50N1 = statsN1.dur.length > 0 ? statsN1.dur[Math.floor(statsN1.dur.length * 0.5)] : 0;
+                let diffP50 = p50N - p50N1;
+                let colP50 = diffP50 <= 0 ? 'text-blue-700 bg-blue-100 border-blue-200' : 'text-amber-700 bg-amber-100 border-amber-200';
+                yoyP50Html = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold border ${colP50}">${yN} vs ${yN1} : ${diffP50<=0?'↘':'↗'} ${formatDur(Math.abs(diffP50))}</span>`;
+
+                let p90N = statsN.dur.length > 0 ? statsN.dur[Math.floor(statsN.dur.length * 0.9)] : 0;
+                let p90N1 = statsN1.dur.length > 0 ? statsN1.dur[Math.floor(statsN1.dur.length * 0.9)] : 0;
+                let diffP90 = p90N - p90N1;
+                let colP90 = diffP90 <= 0 ? 'text-purple-700 bg-purple-100 border-purple-200' : 'text-red-700 bg-red-100 border-red-200';
+                yoyP90Html = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold border ${colP90}">${yN} vs ${yN1} : ${diffP90<=0?'↘':'↗'} ${formatDur(Math.abs(diffP90))}</span>`;
+            }
+
+            document.getElementById('kpi-achieved-yoy').innerHTML = yoyAchHtml;
+            document.getElementById('kpi-breached-yoy').innerHTML = yoyBrcHtml;
+            document.getElementById('kpi-p50-yoy').innerHTML = yoyP50Html;
+            document.getElementById('kpi-p90-yoy').innerHTML = yoyP90Html;
+
+            renderSparkline('sparkAchieved', mAch);
+            renderSparkline('sparkBreached', mBrc);
+            let monthlyMedians = mP50Vals.map(arr => {
+                if(arr.length === 0) return 0;
+                arr.sort((a,b)=>a-b); return arr[Math.floor(arr.length*0.5)];
+            });
+            renderSparkline('sparkP50', monthlyMedians);
+        }
+
+        // --- STREAMING_CHUNK:Graphes Core ---
+        function renderCoreCharts(baseData, activeData) {
+            const colAch = '#10b981', colBrc = '#ef4444';
+            const colAchF = 'rgba(16, 185, 129, 0.15)', colBrcF = 'rgba(239, 68, 68, 0.15)';
+
+            let gStats = {};
+            baseData.forEach(d => {
+                if(!gStats[d.g]) gStats[d.g] = { a:0, b:0, t:0 };
+                d.s==="Achieved" ? gStats[d.g].a++ : gStats[d.g].b++;
+                gStats[d.g].t++;
+            });
+            let topG = Object.keys(gStats).sort((a,b) => gStats[b].t - gStats[a].t).slice(0,12);
+            let dAch=[], dBrc=[], bgAch=[], bgBrc=[];
+            
+            topG.forEach(g => {
+                dAch.push(gStats[g].a); dBrc.push(gStats[g].b);
+                if (selectedAppsFromChart.size > 0 && !selectedAppsFromChart.has(g)) {
+                    bgAch.push(colAchF); bgBrc.push(colBrcF);
+                } else { bgAch.push(colAch); bgBrc.push(colBrc); }
+            });
+
+            if(!chartVol) {
+                chartVol = new Chart(document.getElementById('chartVolume'), {
+                    type: 'bar',
+                    data: { labels: topG, datasets: [{ label: 'Achieved', data: dAch, backgroundColor: bgAch }, { label: 'Breached', data: dBrc, backgroundColor: bgBrc }] },
+                    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } }, plugins: { datalabels: { display: false } },
+                        onHover: (e, el) => { e.native.target.style.cursor = el.length ? 'pointer' : 'default'; },
+                        onClick: (e, els) => {
+                            if (els.length > 0) {
+                                let g = topG[els[0].index];
+                                let m = e.native.ctrlKey || e.native.metaKey;
+                                if (!m && selectedAppsFromChart.has(g) && selectedAppsFromChart.size === 1) selectedAppsFromChart.clear();
+                                else if (!m) { selectedAppsFromChart.clear(); selectedAppsFromChart.add(g); }
+                                else { selectedAppsFromChart.has(g) ? selectedAppsFromChart.delete(g) : selectedAppsFromChart.add(g); }
+                                updateDashboard();
+                            } else { selectedAppsFromChart.clear(); updateDashboard(); }
+                        }
+                    }
+                });
+            } else {
+                chartVol.data.labels = topG; chartVol.data.datasets[0].data = dAch; chartVol.data.datasets[0].backgroundColor = bgAch;
+                chartVol.data.datasets[1].data = dBrc; chartVol.data.datasets[1].backgroundColor = bgBrc; chartVol.update();
+            }
+
+            let pStats = {};
+            activeData.forEach(d => { pStats[d.p] = (pStats[d.p]||0) + 1; });
+            let pLabels = Object.keys(pStats), pData = Object.values(pStats);
+            let pColors = pLabels.map(l => {
+                if(l===selectedPrioProfile) return '#4f46e5';
+                if(selectedPrioProfile) return '#e2e8f0';
+                let lUpper = l.toUpperCase();
+                if(lUpper.includes('CRITICAL') || l==='P1') return '#ef4444'; // Rouge
+                if(lUpper.includes('HIGH') || l==='P2') return '#f97316'; // Orange
+                if(lUpper.includes('MODERATE') || l==='P3') return '#f59e0b'; // Jaune
+                if(lUpper.includes('LOW') || l==='P4') return '#3b82f6'; // Bleu
+                if(lUpper.includes('PLANNING') || l==='P5') return '#10b981'; // Vert
+                return '#94a3b8'; // Gris par défaut
+            });
+
+            if(!chartPrio) {
+                chartPrio = new Chart(document.getElementById('chartPriority'), {
+                    type: 'doughnut',
+                    data: { labels: pLabels, datasets: [{ data: pData, backgroundColor: pColors, borderWidth: 1 }] },
+                    options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } },
+                        datalabels: { color: '#fff', font: { weight: 'bold', size: 10 }, formatter: (v, ctx) => {
+                            let sum = ctx.dataset.data.reduce((a,b)=>a+b,0);
+                            let p = (v*100/sum).toFixed(0)+'%'; return p==='0%'?'':p;
+                        }}},
+                        onHover: (e, el) => { e.native.target.style.cursor = el.length ? 'pointer' : 'default'; },
+                        onClick: (e, els) => {
+                            if (els.length > 0) {
+                                let l = pLabels[els[0].index];
+                                selectedPrioProfile = (selectedPrioProfile === l) ? null : l;
+                                updateDashboard();
+                            } else { selectedPrioProfile = null; updateDashboard(); }
+                        }
+                    }
+                });
+            } else {
+                chartPrio.data.labels = pLabels; chartPrio.data.datasets[0].data = pData; chartPrio.data.datasets[0].backgroundColor = pColors; chartPrio.update();
+            }
+
+            let tData = {};
+            let tooltipApps = {}; 
+            let aYears = Array.from(activeFilters['Année']).filter(y=>y!==dict[curLang].unknown).sort();
+            
+            aYears.forEach(y => { 
+                tData[y] = Array(12).fill(0); 
+                tooltipApps[y] = Array(12).fill(null).map(() => ({})); 
+            });
+            
+            activeData.forEach(d => { 
+                if(tData[d.y] && d.m >= 1 && d.m <= 12) {
+                    tData[d.y][d.m-1]++; 
+                    let app = d.g;
+                    tooltipApps[d.y][d.m-1][app] = (tooltipApps[d.y][d.m-1][app] || 0) + 1;
+                } 
+            });
+
+            let trendPalette = ['#cbd5e1', '#60a5fa', '#4f46e5', '#9333ea']; 
+            let tSets = aYears.map((y, i) => {
+                let c = trendPalette[i % trendPalette.length];
+                let isLast = i === aYears.length - 1;
+                return { label: y, data: tData[y], borderColor: c, backgroundColor: c+'20', tension: 0.3, fill: isLast, borderWidth: isLast ? 3 : 2, pointRadius: 4, pointHoverRadius: 7 };
+            });
+
+            if(chartTrend) chartTrend.destroy();
+            chartTrend = new Chart(document.getElementById('chartTrend'), {
+                type: 'line', data: { labels: ["Jan","Fév","Mar","Avr","Mai","Jui","Jul","Aoû","Sep","Oct","Nov","Déc"], datasets: tSets },
+                options: { 
+                    responsive: true, maintainAspectRatio: false, plugins: { datalabels: { display: false },
+                        tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.95)', padding: 12, titleFont: { size: 14, weight: 'bold' }, bodyFont: { size: 12 },
+                            callbacks: {
+                                label: function(context) {
+                                    let year = context.dataset.label; let mIdx = context.dataIndex; let val = context.parsed.y;
+                                    let lines = [`${year} : ${val} tickets`];
+                                    if(val > 0 && tooltipApps[year] && tooltipApps[year][mIdx]) {
+                                        let apps = tooltipApps[year][mIdx];
+                                        let sorted = Object.entries(apps).sort((a,b) => b[1] - a[1]);
+                                        let medals = ['🥇', '🥈', '🥉'];
+                                        sorted.slice(0,3).forEach((item, idx) => { lines.push(`   ${medals[idx]} ${item[0]} (${item[1]})`); });
+                                    }
+                                    return lines;
+                                }
+                            }
+                        }
+                    }, interaction: { mode: 'index', intersect: false } 
+                }
+            });
+        }
+
+        // --- STREAMING_CHUNK:Graphes Expert ---
+        function renderExpertCharts(data) {
+            let risk = { safe: 0, warn: 0, near: 0 };
+            data.filter(d => d.s === "Achieved").forEach(d => {
+                if(d.pct <= 50) risk.safe++; else if(d.pct <= 80) risk.warn++; else risk.near++;
+            });
+            
+            let bgSafe = selectedRiskProfile && selectedRiskProfile !== 'safe' ? 'rgba(16, 185, 129, 0.2)' : '#10b981';
+            let bgWarn = selectedRiskProfile && selectedRiskProfile !== 'warn' ? 'rgba(245, 158, 11, 0.2)' : '#f59e0b';
+            let bgNear = selectedRiskProfile && selectedRiskProfile !== 'near' ? 'rgba(249, 115, 22, 0.2)' : '#f97316';
+
+            if(!chartRisk) {
+                chartRisk = new Chart(document.getElementById('chartRisk'), {
+                    type: 'bar', data: { labels: [dict[curLang].risk_safe, dict[curLang].risk_warn, dict[curLang].risk_near], datasets: [{ data: [risk.safe, risk.warn, risk.near], backgroundColor: [bgSafe, bgWarn, bgNear], borderRadius: 4 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: {weight:'bold'} } },
+                        onHover: (e, el) => { e.native.target.style.cursor = el.length ? 'pointer' : 'default'; },
+                        onClick: (e, els) => {
+                            if (els.length > 0) {
+                                let idx = els[0].index;
+                                let riskType = idx === 0 ? 'safe' : (idx === 1 ? 'warn' : 'near');
+                                selectedRiskProfile = (selectedRiskProfile === riskType) ? null : riskType;
+                                updateDashboard();
+                            } else { selectedRiskProfile = null; updateDashboard(); }
+                        }
+                    }
+                });
+            } else {
+                chartRisk.data.labels = [dict[curLang].risk_safe, dict[curLang].risk_warn, dict[curLang].risk_near];
+                chartRisk.data.datasets[0].data = [risk.safe, risk.warn, risk.near]; 
+                chartRisk.data.datasets[0].backgroundColor = [bgSafe, bgWarn, bgNear]; chartRisk.update();
+            }
+
+            let words = {};
+            data.filter(d => d.s === "Breached" && d.desc).forEach(d => {
+                let tokens = d.desc.toLowerCase().replace(/[^\w\sàâéèêëîïôùûüç]/g, ' ').split(/\s+/).filter(w => w.length > 2 && !stopWords.has(w) && isNaN(w));
+                for(let i = 0; i < tokens.length - 1; i++) {
+                    let phrase = tokens[i] + " " + tokens[i+1];
+                    words[phrase] = (words[phrase] || 0) + 1;
+                }
+            });
+            let topWords = Object.entries(words).sort((a,b)=>b[1]-a[1]).slice(0, 15);
+            let wcDiv = document.getElementById('wordCloud');
+            if(topWords.length === 0) { wcDiv.innerHTML = `<span class="text-xs text-slate-400 italic">Pas assez de textes pertinents.</span>`; }
+            else {
+                let max = topWords[0][1];
+                wcDiv.innerHTML = topWords.map(w => {
+                    let size = 12 + (w[1]/max)*16; let op = 0.5 + (w[1]/max)*0.5;
+                    return `<span style="font-size:${size}px; opacity:${op}" class="font-black text-indigo-700 hover:text-red-500 transition-colors cursor-default" title="${w[1]} occurrences">${w[0]}</span>`;
+                }).join(' ');
+            }
+
+            let scData = {};
+            data.forEach(d => {
+                if(!scData[d.g]) scData[d.g] = { t:0, b:0 };
+                scData[d.g].t++; if(d.s==="Breached") scData[d.g].b++;
+            });
+            let pts = Object.keys(scData).filter(g=>scData[g].t>5).map(g => {
+                let isSelected = selectedAppsFromChart.size === 0 || selectedAppsFromChart.has(g);
+                return { x: scData[g].t, y: Math.round((scData[g].b/scData[g].t)*100), raw: g, selected: isSelected };
+            });
+
+            if(!chartScatter) {
+                chartScatter = new Chart(document.getElementById('chartScatter'), {
+                    type: 'scatter', data: { datasets: [{ label: 'Équipes', data: pts, backgroundColor: (ctx) => ctx.raw?.selected ? '#6366f1' : 'rgba(99, 102, 241, 0.2)', pointRadius: 6, pointHoverRadius: 9 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { datalabels: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.raw} : Vol ${c.raw.x} | Fail ${c.raw.y}%` } } },
+                        scales: { x: { title: { display: true, text: 'Volume Tickets' } }, y: { title: { display: true, text: 'Taux Échec (%)' }, min: 0, max: 100 } },
+                        onHover: (e, el) => { e.native.target.style.cursor = el.length ? 'pointer' : 'default'; },
+                        onClick: (e, els) => {
+                            if (els.length > 0) {
+                                let app = pts[els[0].index].raw;
+                                let m = e.native.ctrlKey || e.native.metaKey;
+                                if (!m && selectedAppsFromChart.has(app) && selectedAppsFromChart.size === 1) selectedAppsFromChart.clear();
+                                else if (!m) { selectedAppsFromChart.clear(); selectedAppsFromChart.add(app); }
+                                else { selectedAppsFromChart.has(app) ? selectedAppsFromChart.delete(app) : selectedAppsFromChart.add(app); }
+                                updateDashboard();
+                            } else { selectedAppsFromChart.clear(); updateDashboard(); }
+                        }
+                    }
+                });
+            } else { 
+                chartScatter.data.datasets[0].data = pts; 
+                chartScatter.data.datasets[0].backgroundColor = (ctx) => ctx.raw?.selected ? '#6366f1' : 'rgba(99, 102, 241, 0.2)';
+                chartScatter.update(); 
+            }
+        }
+
+        window.toggleHeatmapFilter = function(day, hour) {
+            if (selectedDay === day && selectedHour === hour) { selectedDay = null; selectedHour = null; }
+            else { selectedDay = day; selectedHour = hour; }
+            updateDashboard();
+        }
+
+        function renderHeatmap(data) {
+            let container = document.getElementById('heatmapContainer');
+            let matrix = Array(7).fill(0).map(() => Array(24).fill(0));
+            let maxVal = 0;
+            
+            data.forEach(d => {
+                if(d.dStart && !isNaN(d.dStart.getTime())) {
+                    let day = d.dStart.getDay(), hr = d.dStart.getHours();
+                    matrix[day][hr]++;
+                    if(matrix[day][hr] > maxVal) maxVal = matrix[day][hr];
+                }
+            });
+
+            if(maxVal === 0) { container.innerHTML = `<p class="text-sm text-slate-400">Pas de données temporelles valides pour la heatmap.</p>`; return; }
+
+            let html = `<table class="w-full text-xs text-center border-collapse"><thead><tr><th class="p-2"></th>`;
+            for(let h=0; h<24; h++) html += `<th class="p-2 text-slate-500 font-bold w-12">${h}h</th>`;
+            html += `</tr></thead><tbody>`;
+
+            dict[curLang].days.forEach((dayName, dIdx) => {
+                html += `<tr><td class="p-2 font-black text-slate-700 text-right pr-3">${dayName}</td>`;
+                for(let h=0; h<24; h++) {
+                    let val = matrix[dIdx][h];
+                    let intensity = val / maxVal;
+                    let bg = intensity > 0 ? `rgba(239, 68, 68, ${0.15 + (intensity * 0.85)})` : '#f8fafc';
+                    let col = intensity > 0.5 ? 'white' : '#475569';
+                    let display = val > 0 ? val : '';
+                    let cursorClass = val > 0 ? 'cursor-pointer hover:opacity-80 transition-opacity' : '';
+                    let borderClass = (selectedDay === dIdx && selectedHour === h) ? 'border-2 border-indigo-900 shadow-inner' : 'border-2 border-white';
+                    
+                    html += `<td class="p-3 ${borderClass} ${cursorClass} font-bold rounded-sm text-sm" style="background-color: ${bg}; color: ${col}" title="${dayName} à ${h}h : ${val} tickets" ${val > 0 ? `onclick="toggleHeatmapFilter(${dIdx}, ${h})"` : ''}>${display}</td>`;
+                }
+                html += `</tr>`;
+            });
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        }
+
+        // --- STREAMING_CHUNK:Tableaux & Matrices ---
+        function getTrendIcon(valN, valN1) {
+            if(valN1===null || valN1===undefined || valN1===0) return '-';
+            let diff = valN - valN1;
+            let color = diff >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-red-600 bg-red-50';
+            let sign = diff > 0 ? '+' : '';
+            return `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold border border-slate-100 ${color}" title="Évolution YoY">${sign}${diff}%</span>`;
+        }
+
+        function buildMatrix(data) {
+            let groups = {};
+            let aYears = Array.from(activeFilters['Année']).filter(y=>y!==dict[curLang].unknown).sort();
+            let yN = aYears.length > 0 ? aYears[aYears.length-1] : null;
+            let yN1 = aYears.length > 1 ? aYears[aYears.length-2] : null;
+
+            data.forEach(d => {
+                if(!groups[d.g]) groups[d.g] = { g: d.g, t:0, b:0, months: Array(12).fill(0), tN:0, aN:0, tN1:0, aN1:0 };
+                groups[d.g].t++;
+                if(d.s === "Breached") groups[d.g].b++;
+                if(d.m >= 1 && d.m <= 12) groups[d.g].months[d.m-1]++;
+
+                if(d.y === yN) { groups[d.g].tN++; if(d.s==="Achieved") groups[d.g].aN++; }
+                if(d.y === yN1) { groups[d.g].tN1++; if(d.s==="Achieved") groups[d.g].aN1++; }
+            });
+
+            currentMatrixData = Object.values(groups).map(g => {
+                g.rTot = g.t > 0 ? Math.round(((g.t - g.b)/g.t)*100) : 0;
+                g.rN = g.tN > 0 ? Math.round((g.aN/g.tN)*100) : null;
+                g.rN1 = g.tN1 > 0 ? Math.round((g.aN1/g.tN1)*100) : null;
+                return g;
+            });
+            executeSort('matrix');
+        }
+
+        function buildCollabMatrix(data) {
+            let collabs = {}, totalTickets = data.length;
+            if(totalTickets === 0) { currentCollabData = []; executeSort('collab'); return; }
+
+            data.forEach(d => {
+                if(d.c === "(Vide)" || d.c === dict[curLang].empty) return;
+                if(!collabs[d.c]) collabs[d.c] = { c: d.c, t:0, grps: {} };
+                collabs[d.c].t++;
+                collabs[d.c].grps[d.g] = (collabs[d.c].grps[d.g] || 0) + 1;
+            });
+
+            currentCollabData = Object.values(collabs).map(c => {
+                c.pctGl = (c.t / totalTickets * 100).toFixed(1);
+                c.vHtml = Object.entries(c.grps).map(e => {
+                    const safeG = e[0].replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                    const safeC = c.c.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                    return `<span onclick="event.stopPropagation(); showDrillDown('${safeC}', 'COLLAB', '${safeG}')" class="bg-slate-100 text-[10px] px-1.5 py-0.5 rounded border border-slate-200 shadow-sm hover:bg-indigo-100 cursor-pointer transition-colors">${e[0]} <b class="text-indigo-600">${e[1]}</b></span>`;
+                }).join(' ');
+                return c;
+            });
+            executeSort('collab');
+        }
+
+        function renderTables() {
+            let htmlM = currentMatrixData.map(g => {
+                let rc = g.rTot >= 90 ? 'text-emerald-600' : (g.rTot < 75 ? 'text-red-600' : 'text-amber-500');
+                let trendBadge = getTrendIcon(g.rN, g.rN1);
+                const safeGroup = g.g.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                
+                let maxM = Math.max(...g.months, 1);
+                let sparkHtml = `<div class="sparkline" title="Activité mensuelle">` + g.months.map(v => {
+                    let h = Math.round((v / maxM) * 16);
+                    return `<div class="sparkbar" style="height: ${Math.max(2, h)}px;"></div>`;
+                }).join('') + `</div>`;
+
+                let bgSelected = selectedAppsFromChart.has(g.g) ? 'bg-indigo-50 border-l-4 border-indigo-500' : 'border-b border-slate-50 hover:bg-slate-50';
+
+                return `<tr class="row-interactive ${bgSelected}" onclick="handleRowAction('APP', '${safeGroup}')">
+                    <td class="px-4 py-3 font-bold text-slate-700">${g.g}</td>
+                    <td class="px-4 py-3 text-center text-slate-600 font-mono">${g.t}</td>
+                    <td class="px-4 py-3 text-center text-red-500 font-bold font-mono">${g.b}</td>
+                    <td class="px-4 py-3 text-center font-black ${rc} font-mono">${g.rTot}%</td>
+                    <td class="px-4 py-3 flex items-center justify-center gap-3">${sparkHtml}${trendBadge}</td>
+                </tr>`;
+            }).join('');
+            document.getElementById('matrixBody').innerHTML = htmlM || `<tr><td colspan="5" class="p-4 text-center text-slate-400">Aucune donnée</td></tr>`;
+
+            let htmlC = currentCollabData.map(c => {
+                const safeCollab = c.c.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                let bgSelected = selectedCollabs.has(c.c) ? 'bg-indigo-50 border-l-4 border-indigo-500' : 'border-b border-slate-50 hover:bg-slate-50';
+
+                return `<tr class="row-interactive ${bgSelected}" onclick="handleRowAction('COLLAB', '${safeCollab}')">
+                    <td class="px-4 py-3 font-bold text-slate-700">${c.c}</td>
+                    <td class="px-4 py-3 text-center text-indigo-600 font-bold font-mono">${c.t}</td>
+                    <td class="px-4 py-3 text-center font-mono text-[10px]">
+                        <div class="w-full bg-slate-200 rounded-full h-1.5 mb-1"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${c.pctGl}%"></div></div>
+                        ${c.pctGl}%
+                    </td>
+                    <td class="px-4 py-3 flex flex-wrap gap-1">${c.vHtml}</td>
+                </tr>`;
+            }).join('');
+            document.getElementById('collabBody').innerHTML = htmlC || `<tr><td colspan="4" class="p-4 text-center text-slate-400">Aucune donnée</td></tr>`;
+        }
+
+        window.sortTable = function(id, colIdx, type) {
+            let st = sortState[id];
+            if(st.colIndex === colIdx) st.asc = !st.asc;
+            else { st.colIndex = colIdx; st.asc = (type === 'string'); }
+            
+            let ths = document.getElementById(id==='matrix'?'matrixBody':'collabBody').parentElement.querySelectorAll('th');
+            ths.forEach(th => { th.classList.remove('sort-active','asc','desc'); th.classList.add('sort-inactive'); });
+            let activeTh = ths[colIdx];
+            activeTh.classList.remove('sort-inactive');
+            activeTh.classList.add('sort-active', st.asc ? 'asc' : 'desc');
+            executeSort(id);
+        }
+
+        function executeSort(id) {
+            let data = id === 'matrix' ? currentMatrixData : currentCollabData;
+            let st = sortState[id];
+            data.sort((a,b) => {
+                let vA, vB;
+                if(id === 'matrix') {
+                    if(st.colIndex===0) { vA=a.g; vB=b.g; } else if(st.colIndex===1) { vA=a.t; vB=b.t; }
+                    else if(st.colIndex===2) { vA=a.b; vB=b.b; } else if(st.colIndex===3) { vA=a.rTot; vB=b.rTot; }
+                    else { vA = (a.rN!==null && a.rN1!==null) ? a.rN - a.rN1 : -999; vB = (b.rN!==null && b.rN1!==null) ? b.rN - b.rN1 : -999; }
+                } else {
+                    if(st.colIndex===0) { vA=a.c; vB=b.c; } else if(st.colIndex===1) { vA=a.t; vB=b.t; } else { vA=parseFloat(a.pctGl); vB=parseFloat(b.pctGl); }
+                }
+                if(typeof vA === 'string') return st.asc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+                return st.asc ? vA - vB : vB - vA;
+            });
+            renderTables();
+        }
+
+        // --- STREAMING_CHUNK:Modals & Export ---
+        window.showDrillDown = function(targetName, targetType, subTargetGroup = null) {
+            let baseData = rawData.filter(d => 
+                activeFilters['Année'].includes(d.y) && activeFilters['Priorité'].includes(d.p) && activeFilters['Statut SLA'].includes(d.s)
+            );
+            
+            if(targetType === 'APP') baseData = baseData.filter(d => d.g === targetName);
+            else if(targetType === 'COLLAB') {
+                baseData = baseData.filter(d => d.c === targetName);
+                if(subTargetGroup) baseData = baseData.filter(d => d.g === subTargetGroup);
+            }
+            
+            if (selectedAppsFromChart.size > 0 && targetType !== 'APP' && !subTargetGroup) baseData = baseData.filter(d => selectedAppsFromChart.has(d.g));
+            if (selectedCollabs.size > 0 && targetType !== 'COLLAB') baseData = baseData.filter(d => selectedCollabs.has(d.c));
+            
+            if (selectedRiskProfile) baseData = baseData.filter(d => {
+                if (d.s !== "Achieved") return false;
+                if (selectedRiskProfile === 'safe') return d.pct <= 50;
+                if (selectedRiskProfile === 'warn') return d.pct > 50 && d.pct <= 80;
+                if (selectedRiskProfile === 'near') return d.pct > 80;
+            });
+            if (selectedPrioProfile) baseData = baseData.filter(d => d.p === selectedPrioProfile);
+            if (selectedDay !== null && selectedHour !== null) {
+                baseData = baseData.filter(d => d.dStart && d.dStart.getDay() === selectedDay && d.dStart.getHours() === selectedHour);
+            }
+
+            baseData.sort((a, b) => (b.dStart?.getTime()||0) - (a.dStart?.getTime()||0));
+
+            let tagColor = targetType === 'APP' ? 'bg-indigo-600' : 'bg-teal-600';
+            let titleText = subTargetGroup ? `${targetName} (${subTargetGroup})` : targetName;
+            
+            document.getElementById('modalAppName').className = `${tagColor} text-white px-3 py-1 rounded-md shadow-sm text-sm font-bold`;
+            document.getElementById('modalAppName').textContent = titleText;
+            
+            const tbody = document.getElementById('modalTableBody');
+            tbody.innerHTML = baseData.map(d => {
+                let color = d.s === "Breached" ? 'text-red-700 bg-red-50 border-red-200' : 'text-emerald-700 bg-emerald-50 border-emerald-200';
+                return `<tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-mono text-xs font-bold text-slate-700">${d.t}</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold border ${color}">${d.s}</span></td>
+                    <td class="px-4 py-3 font-mono text-xs font-bold ${d.pct>100?'text-red-500':'text-slate-500'}">${d.pct}%</td>
+                    <td class="px-4 py-3 text-xs text-slate-500">${d.strStart}</td>
+                    <td class="px-4 py-3 text-xs text-slate-500">${d.strEnd}</td>
+                    <td class="px-4 py-3 font-mono text-xs text-purple-600 font-bold">${formatDur(d.durMin)}</td>
+                    <td class="px-4 py-3 text-xs text-slate-600 whitespace-normal min-w-[300px]">${d.desc}</td>
+                </tr>`;
+            }).join('');
+
+            const modal = document.getElementById('drillDownModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        window.showSettings = function() {
+            const m = document.getElementById('settingsModal');
+            m.classList.remove('hidden');
+            setTimeout(() => m.classList.remove('opacity-0'), 10);
+        }
+        
+        window.showExportConfig = function() {
+            const m = document.getElementById('exportConfigModal');
+            m.classList.remove('hidden');
+            setTimeout(() => m.classList.remove('opacity-0'), 10);
+        }
+
+        window.closeModal = function(id) {
+            const m = document.getElementById(id);
+            m.classList.add('opacity-0');
+            setTimeout(() => m.classList.add('hidden'), 300);
+        }
+
+        window.executeExport = function() {
+            closeModal('exportConfigModal');
+            
+            const hide = (id, hideIt) => {
+                const el = document.getElementById(id);
+                if(el) el.style.display = hideIt ? 'none' : '';
+            };
+            
+            hide('section-core-charts', !document.getElementById('exp-core-charts').checked);
+            hide('section-trend', !document.getElementById('exp-trend').checked);
+            hide('section-matrices', !document.getElementById('exp-matrices').checked);
+            hide('section-expert', !document.getElementById('exp-expert').checked);
+            hide('section-scatter', !document.getElementById('exp-scatter').checked);
+            hide('section-heatmap', !document.getElementById('exp-heatmap').checked);
+
+            const btn = document.getElementById('btnExportGraph');
+            let orig = btn.innerHTML;
+            btn.innerHTML = 'Capture...';
+            
+            setTimeout(() => {
+                html2canvas(document.getElementById('mainDashboard'), { scale: 2, backgroundColor: "#f1f5f9" }).then(canvas => {
+                    let link = document.createElement('a');
+                    link.download = `SLA_Tracker_${new Date().toISOString().slice(0,10)}.png`;
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                    
+                    btn.innerHTML = orig;
+                    hide('section-core-charts', false);
+                    hide('section-trend', false);
+                    hide('section-matrices', false);
+                    hide('section-expert', false);
+                    hide('section-scatter', false);
+                    hide('section-heatmap', false);
+                });
+            }, 300);
+        }
+    </script>
+</body>
+</html>
